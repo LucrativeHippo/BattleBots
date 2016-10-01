@@ -1,0 +1,50 @@
+
+
+Battle Bots description:
+
+- The game includes one board in a hexagon shape, made up of smaller hexagons and can be played with 1-6 players
+- The size of the board and the colors used for teams depends on the amount of players in the game
+- 5 tiles for 2 players, 5 or 7 tiles for 3 players, and 7 tiles for 6 players
+- The team colors include: red, orange, yellow, green, blue and purple with red and green for 2 players - red, yellow and blue for 3 players 
+- The players control 3 robots on the board: a scout, sniper and a tank. Each with different stats
+- The tank has the highest attack and health at 3  but the lowest movement and attack range at 1 
+- The sniper has the highest attack range at 3. Its attack, health and movement are all at 2 
+- The scout has the highest movement at 3 but has the lowest health and attack at 1. It has a range of 2 
+- If there are not enough players to have a game, the player(s) that are in the game can face Artificial Intelligence(AI). The AI can also face other AI with no players
+- All the robots begin at the side of their colour
+- The game is played in 3 turns per round - 1 turn for each robot
+- The order of robots is dependant on which one has the greatest movement stat: Scout is first turn, sniper is second turn, tank last turn (depending on which robots are still in the game)
+- For each turn: Red goes first, then orange, then yellow, then green, the blue, then purple
+- If a player does not have the correct type of robot for the round, the player is skipped
+- In a turn, a player can choose to either move or attack, depending on if there are enemies in range
+- The player can move its robot as many spaces as it has movement points and can attack at any point of the movement
+- Any robot in the game can be on the same tile
+- Not all robots are visible to the player, only the ones within the range
+- A player can shoot any enemy robot within the range
+- If a robot is attacked, take the health of the robot that was hit and subtract it by the attacking robot's attack
+- A robot is dead when its health is 0
+- To win the game, you must be the player with the last robot alive
+
+GUI's:
+
+The first GUI is the main menu. The main menu has 3 options on the bottom, a picture of the game board and a message welcoming players to the game
+The "Begin" button takes you to the game properties screen, the "Help" button takes the user to the help section, and the "Quit" button exits the game
+
+The second GUI is the help section. The help section has all of the game rules, a description to navigate the menu, a website for troubleshooting info and 2 buttons
+The "Back" button takes the user back to the main menu, the "Quit" button exits the game
+
+The third GUI is the game properties. Game properties is where the user tells the game "how many colours will be playing", "how many humans will be playing", and "board length on each side". There are also 3 buttons on the bottom of the screen
+The "Back" button takes the user back to the main menu, the "Quit" button exits the game, the "Continue" button takes the user to the team selector
+
+The fourth GUI is the team selector. The user is able to choose which teams will play in the game
+The "Back" button takes the user back to the game properties, the "Quit" button exits the game, the "Continue" button takes the user to the game
+
+The fifth GUI is the game screen. At all times there is 2 buttons in the bottom left corner and all the teams with the health of there robots
+The "Help" button takes the user to the help section, and the "Quit" button exits the game
+
+The sixth GUI is the end results. The winner of the game is displayed as well as 3 buttons.
+The "play again" button starts up a new game with the same amount of humans, AI, and teams
+The stats button takes the user to the stats screen and the "Quit" button exits the game
+
+The seventh GUI is the stats from the game just played. It displays 2 buttons and each teams: wins, losses, ties, scout kills, sniper kills, and tank kills
+The "play again" button starts up a new game with the same amount of humans, AI, and teams and the "Quit" button exits the game
