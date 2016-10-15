@@ -1,0 +1,31 @@
+
+
+Purpose
+The purpose of this design document is to present our architecture's description, plan the classes that will later be implemented, along with interactions between them, and state our changes from our requirements document that must be made. The ___ section will state why we chose to implement our architecture, the pros and cons of it, and why we did not chose other architectures that we considered. In the ___ section, We will describe what each class should do, what information they will contain, and what information they will send to other classes. It will not contain any code specifications, just how the different classes are connected. This will be shown through class UML diagrams, as well as detailed descriptions. After designing the architecture, we expect to come across newly discovered difficulties that we did not know when writing our requirements, and as a result will have to update our promises made in the requirements document. We will state the changes from our requirements and also state why these changes must be made. This document will describe the classes that will later be implemented, and show their interactions with each other.
+
+
+
+System Overview
+Our architecture we will implement is Model-View-Controller. The view will receive messages from the controller of what it should be displaying to the user. It will also send messages to the controller when the user interacts with it by clicking buttons. It will not have any direct interactions with the model of the system. The model will take messages from the controller and perform the required task then send information back to the controller. These parts of this architecture along with their interactions will be described more in the ___ section.
+
+
+
+Pros and Cons Of MVC
+A benefit of this architecture is the separation of the interface and the model. This will make the code easier to work on because each class will have a specific purpose. This architecture also will result in less coupling. This is a benefit because changes in a class will not affect many other classes. Cohesive classes also result in much easier testing because each class can be tested individually. One disadvantage with MVC is it may be difficult to divide the work other than between the model, the view and the controller. This is because these parts of the architecture have many interactions within themselves. Another disadvantage is that it may take more time planning the interactions properly to interact without having to many unnecessary coupling. We feel this planning will benefit us when we are at the code implementation stage because each class will have a high level of cohesion. 
+
+Definitions and Acronyms
+UML: Unified Modeling Language
+Model-View-Controller(MVC): design architecture that is divided into three separated parts that communicate with each other. The model manages the data and behind the scenes workings of the program, The view is the interface for the user, and the controller communicates between the other two.
+Coupling: the interdependencies between classes.
+Cohesion: a measure of specific functionality within a class. 
+JavaScript Object Notation (JSON): a data file to transmit objects.
+Robot Librarian: a system for access of a collection of scripts that will control the CPU player's robots.
+
+
+Changes From Requirements Document
+team selection interface
+
+robot statistics
+
+
+
