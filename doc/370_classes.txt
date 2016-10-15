@@ -1,0 +1,201 @@
+CMPT 370 Class outlines
+
+Robot
+	Attributes
+		Movement
+		Range
+		Damage
+		movementLeft
+		health	
+
+	Functions
+		Create_Robot()
+		incrementMovementLeft()
+		incrementHealth()
+	
+
+
+ScoutAI extends the Robot class
+	Attibutes
+		Movement = 3
+        	Range = 2
+        	Damage = 1
+        	Health = 1
+
+	Functions
+		Create_AIScout() - changes the Create_Robot() function to create robot
+		with specific stats
+		Scan() 
+		Turn()
+		Shoot()
+		Move()
+
+SniperAI extends the Robot class
+        Attibutes
+        	Movement = 2
+        	Range = 3
+        	Damage = 2
+        	Health = 2
+
+        Functions
+        	Create_AISniper() - changes the Create_Robot() function to create robot
+		with specific stats
+        	Scan() 
+        	Turn()
+        	Shoot()
+        	Move()
+
+TankAI extends the Robot class
+        Attibutes
+        	Movement = 1
+        	Range = 1
+        	Damage = 3
+        	Health = 3
+
+        Functions
+        	Create_AITank() - changes the Create_Robot() function to create robot
+		with specific stats
+        	Scan() 
+        	Turn()
+        	Shoot()
+        	Move()
+
+Scout extends Robot class
+	Attributes
+		Movement = 3
+                Range = 2
+                Damage = 1
+                Health = 1
+
+	Functions
+		keyPressed() - Determines the key pressed and the direction
+		moved
+		mousePressed() - If there is a robot at location shoots at it.
+				
+Sniper extends Robot class
+        Attributes
+                Movement = 2
+                Range = 3
+                Damage = 2
+                Health = 2
+
+        Functions
+                keyPressed() - Determines the key pressed and the direction
+                moved
+                mousePressed() - If there is a robot at location shoots at it.
+
+
+Tank extends Robot class
+        Attributes
+                Movement = 1
+                Range = 1
+                Damage = 3
+                Health = 3
+
+        Functions
+                keyPressed() - Determines the key pressed and the direction
+                moved
+                mousePressed() - If there is a robot at location shoots at it.
+
+
+MainMenu extends JPanel
+	Attributes
+		continueButton
+		exitButton
+		rulesButton
+
+	Functions
+		continueButtonClick()
+		exitButtonClick()
+		rulesButtonClick()
+
+HelpPanel extends JPanel
+	Attributes
+		GameInstructionsText - a text field containing the
+		instructions for the game
+		exitButton
+		backButton
+
+	Functions
+		exitButtonClick()
+		backButtonClick()
+
+GamePropertiesPanel extends JPanel
+	Attributes
+		continueButton
+                exitButton
+		backButton
+		playerNumRadioButtons
+		humanNumRadioButtons
+		boardSizeRadioButtons
+
+	Functions
+		exitButtonClick()
+                backButtonClick()
+		continueButtonClick()
+		playerNumSelected()
+		humanNumSelected()
+		boardSizeSelected()
+
+TeamSelectionPanel extends JPanel
+	Attributes
+		continueButton
+                exitButton
+                backButton
+		TeamStatsText
+		TeamSelectionList
+		TeamEditList
+		TeamNameField
+		ScoutNameField
+		SniperNameField
+		TankNameField
+		retireButton		
+		addTeamButton
+		updateButton		
+
+	Functions
+		exitButtonClick()
+                backButtonClick()
+                continueButtonClick()
+		retireButtonClick()
+		addTeamButtonClick()
+		updateButtonClick()
+
+
+
+WinnerPanel extends JPanel
+	Attributes
+		playAgainButton
+		statsButton
+		quitButton
+
+	Functions
+		playAgainButtonClick()
+		statsButtonClick()
+		quitButtonClick()
+
+
+StatsPanel extends JPanel
+	Attributes
+		TeamStatsText
+		playAgainButton
+		quitButton
+
+	Functions
+		playAgainButtonClick()
+                quitButtonClick()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
