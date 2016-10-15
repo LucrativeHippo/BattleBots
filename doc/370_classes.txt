@@ -12,7 +12,13 @@ Robot
 		Create_Robot()
 		incrementMovementLeft()
 		incrementHealth()
-	
+		getMovement()
+		getRange()
+		getDamage()
+		getMovemetnLeft()
+		getHealth(
+		setHealth()
+		setMovementLeft())	
 
 
 ScoutAI extends the Robot class
