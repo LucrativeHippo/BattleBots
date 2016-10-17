@@ -1,27 +1,83 @@
 CMPT 370 Class outlines
 
-Robot
+
+GameController(controller)
 	Attributes
+				
+
+
+	Functions
+		
+
+
+
+GameBoard(model)
+	Attributes
+		TeamTurn (1-(number of teams))
+		RobotTurn (1-3 1-scout, 2-sniper, 3-tank changes when robots
+destroyed)
+			
+	Functions
+		createBoard(numplayers, numhumans, boardsize)
+		getRobots()
+
+		
+Robot(model)
+	Attributes
+		ShotsLeft
 		Movement
 		Range
 		Damage
 		movementLeft
-		health	
+		health
+		direction
+		directionDimension	
 
 	Functions
 		Create_Robot()
-		incrementMovementLeft()
-		incrementHealth()
 		getMovement()
+		getShotsLeft()
 		getRange()
 		getDamage()
-		getMovemetnLeft()
-		getHealth(
+		getMovementLeft()
+		getHealth()
+		getdirection()
+		getdirectionDimension()
 		setHealth()
-		setMovementLeft())	
+		setMovementLeft()	
+		setdirection()
+		setdirectionDimension()
+		setShotsLeft()
+
+The robot class will represent the basic robot type and will contain
+attributes used for every robot subtype, including; the robots movement range,
+attack range, shot damage, remaining movement left, the current direction it
+is facing, the current directions dimension it is facing (whether it is 1,2 or
+3 squares away depending on the range) and its current health value. It also
+contains several important functions including; a basic create_robot function
+that creates a robot object with attributes set to default values, it also
+contains a getvalue function for each of its attributes allowing access to
+each attributes value and a setvalue function for its health, direction,
+direction dimension and movement allowing the values to be incremented.  
+
+Each of the ScoutAI, SniperAI and TankAI classes extend the basic robot class
+and will be the robot objects controlled by the games artificial intelligence.
+They all have the four attributes movement, range, damage and health from the
+basic robot class, but each is now set to the robot types default values. A
+create function makes a new specific type robot with the appropriate attribute
+values and additional AI functionality. The Shoot function deals the robots
+attack damage to specific hex containing any number of enemy robots. The Move
+function moves the robot to any square within its movement value as long as it
+has movement left. The turn function increments the direction value by one
+
+Each of the Tank, Scout and Sniper classes extend the basic robot class and
+will be robot objects controlled by the human players. They also have the four
+attributes movement, range, damage and health set to each robot types default
+values.     
 
 
-ScoutAI extends the Robot class
+
+ScoutAI(model) extends the Robot class
 	Attibutes
 		Movement = 3
         	Range = 2
@@ -36,7 +92,7 @@ ScoutAI extends the Robot class
 		Shoot()
 		Move()
 
-SniperAI extends the Robot class
+SniperAI(model) extends the Robot class
         Attibutes
         	Movement = 2
         	Range = 3
@@ -48,10 +104,10 @@ SniperAI extends the Robot class
 		with specific stats
         	Scan() 
         	Turn()
-        	Shoot()
+        	Shoot(target, shooter)
         	Move()
 
-TankAI extends the Robot class
+TankAI(model) extends the Robot class
         Attibutes
         	Movement = 1
         	Range = 1
@@ -66,7 +122,7 @@ TankAI extends the Robot class
         	Shoot()
         	Move()
 
-Scout extends Robot class
+Scout(model) extends Robot class
 	Attributes
 		Movement = 3
                 Range = 2
@@ -78,7 +134,7 @@ Scout extends Robot class
 		moved
 		mousePressed() - If there is a robot at location shoots at it.
 				
-Sniper extends Robot class
+Sniper(model) extends Robot class
         Attributes
                 Movement = 2
                 Range = 3
@@ -91,7 +147,7 @@ Sniper extends Robot class
                 mousePressed() - If there is a robot at location shoots at it.
 
 
-Tank extends Robot class
+Tank(model) extends Robot class
         Attributes
                 Movement = 1
                 Range = 1
@@ -191,6 +247,11 @@ StatsPanel extends JPanel
 		playAgainButtonClick()
                 quitButtonClick()
 
+
+ViewPanel extends JPanel
+	Attributes
+		
+	Functions
 
 
 
