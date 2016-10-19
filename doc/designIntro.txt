@@ -1,0 +1,48 @@
+
+
+Purpose
+The purpose of this design document is to present our architecture's description, plan the classes that will later be implemented, along with interactions between them, and state our changes from our requirements document that must be made. The ___ section will state why we chose to implement our architecture, the pros and cons of it, and why we did not chose other architectures that we considered. In the ___ section, We will describe what each class should do, what information they will contain, and what information they will send to other classes. It will not contain any code specifications, just how the different classes are connected. This will be shown through class UML diagrams, as well as detailed descriptions. After designing the architecture, we expect to come across newly discovered difficulties that we did not know when writing our requirements, and as a result will have to update our promises made in the requirements document. We will state the changes from our requirements and also state why these changes must be made. This document will describe the classes that will later be implemented, and show their interactions with each other.
+
+
+
+System Overview
+Our architecture we will implement is Model-View-Controller. The view will receive messages from the controller of what it should be displaying to the user. It will also send messages to the controller when the user interacts with it by clicking buttons. It will not have any direct interactions with the model of the system. The model will take messages from the controller and perform the required task then send information back to the controller. These parts of this architecture along with their interactions will be described more in the ___ section.
+
+
+
+Pros and Cons Of MVC
+A benefit of this architecture is the separation of the interface and the model. This will make the code easier to work on because each class will have a specific purpose. This architecture also will result in less coupling. This is a benefit because changes in a class will not affect many other classes. Cohesive classes also result in much easier testing because each class can be tested individually. One disadvantage with MVC is it may be difficult to divide the work other than between the model, the view and the controller. This is because these parts of the architecture have many interactions within themselves. Another disadvantage is that it may take more time planning the interactions properly to interact without having to many unnecessary coupling. We feel this planning will benefit us when we are at the code implementation stage because each class will have a high level of cohesion. 
+
+
+Definitions and Acronyms
+Unified Modeling Language(UML): a diagram to show the function signatures, and 	entities of classes. It also shows relations between classes.
+Model-View-Controller(MVC): design architecture that is divided into three 	separated parts that communicate with each other. The model manages the 	data and behind the scenes workings of the program, The view is the 	interface for the user, and the controller communicates between the other 	two.
+Coupling: the inter-dependencies between classes.
+Cohesion: a measure of specific functionality within a class. 
+JavaScript Object Notation (JSON): a data file to transmit objects.
+Robot Librarian: a system for access of a collection of scripts that will 	control the CPU player's robots. It also updates the robots statistics 	after the match is completed.
+
+Scan: this is when a robot checks it's surroundings, that it is allowed to see, 	for enemies. The AI code will use this information to determine it's 	actions for it's turn.
+
+Constraints
+In our system, we will be using a given robot librarian system to access AI scripts. This will force us to implement our game board's, and robot's, coordinate system in a way that complies  the AI scripts. The coordinate system is relative to each robot. When a robot is facing a direction, straight ahead of it is always coordinate zero, and the hexagons one move away from it have a direction of zero though five in a clockwise direction. Spaces two moves away are labeled zero through eleven, and spaces three moves away are labeled zero through seventeen.
+
+Each robot has a given set of resources. This includes attack, health, movement, and range. These variables must be kept track of to determine when the robot is out of moves, when it is dead, how many spaces it can see, and how much damage is dealt out. The following is each robot with it's resources: Scout has 1 attack, 1 health, 3 movement, and 2 range; Sniper has 2 attack, 2 health, 2 movement, and 3 range; Tank has 3 attack, 3 health, 1 movement, and 1 range.
+
+
+
+Changes From Requirements Document
+Robot Librarian
+After receiving feedback from our requirements document, we now realize that the robot librarian is not a part of our system because we are not implementing it ourselves. The robot librarian should have just been shown as an actor instead, because it will be given to us as a separate system that we will be using.
+
+What happens when robot tries to move out of bounds?? Turns to invalid direction?? shoots when not allowed??
+
+End turn for human
+During the design process, we realized that we did not include an end turn option for a human player. This is important to have because a player may want to end their turn even if they still have moves or shots left. We will add a button in the game screen interface labeled "End Turn", that will end the player's turn and allow the next players turn to start. 
+
+team selection interface
+
+robot statistics
+
+
+

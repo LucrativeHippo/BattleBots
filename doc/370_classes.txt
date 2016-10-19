@@ -1,0 +1,268 @@
+CMPT 370 Class outlines
+
+
+GameController(controller)
+	Attributes
+				
+
+
+	Functions
+		
+
+
+
+GameBoard(model)
+	Attributes
+		TeamTurn (1-(number of teams))
+		RobotTurn (1-3 1-scout, 2-sniper, 3-tank changes when robots
+destroyed)
+			
+	Functions
+		createBoard(numplayers, numhumans, boardsize)
+		getRobots()
+
+		
+Robot(model)
+	Attributes
+		ShotsLeft
+		Movement
+		Range
+		Damage
+		movementLeft
+		health
+		direction
+		directionDimension	
+
+	Functions
+		Create_Robot()
+		getMovement()
+		getShotsLeft()
+		getRange()
+		getDamage()
+		getMovementLeft()
+		getHealth()
+		getdirection()
+		getdirectionDimension()
+		setHealth()
+		setMovementLeft()	
+		setdirection()
+		setdirectionDimension()
+		setShotsLeft()
+
+The robot class will represent the basic robot type and will contain
+attributes used for every robot subtype, including; the robots movement range,
+attack range, shot damage, remaining movement left, the current direction it
+is facing, the current directions dimension it is facing (whether it is 1,2 or
+3 squares away depending on the range) and its current health value. It also
+contains several important functions including; a basic create_robot function
+that creates a robot object with attributes set to default values, it also
+contains a getvalue function for each of its attributes allowing access to
+each attributes value and a setvalue function for its health, direction,
+direction dimension and movement allowing the values to be incremented.  
+
+Each of the ScoutAI, SniperAI and TankAI classes extend the basic robot class
+and will be the robot objects controlled by the games artificial intelligence.
+They all have the four attributes movement, range, damage and health from the
+basic robot class, but each is now set to the robot types default values. A
+create function makes a new specific type robot with the appropriate attribute
+values and additional AI functionality. The Shoot function deals the robots
+attack damage to specific hex containing any number of enemy robots. The Move
+function moves the robot to any square within its movement value as long as it
+has movement left. The turn function increments the direction value by one
+
+Each of the Tank, Scout and Sniper classes extend the basic robot class and
+will be robot objects controlled by the human players. They also have the four
+attributes movement, range, damage and health set to each robot types default
+values.     
+
+
+
+ScoutAI(model) extends the Robot class
+	Attibutes
+		Movement = 3
+        	Range = 2
+        	Damage = 1
+        	Health = 1
+
+	Functions
+		Create_AIScout() - changes the Create_Robot() function to create robot
+		with specific stats
+		Scan() 
+		Turn()
+		Shoot()
+		Move()
+
+SniperAI(model) extends the Robot class
+        Attibutes
+        	Movement = 2
+        	Range = 3
+        	Damage = 2
+        	Health = 2
+
+        Functions
+        	Create_AISniper() - changes the Create_Robot() function to create robot
+		with specific stats
+        	Scan() 
+        	Turn()
+        	Shoot(target, shooter)
+        	Move()
+
+TankAI(model) extends the Robot class
+        Attibutes
+        	Movement = 1
+        	Range = 1
+        	Damage = 3
+        	Health = 3
+
+        Functions
+        	Create_AITank() - changes the Create_Robot() function to create robot
+		with specific stats
+        	Scan() 
+        	Turn()
+        	Shoot()
+        	Move()
+
+Scout(model) extends Robot class
+	Attributes
+		Movement = 3
+                Range = 2
+                Damage = 1
+                Health = 1
+
+	Functions
+		keyPressed() - Determines the key pressed and the direction
+		moved
+		mousePressed() - If there is a robot at location shoots at it.
+				
+Sniper(model) extends Robot class
+        Attributes
+                Movement = 2
+                Range = 3
+                Damage = 2
+                Health = 2
+
+        Functions
+                keyPressed() - Determines the key pressed and the direction
+                moved
+                mousePressed() - If there is a robot at location shoots at it.
+
+
+Tank(model) extends Robot class
+        Attributes
+                Movement = 1
+                Range = 1
+                Damage = 3
+                Health = 3
+
+        Functions
+                keyPressed() - Determines the key pressed and the direction
+                moved
+                mousePressed() - If there is a robot at location shoots at it.
+
+
+MainMenu extends JPanel
+	Attributes
+		continueButton
+		exitButton
+		rulesButton
+
+	Functions
+		continueButtonClick()
+		exitButtonClick()
+		rulesButtonClick()
+
+HelpPanel extends JPanel
+	Attributes
+		GameInstructionsText - a text field containing the
+		instructions for the game
+		exitButton
+		backButton
+
+	Functions
+		exitButtonClick()
+		backButtonClick()
+
+GamePropertiesPanel extends JPanel
+	Attributes
+		continueButton
+                exitButton
+		backButton
+		playerNumRadioButtons
+		humanNumRadioButtons
+		boardSizeRadioButtons
+
+	Functions
+		exitButtonClick()
+                backButtonClick()
+		continueButtonClick()
+		playerNumSelected()
+		humanNumSelected()
+		boardSizeSelected()
+
+TeamSelectionPanel extends JPanel
+	Attributes
+		continueButton
+                exitButton
+                backButton
+		TeamStatsText
+		TeamSelectionList
+		TeamEditList
+		TeamNameField
+		ScoutNameField
+		SniperNameField
+		TankNameField
+		retireButton		
+		addTeamButton
+		updateButton		
+
+	Functions
+		exitButtonClick()
+                backButtonClick()
+                continueButtonClick()
+		retireButtonClick()
+		addTeamButtonClick()
+		updateButtonClick()
+
+
+
+WinnerPanel extends JPanel
+	Attributes
+		playAgainButton
+		statsButton
+		quitButton
+
+	Functions
+		playAgainButtonClick()
+		statsButtonClick()
+		quitButtonClick()
+
+
+StatsPanel extends JPanel
+	Attributes
+		TeamStatsText
+		playAgainButton
+		quitButton
+
+	Functions
+		playAgainButtonClick()
+                quitButtonClick()
+
+
+ViewPanel extends JPanel
+	Attributes
+		
+	Functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
