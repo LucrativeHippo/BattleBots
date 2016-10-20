@@ -13,13 +13,28 @@ GameController(controller)
 
 GameBoard(model)
 	Attributes
-		TeamTurn (1-(number of teams))
-		RobotTurn (1-3 1-scout, 2-sniper, 3-tank changes when robots
-destroyed)
+		HexSpace spaces[x][y]	
+		
+		
 			
 	Functions
-		createBoard(numplayers, numhumans, boardsize)
 		getRobots()
+		constructor(takes in the board size)
+
+HexSpace(model)
+	Attributes
+		robotArray
+		isEmpty
+
+	Functions
+		none
+
+The HexSpace class will be the individual hexagon spaces that make up the game
+board.  Each space must be able to store a robot of any type (scout, sniper,
+tank) in an array.  The amount of HexSpaces will be initialized by the
+GameBoard Class. It includes the attributes isEmpty which will be true if no
+robots are on the hex, and robotArray which is an array that contains every
+robot on the hex. 
 
 		
 Robot(model)
@@ -31,7 +46,8 @@ Robot(model)
 		movementLeft
 		health
 		direction
-		directionDimension	
+		directionDimension
+		isTurn	
 
 	Functions
 		Create_Robot()
@@ -48,11 +64,13 @@ Robot(model)
 		setdirection()
 		setdirectionDimension()
 		setShotsLeft()
+		setIsTurn()
+		getIsTurn()
 
 The robot class will represent the basic robot type and will contain
 attributes used for every robot subtype, including; the robots movement range,
 attack range, shot damage, remaining movement left, the current direction it
-is facing, the current directions dimension it is facing (whether it is 1,2 or
+is facing, if its the robots turn or not, the current directions dimension it is facing (whether it is 1,2 or
 3 squares away depending on the range) and its current health value. It also
 contains several important functions including; a basic create_robot function
 that creates a robot object with attributes set to default values, it also
@@ -215,7 +233,7 @@ TeamSelectionPanel extends JPanel
 		addTeamButton
 		updateButton		
 
-	Functions
+	Function
 		exitButtonClick()
                 backButtonClick()
                 continueButtonClick()
@@ -225,7 +243,7 @@ TeamSelectionPanel extends JPanel
 
 
 
-WinnerPanel extends JPanel
+WinnerPanel exte nds JPanel
 	Attributes
 		playAgainButton
 		statsButton
@@ -235,6 +253,8 @@ WinnerPanel extends JPanel
 		playAgainButtonClick()
 		statsButtonClick()
 		quitButtonClick()
+hoot(target, shooter)
+                Move(mover, destination)
 
 
 StatsPanel extends JPanel
