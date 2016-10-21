@@ -5,6 +5,9 @@ GameController(controller) implements ActionListener, KeyListener
 	Attributes
 		GAMEWIDTH
 		GAMEHEIGHT
+		numhumans
+		numplayers
+		boardsize
 
 					
 	Functions
@@ -39,10 +42,15 @@ View(view) extends JFrame
 		showGamePropertiesPanel(actionListener     )
 		showTeamSelectionPanel(actionListener, keyListener     )
 		showWinnerPanel(actionListener)
-		showStatsPanel(actionListener)
+		showStatsPanel(actionListener, StatsTracker)
 		showGamePanel(actionListner, keyListener, )		
 		
-		
+The View class is the "view" in MCV architecture and is a frame that displays
+the various views of the game. The createView function intiaites the view
+frame at the desired size while the createPanel function creates a basic panel
+which contains no content. Then next 7 functions display the various Panels of
+the game including the MainMenu, HelpPanel, GameProperties,
+TeamSelectionPanel, WinnerPanel, StatsPanel, and GamePanel with an actionListener and a keyListener as required.		
 
 		
 gangClass(model)
@@ -77,7 +85,7 @@ will utilize a 2-dimensional coordinate system with the center of the board
 being the origin(0,0). The Hexspace attribute is an array that contains every
 hex on the gameboard with its corresponding coordinate value. There are two
 functions, the getRobots function creates a list of every robot on the
-gameboard, whilst the CreateGameBoard function initializes the game board at
+pa
 the correct board size picked in game properties. 
 
 HexSpace(model)
@@ -140,30 +148,21 @@ Robot(model)
 
 The robot class will represent the basic robot type and will contain
 attributes used for every robot subtype, including; the robots movement range,
-attack range, shot damage, remaining movement left, the current direction it
-is facing, if its the robots turn or not, the current directions dimension it is facing (whether it is 1,2 or
-3 squares away depending on the range) and its current health value. It also
+attack range, shot damage, remaining movement left, the direction relative to
+the game board, if its the robots turn or not, the current directions dimension it
+is facing (whether it is 1,2 or 3 squares away depending on the range) its
+type(scout, sniper or tank), its team or gang and its current health value. It also
 contains several important functions including; a basic create_robot function
 that creates a robot object with attributes set to default values, it also
 contains a getvalue function for each of its attributes allowing access to
 each attributes value and a setvalue function for its health, direction,
-direction dimension and movement allowing the values to be incremented.  
+direction dimension, isTurn, robot type, gang/team, shots left and movement allowing the values to be incremented.  
 
-Each of the ScoutAI, SniperAI and TankAI classes extend the basic robot class
-and will be the robot objects controlled by the games artificial intelligence.
-They all have the four attributes movement, range, damage and health from the
-basic robot class, but each is now set to the robot types default values. A
-create function makes a new specific type robot with the appropriate attribute
-values and additional AI functionality. The Shoot function deals the robots
-attack damage to specific hex containing any number of enemy robots. The Move
-function moves the robot to any square within its movement value as long as it
-has movement left. The turn function increments the direction value by one
-
-Each of the Tank, Scout and Sniper classes extend the basic robot class and
-will be robot objects controlled by the human players. They also have the four
-attributes movement, range, damage and health set to each robot types default
-values.     
-
+Each of the Scout, Sniper and Tank classes extend the basic robot class
+and will be the robot objects controlled by the games artificial intelligence
+and human players. They all have the four attributes movement, range, damage
+and health from the basic robot class, but each is now set to the robot types
+default values. An updated create function now makes a new specific type robot with the appropriate attribute values.      
 
 
 Scout(model) extends the Robot class
@@ -196,8 +195,64 @@ Tank(model) extends the Robot class
         	Health = 3
 
         Functions
-    examples    	Create_Tank() - changes the Create_Robot() function to create robot
+    	        Create_Tank() - changes the Create_Robot() function to create robot
 		with specific stats
+
+
+RobotStats(Model)
+	Attributes
+		kills
+		deaths
+		plays
+		endedAlive
+		wins
+		loses
+		damageInflicted
+		damageAbsorbed
+		distanceTravelled
+
+	Functions
+		CreateRobotStats()
+		getkills()
+                getdeaths()
+                getplays()
+                getendedAlive()
+                getwins()
+                getloses()
+                getdamageInflicted()
+                getdamageAbsorbed()
+                getdistanceTravelled()
+		setkills()
+                setdeaths()
+                setplays()
+                setendedAlive()
+                setwins()
+                setloses()
+                setdamageInflicted()
+                setdamageAbsorbed()
+                setdistanceTravelled()
+
+The RobotStats class tracks the stats of each robot during the game it keeps
+track of the attributes kills, deaths, games played, games ended alive, wins,
+loses, damage inflicted, damage absorbed, and distance travelled. The create
+function initiates a RobotStats object with all attributes set to zero. For each
+attribute there is a set and get function to allow access and manipulation of
+the attribute values. 
+
+
+StatsTracker(Model)
+	Attributes
+		Robots[]
+
+	Functions
+		CreateStatsTracker()
+
+The StatsTracker class is a collection of all the robot stats for each robot
+in the current game. Its sole attribute is an array that contains the
+RobotStats for each robot in the game. Its create function makes an object
+that takes in every robot in the games and creates a RobotStats for each one
+in the array.
+
         
 MainMenu extends JPanel
 	Attributes
@@ -223,16 +278,19 @@ GamePropertiesPanel extends JPanel
 	Functions
 		gamePropertiesCreate()
 
-
+The GameProperties has no attributes, and its create function generates 3 sets
+of radio buttons for the nmber of players, number of humans, and the board
+length.
 				
 
+?????????????????????????
 TeamSelectionPanel extends JPanel
 	Attributes
 		
 	Function
 		teamSelectionCreate()
-		updateTeams()
-
+		updatedisplayTeams()
+??????????????????????????
 
 
 WinnerPanel extends JPanel
@@ -240,6 +298,8 @@ WinnerPanel extends JPanel
 		
 	Functions
 		winnerCreate()
+The WinnerPanel has only a create function which constructs an objects with
+three Jbuttons called Play Again, Stats, and Quit.
 
 
 StatsPanel extends JPanel
@@ -248,18 +308,26 @@ StatsPanel extends JPanel
 	Functions
 		statsCreate()
 
+The StatsPanel has no attributes and its only function is its create function,
+which builds an object with two Jbuttons, Play Again and Quit,  and the updated stats of the game
+
 GamePanel extends JPanel
 	Attributes
 
 	Functions
-		GameCreate(keyListener, gameInfo)
+		GameCreate(keyListener, ????????)
 		drawImage()
 		drawString()
 		updateGame()
 		
-
-
-
+The GamePanel is the actual game board panel on which the game is played. It
+has no Attributes and four functions.????????????? The GameCreate
+functio????????????????????The drawImage function draws an image of
+a specific type at a specific location. The drawString function draws a string
+of characters at a specified location. The updateGame function updates the
+view by checking if the positions of the game objects have changed and calling the drawImage
+and drawString functions to redraw the game panel with the correct new
+positions.
 
 
 
