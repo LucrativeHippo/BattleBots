@@ -1,25 +1,84 @@
 CMPT 370 Class outlines
 
 
-GameController(controller)
+GameController(controller) implements ActionListener, KeyListener
 	Attributes
-				
+		GAMEWIDTH
+		GAMEHEIGHT
 
+					
+	Functions
+		handleEvent(keyPress)
+		handleEvent(HexClick)
+		handleEvent(buttonPress)
+		startGame()
+
+The GameController class allows user and AI input on the games models and
+updates the display(view) acoordingly. The GAMEWIDTH and GAMEHEIGHT attributes
+are global variables representing the desired size of the game screen. There
+are three separate handleEvent functions. The first is utilized only during
+the game screen and allows the user to move the robot using the AWEDXZ keys on
+the keyboard. The second is also only utilized during the game screen and
+allows the human player to shoot other rbots by clicking on them with the
+mouse. The third and final handleEvent function is used to navigate throughout
+all the game screens and the game itself using the mouse to click on the
+navigation buttons such as continue and quit. The startGame function creates a
+game screen of a set size and takes the user to the MainMenu panel, the games
+beginning. 
+
+
+
+View(view) extends JFrame
+	Attributes
 
 	Functions
+		createView(width, height)
+		createPanel(panelClass)
+		showMainMenu(actionListener)
+		showHelpPanel(actionListener)
+		showGamePropertiesPanel(actionListener     )
+		showTeamSelectionPanel(actionListener, keyListener     )
+		showWinnerPanel(actionListener)
+		showStatsPanel(actionListener)
+		showGamePanel(actionListner, keyListener, )		
+		
 		
 
+		
+gangClass(model)
+	Attributes
+		gangColour
+		numRobots
+		
+	Functions
+		CreateGang(gangColour)	
+		getgangColour()
+		getnumRobots()
+		setnumRobots()
 
+The gangClass will represent each team colour on the game board and contains
+the attributes gangColour representing its team colour and numRobots showing
+the number of remaining robots on the team. The CreateGang function takes in
+the teams colour as a parameter and creates the corresponding scout, sniper
+and tank. There is basic get functions for the gangColour and numRobots
+allowing for easy access and a set function for numRobots allowing editing to
+show when robots are killed.
 
 GameBoard(model)
 	Attributes
-		HexSpace spaces[x][y]	
-		
-		
+		HexSpace spaces[x][y]			
 			
 	Functions
 		getRobots()
-		constructor(takes in the board size)
+		CreateGameBoard(boardsize)
+
+The GameBoard class represents the hex grid on which the game is played, it
+will utilize a 2-dimensional coordinate system with the center of the board
+being the origin(0,0). The Hexspace attribute is an array that contains every
+hex on the gameboard with its corresponding coordinate value. There are two
+functions, the getRobots function creates a list of every robot on the
+gameboard, whilst the CreateGameBoard function initializes the game board at
+the correct board size picked in game properties. 
 
 HexSpace(model)
 	Attributes
@@ -27,7 +86,9 @@ HexSpace(model)
 		isEmpty
 
 	Functions
-		none
+		getisEmpty()
+		setisEmpty()
+		
 
 The HexSpace class will be the individual hexagon spaces that make up the game
 board.  Each space must be able to store a robot of any type (scout, sniper,
@@ -45,9 +106,12 @@ Robot(model)
 		Damage
 		movementLeft
 		health
-		direction
+		healthLeft
+		relativeDirection
 		directionDimension
 		isTurn	
+		robotType
+		gang
 
 	Functions
 		Create_Robot()
@@ -55,13 +119,20 @@ Robot(model)
 		getShotsLeft()
 		getRange()
 		getDamage()
-		getMovementLeft()
-		getHealth()
-		getdirection()
+		getmovementLeft()
+		gethealth()
+		getrelativeDirection()
 		getdirectionDimension()
-		setHealth()
-		setMovementLeft()	
-		setdirection()
+		gethealthLeft()		
+		getrobotType()
+		getgang()
+		getisTurn()
+		setisTurn()
+		setrobotType()
+		setgang()
+		sethealthleft()
+		setmovementLeft()	
+		setreleativeDirection()
 		setdirectionDimension()
 		setShotsLeft()
 		setIsTurn()
@@ -95,7 +166,7 @@ values.
 
 
 
-ScoutAI(model) extends the Robot class
+Scout(model) extends the Robot class
 	Attibutes
 		Movement = 3
         	Range = 2
@@ -103,14 +174,10 @@ ScoutAI(model) extends the Robot class
         	Health = 1
 
 	Functions
-		Create_AIScout() - changes the Create_Robot() function to create robot
+		Create_Scout() - changes the Create_Robot() function to create robot
 		with specific stats
-		Scan() 
-		Turn()
-		Shoot()
-		Move()
 
-SniperAI(model) extends the Robot class
+Sniper(model) extends the Robot class
         Attibutes
         	Movement = 2
         	Range = 3
@@ -118,14 +185,10 @@ SniperAI(model) extends the Robot class
         	Health = 2
 
         Functions
-        	Create_AISniper() - changes the Create_Robot() function to create robot
+        	Create_Sniper() - changes the Create_Robot() function to create robot
 		with specific stats
-        	Scan() 
-        	Turn()
-        	Shoot(target, shooter)
-        	Move()
 
-TankAI(model) extends the Robot class
+Tank(model) extends the Robot class
         Attibutes
         	Movement = 1
         	Range = 1
@@ -133,145 +196,68 @@ TankAI(model) extends the Robot class
         	Health = 3
 
         Functions
-        	Create_AITank() - changes the Create_Robot() function to create robot
+    examples    	Create_Tank() - changes the Create_Robot() function to create robot
 		with specific stats
-        	Scan() 
-        	Turn()
-        	Shoot()
-        	Move()
-
-Scout(model) extends Robot class
-	Attributes
-		Movement = 3
-                Range = 2
-                Damage = 1
-                Health = 1
-
-	Functions
-		keyPressed() - Determines the key pressed and the direction
-		moved
-		mousePressed() - If there is a robot at location shoots at it.
-				
-Sniper(model) extends Robot class
-        Attributes
-                Movement = 2
-                Range = 3
-                Damage = 2
-                Health = 2
-
-        Functions
-                keyPressed() - Determines the key pressed and the direction
-                moved
-                mousePressed() - If there is a robot at location shoots at it.
-
-
-Tank(model) extends Robot class
-        Attributes
-                Movement = 1
-                Range = 1
-                Damage = 3
-                Health = 3
-
-        Functions
-                keyPressed() - Determines the key pressed and the direction
-                moved
-                mousePressed() - If there is a robot at location shoots at it.
-
-
+        
 MainMenu extends JPanel
 	Attributes
-		continueButton
-		exitButton
-		rulesButton
 
 	Functions
-		continueButtonClick()
-		exitButtonClick()
-		rulesButtonClick()
+		mainMenuCreate()
+
+MainMenu class has only one function, its create function which initiates a
+MainMenu object with three JButtons, Begin, Help and Quit.
 
 HelpPanel extends JPanel
 	Attributes
-		GameInstructionsText - a text field containing the
-		instructions for the game
-		exitButton
-		backButton
-
+		
 	Functions
-		exitButtonClick()
-		backButtonClick()
+		helpPanelCreate()
+The HelpPanel class only has a create function that makes an object with the
+two Jbuttons, Back and Quit also well as a block of text describing the rules
+of the game.
 
 GamePropertiesPanel extends JPanel
 	Attributes
-		continueButton
-                exitButton
-		backButton
-		playerNumRadioButtons
-		humanNumRadioButtons
-		boardSizeRadioButtons
-
+		
 	Functions
-		exitButtonClick()
-                backButtonClick()
-		continueButtonClick()
-		playerNumSelected()
-		humanNumSelected()
-		boardSizeSelected()
+		gamePropertiesCreate()
+
+
+				
 
 TeamSelectionPanel extends JPanel
 	Attributes
-		continueButton
-                exitButton
-                backButton
-		TeamStatsText
-		TeamSelectionList
-		TeamEditList
-		TeamNameField
-		ScoutNameField
-		SniperNameField
-		TankNameField
-		retireButton		
-		addTeamButton
-		updateButton		
-
+		
 	Function
-		exitButtonClick()
-                backButtonClick()
-                continueButtonClick()
-		retireButtonClick()
-		addTeamButtonClick()
-		updateButtonClick()
+		teamSelectionCreate()
+		updateTeams()
 
 
 
-WinnerPanel exte nds JPanel
+WinnerPanel extends JPanel
 	Attributes
-		playAgainButton
-		statsButton
-		quitButton
-
+		
 	Functions
-		playAgainButtonClick()
-		statsButtonClick()
-		quitButtonClick()
-hoot(target, shooter)
-                Move(mover, destination)
+		winnerCreate()
 
 
 StatsPanel extends JPanel
 	Attributes
-		TeamStatsText
-		playAgainButton
-		quitButton
-
-	Functions
-		playAgainButtonClick()
-                quitButtonClick()
-
-
-ViewPanel extends JPanel
-	Attributes
 		
 	Functions
+		statsCreate()
+
+GamePanel extends JPanel
+	Attributes
+
+	Functions
+		GameCreate(keyListener, gameInfo)
+		drawImage()
+		drawString()
+		updateGame()
+		
+
 
 
 
