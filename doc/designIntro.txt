@@ -19,7 +19,7 @@ Unified Modeling Language(UML): a diagram to show the function signatures, and 	
 Model-View-Controller(MVC): design architecture that is divided into three 	separated parts that communicate with each other. The model manages the 	data and behind the scenes workings of the program, The view is the 	interface for the user, and the controller communicates between the other 	two.
 Coupling: the inter-dependencies between classes.
 Cohesion: a measure of specific functionality within a class. 
-JavaScript Object Notation (JSON): a data file to transmit objects.
+JavaScript Object Notation (JSON): a data file that will be used to transmit 	robot scripts, and robot statistics into Java.
 Robot Librarian: a system for access of a collection of scripts that will 	control the CPU player's robots. It also updates the robots statistics 	after the match is completed.
 
 Scan: this is when a robot checks it's surroundings, that it is allowed to see, 	for enemies. The AI code will use this information to determine it's 	actions for it's turn.
@@ -37,10 +37,17 @@ After receiving feedback from our requirements document, we now realize that the
 
 What happens when robot tries to move out of bounds?? Turns to invalid direction?? shoots when not allowed??
 
+If a human or AI robot attempts to move to a location that is out of bounds, the robot will just stay in the hexagon that they are currently in.
+
 End turn for human
-During the design process, we realized that we did not include an end turn option for a human player. This is important to have because a player may want to end their turn even if they still have moves or shots left. We will add a button in the game screen interface labeled "End Turn", that will end the player's turn and allow the next players turn to start. 
+During the design process, we realized that we did not include an end turn option for a human player. This is important to have because a player may want to end their turn even if they still have moves or shots left. We will add a button in the game screen interface labeled "End Turn", that will end the player's turn and allow the next players turn to start.
+
+In our requirements document we stated some functionality that the game "should have", now during the design process we have decided to include a section on the side of the game play screen that displays each robots current statistics. We will also display the final statistics upon completion of each game.
+
+We also had a section in our requirement document with functionality that the game "could have". We have decided to not include any of these so we can focus on the more important functionality of the game. We decided that it would be more important to have the game functioning properly than have a game with fancy attributes but does not work.
 
 team selection interface
+
 
 robot statistics
 
