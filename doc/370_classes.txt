@@ -57,6 +57,9 @@ gangClass(model)
 	Attributes
 		gangColour
 		numRobots
+		Scout
+		Sniper
+		Tank
 		
 	Functions
 		CreateGang(gangColour)	
@@ -71,6 +74,22 @@ the teams colour as a parameter and creates the corresponding scout, sniper
 and tank. There is basic get functions for the gangColour and numRobots
 allowing for easy access and a set function for numRobots allowing editing to
 show when robots are killed.
+
+gangClass(model)
+	Attributes
+		gangColour
+		numRobots
+		ScoutAI
+		SniperAI
+		TankAI
+		
+	Functions
+		CreateGang(gangColour)	
+		getgangColour()
+		getnumRobots()
+		setnumRobots()
+		
+		???????????????????????????????
 
 GameBoard(model)
 	Attributes
@@ -120,6 +139,8 @@ Robot(model)
 		isTurn	
 		robotType
 		gang
+		horizontalLocation
+		verticalLocation
 
 	Functions
 		Create_Robot()
@@ -197,6 +218,37 @@ Tank(model) extends the Robot class
         Functions
     	        Create_Tank() - changes the Create_Robot() function to create robot
 		with specific stats
+
+
+ScoutAI(model) extends Scout class
+        Attributes
+        
+        Functions
+            Create_ScoutAI()
+            move(target)
+            shoot(target)
+            scan(horizontalLocation, verticalLocation)
+            turn(direction)
+            
+SniperAI(model) extends Sniper class
+        Attributes
+        
+        Functions
+            Create_SniperAI()
+            move(target)
+            shoot(target)
+            scan(horizontalLocation, verticalLocation)
+            turn(direction)
+            
+TankAI(model) extends Tank class
+        Attributes
+        
+        Functions
+            Create_TankAI()
+            move(target)
+            shoot(target)
+            scan(horizontalLocation, verticalLocation)
+            turn(direction)
 
 
 RobotStats(Model)
@@ -328,15 +380,3 @@ of characters at a specified location. The updateGame function updates the
 view by checking if the positions of the game objects have changed and calling the drawImage
 and drawString functions to redraw the game panel with the correct new
 positions.
-
-
-
-
-
-
-
-
-
-
-
-
