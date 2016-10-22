@@ -18,7 +18,8 @@ GameController(controller) implements ActionListener, KeyListener
 
 The GameController class allows user and AI input on the games models and
 updates the display(view) acoordingly. The GAMEWIDTH and GAMEHEIGHT attributes
-are global variables representing the desired size of the game screen. There
+are global variables representing the desired size of the game screen. While numhumans, 
+numplayers and boardsize will be used to create and populte the board. There
 are three separate handleEvent functions. The first is utilized only during
 the game screen and allows the user to move the robot using the AWEDXZ keys on
 the keyboard. The second is also only utilized during the game screen and
@@ -75,7 +76,7 @@ and tank. There is basic get functions for the gangColour and numRobots
 allowing for easy access and a set function for numRobots allowing editing to
 show when robots are killed.
 
-gangClass(model)
+gangAIClass(model)
 	Attributes
 		gangColour
 		numRobots
@@ -89,7 +90,9 @@ gangClass(model)
 		getnumRobots()
 		setnumRobots()
 		
-		???????????????????????????????
+The gangAIClass is identical to the gangClass save for the ScoutAI, SniperAI and TankAI attributes which have
+been changed from Scout, Sniper and Tank. The create function will now create the AI classes instead
+of the human controlled robots.
 
 GameBoard(model)
 	Attributes
@@ -103,9 +106,8 @@ The GameBoard class represents the hex grid on which the game is played, it
 will utilize a 2-dimensional coordinate system with the center of the board
 being the origin(0,0). The Hexspace attribute is an array that contains every
 hex on the gameboard with its corresponding coordinate value. There are two
-functions, the getRobots function creates a list of every robot on the
-pa
-the correct board size picked in game properties. 
+functions, the getRobots function creates a list of every robot on the correct 
+board size picked in game properties. 
 
 HexSpace(model)
 	Attributes
@@ -156,6 +158,10 @@ Robot(model)
 		getrobotType()
 		getgang()
 		getisTurn()
+		getverticalLocations()
+		gethorizontlLocation()
+		setverticalLocation()
+		sethorizontalLocation()
 		setisTurn()
 		setrobotType()
 		setgang()
@@ -172,18 +178,27 @@ attributes used for every robot subtype, including; the robots movement range,
 attack range, shot damage, remaining movement left, the direction relative to
 the game board, if its the robots turn or not, the current directions dimension it
 is facing (whether it is 1,2 or 3 squares away depending on the range) its
-type(scout, sniper or tank), its team or gang and its current health value. It also
+type(scout, sniper or tank), the horizontal location coordinate, the vertical location 
+coordinate, its team or gang and its current health value. It also
 contains several important functions including; a basic create_robot function
 that creates a robot object with attributes set to default values, it also
 contains a getvalue function for each of its attributes allowing access to
 each attributes value and a setvalue function for its health, direction,
-direction dimension, isTurn, robot type, gang/team, shots left and movement allowing the values to be incremented.  
+direction dimension, isTurn, robot type, gang/team, horizontal direction,
+vertical direction, shots left and movement allowing the values to be incremented.  
 
 Each of the Scout, Sniper and Tank classes extend the basic robot class
-and will be the robot objects controlled by the games artificial intelligence
-and human players. They all have the four attributes movement, range, damage
+and will be the robot objects controlled by the games human players. 
+They all have the four attributes movement, range, damage
 and health from the basic robot class, but each is now set to the robot types
 default values. An updated create function now makes a new specific type robot with the appropriate attribute values.      
+
+The ScoutAI, SniperAI and TankAI classes extend the Scout, Sniper and Tank classes and add five new functions.
+Move which takes in a target location and changes the robots current location to those coordinates. The create function will take in a string of
+AI instructions and upload it to the new robot object.  Scan which takes
+in the robots current location and checks all hexes within the robots range for enemy and allied robots. Shoot which takes
+in a target location and deals the robots attack damage to all robots on that hex. And Turn which takes in the desired direction as
+a parameter and turns the robot relative to  the game board.
 
 
 Scout(model) extends the Robot class
@@ -249,6 +264,8 @@ TankAI(model) extends Tank class
             shoot(target)
             scan(horizontalLocation, verticalLocation)
             turn(direction)
+            
+
 
 
 RobotStats(Model)
