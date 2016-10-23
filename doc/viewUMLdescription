@@ -1,0 +1,13 @@
+ 
+View UML description
+
+Each of the classes MainMenu, HelpPanel, GamePropertiesPanel, GamePanel, 
+WinnerPanel, and TeamSelectionPanel extend the JPanel class. In addition, 
+the GamePanel class will have functions to draw the current state of the
+gameboard. The team selection panel has functions to create the selected 
+teams and to update teams.
+
+In the view class, it has functions to show each of the extended JPanel 
+classes with actionListeners to display them at the appropriate time. The 
+GamePanel and showTeamSelectionPanel 's have a keyListener so that they 
+can recieve input from the user.
