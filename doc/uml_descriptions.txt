@@ -1,0 +1,16 @@
+Full umnl diagram description
+The full uml diagram represents the culmination of the model, view and
+controller sections of the architecture and shows how they interact with each
+other. The view is perhaps the most separated of the 3 parts as it is accessed
+only through the GameObserver interface and by the GameController. The
+GameObseerver interface simply checks on the GamePanel whether the game is
+over or not, and the GameController updates the view with its updated
+information from the model which in turn updates the display. The Model also
+is only accessed by the Controller, specifically the Game class is accessed by
+the GameInfoProvider interface which passes it basic game creation
+information, the GameControl interface, and the GameController which deals
+with all user interactions and information updates to the Game class.
+Game Controller uml diagram description
+The Game Controller uml diagram is very simple as it simply contains the
+GameController class and the three different interfaces that it implements,
+ActionListener, KeyListener and GameObserver. 
