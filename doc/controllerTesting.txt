@@ -1,0 +1,35 @@
+Controller Testing Plan
+
+The controller contains a grouping of classes that rely heavily on classes in
+the model and view to have already been finished before they can be properly
+tested. Therefore several "dummy" classes will have to be created to allow for
+testing certain aspects. Also due to the controllers nature as an interface between the model
+and view certain functionality will only be testable after the implementation
+of most of the model and views classes. The controller directly implements
+three interfaces, KeyListener, ActionListener and GameObserver. KeyListener
+simply needs to be able to perform an action if a key on the keyboard is
+pressed therefore it can be initially tested to see if it correctly determines
+that a specific key has been pressed and perform a generic action to confirm
+it being pressed. ActionListener's job is to determine if a
+mouse click has taken place and what location has been clicked, whether it is
+a hex on the game board, a robot or a navigation button. To correctly test
+this a "dummy" GUI panel will need to be created to test whether the action is
+being correctly interpreted. Unfortunatly actions during the actual game will
+not be testable until after the gameBoard Jpanel and the gameboard, hex, and
+robot models have been implemented. The GameObserver only checks whether or
+not the game has ended by checking the number of teams with robots that are
+still alive, it returns a boolean value of true if there is only one team left
+and the game has ended or false otherwise, to test this we will need to create
+several "dummy" team classes that only contain an integer value for the current number of alive
+robots and see if GameObserver returns the correct value with each scenario.
+For the GameController each of its handleEvent functions and the gameOver()
+function will be tested through their corresponding interfaces, whilst the startGame()  
+function will not be testable until the view and the MainMenu Jpanel have been
+completely implemented.      
+
+For the team selection, robot AI and the Robot librarian to work properly the
+Game controller must check whether or not there is a JSON file present, and
+whether or not it is empty. For the testing we will check if there is a JSON
+file in the corresponding directory, if there is not we will throw an
+exception. There will then be a test to determine if there is any text in the
+file throwing an exception if there isn't. 
