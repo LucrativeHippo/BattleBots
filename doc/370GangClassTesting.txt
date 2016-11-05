@@ -1,0 +1,9 @@
+
+Since each Gang class will have a Scout, a Tank, and a Sniper, to test this class we require a mock robot.
+The mock robot will need to have a field that will differentiate it from the others. This is important, as we
+need to make sure that there is only one of each robot. Since there is only one of each robot, we will test that
+there is exactly 3 robots per team.
+
+The GangAI class is very similar to the Gang class. The main difference is that the GangAI class is for AI robots.
+It is important that a GangAI class consists of only AI robots, so in the mock robot, there will need to be a field
+that indicates if the robot is AI. The regular Gang class will have to make sure that it doesn't have any AI robots
