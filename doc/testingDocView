@@ -1,0 +1,34 @@
+View Interface Testing
+  The View is the outermost interface that interacts with the user.
+It displays the GUI's for the game and interacts with the user by 
+taking in input and sending that information to the controller. 
+  
+  The class TeamSelectionPanel, which is part of the View, also interacts 
+with the Robot Librarian. The user will have the options of uploading 
+and downloading robots from the Robot Librarian, as well as creating 
+new robots, and editing existing ones. The TeamSelectionPanel is 
+significant because the game cannot be played without being able to 
+use robots from the Robot Librarian, and this is why it must be properly 
+tested. The functionality will be tested in the Controller interface, 
+but we will have to check visually that the proper information displayed 
+in the GUI.
+
+  The GamePanel class is also part of the View. It is responsible for 
+drawing the state of the gameboard as well as the statistics on the side. 
+It will redraw the gameboard when the updateGame function is called. 
+This is a significant class for when the game involves human players so 
+they can see an accurate state of the gameboard. We will visually check 
+if the GamePanel displays the correct state of the board. 
+
+  We have decided to add a new class to the design called 'Properties'. 
+this class will store the information that the user inputs and the View 
+will use it to instansiate the gameboard properly.
+
+  Since we do not have the resources to properly test that these GUI's
+properly display exactly as intened, we can only visually check them 
+with our own eyes. When buttons are clicked, the controller will test 
+the input and we will check if the GUI's behave proplerly. This is how 
+most of the View interface will be tested.
+
+
+  
