@@ -10,13 +10,19 @@ three interfaces, KeyListener, ActionListener and GameObserver. KeyListener
 simply needs to be able to perform an action if a key on the keyboard is
 pressed therefore it can be initially tested to see if it correctly determines
 that a specific key has been pressed and perform a generic action to confirm
-it being pressed. ActionListener's job is to determine if a
+it being pressed by printing a string. After the robot class has been
+implemented the move function will then become testable, upon key press we
+will check that the robot has moved in the correct direction by checking the
+robots new verticalLocation and horizontalLocation values and comparing them
+to the before movement verticalLocation and horizontalLocation values. The ActionListener's job is to determine if a
 mouse click has taken place and what location has been clicked, whether it is
 a hex on the game board, a robot or a navigation button. To correctly test
 this a "dummy" GUI panel will need to be created to test whether the action is
-being correctly interpreted. Unfortunatly actions during the actual game will
+being correctly interpreted and this will have to be checked visually. Unfortunatly actions during the actual game will
 not be testable until after the gameBoard Jpanel and the gameboard, hex, and
-robot models have been implemented. The GameObserver only checks whether or
+robot models have been implemented. Once they have been it will be checked
+whether when a robots space is clicked on if it's health is correctly lowered.
+The GameObserver only checks whether or
 not the game has ended by checking the number of teams with robots that are
 still alive, it returns a boolean value of true if there is only one team left
 and the game has ended or false otherwise, to test this we will need to create
