@@ -2,11 +2,17 @@ package model;
 
 public class Tank extends Robot{
 
-	public Tank(int movement, int damage, int range, int health, int shotsLeft, int movementLeft, int healthLeft,
-			int relativeDirection, int directionDimension, int horizontalLocation, int verticalLocation, boolean isTurn,
-			String gang, String name) {
-		super(movement, damage, range, health, shotsLeft, movementLeft, healthLeft, relativeDirection, directionDimension,
-				horizontalLocation, verticalLocation, isTurn, gang, name);
+	public Tank(String gang, String name) {
+            super(gang, name);
+            this.setMovement(1);
+            this.setDamage(3);
+            this.setRange(1);
+            this.setHealth(3);
+            
+            this.setShotsLeft(1);
+            this.setMovementLeft(1);
+            this.setHealthLeft(3);
+            
 	}
 
 }
