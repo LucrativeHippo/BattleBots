@@ -4,12 +4,17 @@ public class SniperAI extends Sniper{
 
 	private String instructionCode;
 	
-	public SniperAI(int movement, int damage, int range, int health, int shotsLeft, int movementLeft, int healthLeft,
-			int relativeDirection, int directionDimension, int horizontalLocation, int verticalLocation, boolean isTurn,
-			String gang, String name) {
-		super(movement, damage, range, health, shotsLeft, movementLeft, healthLeft, relativeDirection, directionDimension,
-				horizontalLocation, verticalLocation, isTurn, gang, name);
-		// TODO Auto-generated constructor stub
+	public SniperAI(String gang, String name) {
+            super(gang, name);
+            this.setMovement(2);
+            this.setDamage(2);
+            this.setRange(3);
+            this.setHealth(2);
+            
+            this.setShotsLeft(1);
+            this.setMovementLeft(2);
+            this.setHealthLeft(2);
+            
 	}
 	
 	public void scan(){

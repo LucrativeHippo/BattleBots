@@ -11,7 +11,17 @@ public class GameBoard {
 
 
 	public GameBoard(int size) {
-
+            if(size == 5){
+                this.spaces = new Hex[9][9];
+                boardSize = 5;
+            }
+            else if(size == 7){
+                this.spaces = new Hex[13][13];
+                boardSize = 7;
+            }
+            else{
+                System.out.println("There is an invalid board size given.");
+            }
 	}
 
 	public int getNumHumans() {

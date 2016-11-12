@@ -24,22 +24,8 @@ public class Robot {
 	private GameBoard board;
 	
 
-	public Robot(int movement, int damage, int range, int health, int shotsLeft, int movementLeft, int healthLeft,
-			int relativeDirection, int directionDimension, int horizontalLocation, int verticalLocation, boolean isTurn,
-			String gang, String name) {
+	public Robot(String gang, String name) {
 		super();
-		this.movement = movement;
-		this.damage = damage;
-		this.range = range;
-		this.health = health;
-		this.shotsLeft = shotsLeft;
-		this.movementLeft = movementLeft;
-		this.healthLeft = healthLeft;
-		this.relativeDirection = relativeDirection;
-		this.directionDimension = directionDimension;
-		this.horizontalLocation = horizontalLocation;
-		this.verticalLocation = verticalLocation;
-		this.isTurn = isTurn;
 		this.gang = gang;
 		this.name = name;
 	}
