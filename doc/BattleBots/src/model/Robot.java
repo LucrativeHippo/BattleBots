@@ -21,7 +21,7 @@ public class Robot {
 	private String gang;
 	private String name;
 	
-	private GameBoard board;
+	public GameBoard board;
 	
 
 	public Robot(String gang, String name) {
@@ -111,81 +111,164 @@ public class Robot {
 	}
 	
         /**
-         * This function will retrieve 
-         * @return 
+         * This function will retrieve the number of moves that the robot has 
+         * left
+         * @return Integer of the number of moves left
          */
 	public int getMovementLeft() {
 		return movementLeft;
 	}
 	
+        /**
+         * This function will set the number of moves a robot has left
+         * @param movementLeft Integer of the number of moves left
+         */
 	public void setMovementLeft(int movementLeft) {
 		this.movementLeft = movementLeft;
 	}
 	
+        /**
+         * This function will retrieve the health value that the robot has left
+         * @return Integer value of health left
+         */
 	public int getHealthLeft() {
 		return healthLeft;
 	}
 	
+        /**
+         * This function will set how much health a robot has left
+         * @param healthLeft 
+         */
 	public void setHealthLeft(int healthLeft) {
 		this.healthLeft = healthLeft;
 	}
 	
+        /**
+         * *This function retrieves the relative direction that the robot is 
+         * facing relative to the board
+         * @return Integer value of 1 to 6 of the robots direction
+         */
 	public int getRelativeDirection() {
 		return relativeDirection;
 	}
 	
+        /**
+         * This function will set the robot's relative direction it is facing
+         * on the board
+         * @param relativeDirection Integer from 1 to 6
+         */
 	public void setRelativeDirection(int relativeDirection) {
 		this.relativeDirection = relativeDirection;
 	}
 	
+        /**
+         * This function will acquire the range dimension that the robot is
+         * searching at
+         * @return Integer for the range dimension (1 through 3)
+         */
 	public int getDirectionDimension() {
 		return directionDimension;
 	}
 	
+        /**
+         * This function will set the range dimension that the robot is
+         * searching at
+         * @param directionDimension Integer for the range dimension (1 to 3)
+         */
 	public void setDirectionDimension(int directionDimension) {
 		this.directionDimension = directionDimension;
 	}
 	
+        /**
+         * This function will return the horizontal x coordinate position of 
+         * the robot on the gameBoard
+         * @return Integer of x coordinate
+         */
 	public int getHorizontalLocation() {
 		return horizontalLocation;
 	}
 	
+        /**
+         * This function will set the horizontal x coordinate position of 
+         * the robot on the gameBoard
+         * @param horizontalLocation Integer of x position to set
+         */
 	public void setHorizontalLocation(int horizontalLocation) {
 		this.horizontalLocation = horizontalLocation;
 	}
 	
+        /**
+         * This function will get the vertical y coordinate position of the 
+         * robot on the gameBoard
+         * @return Integer of y coordinate
+         */
 	public int getVerticalLocation() {
 		return verticalLocation;
 	}
 	
+        /**
+         * This function will get the vertical y coordinate position of the 
+         * robot on the gameBoard
+         * @param verticalLocation  Integer of y position to set
+         */
 	public void setVerticalLocation(int verticalLocation) {
 		this.verticalLocation = verticalLocation;
 	}
 	
+        /**
+         * This function returns the value of isTurn to determine if it is a 
+         * robot's turn
+         * @return True if it is it's turn, false otherwise
+         */
 	public boolean isTurn() {
 		return isTurn;
 	}
 	
+        /**
+         * This function sets isTurn if we want to change the robots current
+         * turn status
+         * @param isTurn True or False
+         */
 	public void setTurn(boolean isTurn) {
 		this.isTurn = isTurn;
 	}
 	
+        /**
+         * This function returns the string of the robot's current gang color
+         * @return String of "Red", "Blue", "Orange", "Yellow", "Green, "Purple"
+         */
 	public String getGang() {
 		return gang;
 	}
 	
+        /**
+         * This function sets the gang of the robot's current gang color
+         * @param gang "Red", "Blue", "Orange", "Yellow", "Green, "Purple"
+         */
 	public void setGang(String gang) {
 		this.gang = gang;
 	}
 	
+        /**
+         * This function returns a string of the robot's name
+         * @return String name
+         */
 	public String getName() {
 		return name;
 	}
 	
+        /**
+         * This function sets the robot's name
+         * @param name String to set name to
+         */
 	public void setName(String name) {
 		this.name = name;
 	}	
 	
+        /**
+         * This function inflicts damage to the robot by the given amount
+         * @param damage Integer of damage inflicted
+         */
 	public void recieveDamage(int damage){
 		if(this.healthLeft <= damage){
                     this.healthLeft = 0;
@@ -195,7 +278,13 @@ public class Robot {
                 }
 	}
         
-        public void shoot(){
+        /**
+         * This function will take in a Hex space and deal damage to any robots
+         * on that space by the amount of damage that the current robot is able
+         * to do
+         * @param space Hex space to be shot at
+         */
+        public void shoot(Hex space){
 		
 	}
 	
