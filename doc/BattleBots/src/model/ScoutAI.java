@@ -1,8 +1,10 @@
 package model;
 
+import org.json.simple.JSONObject;
+
 public class ScoutAI extends Scout {
 	
-	private String instructionCode;
+	private JSONObject instructionCode;
 	
 	public ScoutAI(String gang, String name) {
             super(gang, name);
@@ -18,14 +20,6 @@ public class ScoutAI extends Scout {
 	}
 	
 	public void scan(){
-		
-	}
-	
-	public void shoot(){
-		
-	}
-	
-	public void move(){
 		
 	}
 	

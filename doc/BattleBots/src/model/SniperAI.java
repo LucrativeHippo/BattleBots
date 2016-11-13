@@ -1,8 +1,10 @@
 package model;
 
+import org.json.simple.JSONObject;
+
 public class SniperAI extends Sniper{
 
-	private String instructionCode;
+	private JSONObject instructionCode;
 	
 	public SniperAI(String gang, String name) {
             super(gang, name);
@@ -18,14 +20,6 @@ public class SniperAI extends Sniper{
 	}
 	
 	public void scan(){
-		
-	}
-	
-	public void shoot(){
-		
-	}
-	
-	public void move(){
 		
 	}
 	

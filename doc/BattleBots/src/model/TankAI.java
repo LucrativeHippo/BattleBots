@@ -1,8 +1,10 @@
 package model;
 
+import org.json.simple.JSONObject;
+
 public class TankAI extends Tank{
 
-	private String instructionCode;
+	private JSONObject instructionCode;
 	
 	public TankAI(String gang, String name) {
             super(gang, name);
@@ -18,14 +20,6 @@ public class TankAI extends Tank{
 	}
 	
 	public void scan(){
-		
-	}
-	
-	public void shoot(){
-		
-	}
-	
-	public void move(){
 		
 	}
 	

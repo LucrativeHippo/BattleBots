@@ -30,38 +30,74 @@ public class Robot {
 		this.name = name;
 	}
 
+        /**
+         * This function returns the distance a specific robot can travel
+         * @return Integer of moves the robot can make. 
+         */
 	public int getMovement() {
 		return movement;
 	}
 	
+        /**
+         * This function sets the moves a robot can make
+         * @param movement Total moves a robot can make each turn
+         */
 	public void setMovement(int movement) {
 		this.movement = movement;
 	}
 	
+        /**
+         * This function retrieves the total damage a robot can do
+         * @return Integer of damage that can be dealt
+         */
 	public int getDamage() {
 		return damage;
 	}
 	
+        /**
+         * This function sets the damage that a robot can do
+         * @param damage Integer between 1 and 3 of damage a robot can do.
+         */
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 	
+        /**
+         * This function retrieves the range to which a robot can see and shoot
+         * @return Integer of robot's range
+         */
 	public int getRange() {
 		return range;
 	}
 	
+        /**
+         * This function sets the range to which a robot can see and shoot
+         * @param range Integer of the robot's range
+         */
 	public void setRange(int range) {
 		this.range = range;
 	}
 	
+        /**
+         * This function retrieves the max health that a robot starts with
+         * @return Integer of the robot's starting health
+         */
 	public int getHealth() {
 		return health;
 	}
 	
+        /**
+         * This function sets the starting health of a robot
+         * @param health Integer of the health we want the robot to start with
+         */
 	public void setHealth(int health) {
 		this.health = health;
 	}
 	
+        /**
+         * 
+         * @return 
+         */
 	public int getShotsLeft() {
 		return shotsLeft;
 	}
@@ -143,6 +179,19 @@ public class Robot {
 	}	
 	
 	public void recieveDamage(int damage){
+		if(this.healthLeft <= damage){
+                    this.healthLeft = 0;
+                }
+                else{
+                    this.healthLeft = this.healthLeft - damage;
+                }
+	}
+        
+        public void shoot(){
+		
+	}
+	
+	public void move(){
 		
 	}
 }
