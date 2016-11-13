@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Iterator;
+
 public class Robot {
 
 	private int movement;
@@ -285,7 +287,22 @@ public class Robot {
          * @param space Hex space to be shot at
          */
         public void shoot(Hex space){
-		
+		if(space == null){
+                    System.out.println("The space is out of range");
+                    return;
+                }
+                else if(space.isEmpty() == true){
+                    return;
+                }
+                else{
+                    Iterator<Robot> robotIterator = space.robotList.iterator();
+                    for(int i = 0; i < space.robotList.size(); i++){
+                        while(robotIterator.hasNext()){
+                            Robot temp = robotIterator.next();
+                            temp.recieveDamage(this.getDamage());
+                        }
+                    }
+                }
 	}
 	
 	public void move(){
