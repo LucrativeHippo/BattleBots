@@ -95,17 +95,25 @@ public class Robot {
 	}
 	
         /**
-         * 
-         * @return 
+         * This function will retrieve how many shots a robot has left
+         * @return Integer of shots left
          */
 	public int getShotsLeft() {
 		return shotsLeft;
 	}
 	
+        /**
+         * This function will set how many shots a robot has left to make
+         * @param shotsLeft Integer of the number of shots we want to set
+         */
 	public void setShotsLeft(int shotsLeft) {
 		this.shotsLeft = shotsLeft;
 	}
 	
+        /**
+         * This function will retrieve 
+         * @return 
+         */
 	public int getMovementLeft() {
 		return movementLeft;
 	}
