@@ -18,7 +18,33 @@ public class ScoutAI extends Scout {
             this.setHealthLeft(1);
             
 	}
-	
+	//boolean?
+        public void move(){
+            if(this.getMovementLeft()>0){
+            if(this.getRelativeDirection()==0){
+                if(){
+                    
+                }
+            }
+            if(this.getRelativeDirection()==1){
+                
+            }
+            if(this.getRelativeDirection()==2){
+                
+            }
+            if(this.getRelativeDirection()==3){
+                
+            }
+            if(this.getRelativeDirection()==4){
+                
+            }
+            if(this.getRelativeDirection()==5){
+                
+            }
+            }
+        }
+        
+        
 	public void scan(){
 		
 	}
