@@ -28,15 +28,15 @@ public class MainMenuPanel extends JPanel{
     static final int BUTTON_SPACER_SIZE = 30;
     static final int BUTTON_WIDTH = 140;
     static final int BUTTON_HEIGHT = 30;
-    private BufferedImage image;
+    //private BufferedImage image;
     
     //need actionlistener as parameter
-	public MainMenuPanel(int width, int height) {
-		try {
-			image = ImageIO.read(new File("/student/mdk181/gameBoard.jpeg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public MainMenuPanel(int width, int height, ActionListener actionlistener) {
+		//try {
+		//	image = ImageIO.read(new File("/student/mdk181/gameBoard.jpeg"));
+		//} catch (IOException e) {
+		//	e.printStackTrace();
+		//}
 		setSize(width, height);
         setBackground(Color.DARK_GRAY);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -48,9 +48,9 @@ public class MainMenuPanel extends JPanel{
         add(label);
         add(Box.createRigidArea(new Dimension(0, height / 10)));
         
-        JLabel imageLabel = new JLabel(new ImageIcon(image.getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(imageLabel);
+//        JLabel imageLabel = new JLabel(new ImageIcon(image.getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
+//        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+//        add(imageLabel);
         add(Box.createRigidArea(new Dimension(0, height / 15)));
         
        
@@ -59,7 +59,7 @@ public class MainMenuPanel extends JPanel{
         beginButton.setBackground(Color.BLACK);
         beginButton.setForeground(Color.WHITE);
         beginButton.setActionCommand("begin");
-      //  beginButton.addActionListener(listener);
+        beginButton.addActionListener(actionlistener);
         beginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(beginButton);
 
@@ -70,7 +70,7 @@ public class MainMenuPanel extends JPanel{
         helpButton.setBackground(Color.BLACK);
         helpButton.setForeground(Color.WHITE);
         helpButton.setActionCommand("help");
-      //  helpButton.addActionListener(listener);
+        helpButton.addActionListener(actionlistener);
         helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(helpButton);
 
@@ -81,7 +81,7 @@ public class MainMenuPanel extends JPanel{
         quitButton.setBackground(Color.BLACK);
         quitButton.setForeground(Color.WHITE);
         quitButton.setActionCommand("quit");
-      //  quitButton.addActionListener(listener);
+        quitButton.addActionListener(actionlistener);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(quitButton);
 	}

@@ -20,7 +20,8 @@ public class GamePropertiesPanel extends JPanel{
     static final int BUTTON_HEIGHT = 30;
 
     //need actionlistener as parameter
-	public GamePropertiesPanel(int width, int height) {
+	
+        public GamePropertiesPanel(int width, int height, ActionListener actionListener){
 		setSize(width, height);
 		setBackground(Color.DARK_GRAY);
         setLayout(new BorderLayout());
@@ -42,7 +43,7 @@ public class GamePropertiesPanel extends JPanel{
         quitButton.setBackground(Color.BLACK);
         quitButton.setForeground(Color.WHITE);
         quitButton.setActionCommand("quit");
-        //quitButton.addActionListener(listener);
+        quitButton.addActionListener(actionListener);
         quitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         southButtons.add(quitButton);
         
@@ -52,8 +53,8 @@ public class GamePropertiesPanel extends JPanel{
         backButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         backButton.setBackground(Color.BLACK);
         backButton.setForeground(Color.WHITE);
-        backButton.setActionCommand("back");
-      //  backButton.addActionListener(listener);
+        backButton.setActionCommand("backGP");
+        backButton.addActionListener(actionListener);
         backButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         southButtons.add(backButton);
 
@@ -63,8 +64,8 @@ public class GamePropertiesPanel extends JPanel{
         continueButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         continueButton.setBackground(Color.BLACK);
         continueButton.setForeground(Color.WHITE);
-        continueButton.setActionCommand("continue");
-      //  continueButton.addActionListener(listener);
+        continueButton.setActionCommand("continueGP");
+        continueButton.addActionListener(actionListener);
         continueButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         southButtons.add(continueButton);
         

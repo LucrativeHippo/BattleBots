@@ -24,7 +24,7 @@ public class SniperAI extends Sniper{
             if(this.getRelativeDirection()==0){
                 if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()]!=null){
                     //this.board.spaces[this.getHorizontalLocation()]][this.getVerticalLocation()].robotList.remove(this.name);
-                    //this.board.spaces[this.getHorizontalLocation()+1]][this.getVerticalLocation()].robotList.add(this);
+                    this.board.spaces[this.getHorizontalLocation()+1]][this.getVerticalLocation()].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation()+1);
                     this.setVerticalLocation(this.getVerticalLocation());
                 }

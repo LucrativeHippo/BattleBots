@@ -21,7 +21,7 @@ public class WinnerPanel extends JPanel{
     static final int BUTTON_HEIGHT = 30;
 
     //need actionlistener as parameter
-	public WinnerPanel(int width, int height) {
+	public WinnerPanel(int width, int height, ActionListener actionlistener) {
 		setSize(width, height);
         setBackground(Color.DARK_GRAY);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -41,34 +41,34 @@ public class WinnerPanel extends JPanel{
         add(label1);
         add(Box.createRigidArea(new Dimension(0, height / 5)));
         
-        JButton playAgainButton = new JButton("PLAY AGAIN");
+        JButton playAgainButton = new JButton("Play again");
         playAgainButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         playAgainButton.setBackground(Color.BLACK);
         playAgainButton.setForeground(Color.WHITE);
         playAgainButton.setActionCommand("playagain");
-      //  playAgainButton.addActionListener(listener);
+        playAgainButton.addActionListener(actionlistener);
         playAgainButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(playAgainButton);
 
         add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE)));
 
-        JButton statsButton = new JButton("STATS");
+        JButton statsButton = new JButton("Stats");
         statsButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         statsButton.setBackground(Color.BLACK);
         statsButton.setForeground(Color.WHITE);
         statsButton.setActionCommand("stats");
-      //  statsButton.addActionListener(listener);
+        statsButton.addActionListener(actionlistener);
         statsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(statsButton);
 
         add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE)));
 
-        JButton quitButton = new JButton("QUIT");
+        JButton quitButton = new JButton("Quit");
         quitButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         quitButton.setBackground(Color.BLACK);
         quitButton.setForeground(Color.WHITE);
         quitButton.setActionCommand("quit");
-      //  quitButton.addActionListener(listener);
+        quitButton.addActionListener(actionlistener);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(quitButton);
 	}
