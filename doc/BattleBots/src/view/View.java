@@ -27,8 +27,8 @@ public class View extends JFrame {
         setVisible(true);
 	}
 	
-    public void showMainMenu() {
-    	JPanel panel = new MainMenuPanel(getWidth(), getHeight());
+    public void showMainMenu(ActionListener actionListener) {
+    	JPanel panel = new MainMenuPanel(getWidth(), getHeight(), actionListener);
     	switchDisplay(panel);
     }
     
@@ -37,13 +37,13 @@ public class View extends JFrame {
     	switchDisplay(panel);
     }
     
-    public void showGameProperties() {
-    	JPanel panel = new GamePropertiesPanel(getWidth(), getHeight());
+    public void showGameProperties(ActionListener actionListener) {
+    	JPanel panel = new GamePropertiesPanel(getWidth(), getHeight(), actionListener);
     	switchDisplay(panel);
     }
     
-    public void showWinner() {
-    	JPanel panel = new WinnerPanel(getWidth(), getHeight());
+    public void showWinner(ActionListener actionListener) {
+    	JPanel panel = new WinnerPanel(getWidth(), getHeight(), actionListener);
     	switchDisplay(panel);
     }
     
@@ -61,9 +61,5 @@ public class View extends JFrame {
     	switchDisplay(panel);
     }
     
-    public static void main(String [] args){
-    	View view = new View(1100,1100);
-    	view.showGameProperties();
-    }
     
 }
