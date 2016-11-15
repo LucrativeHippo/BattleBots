@@ -72,7 +72,12 @@ public class TankAI extends Tank{
         }
         
         
-	public void scan(){
+	public Robot scan(){
+            
+            
+            
+            return target;
+        }
 		
 	}
 	

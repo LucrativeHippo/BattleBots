@@ -22,8 +22,27 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
+            
+            int key = arg0.getKeyCode(); //Gets the key code value of the pressed key
+            
+            if(key == KeyEvent.VK_W){
+                
+            }
+            if(key == KeyEvent.VK_E){
+                
+            }
+            if(key == KeyEvent.VK_D){
+                
+            }   
+            if(key == KeyEvent.VK_X){
+                
+            }
+            if(key == KeyEvent.VK_Z){
+                
+            }
+            if(key == KeyEvent.VK_A){
+                
+            }
 	}
 
 	@Override
