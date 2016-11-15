@@ -5,7 +5,6 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>BattleBots</name>
             <source-roots>
-                <root id="src.Test%20Packages.dir"/>
                 <root id="src.dir" name="src"/>
             </source-roots>
             <test-roots/>
