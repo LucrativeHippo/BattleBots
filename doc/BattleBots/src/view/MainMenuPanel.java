@@ -4,17 +4,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
+//import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+//import java.awt.image.BufferedImage;
+//import java.io.File;
+//import java.io.IOException;
 
-import javax.imageio.ImageIO;
+//import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,15 +27,15 @@ public class MainMenuPanel extends JPanel{
     static final int BUTTON_SPACER_SIZE = 30;
     static final int BUTTON_WIDTH = 140;
     static final int BUTTON_HEIGHT = 30;
-    private BufferedImage image;
+   // private BufferedImage image;
     
     //need actionlistener as parameter
-	public MainMenuPanel(int width, int height) {
-		try {
-			image = ImageIO.read(new File("/student/mdk181/gameBoard.jpeg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public MainMenuPanel(int width, int height, ActionListener actionListener) {
+		//try {
+		//	image = ImageIO.read(new File("/student/mdk181/gameBoard.jpeg"));//change to a local image of game board
+		//} catch (IOException e) {
+		//	e.printStackTrace();
+		//}
 		setSize(width, height);
         setBackground(Color.DARK_GRAY);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -48,9 +47,9 @@ public class MainMenuPanel extends JPanel{
         add(label);
         add(Box.createRigidArea(new Dimension(0, height / 10)));
         
-        JLabel imageLabel = new JLabel(new ImageIcon(image.getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(imageLabel);
+     //   JLabel imageLabel = new JLabel(new ImageIcon(image.getScaledInstance(400, 300, Image.SCALE_SMOOTH)));
+       // imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+       // add(imageLabel);
         add(Box.createRigidArea(new Dimension(0, height / 15)));
         
        
@@ -59,7 +58,7 @@ public class MainMenuPanel extends JPanel{
         beginButton.setBackground(Color.BLACK);
         beginButton.setForeground(Color.WHITE);
         beginButton.setActionCommand("begin");
-      //  beginButton.addActionListener(listener);
+        beginButton.addActionListener(actionListener);
         beginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(beginButton);
 
@@ -70,7 +69,7 @@ public class MainMenuPanel extends JPanel{
         helpButton.setBackground(Color.BLACK);
         helpButton.setForeground(Color.WHITE);
         helpButton.setActionCommand("help");
-      //  helpButton.addActionListener(listener);
+        helpButton.addActionListener(actionListener);
         helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(helpButton);
 
@@ -81,7 +80,7 @@ public class MainMenuPanel extends JPanel{
         quitButton.setBackground(Color.BLACK);
         quitButton.setForeground(Color.WHITE);
         quitButton.setActionCommand("quit");
-      //  quitButton.addActionListener(listener);
+        quitButton.addActionListener(actionListener);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(quitButton);
 	}
