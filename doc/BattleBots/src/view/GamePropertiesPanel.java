@@ -35,7 +35,6 @@ public class GamePropertiesPanel extends JPanel{
         JPanel southButtons = new JPanel();      
         southButtons.setBackground(Color.DARK_GRAY);
         southButtons.setLayout(new BoxLayout(southButtons, BoxLayout.LINE_AXIS));
-        
         southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
         
         JButton quitButton = new JButton("Quit");
@@ -45,8 +44,7 @@ public class GamePropertiesPanel extends JPanel{
         quitButton.setActionCommand("quit");
         quitButton.addActionListener(actionListener);
         quitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        southButtons.add(quitButton);
-        
+        southButtons.add(quitButton);  
         southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
         
         JButton backButton = new JButton("Back");
@@ -57,7 +55,6 @@ public class GamePropertiesPanel extends JPanel{
         backButton.addActionListener(actionListener);
         backButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         southButtons.add(backButton);
-
         southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE*10, 0)));
                 
         JButton continueButton = new JButton("Continue");
@@ -67,8 +64,7 @@ public class GamePropertiesPanel extends JPanel{
         continueButton.setActionCommand("continueGP");
         continueButton.addActionListener(actionListener);
         continueButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        southButtons.add(continueButton);
-        
+        southButtons.add(continueButton); 
         southButtons.add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE*10)));
         
         add(southButtons, BorderLayout.SOUTH);

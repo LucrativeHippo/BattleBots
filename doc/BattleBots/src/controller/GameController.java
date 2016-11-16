@@ -20,10 +20,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     private GameInfo gameInfo;
 	
     public void start() {
-        
         view = new View(WIDTH, HEIGHT);
-        view.showMainMenu(this); 
-    	
+        view.showMainMenu(this); 	
     }
     
     
@@ -48,9 +46,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
             
-            String actionCommand = arg0.getActionCommand();
+         String actionCommand = arg0.getActionCommand();
 		 if (actionCommand.equals("quit"))
 	            System.exit(0);
 	        else if (actionCommand.equals("help"))
@@ -74,11 +71,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	}
         
         public static void main(String [] args){
-        GameController gc = new GameController();
-        gc.start();
-        
-        
-        
+        	GameController gc = new GameController();
+        	gc.start();        
         }
 
 }

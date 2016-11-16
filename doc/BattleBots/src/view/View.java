@@ -13,9 +13,10 @@ public class View extends JFrame {
     public static final int BORDER_WIDTH = 6;
 	
 	public View(int width, int height) {
-		setTitle("Battle Bots");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(width + BORDER_WIDTH, height + TITLE_BAR_HEIGHT);
+		setUndecorated(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	    setResizable(true);
 	    getContentPane().setLayout(new BorderLayout());
     }
