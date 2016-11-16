@@ -6,16 +6,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import model.GameInfo;
 import model.GameObserver;
+import model.Robot;
 import view.View;
 
 public class GameController implements ActionListener, KeyListener, GameObserver{
 
 	
-        public static final int WIDTH = 800;
-        public static final int HEIGHT = 600;
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 600;
+    public Robot currentRobot;
     
-    
-	private View view;
+    private View view;
 	
     private GameInfo gameInfo;
 	
@@ -29,6 +30,24 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+            if(arg0.getKeyChar() == 'd'){
+                currentRobot.move('d');
+            }
+            if(arg0.getKeyChar() == 'x'){
+                currentRobot.move('x');
+            }
+            if(arg0.getKeyChar() == 'z'){
+                currentRobot.move('z');
+            }
+            if(arg0.getKeyChar() == 'a'){
+                currentRobot.move('a');
+            }
+            if(arg0.getKeyChar() == 'w'){
+                currentRobot.move('w');
+            }
+            if(arg0.getKeyChar() == 'e'){
+                currentRobot.move('e');
+            }
 		
 	}
 

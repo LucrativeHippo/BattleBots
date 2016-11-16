@@ -17,7 +17,9 @@ public class Robot {
 	private int directionDimension;
 	private int horizontalLocation;
 	private int verticalLocation;
-	
+	private int previousX;
+        private int previousY; 
+        
 	private boolean isTurn;
 	
 	private String gang;
@@ -28,9 +30,24 @@ public class Robot {
 
 	public Robot(String name) {
 		super();
-		this.gang = gang;
 		this.name = name;
 	}
+        
+        public void setPreviousX(int previousX) {
+            this.previousX = previousX;
+        }
+
+        public void setPreviousY(int previousY) {
+            this.previousY = previousY;
+        }
+
+        public int getPreviousX() {
+            return previousX;
+        }
+
+        public int getPreviousY() {
+            return previousY;
+        }
 
         /**
          * This function returns the distance a specific robot can travel
@@ -303,7 +320,56 @@ public class Robot {
                 }
 	}
 	
-	public void move(){
-		
+	public void move(char relativeDirection ){
+            if(this.getMovementLeft()>0){
+                if(relativeDirection == 'd'){
+                    if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()]!=null){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                        this.setVerticalLocation(this.getVerticalLocation());
+                    }
+                }
+                if(relativeDirection == 'x'){
+                    if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1]!=null){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation());
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                    }
+                }
+                if(relativeDirection == 'z'){
+                    if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1]!=null){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                    }
+                }
+                if(relativeDirection == 'a'){
+                    if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()]!=null){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                        this.setVerticalLocation(this.getVerticalLocation());
+                    }
+                }
+                if(relativeDirection == 'w'){
+                    if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1]!=null){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation());
+                        this.setVerticalLocation(this.getVerticalLocation()-1);
+                    }
+                }
+                if(relativeDirection == 'e'){
+                    if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1]!=null){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                        this.setVerticalLocation(this.getVerticalLocation()-1);
+                    }
+                }
+            }
 	}
 }
