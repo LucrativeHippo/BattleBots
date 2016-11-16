@@ -23,9 +23,11 @@ public class MainMenuPanel extends JPanel{
 
 
     static final int FONT_SIZE = 72;
-    static final int BUTTON_SPACER_SIZE = 70;
-    static final int BUTTON_WIDTH = 200;
-    static final int BUTTON_HEIGHT = 200;
+    static final int BUTTON_SPACER_SIZE = 300;
+    static final int BUTTON_WIDTH = 300;
+    static final int BUTTON_HEIGHT = 300;
+    static final int CENTER_SCREEN = 300;
+    static final int VERTICAL_SPACER = 50;
     private BufferedImage image;
     
 
@@ -47,9 +49,9 @@ public class MainMenuPanel extends JPanel{
         label.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
         label.setForeground(Color.BLACK);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.add(Box.createRigidArea(new Dimension(0, height / 10)));
+        title.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
         title.add(label);
-        title.add(Box.createRigidArea(new Dimension(0, height / 10)));
+        title.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
         add(title, BorderLayout.NORTH);
         
         JPanel imagePanel = new JPanel();
@@ -65,37 +67,43 @@ public class MainMenuPanel extends JPanel{
         JPanel southButtons = new JPanel();      
         southButtons.setBackground(Color.WHITE);
         southButtons.setLayout(new BoxLayout(southButtons, BoxLayout.LINE_AXIS));
-        southButtons.add(Box.createRigidArea(new Dimension(width, 0)));
+        southButtons.add(Box.createRigidArea(new Dimension(CENTER_SCREEN, 0)));
         
-        JButton beginButton = new JButton("Begin");
-        beginButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        beginButton.setBackground(Color.BLACK);
-        beginButton.setForeground(Color.WHITE);
+        JButton beginButton = new JButton(" Begin ");
+        beginButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+        beginButton.setBackground(Color.BLUE);
+        beginButton.setForeground(Color.BLACK);
         beginButton.setActionCommand("begin");
         beginButton.addActionListener(actionlistener);
         beginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        beginButton.setFocusPainted(false);
+        
         southButtons.add(beginButton);
         southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
 
-        JButton helpButton = new JButton("Help");
-        helpButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        helpButton.setBackground(Color.BLACK);
-        helpButton.setForeground(Color.WHITE);
+        JButton helpButton = new JButton(" Help ");
+        helpButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+        helpButton.setBackground(Color.RED);
+        helpButton.setForeground(Color.BLACK);
         helpButton.setActionCommand("help");
         helpButton.addActionListener(actionlistener);
         helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        helpButton.setFocusPainted(false);
+        
         southButtons.add(helpButton);
         southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
 
-        JButton quitButton = new JButton("Quit");
-        quitButton.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        quitButton.setBackground(Color.BLACK);
-        quitButton.setForeground(Color.WHITE);
+        JButton quitButton = new JButton(" Quit ");
+        quitButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+        quitButton.setBackground(Color.GREEN);
+        quitButton.setForeground(Color.BLACK);
         quitButton.setActionCommand("quit");
         quitButton.addActionListener(actionlistener);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        quitButton.setFocusPainted(false);
+        
         southButtons.add(quitButton);
-        southButtons.add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE*5)));  
+        southButtons.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER*7)));  
         add(southButtons, BorderLayout.SOUTH);
         
         
