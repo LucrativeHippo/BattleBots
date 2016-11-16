@@ -18,6 +18,11 @@ public class GameBoard {
             if(size == 5){
                 this.spaces = new Hex[9][9];
                 boardSize = 5;
+                for(int i = 0; i < 9; i++){
+                    for(int j = 0; j < 9; j++){
+                        this.spaces[i][j] = new Hex();
+                    }
+                }
                 this.spaces[0][0]= null;
                 this.spaces[1][0]= null;
                 this.spaces[7][0]= null;
@@ -43,6 +48,11 @@ public class GameBoard {
             else if(size == 7){
                 this.spaces = new Hex[13][13];
                 boardSize = 7;
+                for(int i = 0; i < 13; i++){
+                    for(int j = 0; j < 13; j++){
+                        this.spaces[i][j] = new Hex();
+                    }
+                }
                 this.spaces[0][0]= null;
                 this.spaces[1][0]= null;
                 this.spaces[2][0]= null;
@@ -158,6 +168,30 @@ public class GameBoard {
                 throw new RuntimeException();
             }
 	}
+        
+        public static void main(String [] args) {
+       Scout robot1 = new Scout("scout");
+       Tank robot2 = new Tank("tank");
+       Sniper robot3 = new Sniper("sniper");
+       Gang redTeam = new Gang("Red", robot1, robot3, robot2);
+       GameBoard game = new GameBoard(5);
+       
+       if(robot3 == null){
+           System.out.println("robot is null");
+           //throw new RuntimeException();
+       }
+       else{
+       game.spaces[5][5].robotList.add(robot3);
+       game.spaces[5][5].robotList.add(robot2);
+       game.spaces[5][5].robotList.add(robot1);
+       System.out.println(game.spaces[5][5].robotList.size());
+       //Testing the gameBoard Class
+       robot1.shoot(game.spaces[5][5]);
+       }
+       System.out.println(robot2.getHealthLeft() + "tank");
+       System.out.println(robot1.getHealthLeft() + "scout");
+       System.out.println(robot3.getHealthLeft() + "sniper");
+    }
 	
 
 	

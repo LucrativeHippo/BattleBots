@@ -5,9 +5,13 @@ import org.json.simple.JSONObject;
 public class ScoutAI extends Scout {
 	
 	private JSONObject instructionCode;
+        private int totalMoves;
+        private int robotsKilled;
+        private int damageDealt;
+        private int damageTaken;
 	
-	public ScoutAI(String gang, String name) {
-            super(gang, name);
+	public ScoutAI(String name) {
+            super(name);
             this.setMovement(3);
             this.setDamage(1);
             this.setRange(2);
@@ -16,6 +20,8 @@ public class ScoutAI extends Scout {
             this.setShotsLeft(1);
             this.setMovementLeft(3);
             this.setHealthLeft(1);
+            
+            //this.totalMoves = 
             
 	}
 	//boolean?

@@ -2,8 +2,8 @@ package model;
 
 public class Tank extends Robot{
 
-	public Tank(String gang, String name) {
-            super(gang, name);
+	public Tank(String name) {
+            super(name);
             this.setMovement(1);
             this.setDamage(3);
             this.setRange(1);

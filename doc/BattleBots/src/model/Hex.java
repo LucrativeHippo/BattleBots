@@ -10,7 +10,7 @@ public class Hex {
 	public LinkedList<Robot> robotList;
 	
 	public Hex(){
-		robotList = null;
+		robotList = new LinkedList();
 	}
 	
         /**

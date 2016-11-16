@@ -2,8 +2,8 @@ package model;
 
 public class Sniper extends Robot{
 
-	public Sniper(String gang, String name) {
-            super(gang, name);
+	public Sniper(String name) {
+            super(name);
             this.setMovement(2);
             this.setDamage(2);
             this.setRange(3);

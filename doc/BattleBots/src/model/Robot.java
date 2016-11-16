@@ -26,7 +26,7 @@ public class Robot {
 	public GameBoard board;
 	
 
-	public Robot(String gang, String name) {
+	public Robot(String name) {
 		super();
 		this.gang = gang;
 		this.name = name;
@@ -296,12 +296,10 @@ public class Robot {
                 }
                 else{
                     Iterator<Robot> robotIterator = space.robotList.iterator();
-                    for(int i = 0; i < space.robotList.size(); i++){
                         while(robotIterator.hasNext()){
                             Robot temp = robotIterator.next();
                             temp.recieveDamage(this.getDamage());
                         }
-                    }
                 }
 	}
 	

@@ -24,4 +24,11 @@ public class GamePanel extends JPanel implements GameObserver{
 		// TODO Auto-generated method stub
 		
 	}
+        
+        public void start() {
+ 
+       
+            
+            
+    }
 }

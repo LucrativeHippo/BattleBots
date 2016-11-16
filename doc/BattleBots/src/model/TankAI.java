@@ -6,8 +6,8 @@ public class TankAI extends Tank{
 
 	private JSONObject instructionCode;
 	
-	public TankAI(String gang, String name) {
-            super(gang, name);
+	public TankAI(String name) {
+            super(name);
             this.setMovement(1);
             this.setDamage(3);
             this.setRange(1);
@@ -70,7 +70,7 @@ public class TankAI extends Tank{
                 }
             }
         }
-        
+        }
         
 	public void scan(){
 		

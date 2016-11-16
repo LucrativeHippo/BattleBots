@@ -2,8 +2,8 @@ package model;
 
 public class Scout extends Robot {
 
-	public Scout(String gang, String name) {
-            super(gang, name);
+	public Scout(String name) {
+            super(name);
             this.setMovement(3);
             this.setDamage(1);
             this.setRange(2);
