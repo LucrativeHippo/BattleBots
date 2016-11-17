@@ -13,7 +13,38 @@ public class View extends JFrame {
 	private static final long serialVersionUID = 1L;
     public static final int TITLE_BAR_HEIGHT = 32;
     public static final int BORDER_WIDTH = 6;
-	
+    
+    
+        private int numPlayers;
+        private int numHumans;
+        private int boardSize;
+        
+        public void setNumPlayers(int numPlayers){
+            this.numPlayers = numPlayers;
+        }
+        
+        public int getNumPlayers(){
+            return this.numPlayers;
+        }
+        
+        public void setNumHumans(int numHumans){
+            this.numHumans = numHumans;
+        }
+        
+                
+        public int getNumHumans(){
+            return this.numPlayers;
+        }
+        
+        public void setBoardSize(int boardSize){
+            this.boardSize = boardSize;
+        }
+
+        
+        public int getBoardSize(){
+            return this.boardSize;
+        }
+        
 	public View(int width, int height) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(width + BORDER_WIDTH, height + TITLE_BAR_HEIGHT);

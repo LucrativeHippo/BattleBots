@@ -102,6 +102,42 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	        else if (actionCommand.equals("backTS")){
 	            view.showGameProperties(this);
 	        }
+                                else if (actionCommand.equals("five")){
+                    view.setBoardSize(5);
+                }
+                else if (actionCommand.equals("seven")){
+                    view.setBoardSize(7);
+                }
+                else if (actionCommand.equals("zeroHumans")){
+                    view.setNumHumans(0);
+                }
+                else if (actionCommand.equals("oneHuman")){
+                    view.setNumHumans(1);
+                }
+                else if (actionCommand.equals("twoHumans")){
+                    view.setNumHumans(2);
+                }
+                else if (actionCommand.equals("threeHumans")){
+                    view.setNumHumans(3);
+                }
+                else if (actionCommand.equals("fourHumans")){
+                    view.setNumHumans(4);
+                }
+                else if (actionCommand.equals("fiveHumans")){
+                    view.setNumHumans(5);
+                }
+                else if (actionCommand.equals("sixHumans")){
+                    view.setNumHumans(6);
+                }
+                else if (actionCommand.equals("twoTeams")){
+                    view.setNumPlayers(2);
+                }
+                else if (actionCommand.equals("threeTeams")){
+                    view.setNumPlayers(3);
+                }
+                else if (actionCommand.equals("sixTeams")){
+                    view.setNumPlayers(6);
+                }
 	        else{
 	        	throw new IllegalStateException("The event has action command " + actionCommand
 	        			+ " that is invalid.");
