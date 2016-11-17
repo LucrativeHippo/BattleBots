@@ -24,6 +24,7 @@ public class Robot {
 	
 	private String gang;
 	private String name;
+        private boolean isHuman;
 	
 	public GameBoard board;
 	
@@ -31,6 +32,7 @@ public class Robot {
 	public Robot(String name) {
 		super();
 		this.name = name;
+                this.isHuman = true;
 	}
         
         public void setPreviousX(int previousX) {
@@ -316,6 +318,11 @@ public class Robot {
                         while(robotIterator.hasNext()){
                             Robot temp = robotIterator.next();
                             temp.recieveDamage(this.getDamage());
+                            if(temp.isHuman == false){
+                              //record damage dealt for AI and damage taken
+                              //
+                              //
+                            }
                         }
                 }
 	}

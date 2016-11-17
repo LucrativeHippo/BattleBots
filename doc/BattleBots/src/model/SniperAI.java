@@ -1,10 +1,17 @@
 package model;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import org.json.simple.JSONObject;
 
 public class SniperAI extends Sniper{
 
 	private JSONObject instructionCode;
+        private int totalMoves;
+        private int robotsKilled;
+        private int damageDealt;
+        private int damageTaken;
+        public LinkedList<Robot> scannedRobotsList;
 	
 	public SniperAI(String name) {
             super(name);
@@ -16,6 +23,7 @@ public class SniperAI extends Sniper{
             this.setShotsLeft(1);
             this.setMovementLeft(2);
             this.setHealthLeft(2);
+            scannedRobotsList = new LinkedList();
             
 	}
 	
@@ -79,8 +87,45 @@ public class SniperAI extends Sniper{
         }
         
 	public void scan(){
-		
-	}
+            Exception x= null;
+            int minRange = this.getRange()*-1;
+            int hexModifier = 0;
+            int scanRange = this.getRange();
+            for(int i=minRange; i <= this.getRange(); i++){
+                for(int k=hexModifier; k <= scanRange; k++){
+                    x=null;
+                    try {
+			Hex temp = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e + " caught due to scanning out of bounds.");
+                        x=e;
+                          
+		}
+                    if(x==null){
+                    System.out.println(this.getHorizontalLocation()+k);
+                    System.out.println(this.getVerticalLocation()+i);
+                    if(this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].hexExists==true&&this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].isEmpty()==false){
+                        System.out.println("hex check successful");
+                        Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].robotList.iterator();
+                        while(robotIterator.hasNext()){
+                            Robot temp = robotIterator.next();
+                            System.out.println(temp.getName());
+                            this.scannedRobotsList.add(temp);
+                        }
+                    }
+                   
+                    }
+                
+            }
+                if(hexModifier == minRange)
+                {
+                    scanRange--;
+                }
+                else{
+                    hexModifier=hexModifier-1;
+                } 
+        }
+        }
 	
 	public void turn(int desiredDirection){
 		if((desiredDirection<=5)&&(desiredDirection>=0)){
