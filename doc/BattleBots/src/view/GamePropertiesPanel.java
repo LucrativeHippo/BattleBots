@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -187,8 +188,8 @@ public class GamePropertiesPanel extends JPanel{
     	    centerPanel.add(Box.createHorizontalGlue());
     	    
     	    
-    	    
-    	    
+    	                
+
     		///////////////////////////////////////////////////////////////
     	    
     	    JPanel sizePanel = new JPanel();
@@ -207,13 +208,13 @@ public class GamePropertiesPanel extends JPanel{
     	    JRadioButton fiveButton = new JRadioButton("5");
     	    fiveButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    fiveButton.setActionCommand("five");
-    	    fiveButton.addActionListener(actionListener);
+    	    //fiveButton.addActionListener(actionListener);
     		fiveButton.setSelected(true);
     		
     		JRadioButton sevenButton = new JRadioButton("7");
     	    sevenButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    sevenButton.setActionCommand("seven");
-    	    sevenButton.addActionListener(actionListener);   
+    	    //sevenButton.addActionListener(actionListener);   
     	    
     	    ButtonGroup group2 = new ButtonGroup();
     	    group2.add(fiveButton);
@@ -225,6 +226,53 @@ public class GamePropertiesPanel extends JPanel{
        	    centerPanel.add(sizePanel);
        	    centerPanel.add(Box.createHorizontalGlue());
     	    
+        // when user selects two players, the board size is automatically set to five 
+        // hides options for more than 2 humans
+        twoTeamsButton.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        zeroHumansButton.setSelected(true);
+                        threeHumansButton.setEnabled(false);
+                        fourHumansButton.setEnabled(false);
+                        fiveHumansButton.setEnabled(false);
+                        sixHumansButton.setEnabled(false);
+                        fiveButton.setEnabled(true);
+                        fiveButton.setSelected(true);
+                        sevenButton.setEnabled(false);
+                    }
+                });
+        
+                // when user selects two players, the board size is automatically set to five 
+        // hides options for more than 2 humans
+        threeTeamsButton.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        zeroHumansButton.setSelected(true);
+                        threeHumansButton.setEnabled(true);
+                        fourHumansButton.setEnabled(false);
+                        fiveHumansButton.setEnabled(false);
+                        sixHumansButton.setEnabled(false);
+                        fiveButton.setSelected(true);
+                    }
+                });
+        
+                // when user selects two players, the board size is automatically set to five 
+        // hides options for more than 2 humans
+        sixTeamsButton.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        threeHumansButton.setEnabled(true);
+                        fourHumansButton.setEnabled(true);
+                        fiveHumansButton.setEnabled(true);
+                        sixHumansButton.setEnabled(true);
+                        fiveButton.setEnabled(false);
+                        sevenButton.setEnabled(true);
+                        sevenButton.setSelected(true);
+                    }
+                });
     	    //////////////////////////////////////////////////////////////
     		add(centerPanel, BorderLayout.CENTER);
     		
@@ -244,7 +292,7 @@ public class GamePropertiesPanel extends JPanel{
         	
         	southButtons.add(continueButton); 
         	southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));      	
-        	
+        	            
         	JButton backButton = new JButton("Back");
         	backButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
         	backButton.setBackground(Color.BLACK);
