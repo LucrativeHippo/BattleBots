@@ -65,17 +65,18 @@ public class GamePropertiesPanel extends JPanel{
     	    twoTeamsButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    twoTeamsButton.setActionCommand("twoTeams");
     	    twoTeamsButton.addActionListener(actionListener);
-    	    twoTeamsButton.setSelected(true);
+    	    
 
     	    JRadioButton threeTeamsButton = new JRadioButton("3");
     	    threeTeamsButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    threeTeamsButton.setActionCommand("threeTeams");
-    	    twoTeamsButton.addActionListener(actionListener);
+    	    threeTeamsButton.addActionListener(actionListener);
     	    
     	    JRadioButton sixTeamsButton = new JRadioButton("6");
     	    sixTeamsButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    sixTeamsButton.setActionCommand("sixTeams");
-    	    twoTeamsButton.addActionListener(actionListener);
+    	    sixTeamsButton.addActionListener(actionListener);
+    		sixTeamsButton.setSelected(true);
     		
     	    ButtonGroup group = new ButtonGroup();
     	    group.add(twoTeamsButton);
@@ -209,73 +210,76 @@ public class GamePropertiesPanel extends JPanel{
     	    fiveButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    fiveButton.setActionCommand("five");
     	    fiveButton.addActionListener(actionListener);
-    		fiveButton.setSelected(true);
+    	    fiveButton.setEnabled(false);
+    		
     		
     		JRadioButton sevenButton = new JRadioButton("7");
     	    sevenButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    sevenButton.setActionCommand("seven");
     	    sevenButton.addActionListener(actionListener);   
+    	    sevenButton.setSelected(true);
     	    
     	    ButtonGroup group2 = new ButtonGroup();
     	    group2.add(fiveButton);
     	    group2.add(sevenButton);
-    	    
+
     	    sizePanel.add(fiveButton);
     	    sizePanel.add(sevenButton);
-    	    
-       	    centerPanel.add(sizePanel);
-       	    centerPanel.add(Box.createHorizontalGlue());
-    	    
-        // when user selects two players, the board size is automatically set to five 
-        // hides options for more than 2 humans
-        twoTeamsButton.addActionListener(new ActionListener() {
 
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        zeroHumansButton.setSelected(true);
-                        threeHumansButton.setEnabled(false);
-                        fourHumansButton.setEnabled(false);
-                        fiveHumansButton.setEnabled(false);
-                        sixHumansButton.setEnabled(false);
-                        fiveButton.setEnabled(true);
-                        fiveButton.setSelected(true);
-                        sevenButton.setEnabled(false);
-                    }
-                });
-        
-                // when user selects two players, the board size is automatically set to five 
-        // hides options for more than 2 humans
-        threeTeamsButton.addActionListener(new ActionListener() {
+    	    centerPanel.add(sizePanel);
+    	    centerPanel.add(Box.createHorizontalGlue());
 
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        zeroHumansButton.setSelected(true);
-                        threeHumansButton.setEnabled(true);
-                        fourHumansButton.setEnabled(false);
-                        fiveHumansButton.setEnabled(false);
-                        sixHumansButton.setEnabled(false);
-                        fiveButton.setSelected(true);
-                    }
-                });
-        
-                // when user selects two players, the board size is automatically set to five 
-        // hides options for more than 2 humans
-        sixTeamsButton.addActionListener(new ActionListener() {
+    	    // when user selects two players, the board size is automatically set to five 
+    	    // hides options for more than 2 humans
+    	    twoTeamsButton.addActionListener(new ActionListener() {
 
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        threeHumansButton.setEnabled(true);
-                        fourHumansButton.setEnabled(true);
-                        fiveHumansButton.setEnabled(true);
-                        sixHumansButton.setEnabled(true);
-                        fiveButton.setEnabled(false);
-                        sevenButton.setEnabled(true);
-                        sevenButton.setSelected(true);
-                    }
-                });
+    	    	@Override
+    	    	public void actionPerformed(ActionEvent ae) {
+    	    		zeroHumansButton.setSelected(true);
+    	    		threeHumansButton.setEnabled(false);
+    	    		fourHumansButton.setEnabled(false);
+    	    		fiveHumansButton.setEnabled(false);
+    	    		sixHumansButton.setEnabled(false);
+    	    		fiveButton.setEnabled(true);
+    	    		fiveButton.setSelected(true);
+    	    		sevenButton.setEnabled(false);
+    	    	}
+    	    });
+
+    	    // when user selects two players, the board size is automatically set to five 
+    	    // hides options for more than 2 humans
+    	    threeTeamsButton.addActionListener(new ActionListener() {
+
+    	    	@Override
+    	    	public void actionPerformed(ActionEvent ae) {
+    	    		zeroHumansButton.setSelected(true);
+    	    		threeHumansButton.setEnabled(true);
+    	    		fourHumansButton.setEnabled(false);
+    	    		fiveHumansButton.setEnabled(false);
+    	    		sixHumansButton.setEnabled(false);
+    	    		fiveButton.setEnabled(true);
+    	    		fiveButton.setSelected(true);
+    	    	}
+    	    });
+
+    	    // when user selects two players, the board size is automatically set to five 
+    	    // hides options for more than 2 humans
+    	    sixTeamsButton.addActionListener(new ActionListener() {
+
+    	    	@Override
+    	    	public void actionPerformed(ActionEvent ae) {
+    	    		threeHumansButton.setEnabled(true);
+    	    		fourHumansButton.setEnabled(true);
+    	    		fiveHumansButton.setEnabled(true);
+    	    		sixHumansButton.setEnabled(true);
+    	    		fiveButton.setEnabled(false);
+    	    		sevenButton.setEnabled(true);
+    	    		sevenButton.setSelected(true);
+    	    	}
+    	    });
     	    //////////////////////////////////////////////////////////////
-    		add(centerPanel, BorderLayout.CENTER);
-    		
+    	    add(centerPanel, BorderLayout.CENTER);
+
     		JPanel southButtons = new JPanel();      
     		southButtons.setBackground(Color.WHITE);
     		southButtons.setLayout(new BoxLayout(southButtons, BoxLayout.X_AXIS));

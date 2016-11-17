@@ -4,9 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import model.Game;
 import model.GameInfo;
 import model.GameObserver;
 import model.Robot;
+import model.RobotController;
 import view.View;
 
 public class GameController implements ActionListener, KeyListener, GameObserver{
@@ -19,6 +22,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     private View view;
 	
     private GameInfo gameInfo;
+    
+    private RobotController gameControl;
 	
     public void start() {
         view = new View(WIDTH, HEIGHT);
@@ -67,19 +72,36 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	public void actionPerformed(ActionEvent arg0) {
             
          String actionCommand = arg0.getActionCommand();
-		 if (actionCommand.equals("quit"))
+		 if (actionCommand.equals("quit")){
 	            System.exit(0);
-	        else if (actionCommand.equals("help"))
+		 }
+	        else if (actionCommand.equals("help")){
 	            view.showHelp(this, WIDTH, HEIGHT);
-	        else if (actionCommand.equals("begin"))
+	        }
+	        else if (actionCommand.equals("begin")){
 	            view.showGameProperties(this);
-	        else if (actionCommand.equals("backGP"))
+	        }
+	        else if (actionCommand.equals("backGP")){
 	            view.showMainMenu(this);
-	        else if (actionCommand.equals("continueGP"))
+	        }
+	        else if (actionCommand.equals("continueGP")){
 	            view.showTeamSelection(this);
-	        else
+	        }
+	        else if (actionCommand.equals("continueTS")){
+	        	Game game = new Game(WIDTH, HEIGHT);
+		 		gameControl = game;
+		 		gameInfo = game;
+		 		gameInfo.addObserver(this); 		
+	        	view.showGame(this, gameInfo);
+	        	gameControl.start();
+	        }
+	        else if (actionCommand.equals("backTS")){
+	            view.showGameProperties(this);
+	        }
+	        else{
 	        	throw new IllegalStateException("The event has action command " + actionCommand
 	        			+ " that is invalid.");
+	        }
 		
 	}
 

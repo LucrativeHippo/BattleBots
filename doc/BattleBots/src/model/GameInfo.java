@@ -14,6 +14,6 @@ public interface GameInfo {
     
     public int getPlayerScore();
 
-    public int getPlayerRobots();
+    public int getPlayersRobots();
     
 }

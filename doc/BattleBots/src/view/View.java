@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.GameInfo;
+
 public class View extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -24,7 +26,7 @@ public class View extends JFrame {
 	public void switchDisplay(JPanel panel){
 		getContentPane().removeAll();
         getContentPane().add(panel, BorderLayout.CENTER);
-        getContentPane().validate();
+        getContentPane().repaint();
         setVisible(true);
 	}
 	
@@ -54,7 +56,7 @@ public class View extends JFrame {
     	switchDisplay(panel);
     }
     
-    public void showGame(KeyListener keyListener) {
+    public void showGame(KeyListener keyListener, GameInfo gameInfo) {
     	
     }
     
