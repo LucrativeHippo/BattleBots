@@ -208,13 +208,13 @@ public class GamePropertiesPanel extends JPanel{
     	    JRadioButton fiveButton = new JRadioButton("5");
     	    fiveButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    fiveButton.setActionCommand("five");
-    	    //fiveButton.addActionListener(actionListener);
+    	    fiveButton.addActionListener(actionListener);
     		fiveButton.setSelected(true);
     		
     		JRadioButton sevenButton = new JRadioButton("7");
     	    sevenButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    sevenButton.setActionCommand("seven");
-    	    //sevenButton.addActionListener(actionListener);   
+    	    sevenButton.addActionListener(actionListener);   
     	    
     	    ButtonGroup group2 = new ButtonGroup();
     	    group2.add(fiveButton);
