@@ -22,14 +22,11 @@ public class MainMenuPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 
-    static final int FONT_SIZE = 72;
-    static final int BUTTON_SPACER_SIZE = 300;
-    static final int BUTTON_WIDTH = 300;
-    static final int BUTTON_HEIGHT = 300;
-    static final int CENTER_SCREEN = 300;
-    static final int VERTICAL_SPACER = 50;
-    private BufferedImage image;
-    
+	static final int FONT_SIZE = 72;
+	static final int BUTTON_SPACER_SIZE = 300;
+	static final int VERTICAL_SPACER = 50;
+	private BufferedImage image;
+
 
 	public MainMenuPanel(int width, int height, ActionListener actionlistener) {
 		try {
@@ -38,75 +35,74 @@ public class MainMenuPanel extends JPanel{
 			e.printStackTrace();
 		}
 		setSize(width, height);
-        setBackground(Color.WHITE);
-        setLayout(new BorderLayout());
+		setBackground(Color.WHITE);
+		setLayout(new BorderLayout());
 
-        JPanel title = new JPanel();
-        title.setBackground(Color.WHITE);
-        title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS)); 
-        
-        JLabel label = new JLabel("Welcome to Battle Bots! " );
-        label.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
-        label.setForeground(Color.BLACK);
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
-        title.add(label);
-        title.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
-        add(title, BorderLayout.NORTH);
-        
-        JPanel imagePanel = new JPanel();
-        imagePanel.setBackground(Color.WHITE);
-        imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.PAGE_AXIS));
-        imagePanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        
-        JLabel imageLabel = new JLabel(new ImageIcon(image.getScaledInstance(600, 500, Image.SCALE_SMOOTH)));
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        imagePanel.add(imageLabel);
-        add(imagePanel, BorderLayout.CENTER);
-        
-        JPanel southButtons = new JPanel();      
-        southButtons.setBackground(Color.WHITE);
-        southButtons.setLayout(new BoxLayout(southButtons, BoxLayout.LINE_AXIS));
-        southButtons.add(Box.createRigidArea(new Dimension(CENTER_SCREEN, 0)));
-        
-        JButton beginButton = new JButton(" Begin ");
-        beginButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
-        beginButton.setBackground(Color.BLUE);
-        beginButton.setForeground(Color.BLACK);
-        beginButton.setActionCommand("begin");
-        beginButton.addActionListener(actionlistener);
-        beginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        beginButton.setFocusPainted(false);
-        
-        southButtons.add(beginButton);
-        southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
+		JPanel title = new JPanel();
+		title.setBackground(Color.WHITE);
+		title.setLayout(new BoxLayout(title, BoxLayout.PAGE_AXIS)); 
 
-        JButton helpButton = new JButton(" Help ");
-        helpButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
-        helpButton.setBackground(Color.RED);
-        helpButton.setForeground(Color.BLACK);
-        helpButton.setActionCommand("help");
-        helpButton.addActionListener(actionlistener);
-        helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        helpButton.setFocusPainted(false);
-        
-        southButtons.add(helpButton);
-        southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
+		JLabel label = new JLabel("Welcome to Battle Bots! " );
+		label.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+		label.setForeground(Color.BLACK);
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		title.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
+		title.add(label);
+		title.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
+		add(title, BorderLayout.NORTH);
 
-        JButton quitButton = new JButton(" Quit ");
-        quitButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
-        quitButton.setBackground(Color.GREEN);
-        quitButton.setForeground(Color.BLACK);
-        quitButton.setActionCommand("quit");
-        quitButton.addActionListener(actionlistener);
-        quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        quitButton.setFocusPainted(false);
-        
-        southButtons.add(quitButton);
-        southButtons.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER*7)));  
-        add(southButtons, BorderLayout.SOUTH);
-        
-        
+		JPanel imagePanel = new JPanel();
+		imagePanel.setBackground(Color.WHITE);
+		imagePanel.setLayout(new BoxLayout(imagePanel, BoxLayout.PAGE_AXIS));
+		imagePanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JLabel imageLabel = new JLabel(new ImageIcon(image.getScaledInstance(600, 500, Image.SCALE_SMOOTH)));
+		imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		imagePanel.add(imageLabel);
+		add(imagePanel, BorderLayout.CENTER);
+
+		JPanel southButtons = new JPanel();      
+		southButtons.setBackground(Color.WHITE);
+		southButtons.setLayout(new BoxLayout(southButtons, BoxLayout.X_AXIS));
+		southButtons.add(Box.createHorizontalGlue());
+
+		JButton beginButton = new JButton(" Begin ");
+		beginButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+		beginButton.setBackground(Color.BLACK);
+		beginButton.setForeground(Color.WHITE);
+		beginButton.setActionCommand("begin");
+		beginButton.addActionListener(actionlistener);
+		beginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		beginButton.setFocusPainted(false);
+
+		southButtons.add(beginButton);
+		southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
+
+		JButton helpButton = new JButton(" Help ");
+		helpButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+		helpButton.setBackground(Color.BLACK);
+		helpButton.setForeground(Color.WHITE);
+		helpButton.setActionCommand("help");
+		helpButton.addActionListener(actionlistener);
+		helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		helpButton.setFocusPainted(false);
+
+		southButtons.add(helpButton);
+		southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
+
+		JButton quitButton = new JButton(" Quit ");
+		quitButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+		quitButton.setBackground(Color.BLACK);
+		quitButton.setForeground(Color.WHITE);
+		quitButton.setActionCommand("quit");
+		quitButton.addActionListener(actionlistener);
+		quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		quitButton.setFocusPainted(false);
+
+		southButtons.add(quitButton);
+		southButtons.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER*7)));  
+		southButtons.add(Box.createHorizontalGlue());
+		add(southButtons, BorderLayout.SOUTH);
 
 	}
 
