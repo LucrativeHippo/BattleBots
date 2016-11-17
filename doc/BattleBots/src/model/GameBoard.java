@@ -184,6 +184,9 @@ public class GameBoard {
        game.spaces[5][5].robotList.add(robot3);
        game.spaces[5][5].robotList.add(robot2);
        game.spaces[5][5].robotList.add(robot1);
+       robot1.board = game;
+       robot2.board = game;
+       robot3.board = game;
        System.out.println(game.spaces[5][5].robotList.size());
        //Testing the gameBoard Class
        robot1.shoot(game.spaces[5][5]);
@@ -196,9 +199,18 @@ public class GameBoard {
        ScoutAI robot4 = new ScoutAI("scoutAI");
        TankAI robot5 = new TankAI("tankAI");
        SniperAI robot6 = new SniperAI("sniperAI");
-       game.spaces[3][3].robotList.add(robot3);
-       game.spaces[3][3].robotList.add(robot2);
-       game.spaces[3][3].robotList.add(robot1);
+       game.spaces[3][3].robotList.add(robot4);
+       game.spaces[3][3].robotList.add(robot5);
+       game.spaces[3][3].robotList.add(robot6);
+       robot4.board = game;
+       robot5.board = game;
+       robot6.board = game;
+       robot4.setHorizontalLocation(3);
+       robot4.setVerticalLocation(3);
+       robot5.setHorizontalLocation(3);
+       robot5.setVerticalLocation(3);
+       robot6.setHorizontalLocation(3);
+       robot6.setVerticalLocation(3);
        
        robot4.scan();
        

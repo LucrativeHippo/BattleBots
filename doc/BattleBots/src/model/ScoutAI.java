@@ -24,6 +24,8 @@ public class ScoutAI extends Scout {
             this.setMovementLeft(3);
             this.setHealthLeft(1);
             
+            scannedRobotsList = new LinkedList();
+            
             //this.totalMoves = 
             
 	}
@@ -93,24 +95,31 @@ public class ScoutAI extends Scout {
             int minRange = this.getRange()*-1;
             int hexModifier = 0;
             int scanRange = this.getRange();
-            for(int i=minRange; i < this.getRange(); i++){
-                for(int k=hexModifier; k < scanRange; k++){
+            for(int i=minRange; i <= this.getRange(); i++){
+                System.out.println(hexModifier);
+                System.out.println(i);
+                for(int k=hexModifier; k <= scanRange; k++){
+                    System.out.println(this.getHorizontalLocation()+k);
+                    System.out.println(this.getVerticalLocation()+i);
                     if(this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].hexExists==true&&this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].isEmpty()==false){
-                    Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].robotList.iterator();
+                        System.out.println("hex check successful");
+                        Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].robotList.iterator();
                         while(robotIterator.hasNext()){
                             Robot temp = robotIterator.next();
+                            System.out.println(temp.getName());
                             this.scannedRobotsList.add(temp);
-                }
-                    
-                }
+                        }
+                   
+                    }
+                
+            }
                 if(hexModifier == minRange)
                 {
                     scanRange--;
                 }
                 else{
-                    hexModifier--;
-                }
-            }
+                    hexModifier=hexModifier-1;
+                } 
         }
         }
 	
