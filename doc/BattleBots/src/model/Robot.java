@@ -328,6 +328,7 @@ public class Robot {
                         this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()+1);
                         this.setVerticalLocation(this.getVerticalLocation());
+                        this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
                 if(relativeDirection == 'x'){
@@ -336,6 +337,7 @@ public class Robot {
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation());
                         this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
                 if(relativeDirection == 'z'){
@@ -344,6 +346,7 @@ public class Robot {
                         this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
                 if(relativeDirection == 'a'){
@@ -352,6 +355,7 @@ public class Robot {
                         this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setVerticalLocation(this.getVerticalLocation());
+                        this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
                 if(relativeDirection == 'w'){
@@ -360,6 +364,7 @@ public class Robot {
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation());
                         this.setVerticalLocation(this.getVerticalLocation()-1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
                 if(relativeDirection == 'e'){
@@ -368,6 +373,7 @@ public class Robot {
                         this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()+1);
                         this.setVerticalLocation(this.getVerticalLocation()-1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
             }

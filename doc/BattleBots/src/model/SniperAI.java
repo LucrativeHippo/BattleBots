@@ -20,13 +20,14 @@ public class SniperAI extends Sniper{
 	}
 	
 	public void move(){
-                       if(this.getMovementLeft()>0){
+            if(this.getMovementLeft()>0){
             if(this.getRelativeDirection()==0){
                 if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()]!=null){
                     this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
                     this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation()+1);
                     this.setVerticalLocation(this.getVerticalLocation());
+                    this.setMovementLeft(this.getMovementLeft()-1);
                 }
             }
             if(this.getRelativeDirection()==1){
@@ -35,6 +36,7 @@ public class SniperAI extends Sniper{
                     this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation());
                     this.setVerticalLocation(this.getVerticalLocation()+1);
+                    this.setMovementLeft(this.getMovementLeft()-1);
                 }
             }
             if(this.getRelativeDirection()==2){
@@ -43,6 +45,7 @@ public class SniperAI extends Sniper{
                     this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation()-1);
                     this.setVerticalLocation(this.getVerticalLocation()+1);
+                    this.setMovementLeft(this.getMovementLeft()-1);
                 }
             }
             if(this.getRelativeDirection()==3){
@@ -51,6 +54,7 @@ public class SniperAI extends Sniper{
                     this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation()-1);
                     this.setVerticalLocation(this.getVerticalLocation());
+                    this.setMovementLeft(this.getMovementLeft()-1);
                 }
             }
             if(this.getRelativeDirection()==4){
@@ -59,6 +63,7 @@ public class SniperAI extends Sniper{
                     this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation());
                     this.setVerticalLocation(this.getVerticalLocation()-1);
+                    this.setMovementLeft(this.getMovementLeft()-1);
                 }
             }
             if(this.getRelativeDirection()==5){
@@ -67,6 +72,7 @@ public class SniperAI extends Sniper{
                     this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].robotList.add(this);
                     this.setHorizontalLocation(this.getHorizontalLocation()+1);
                     this.setVerticalLocation(this.getVerticalLocation()-1);
+                    this.setMovementLeft(this.getMovementLeft()-1);
                 }
             }
         }

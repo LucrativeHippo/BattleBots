@@ -191,6 +191,17 @@ public class GameBoard {
        System.out.println(robot2.getHealthLeft() + "tank");
        System.out.println(robot1.getHealthLeft() + "scout");
        System.out.println(robot3.getHealthLeft() + "sniper");
+       
+       
+       ScoutAI robot4 = new ScoutAI("scoutAI");
+       TankAI robot5 = new TankAI("tankAI");
+       SniperAI robot6 = new SniperAI("sniperAI");
+       game.spaces[3][3].robotList.add(robot3);
+       game.spaces[3][3].robotList.add(robot2);
+       game.spaces[3][3].robotList.add(robot1);
+       
+       robot4.scan();
+       
     }
 	
 
