@@ -70,7 +70,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 		 if (actionCommand.equals("quit"))
 	            System.exit(0);
 	        else if (actionCommand.equals("help"))
-	            view.showHelp(this);
+	            view.showHelp(this, WIDTH, HEIGHT);
 	        else if (actionCommand.equals("begin"))
 	            view.showGameProperties(this);
 	        else if (actionCommand.equals("backGP"))

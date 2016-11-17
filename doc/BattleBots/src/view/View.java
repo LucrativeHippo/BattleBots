@@ -33,9 +33,15 @@ public class View extends JFrame {
     	switchDisplay(panel);
     }
     
-    public void showHelp(ActionListener actionListener) {
+    public void showHelp(ActionListener actionListener, int width, int height) {
+    	JFrame helpPopUp = new JFrame();
     	JPanel panel = new HelpPanel(getWidth(), getHeight(), actionListener);
-    	switchDisplay(panel);
+		helpPopUp.setSize(width + BORDER_WIDTH, height + TITLE_BAR_HEIGHT);
+		helpPopUp. setResizable(true);
+		helpPopUp.getContentPane().setLayout(new BorderLayout());
+		helpPopUp.getContentPane().add(panel, BorderLayout.CENTER);
+		helpPopUp.getContentPane().validate();
+		helpPopUp.setVisible(true);
     }
     
     public void showGameProperties(ActionListener actionlistener) {
