@@ -27,7 +27,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	
     public void start() {
         view = new View(WIDTH, HEIGHT);
-        view.showMainMenu(this); 	
+        view.showMainMenu(this); 
+        int numPlayers;
+        int numHumans;
+        int boardSize;
+        
     }
     
     

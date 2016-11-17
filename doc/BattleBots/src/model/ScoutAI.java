@@ -1,7 +1,9 @@
 package model;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import javax.imageio.ImageIO;
 import org.json.simple.JSONObject;
 
 public class ScoutAI extends Scout {
@@ -92,13 +94,21 @@ public class ScoutAI extends Scout {
         
         
 	public void scan(){
+            Exception x= null;
             int minRange = this.getRange()*-1;
             int hexModifier = 0;
             int scanRange = this.getRange();
             for(int i=minRange; i <= this.getRange(); i++){
-                System.out.println(hexModifier);
-                System.out.println(i);
                 for(int k=hexModifier; k <= scanRange; k++){
+                    x=null;
+                    try {
+			Hex temp = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println(e + " caught due to scanning out of bounds.");
+                        x=e;
+                          
+		}
+                    if(x==null){
                     System.out.println(this.getHorizontalLocation()+k);
                     System.out.println(this.getVerticalLocation()+i);
                     if(this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].hexExists==true&&this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].isEmpty()==false){
@@ -109,6 +119,7 @@ public class ScoutAI extends Scout {
                             System.out.println(temp.getName());
                             this.scannedRobotsList.add(temp);
                         }
+                    }
                    
                     }
                 
@@ -122,6 +133,7 @@ public class ScoutAI extends Scout {
                 } 
         }
         }
+        
 	
 	public void turn(int desiredDirection){
 		if((desiredDirection<=5)&&(desiredDirection>=0)){

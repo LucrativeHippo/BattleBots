@@ -199,18 +199,46 @@ public class GameBoard {
        ScoutAI robot4 = new ScoutAI("scoutAI");
        TankAI robot5 = new TankAI("tankAI");
        SniperAI robot6 = new SniperAI("sniperAI");
+       
        game.spaces[3][3].robotList.add(robot4);
        game.spaces[3][3].robotList.add(robot5);
        game.spaces[3][3].robotList.add(robot6);
+       
        robot4.board = game;
        robot5.board = game;
        robot6.board = game;
+       
+       robot4.setRelativeDirection(0);
+       robot5.setRelativeDirection(0);
+       robot6.setRelativeDirection(0);
+       
        robot4.setHorizontalLocation(3);
        robot4.setVerticalLocation(3);
        robot5.setHorizontalLocation(3);
        robot5.setVerticalLocation(3);
        robot6.setHorizontalLocation(3);
        robot6.setVerticalLocation(3);
+       
+       robot4.scan();
+       
+       System.out.println(robot4.scannedRobotsList.contains(robot5));
+       System.out.println(robot4.scannedRobotsList.contains(robot6));
+       System.out.println(robot4.scannedRobotsList.contains(robot4));
+       
+       robot4.turn(3);
+       System.out.println(robot4.getRelativeDirection());
+       
+       robot4.move();
+       System.out.println("moved to" + robot4.getVerticalLocation());
+       System.out.println("moved to" + robot4.getHorizontalLocation());
+       
+       System.out.println(game.spaces[2][3].robotList.contains(robot4));
+       
+       robot4.move();
+       System.out.println("moved to" + robot4.getVerticalLocation());
+       System.out.println("moved to" + robot4.getHorizontalLocation());
+       
+       System.out.println(game.spaces[1][3].robotList.contains(robot4));
        
        robot4.scan();
        
