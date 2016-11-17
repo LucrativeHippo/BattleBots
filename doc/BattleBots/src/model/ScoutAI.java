@@ -80,9 +80,15 @@ public class ScoutAI extends Scout {
         }
         
         
-	public void scan(){
-		
-	}
+	public Robot scan(){
+            int scanRange = this.getRange()*-1;
+            int hexModifier = 0;
+            int hexSign = 1;
+            for(int i=scanRange; i < this.getRange(); i++){
+                for(int k=hexModifier; k < this.getRange(); k++){
+                    if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].isEmpty()==false){
+                    
+                }
 	
 	public void turn(int desiredDirection){
 		if((desiredDirection<=5)&&(desiredDirection>=0)){

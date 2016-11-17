@@ -8,9 +8,11 @@ import java.util.LinkedList;
  */
 public class Hex {
 	public LinkedList<Robot> robotList;
+        public boolean hexExists;
 	
 	public Hex(){
 		robotList = new LinkedList();
+                hexExists = true;
 	}
 	
         /**

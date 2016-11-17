@@ -14,7 +14,7 @@ public class GameBoard {
 	private int boardSize;
 
 
-	public GameBoard(int size) {
+	 public GameBoard(int size) {
             if(size == 5){
                 this.spaces = new Hex[9][9];
                 boardSize = 5;
@@ -23,26 +23,26 @@ public class GameBoard {
                         this.spaces[i][j] = new Hex();
                     }
                 }
-                this.spaces[0][0]= null;
-                this.spaces[1][0]= null;
-                this.spaces[7][0]= null;
-                this.spaces[8][0]= null;
-                this.spaces[0][1]= null;
-                this.spaces[7][1]= null;
-                this.spaces[8][1]= null;
-                this.spaces[0][2]= null;
-                this.spaces[8][2]= null;
-                this.spaces[8][3]= null;
-                this.spaces[8][5]= null;
-                this.spaces[0][6]= null;
-                this.spaces[8][6]= null;
-                this.spaces[0][7]= null;
-                this.spaces[7][7]= null;
-                this.spaces[8][7]= null;
-                this.spaces[0][8]= null;
-                this.spaces[1][8]= null;
-                this.spaces[7][8]= null;
-                this.spaces[8][8]= null;
+                this.spaces[0][0].hexExists = false;
+                this.spaces[1][0].hexExists = false;
+                this.spaces[7][0].hexExists = false;
+                this.spaces[8][0].hexExists = false;
+                this.spaces[0][1].hexExists = false;
+                this.spaces[7][1].hexExists = false;
+                this.spaces[8][1].hexExists = false;
+                this.spaces[0][2].hexExists = false;
+                this.spaces[8][2].hexExists = false;
+                this.spaces[8][3].hexExists = false;
+                this.spaces[8][5].hexExists = false;
+                this.spaces[0][6].hexExists = false;
+                this.spaces[8][6].hexExists = false;
+                this.spaces[0][7].hexExists = false;
+                this.spaces[7][7].hexExists = false;
+                this.spaces[8][7].hexExists = false;
+                this.spaces[0][8].hexExists = false;
+                this.spaces[1][8].hexExists = false;
+                this.spaces[7][8].hexExists = false;
+                this.spaces[8][8].hexExists = false;
                 
             }
             else if(size == 7){
@@ -53,48 +53,48 @@ public class GameBoard {
                         this.spaces[i][j] = new Hex();
                     }
                 }
-                this.spaces[0][0]= null;
-                this.spaces[1][0]= null;
-                this.spaces[2][0]= null;
-                this.spaces[10][0]= null;
-                this.spaces[11][0]= null;
-                this.spaces[12][0]= null;
-                this.spaces[0][1]= null;
-                this.spaces[1][1]= null;
-                this.spaces[10][1]= null;
-                this.spaces[11][1]= null;
-                this.spaces[12][1]= null;
-                this.spaces[0][2]= null;
-                this.spaces[1][2]= null;
-                this.spaces[11][2]= null;
-                this.spaces[12][2]= null;
-                this.spaces[0][3]= null;
-                this.spaces[11][3]= null;
-                this.spaces[12][3]= null;
-                this.spaces[0][4]= null;
-                this.spaces[12][4]= null;
-                this.spaces[12][5]= null;
-                this.spaces[12][7]= null;
-                this.spaces[0][8]= null;
-                this.spaces[12][8]= null;
-                this.spaces[0][9]= null;
-                this.spaces[11][9]= null;
-                this.spaces[12][9]= null;
-                this.spaces[0][10]= null;
-                this.spaces[1][10]= null;
-                this.spaces[11][10]= null;
-                this.spaces[12][10]= null;
-                this.spaces[0][11]= null;
-                this.spaces[1][11]= null;
-                this.spaces[10][11]= null;
-                this.spaces[11][11]= null;
-                this.spaces[12][11]= null;
-                this.spaces[0][12]= null;
-                this.spaces[1][12]= null;
-                this.spaces[2][12]= null;
-                this.spaces[10][12]= null;
-                this.spaces[11][12]= null;
-                this.spaces[12][12]= null;
+                this.spaces[0][0].hexExists = false;
+                this.spaces[1][0].hexExists = false;
+                this.spaces[2][0].hexExists = false;
+                this.spaces[10][0].hexExists = false;
+                this.spaces[11][0].hexExists = false;
+                this.spaces[12][0].hexExists = false;
+                this.spaces[0][1].hexExists = false;
+                this.spaces[1][1].hexExists = false;
+                this.spaces[10][1].hexExists = false;
+                this.spaces[11][1].hexExists = false;
+                this.spaces[12][1].hexExists = false;
+                this.spaces[0][2].hexExists = false;
+                this.spaces[1][2].hexExists = false;
+                this.spaces[11][2].hexExists = false;
+                this.spaces[12][2].hexExists = false;
+                this.spaces[0][3].hexExists = false;
+                this.spaces[11][3].hexExists = false;
+                this.spaces[12][3].hexExists = false;
+                this.spaces[0][4].hexExists = false;
+                this.spaces[12][4].hexExists = false;
+                this.spaces[12][5].hexExists = false;
+                this.spaces[12][7].hexExists = false;
+                this.spaces[0][8].hexExists = false;
+                this.spaces[12][8].hexExists = false;
+                this.spaces[0][9].hexExists = false;
+                this.spaces[11][9].hexExists = false;
+                this.spaces[12][9].hexExists = false;
+                this.spaces[0][10].hexExists = false;
+                this.spaces[1][10].hexExists = false;
+                this.spaces[11][10].hexExists = false;
+                this.spaces[12][10].hexExists = false;
+                this.spaces[0][11].hexExists = false;
+                this.spaces[1][11].hexExists = false;
+                this.spaces[10][11].hexExists = false;
+                this.spaces[11][11].hexExists = false;
+                this.spaces[12][11].hexExists = false;
+                this.spaces[0][12].hexExists = false;
+                this.spaces[1][12].hexExists = false;
+                this.spaces[2][12].hexExists = false;
+                this.spaces[10][12].hexExists = false;
+                this.spaces[11][12].hexExists = false;
+                this.spaces[12][12].hexExists = false;
             }
             else{
                 System.out.println("There is an invalid board size given.");
