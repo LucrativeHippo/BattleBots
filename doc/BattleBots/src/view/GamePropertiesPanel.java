@@ -259,6 +259,7 @@ public class GamePropertiesPanel extends JPanel{
     	    		sixHumansButton.setEnabled(false);
     	    		fiveButton.setEnabled(true);
     	    		fiveButton.setSelected(true);
+                        sevenButton.setEnabled(true);
     	    	}
     	    });
 
