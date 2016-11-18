@@ -139,12 +139,12 @@ public class GamePropertiesPanel extends JPanel{
     	    JRadioButton fiveHumansButton = new JRadioButton("5");
     	    fiveHumansButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    fiveHumansButton.setActionCommand("fiveHumans");
-    	    twoHumansButton.addActionListener(actionListener);
+    	    fiveHumansButton.addActionListener(actionListener);
     	    
     	    JRadioButton sixHumansButton = new JRadioButton("6");
     	    sixHumansButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     	    sixHumansButton.setActionCommand("sixHumans");
-    	    twoHumansButton.addActionListener(actionListener);
+    	    sixHumansButton.addActionListener(actionListener);
     	    
     	    JPanel halfHumanButtons = new JPanel();
     		halfHumanButtons.setBackground(Color.WHITE);
@@ -246,8 +246,7 @@ public class GamePropertiesPanel extends JPanel{
     	    	}
     	    });
 
-    	    // when user selects two players, the board size is automatically set to five 
-    	    // hides options for more than 2 humans
+    	    // when user selects three players, when user selects three players,  
     	    threeTeamsButton.addActionListener(new ActionListener() {
 
     	    	@Override
@@ -263,8 +262,7 @@ public class GamePropertiesPanel extends JPanel{
     	    	}
     	    });
 
-    	    // when user selects two players, the board size is automatically set to five 
-    	    // hides options for more than 2 humans
+    	    // when user selects six players, the board size is automatically set to seven 
     	    sixTeamsButton.addActionListener(new ActionListener() {
 
     	    	@Override

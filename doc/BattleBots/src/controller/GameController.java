@@ -87,88 +87,97 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
             
          String actionCommand = arg0.getActionCommand();
-		 if (actionCommand.equals("quit")){
-	            System.exit(0);
-		 }
-	        else if (actionCommand.equals("help")){
-	            view.showHelp(this, WIDTH, HEIGHT);
-	        }
-	        else if (actionCommand.equals("begin")){
-	            view.showGameProperties(this);
-	        }
-	        else if (actionCommand.equals("backGP")){
-	            view.showMainMenu(this);
-	        }
-	        else if (actionCommand.equals("continueGP")){
-	            view.showTeamSelection(this);
-	        }
-	        else if (actionCommand.equals("continueTS")){
-	        	Game game = new Game(WIDTH, HEIGHT);
+                switch(actionCommand){
+                    case "quit":{
+                            System.exit(0);
+                            break;
+                    }
+                    case "help":{
+                	    view.showHelp(this, WIDTH, HEIGHT);
+                            break;
+                    }
+                    case "begin":{
+                            view.showGameProperties(this);
+                            break;
+                    }
+                    case "backGP":{
+	                    view.showMainMenu(this);
+                            break;
+                    }
+                    case "continueGP":{
+	                    view.showTeamSelection(this);
+                            break;
+                    }
+                    case "continueTS":{
+                            Game game = new Game(WIDTH, HEIGHT);
 		 		gameControl = game;
 		 		gameInfo = game;
 		 		gameInfo.addObserver(this); 		
 	        	view.showGame(this, gameInfo);
 	        	gameControl.start();
-	        }
-	        else if (actionCommand.equals("backTS")){
-	            view.showGameProperties(this);
-	        }
-                                else if (actionCommand.equals("five")){
-                    setBoardSize(5);
-                }
-                else if (actionCommand.equals("seven")){
-                    this.setBoardSize(7);
-                }
-                else if (actionCommand.equals("zeroHumans")){
-                    this.setNumHumans(0);
-                }
-                else if (actionCommand.equals("oneHuman")){
-                    this.setNumHumans(1);
-                }
-                else if (actionCommand.equals("twoHumans")){
-                    this.setNumHumans(2);
-                }
-                else if (actionCommand.equals("threeHumans")){
-                    this.setNumHumans(3);
-                }
-                else if (actionCommand.equals("fourHumans")){
-                    this.setNumHumans(4);
-                }
-                else if (actionCommand.equals("fiveHumans")){
-                    this.setNumHumans(5);
-                }
-                else if (actionCommand.equals("sixHumans")){
-                    this.setNumHumans(6);
-                }
-                else if (actionCommand.equals("twoTeams")){
-                    this.setNumPlayers(2);
-                }
-                else if (actionCommand.equals("threeTeams")){
-                    this.setNumPlayers(3);
-                }
-                else if (actionCommand.equals("sixTeams")){
-                    this.setNumPlayers(6);
-                }
-	        else{
-	        	throw new IllegalStateException("The event has action command " + actionCommand
+                        break;
+                    }
+                    case "backTS":{
+                            view.showGameProperties(this);
+                            break;
+                    }
+                    case "five":{
+                            setBoardSize(5);
+                            break;
+                    }
+                    case "seven":{
+                            setBoardSize(7);
+                            break;
+                    }
+                    case "zeroHumans":{
+                            this.setNumHumans(0);
+                            break;
+                            }
+                    case "oneHuman":{
+                            this.setNumHumans(1);
+                            break;
+                            }
+                    case "twoHumans":{
+                            this.setNumHumans(2);
+                            break;
+                            }
+                    case "threeHumans":{
+                            this.setNumHumans(3);
+                            break;
+                            }
+                    case "fourHumans":{
+                            this.setNumHumans(4);
+                            break;
+                            }
+                    case "fiveHumans":{
+                            this.setNumHumans(5);
+                            break;
+                            }
+                    case "sixHumans":{
+                            this.setNumHumans(6);
+                            break;
+                            }
+                    case "twoTeams":{
+                            this.setNumPlayers(2);
+                            break;
+                            }
+                    case "threeTeams":{
+                            this.setNumPlayers(3);
+                            break;
+                            }
+                    case "sixTeams":{
+                            this.setNumPlayers(6);
+                            break;
+                            }
+                    default:{
+                            throw new IllegalStateException("The event has action command " + actionCommand
 	        			+ " that is invalid.");
-	        }
-		
+                            }
+                }
+	
 	}
 
 	@Override
@@ -181,5 +190,15 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         	GameController gc = new GameController();
         	gc.start();        
         }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
