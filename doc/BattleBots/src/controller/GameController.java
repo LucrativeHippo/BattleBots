@@ -43,7 +43,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         
                 
         public int getNumHumans(){
-            return this.numPlayers;
+            return this.numHumans;
         }
         
         public void setBoardSize(int boardSize){
