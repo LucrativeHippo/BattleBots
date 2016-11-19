@@ -31,7 +31,7 @@ public class ScoutAI extends Scout {
             //this.totalMoves = 
             
 	}
-	//boolean?
+	
 
         public void move(){
             if(this.getMovementLeft()>0){
@@ -42,6 +42,7 @@ public class ScoutAI extends Scout {
                     this.setHorizontalLocation(this.getHorizontalLocation()+1);
                     this.setVerticalLocation(this.getVerticalLocation());
                     this.setMovementLeft(this.getMovementLeft()-1);
+                    totalMoves = totalMoves +1;
                 }
             }
             if(this.getRelativeDirection()==1){
@@ -51,6 +52,7 @@ public class ScoutAI extends Scout {
                     this.setHorizontalLocation(this.getHorizontalLocation());
                     this.setVerticalLocation(this.getVerticalLocation()+1);
                     this.setMovementLeft(this.getMovementLeft()-1);
+                    totalMoves = totalMoves +1;
                 }
             }
             if(this.getRelativeDirection()==2){
@@ -60,6 +62,7 @@ public class ScoutAI extends Scout {
                     this.setHorizontalLocation(this.getHorizontalLocation()-1);
                     this.setVerticalLocation(this.getVerticalLocation()+1);
                     this.setMovementLeft(this.getMovementLeft()-1);
+                    totalMoves = totalMoves +1;
                 }
             }
             if(this.getRelativeDirection()==3){
@@ -69,6 +72,7 @@ public class ScoutAI extends Scout {
                     this.setHorizontalLocation(this.getHorizontalLocation()-1);
                     this.setVerticalLocation(this.getVerticalLocation());
                     this.setMovementLeft(this.getMovementLeft()-1);
+                    totalMoves = totalMoves +1;
                 }
             }
             if(this.getRelativeDirection()==4){
@@ -78,6 +82,7 @@ public class ScoutAI extends Scout {
                     this.setHorizontalLocation(this.getHorizontalLocation());
                     this.setVerticalLocation(this.getVerticalLocation()-1);
                     this.setMovementLeft(this.getMovementLeft()-1);
+                    totalMoves = totalMoves +1;
                 }
             }
             if(this.getRelativeDirection()==5){
@@ -87,6 +92,7 @@ public class ScoutAI extends Scout {
                     this.setHorizontalLocation(this.getHorizontalLocation()+1);
                     this.setVerticalLocation(this.getVerticalLocation()-1);
                     this.setMovementLeft(this.getMovementLeft()-1);
+                    totalMoves = totalMoves +1;
                 }
             }
             }
@@ -147,5 +153,46 @@ public class ScoutAI extends Scout {
             Robot robot1 = robot;
             return robot;
         }
+        
+        /**
+         * This function inflicts damage to the robot by the given amount
+         * @param damage Integer of damage inflicted
+         */
+	public void recieveDamage(int damage){
+		if(this.getHealthLeft() <= damage){
+                    this.setHealthLeft(0);
+                }
+                else{
+                    this.setHealthLeft(this.getHealthLeft() - damage);
+                    this.damageTaken = this.damageTaken + damage;
+                }
+	}
+        
+        /**
+         * This function will take in a Hex space and deal damage to any robots
+         * on that space by the amount of damage that the current robot is able
+         * to do
+         * @param space Hex space to be shot at
+         */
+        public void shoot(Hex space){
+		if(space == null){
+                    System.out.println("The space is out of range");
+                    return;
+                }
+                else if(space.isEmpty() == true){
+                    return;
+                }
+                else{
+                    Iterator<Robot> robotIterator = space.robotList.iterator();
+                        while(robotIterator.hasNext()){
+                            Robot temp = robotIterator.next();
+                            temp.recieveDamage(this.getDamage());
+                            this.damageDealt = this.damageDealt + this.getDamage();
+                            if(this.getDamage() >= temp.getHealthLeft()){
+                                this.robotsKilled = this.robotsKilled+1;
+                            }
+                        }
+                }
+	}
 
 }
