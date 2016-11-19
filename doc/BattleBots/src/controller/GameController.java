@@ -25,36 +25,14 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     private RobotController gameControl;
     
-        private int numPlayers;
-        private int numHumans;
-        private int boardSize;
-        
-        public void setNumPlayers(int numPlayers){
-            this.numPlayers = numPlayers;
-        }
-        
-        public int getNumPlayers(){
-            return this.numPlayers;
-        }
-        
-        public void setNumHumans(int numHumans){
-            this.numHumans = numHumans;
-        }
-        
-                
-        public int getNumHumans(){
-            return this.numHumans;
-        }
-        
-        public void setBoardSize(int boardSize){
-            this.boardSize = boardSize;
-        }
+    private int boardSize;
+    private int numPlayers;
+    private int numHumans;
+    
+    private boolean boardSizeSet = false;
+    private boolean numPlayersSet = false;
+    private boolean numHumansSet = false;
 
-        
-        public int getBoardSize(){
-            return this.boardSize;
-        }
-	
     public void start() {
         view = new View(WIDTH, HEIGHT);
         view.showMainMenu(this); 
@@ -108,14 +86,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "continueGP":{
+                        if (boardSizeSet && numPlayersSet && numHumansSet ){
 	                    view.showTeamSelection(this);
                             break;
+                        }
+                        else break;
                     }
                     case "continueTS":{
                             Game game = new Game(WIDTH, HEIGHT);
 		 		gameControl = game;
 		 		gameInfo = game;
-		 		gameInfo.addObserver(this); 		
+		 		gameInfo.addObserver(this);
+                                gameInfo.setNumPlayers(numPlayers);
+                                gameInfo.setNumHumans(numHumans);
+                                gameInfo.setBoardSize(boardSize);
 	        	view.showGame(this, gameInfo);
 	        	gameControl.start();
                         break;
@@ -125,51 +109,63 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "five":{
-                            setBoardSize(5);
+                            boardSizeSet = true;
+                            boardSize = 5;
                             break;
                     }
                     case "seven":{
-                            setBoardSize(7);
+                            boardSizeSet = true;
+                            boardSize = 7;
                             break;
                     }
                     case "zeroHumans":{
-                            this.setNumHumans(0);
+                        numHumansSet = true;
+                        numHumans = 0;
                             break;
                             }
                     case "oneHuman":{
-                            this.setNumHumans(1);
+                        numHumansSet = true;
+                        numHumans = 1;
                             break;
                             }
                     case "twoHumans":{
-                            this.setNumHumans(2);
+                        numHumansSet = true;
+                        numHumans = 2;
                             break;
                             }
                     case "threeHumans":{
-                            this.setNumHumans(3);
+                        numHumansSet = true;
+                        numHumans = 3;
                             break;
                             }
                     case "fourHumans":{
-                            this.setNumHumans(4);
+                        numHumansSet = true;
+                        numHumans = 4;
                             break;
                             }
                     case "fiveHumans":{
-                            this.setNumHumans(5);
+                        numHumansSet = true;
+                        numHumans = 5;
                             break;
                             }
                     case "sixHumans":{
-                            this.setNumHumans(6);
+                        numHumansSet = true;
+                        numHumans = 6;
                             break;
                             }
                     case "twoTeams":{
-                            this.setNumPlayers(2);
+                        numPlayersSet = true;
+                        numPlayers = 2;
                             break;
                             }
                     case "threeTeams":{
-                            this.setNumPlayers(3);
+                        numPlayersSet = true;
+                        numPlayers= 3;
                             break;
                             }
                     case "sixTeams":{
-                            this.setNumPlayers(6);
+                        numPlayersSet = true;
+                        numPlayers = 6;
                             break;
                             }
                     default:{
@@ -177,7 +173,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	        			+ " that is invalid.");
                             }
                 }
-	
+
 	}
 
 	@Override

@@ -3,6 +3,10 @@ package model;
 import java.util.List;
 
 public class Game implements RobotController, GameInfo {
+    
+        public int boardSize;
+        public int numPlayers;
+        public int numHumans;
 
 	
 	public Game(int width, int height){
@@ -62,5 +66,37 @@ public class Game implements RobotController, GameInfo {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    @Override
+    public int getBoardSize() {
+        return boardSize;
+    }
+   
+    
+
+    @Override
+    public int getNumHumans() {
+        return numHumans;
+     }
+
+    @Override
+    public int getNumPlayers() {
+        return numPlayers;
+    }
+
+    @Override
+    public void setBoardSize(int boardSize) {
+        this.boardSize = boardSize;
+    }
+
+    @Override
+    public void setNumHumans(int numHumans) {
+        this.numHumans = numHumans;
+    }
+
+    @Override
+    public void setNumPlayers(int numPlayers) {
+        this.numPlayers = numPlayers;
+    }
 
 }
