@@ -143,5 +143,9 @@ public class ScoutAI extends Scout {
                     this.setRelativeDirection((this.getRelativeDirection()+desiredDirection)%6);
                 }
 	}
+        public Robot Identify(Robot robot){
+            Robot robot1 = robot;
+            return robot;
+        }
 
 }
