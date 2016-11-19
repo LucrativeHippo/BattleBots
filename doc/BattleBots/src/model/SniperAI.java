@@ -86,8 +86,9 @@ public class SniperAI extends Sniper{
         }
         }
         
-	public void scan(){
+	public int scan(){
             Exception x= null;
+            int numRobots = 0;
             int minRange = this.getRange()*-1;
             int hexModifier = 0;
             int scanRange = this.getRange();
@@ -108,6 +109,7 @@ public class SniperAI extends Sniper{
                         System.out.println("hex check successful");
                         Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].robotList.iterator();
                         while(robotIterator.hasNext()){
+                            numRobots = numRobots + 1;
                             Robot temp = robotIterator.next();
                             System.out.println(temp.getName());
                             this.scannedRobotsList.add(temp);
@@ -125,6 +127,7 @@ public class SniperAI extends Sniper{
                     hexModifier=hexModifier-1;
                 } 
         }
+            return numRobots;
         }
 	
 	public void turn(int desiredDirection){

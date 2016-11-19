@@ -93,8 +93,9 @@ public class ScoutAI extends Scout {
         }
         
         
-	public void scan(){
+	public int scan(){
             Exception x= null;
+            int numRobots = 0;
             int minRange = this.getRange()*-1;
             int hexModifier = 0;
             int scanRange = this.getRange();
@@ -115,6 +116,7 @@ public class ScoutAI extends Scout {
                         System.out.println("hex check successful");
                         Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k][this.getVerticalLocation()+i].robotList.iterator();
                         while(robotIterator.hasNext()){
+                            numRobots = numRobots + 1;
                             Robot temp = robotIterator.next();
                             System.out.println(temp.getName());
                             this.scannedRobotsList.add(temp);
@@ -132,6 +134,7 @@ public class ScoutAI extends Scout {
                     hexModifier=hexModifier-1;
                 } 
         }
+            return numRobots;
         }
         
 	
