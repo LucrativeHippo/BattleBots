@@ -6,6 +6,9 @@
 package controller;
 
 
+import java.util.Stack;
+import model.Robot;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 /**
  *
@@ -20,7 +23,8 @@ public class Interpreter {
      * @return String name of the robot this particular JSON object contains
      */
     public String getRobotName(JSONObject instructionCode){
-       return (String)instructionCode.get("name");
+       JSONObject temp = (JSONObject)instructionCode.get("script");
+       return (String)temp.get("name");
     }
     
     /**
@@ -29,7 +33,8 @@ public class Interpreter {
      * @return String team of the robot this particular JSON object contains
      */
     public String getRobotTeam(JSONObject instructionCode){
-        return (String)instructionCode.get("team");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (String)temp.get("team");
     }
     
     /**
@@ -38,7 +43,8 @@ public class Interpreter {
      * @return String class of the robot this particular JSON object contains
      */
     public String getRobotClass(JSONObject instructionCode){
-       return (String)instructionCode.get("class");
+       JSONObject temp = (JSONObject)instructionCode.get("script");
+       return (String)temp.get("class");
     }
     
     /**
@@ -48,7 +54,8 @@ public class Interpreter {
      * @return integer matches of the robot this particular JSON object contains
      */
     public int getRobotMatches(JSONObject instructionCode){
-        return (int)instructionCode.get("matches");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("matches");
     }
     
     /**
@@ -58,7 +65,8 @@ public class Interpreter {
      * @return integer wins of the robot this particular JSON object contains
      */
     public int getRobotWins(JSONObject instructionCode){
-       return (int)instructionCode.get("wins");
+       JSONObject temp = (JSONObject)instructionCode.get("script");
+       return (int)temp.get("wins");
     }
     
     /**
@@ -68,7 +76,8 @@ public class Interpreter {
      * @return integer losses of the robot this particular JSON object contains
      */
     public int getRobotLosses(JSONObject instructionCode){
-        return (int)instructionCode.get("losses");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("losses");
     }
     
     /**
@@ -80,7 +89,8 @@ public class Interpreter {
      * contains
      */
     public int getRobotExecutions(JSONObject instructionCode){
-       return (int)instructionCode.get("executions");
+       JSONObject temp = (JSONObject)instructionCode.get("script");
+       return (int)temp.get("executions");
     }
     
     /**
@@ -90,7 +100,8 @@ public class Interpreter {
      * @return integer lived of the robot this particular JSON object contains
      */
     public int getRobotLived(JSONObject instructionCode){
-        return (int)instructionCode.get("lived");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("lived");
     }
     
     /**
@@ -100,7 +111,8 @@ public class Interpreter {
      * @return integer died of the robot this particular JSON object contains
      */
     public int getRobotDied(JSONObject instructionCode){
-        return (int)instructionCode.get("died");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("died");
     }
     
     /**
@@ -110,7 +122,8 @@ public class Interpreter {
      * @return integer absorbed of the robot this particular JSON object contains
      */
     public int getRobotAbsorbed(JSONObject instructionCode){
-        return (int)instructionCode.get("absorbed");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("absorbed");
     }
     
     /**
@@ -120,7 +133,8 @@ public class Interpreter {
      * @return integer killed of the robot this particular JSON object contains
      */
     public int getRobotKilled(JSONObject instructionCode){
-        return (int)instructionCode.get("killed");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("killed");
     }
     
     /**
@@ -130,7 +144,17 @@ public class Interpreter {
      * @return integer move of the robot this particular JSON object contains
      */
     public int getRobotMoved(JSONObject instructionCode){
-        return (int)instructionCode.get("moved");
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        return (int)temp.get("moved");
+    }
+    
+    public void executeCode(JSONObject instructionCode, Robot robot){
+        Stack fourthWords = new Stack();
+        //String code = (String)instructionCode.get("script");
+        //String[] commands = code.split(code);
+        //System.out.println(commands[0]);
+        
+        
     }
     
     //Here we will test the functions associated with the Interpreter
@@ -148,9 +172,22 @@ public class Interpreter {
         testRobot.put("absorbed", 4);
         testRobot.put("killed", 0);
         testRobot.put("moved", 17);
+        JSONArray list = new JSONArray();
+        list.add("variable lastShot ; ");
+        list.add("0 lastShot ! ");
+        list.add(": play ( -- ) ");
+        list.add(" 0 begin dup lastShot ? + 1 6 /mod drop ");
+        list.add(" empty? if .\"no one there\" ");
+        list.add(" else dup lastShot ! ");
+        list.add(" dup 1 shoot! leave ");
+        list.add(" then 1 + dup 5 > ");
+        list.add(" until drop ; ");
+        testRobot.put("code", list);
         JSONObject testScript = new JSONObject();
-        testScript.put("script", null);
-        testScript.putAll(testRobot);
+        testScript.put("script", testRobot);
+        //testScript.putAll(testRobot);
+        
+        System.out.println(testScript.toString());
         
         Interpreter interpret = new Interpreter();
         String robotName = interpret.getRobotName(testScript);
