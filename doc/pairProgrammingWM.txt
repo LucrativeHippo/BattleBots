@@ -1,0 +1,8 @@
+Cmpt 370 pair programming
+William Revell wjr992 11155046
+
+For my first paired programming session I paired up with Mackenzie Power. We decided to work on the robot AI classes specifically focusing on the scan function. 
+I had previously started on the scan function and was having problems getting it to work properly. It quickly became apparent that two eyes are better than one
+as the problem was quickly found and solved. I found that the code written in the paired programming time had far fewer errors than usual, and was far more efficient.
+While the code was better I do wonder if less actual code was written and work done in the alotted time. I believe that for more difficult problems paired programming 
+proved to be very effective, but for the simpler tasks it seems like a waste of time as one person sits back with nothing to do.
