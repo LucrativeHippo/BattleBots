@@ -59,8 +59,9 @@ public class View extends JFrame {
 		switchDisplay(panel);
 	}
 
-	public void showGame(KeyListener keyListener, GameInfo gameInfo) {
-
+	public void showGame(ActionListener actionlistener, KeyListener keyListener, GameInfo gameInfo) {
+		JPanel panel = new GamePanel(getWidth(), getHeight(), actionlistener, keyListener, gameInfo);
+		switchDisplay(panel);
 	}
 
 	public void showTeamSelection(ActionListener actionListener) {

@@ -20,7 +20,7 @@ public class GameBoard {
                 boardSize = 5;
                 for(int i = 0; i < 9; i++){
                     for(int j = 0; j < 9; j++){
-                        this.spaces[i][j] = new Hex();
+                        this.spaces[i][j] = new Hex(i, j , 60 );
                     }
                 }
                 this.spaces[0][0].hexExists = false;
@@ -50,7 +50,7 @@ public class GameBoard {
                 boardSize = 7;
                 for(int i = 0; i < 13; i++){
                     for(int j = 0; j < 13; j++){
-                        this.spaces[i][j] = new Hex();
+                        this.spaces[i][j] = new Hex(i, j, 60);
                     }
                 }
                 this.spaces[0][0].hexExists = false;
