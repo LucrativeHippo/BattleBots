@@ -6,6 +6,7 @@
 package controller;
 
 
+import java.util.List;
 import java.util.Stack;
 import model.Robot;
 import org.json.simple.JSONArray;
@@ -150,12 +151,13 @@ public class Interpreter {
     
     public void executeCode(JSONObject instructionCode, Robot robot){
         Stack fourthWords = new Stack();
-        //String code = (String)instructionCode.get("script");
-        //String[] commands = code.split(code);
-        //System.out.println(commands[0]);
+        JSONObject temp = (JSONObject)instructionCode.get("script");
+        List commands = (List)temp.get("code");
         
         
     }
+    
+    
     
     //Here we will test the functions associated with the Interpreter
     public static void main(String [] args) {
