@@ -10,5 +10,5 @@ package forth;
  * @author mkp003
  */
 public class IntValue extends Value{
-    
+    int i;
 }

@@ -10,5 +10,8 @@ package forth;
  * @author mkp003
  */
 public class BoolValue extends Value{
-    
+    boolean bool;
+    BoolValue(boolean b){
+        bool = b;
+    }
 }

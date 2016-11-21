@@ -10,5 +10,5 @@ package forth;
  * @author mkp003
  */
 public class StringValue extends Value{
-    
+    String s;
 }
