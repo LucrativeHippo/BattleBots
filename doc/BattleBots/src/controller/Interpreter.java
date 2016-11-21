@@ -150,11 +150,23 @@ public class Interpreter {
     }
     
     public void executeCode(JSONObject instructionCode, Robot robot){
-        Stack fourthWords = new Stack();
+        Stack initalfourthWords = new Stack();
         JSONObject temp = (JSONObject)instructionCode.get("script");
         List commands = (List)temp.get("code");
-        
-        
+        int lines = commands.size();
+        String line;
+        for(int i = 0; i < lines; i++){
+           line = (String) commands.remove(0);
+           String[] commandArray = line.split("\\s+");
+           int x = commandArray.length;
+           for(int j = 0; j < x; j++){
+               initalfourthWords.add(commandArray[j]);
+           }
+        }
+        Stack forthWords = new Stack();
+        while(!initalfourthWords.empty()){
+            forthWords.add(initalfourthWords.remove(0));
+        }
     }
     
     
@@ -189,7 +201,7 @@ public class Interpreter {
         testScript.put("script", testRobot);
         //testScript.putAll(testRobot);
         
-        System.out.println(testScript.toString());
+        //System.out.println(testScript.toString());
         
         Interpreter interpret = new Interpreter();
         String robotName = interpret.getRobotName(testScript);
@@ -236,6 +248,7 @@ public class Interpreter {
         if(robotMoved != 17){
             System.out.println("Error: The robot's moves is: " + robotMoved + "but should be 17");
         }
+        interpret.executeCode(testScript, null);
     }
     
 }
