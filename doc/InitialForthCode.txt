@@ -30,21 +30,34 @@ variable targetTeam ;
 	       else ."not an enemy"
 	       then drop
     leastHealth? 4 => if 
-		      getHorLocation? boardSize 2 / < if
-							      drop
-							      getHorLocation! 1 +
-							      else
-							      getHorLocation! 1 -
-							      then
-		      getVerLocation? boardSize 2 / < if
-							      drop
-							      getVerLocation! 1 +
-							      else
-							      getVerLocation! 1 -
-							      then
+		      getHorLocation? boardSize 2 / < getVerLocation? boardSize 2 / < and if relativeDirection? 1 <> if
+														      
+											    
+										      
+							      
+		      getHorLocation? boardSize 2 / > getVerLocation? boardSize 2 / < and if relativeDirection? 2 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / < getVerLocation? boardSize 2 / > and if relativeDirection? 5 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / > getVerLocation? boardSize 2 / > and if relativeDirection? 4 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / < getVerLocation? boardSize 2 / = and if relativeDirection? 0 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / = getVerLocation? boardSize 2 / < and if relativeDirection? 1 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / = getVerLocation? boardSize 2 / > and if relativeDirection? 4 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / > getVerLocation? boardSize 2 / = and if relativeDirection? 3 <> if
+							      
 			move!
 			else
-			then drop drop drop
+			then drop drop
 
     leastHealth 4 < if shotLeft 0 > if
 				    targetHorLocation? targetVerLocation?

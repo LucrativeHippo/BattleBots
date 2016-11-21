@@ -141,6 +141,13 @@ public class TankAI extends Tank{
                     this.setRelativeDirection((this.getRelativeDirection()+desiredDirection)%6);
                 }
 	}
+        
+        public int turnsRequired(int directionWanted){
+            int turnsRequired = abs(this.getRelativeDirection() - directionWanted);
+            
+            return turnsRequired;
+        }
+        
         public Robot Identify(Robot robot){
             Robot robot1 = robot;
             return robot;
