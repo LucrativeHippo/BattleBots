@@ -1,5 +1,6 @@
 package model;
 
+import static java.lang.Math.abs;
 import java.util.Iterator;
 import java.util.LinkedList;
 import org.json.simple.JSONObject;
