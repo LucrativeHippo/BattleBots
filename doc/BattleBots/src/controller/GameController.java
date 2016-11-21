@@ -25,13 +25,10 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     private RobotController gameControl;
     
-    private int boardSize;
-    private int numPlayers;
-    private int numHumans;
+    private int boardSize = 7;
+    private int numPlayers = 6;
+    private int numHumans = 0;
     
-    private boolean boardSizeSet = false;
-    private boolean numPlayersSet = false;
-    private boolean numHumansSet = false;
 
     public void start() {
         view = new View(WIDTH, HEIGHT);
@@ -86,11 +83,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "continueGP":{
-                        if (boardSizeSet && numPlayersSet && numHumansSet ){
 	                    view.showTeamSelection(this);
                             break;
-                        }
-                        else break;
                     }
                     case "continueTS":{
                             Game game = new Game(WIDTH, HEIGHT);
@@ -100,7 +94,10 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                                 gameInfo.setNumPlayers(numPlayers);
                                 gameInfo.setNumHumans(numHumans);
                                 gameInfo.setBoardSize(boardSize);
-	        	view.showGame(this, gameInfo);
+                                System.out.println("NumPlayers: " + gameInfo.getNumPlayers());
+                                System.out.println("NumHumans: " + gameInfo.getNumHumans());
+                                System.out.println("Boardsize: " + gameInfo.getBoardSize());
+	        	view.showGame(this, this, gameInfo);
 	        	gameControl.start();
                         break;
                     }
@@ -109,63 +106,55 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "five":{
-                            boardSizeSet = true;
                             boardSize = 5;
+                            numPlayers = 2;
                             break;
                     }
                     case "seven":{
-                            boardSizeSet = true;
                             boardSize = 7;
+                            numPlayers = 6;
                             break;
                     }
                     case "zeroHumans":{
-                        numHumansSet = true;
                         numHumans = 0;
                             break;
                             }
                     case "oneHuman":{
-                        numHumansSet = true;
                         numHumans = 1;
                             break;
                             }
                     case "twoHumans":{
-                        numHumansSet = true;
                         numHumans = 2;
                             break;
                             }
                     case "threeHumans":{
-                        numHumansSet = true;
                         numHumans = 3;
                             break;
                             }
                     case "fourHumans":{
-                        numHumansSet = true;
                         numHumans = 4;
                             break;
                             }
                     case "fiveHumans":{
-                        numHumansSet = true;
                         numHumans = 5;
                             break;
                             }
                     case "sixHumans":{
-                        numHumansSet = true;
                         numHumans = 6;
                             break;
                             }
                     case "twoTeams":{
-                        numPlayersSet = true;
                         numPlayers = 2;
+                        boardSize = 5;
                             break;
                             }
                     case "threeTeams":{
-                        numPlayersSet = true;
                         numPlayers= 3;
                             break;
                             }
                     case "sixTeams":{
-                        numPlayersSet = true;
                         numPlayers = 6;
+                        boardSize = 7;
                             break;
                             }
                     default:{
