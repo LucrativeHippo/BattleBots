@@ -6,7 +6,11 @@
 package controller;
 
 
+import forth.WordTranslator;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import model.Robot;
 import org.json.simple.JSONArray;
@@ -149,6 +153,12 @@ public class Interpreter {
         return (int)temp.get("moved");
     }
     
+    /**
+     * This function is responsible for executing the forth code associated with
+     * with a given robot during it's turn.
+     * @param instructionCode The JSON object associated with the specific robot
+     * @param robot Robot associated with the code
+     */
     public void executeCode(JSONObject instructionCode, Robot robot){
         Stack initalfourthWords = new Stack();
         JSONObject temp = (JSONObject)instructionCode.get("script");
@@ -163,10 +173,14 @@ public class Interpreter {
                initalfourthWords.add(commandArray[j]);
            }
         }
+        
         Stack forthWords = new Stack();
         while(!initalfourthWords.empty()){
             forthWords.add(initalfourthWords.remove(0));
         }
+        WordTranslator translate = new WordTranslator();
+        translate.getHashTable().get(forthWords.pop());
+        
     }
     
     
