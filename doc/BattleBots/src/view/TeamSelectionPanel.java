@@ -117,9 +117,9 @@ public class TeamSelectionPanel extends JPanel{
     	continueButton.setFocusPainted(false);
     	
     	southButtons.add(continueButton); 
-    	southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));      	
+    	southButtons.add(Box.createHorizontalGlue());      	
     	            
-    	JButton backButton = new JButton("Back");
+    	JButton backButton = new JButton(" Back ");
     	backButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
     	backButton.setBackground(Color.BLACK);
     	backButton.setForeground(Color.WHITE);

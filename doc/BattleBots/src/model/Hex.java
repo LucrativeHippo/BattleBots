@@ -41,7 +41,7 @@ public class Hex {
 		hexagon = new Polygon(xpoints,ypoints,6);
 
 	}
-	public void drawHex(Graphics2D graphics){
+	public void drawHex(Graphics2D graphics, Color color){
 		graphics.setColor(Color.WHITE);
 		graphics.fillPolygon(hexagon);
 		graphics.setColor(Color.black);
@@ -51,37 +51,41 @@ public class Hex {
 	public static Point PointAtHex(int mousex, int mousey) {
 		Point p = new Point(-1,-1);
 		mousex -= border;
-		mousey -= border;
-		int y = (int) (mousey / (s+t)); 
-		int x;
-		int dy = mousey - y*(s+t);
-		int dx;
-	    boolean rowIsOdd = y % 2 == 1;
-		if (rowIsOdd) { 
-			x = (int)((mousex - r) /h);
-		} else {  
-			x = (int) (mousex/h);
+		mousey -= (border*10);
+		int row = (int) (mousey / (s+t)); 
+		int column = (int) ((mousex - (row%2)*r)/h);
+		int dy = mousey - row*(s+t);
+		int dx = mousex - (column*h);
+		System.out.println("dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column + "\n");	
+		if(row%2==0){
+			if(dx > r){
+				if(dy * r/t > dx - r){
+					row--;
+				}
+			}
+			if(dx < r){
+				if((t-dy)*r/t < dx){
+					row--;
+					column--;
+				}
+			}
 		}
-		if (rowIsOdd) { 
-			dx= (mousex - (x * h)) - r;
-		} else {  
-			dx= (mousex - (x * h));
-
+		else{
+			if(dx > h){
+				if(dy * r/t > dx - h){
+					row--;
+					column++;
+				}
+			}
+			if(dx < h){
+				if((t-dy)*r/t < dx - r){
+					row--;
+				}
+			}
 		}
-		if (dy < ((-t/r) * dx) + t) // LEFT edge
-        {
-            y--;
-            if (!rowIsOdd)
-                x--;
-        }
-		else if (dy < (t/r * dx) - t) // RIGHT edge
-        {
-            y--;
-            if (rowIsOdd)
-                x++;
-        }
-		p.x=x;
-		p.y=y;
+		
+		p.x=column;
+		p.y=row;
 		return p;
 	}
 	

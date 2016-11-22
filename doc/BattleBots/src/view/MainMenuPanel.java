@@ -66,7 +66,7 @@ public class MainMenuPanel extends JPanel{
 		southButtons.setLayout(new BoxLayout(southButtons, BoxLayout.X_AXIS));
 		southButtons.add(Box.createHorizontalGlue());
 
-		JButton beginButton = new JButton(" Begin ");
+		JButton beginButton = new JButton("   Begin   ");
 		beginButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
 		beginButton.setBackground(Color.BLACK);
 		beginButton.setForeground(Color.WHITE);
@@ -76,7 +76,7 @@ public class MainMenuPanel extends JPanel{
 		beginButton.setFocusPainted(false);
 
 		southButtons.add(beginButton);
-		southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
+		southButtons.add(Box.createHorizontalGlue());
 
 		JButton helpButton = new JButton(" Help ");
 		helpButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
@@ -88,7 +88,7 @@ public class MainMenuPanel extends JPanel{
 		helpButton.setFocusPainted(false);
 
 		southButtons.add(helpButton);
-		southButtons.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
+		southButtons.add(Box.createHorizontalGlue());
 
 		JButton quitButton = new JButton(" Quit ");
 		quitButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));

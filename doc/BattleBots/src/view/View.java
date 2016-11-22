@@ -60,7 +60,7 @@ public class View extends JFrame {
 	}
 
 	public void showGame(ActionListener actionlistener, KeyListener keyListener, GameInfo gameInfo) {
-		JPanel panel = new GamePanel(getWidth(), getHeight(), actionlistener, keyListener, gameInfo);
+		JPanel panel = new OverallGamePanel(getWidth(), getHeight(), actionlistener, keyListener, gameInfo);
 		switchDisplay(panel);
 	}
 
