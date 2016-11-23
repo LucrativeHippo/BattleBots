@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Iterator;
+import java.util.Stack;
 
 public class Robot {
 
@@ -12,6 +13,8 @@ public class Robot {
 	private int shotsLeft;
 	private int movementLeft;
 	private int healthLeft;
+        
+        public Stack forthValues;
 	
 	private int relativeDirection;
 	private int directionDimension;

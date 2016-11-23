@@ -178,7 +178,7 @@ public class Interpreter {
         while(!initalfourthWords.empty()){
             forthWords.add(initalfourthWords.remove(0));
         }
-        WordTranslator translate = new WordTranslator();
+        WordTranslator translate = new WordTranslator(robot);
         translate.getHashTable().get(forthWords.pop());
         
     }
@@ -262,7 +262,24 @@ public class Interpreter {
         if(robotMoved != 17){
             System.out.println("Error: The robot's moves is: " + robotMoved + "but should be 17");
         }
+        
+        //test functions
+        
         interpret.executeCode(testScript, null);
+        
+        
+        
+        //Testing a sample code
+        JSONArray list2 = new JSONArray();
+        list.add("variable lastShot ; ");
+        list.add("0 lastShot ! ");
+        list.add(": play ( -- ) ");
+        list.add(" 0 begin dup lastShot ? + 1 6 /mod drop ");
+        list.add(" empty? if .\"no one there\" ");
+        list.add(" else dup lastShot ! ");
+        list.add(" dup 1 shoot! leave ");
+        list.add(" then 1 + dup 5 > ");
+        list.add(" until drop ; ");
     }
     
 }

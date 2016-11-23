@@ -7,6 +7,7 @@ package forth;
 
 import java.util.Hashtable;
 import java.util.Stack;
+import model.Robot;
 
 /**
  *
@@ -14,9 +15,11 @@ import java.util.Stack;
  */
 public class WordTranslator {
     Hashtable ht;
+    Robot robot;
     
-    public WordTranslator(){
+    public WordTranslator(Robot robotAI){
     
+        robot = robotAI;
         ht = new Hashtable();
         
         ht.put("play", null);
@@ -180,16 +183,26 @@ public class WordTranslator {
         ht.put(":", null);
         ht.put(";", null);
         
-        ht.put("variable", null);
+        ht.put("variable", new Word(){void execute(Stack<Value> S){
+        S.pop();
+        }});
+        
         ht.put("?", null);
         ht.put("!", null);
         ht.put(".", null);
         ht.put("random", null);
         
-        ht.put("drop", null);
+        ht.put("drop", new Word(){void execute(Stack<Value> S){
+        S.pop();
+        }});
+        
         ht.put("dup", null);
         ht.put("swap", null);
         ht.put("rot", null);
+        
+        ht.put("health", new Word(){void execute(Stack<Value> S){
+        
+        }});
 }
     
     public Hashtable getHashTable(){
