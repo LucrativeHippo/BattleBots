@@ -13,8 +13,11 @@ import java.util.Stack;
  */
 public class WordInteger extends Word{
     int intWord;
-    void executeInt(Stack<IntValue> S){
-        S.push(IntValue intWord);
+    @Override
+    void execute(Stack S){
+        IntValue intValue = new IntValue();
+        intValue.i = intWord;
+        S.push(intValue);
     }
     
 }

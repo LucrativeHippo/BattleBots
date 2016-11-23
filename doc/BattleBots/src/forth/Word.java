@@ -10,7 +10,7 @@ import java.util.Stack;
  *
  * @author wjr992
  */
-public class Word {
+public abstract class Word {
     
     
     

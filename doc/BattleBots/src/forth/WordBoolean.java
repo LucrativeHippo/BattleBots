@@ -13,8 +13,10 @@ import forth.BoolValue;
  */
 public class WordBoolean extends Word{
     boolean boolWord;
-    BoolValue boolValue = new BoolValue(boolWord);
-    void executeBool(Stack<BoolValue> S){
+    @Override
+    void execute(Stack S){
+        BoolValue boolValue = new BoolValue();
+        boolValue.b = boolWord;
         S.push(boolValue);
     }
 }

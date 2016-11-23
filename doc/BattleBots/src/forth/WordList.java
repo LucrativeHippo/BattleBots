@@ -14,18 +14,35 @@ import java.util.Stack;
 public class WordList extends Word{
     LinkedList<String> ListWord;
     
-    void executeList(Stack s){
-        for(String s: words){
-            if(integer.isInteger()){
-                
-            }else
-            {
-             words.get(s).execute(rs);       
-                    }
+    
+    @Override
+    void execute(Stack rs){
+        for(String s: ListWord){
+           if(isInteger(s)){
+                rs.push(s);
+          }else
+          {
+           ListWord.get(ListWord.indexOf(s)).execute(rs);       
+          }
             
         }
         
         
     }
+    
+    boolean isInteger(String s){
+        int size = s.length();
+
+    for (int i = 0; i < size; i++) {
+        if (!Character.isDigit(s.charAt(i))) {
+            return false;
+        }
+    }
+
+    return size > 0;
+    
+    }
+    
+    
     
 }

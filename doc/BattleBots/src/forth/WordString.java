@@ -11,8 +11,11 @@ import java.util.Stack;
  * @author wjr992
  */
 public class WordString extends Word{
-    int stringWord;
-    void executeInt(Stack<StringValue> S){
-        S.push(StringValue stringWord);
+    String stringWord;
+    @Override
+    void execute(Stack S){
+        StringValue stringValue = new StringValue();
+        stringValue.s = stringWord;
+        S.push(stringValue);
     }
 }
