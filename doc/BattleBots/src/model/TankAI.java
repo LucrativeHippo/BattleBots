@@ -196,4 +196,39 @@ public class TankAI extends Tank{
                         }
                 }
 	}
+        
+        /**
+         * This function will check to see the condition of a given space in the
+         * relative direction beside it.  This is used for the forth check
+         * function
+         * @param direction
+         * @return True if empty, false otherwise
+         * @throws Exception if the direction given is not 0, 1, 2, 3, 4, or 5
+         */
+         public boolean check(int direction) throws Exception{
+            int current = this.getRelativeDirection();
+            int actual = current + direction;
+            actual = actual%6;
+            if(actual == 0){
+                return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].hexExists;
+            }
+            if(actual == 1){
+                return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].hexExists;
+            }
+            if(actual == 2){
+                return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].hexExists;
+            }
+            if(actual == 3){
+                return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].hexExists;
+            }
+            if(actual == 4){
+                return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].hexExists;
+            }
+            if(actual == 5){
+                return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].hexExists;
+            }
+            else{
+                throw new Exception("A robot AI is checking for a directional value not between 0 and 5");
+            }
+        }
 }

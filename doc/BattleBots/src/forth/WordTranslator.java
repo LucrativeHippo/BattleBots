@@ -24,7 +24,15 @@ public class WordTranslator {
         ht = new Hashtable();
         
         ht.put("play", null);
+        
         ht.put("begin", null);
+        
+        ht.put("(", new Word(){void execute(Stack<Value> S){
+            while((String)S.peek() != ")"){
+                S.pop();
+            }
+        S.pop();
+        }});
         
         ht.put("+", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop(); 
@@ -220,27 +228,50 @@ public class WordTranslator {
         }});
         
         ht.put("attack", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getDamage());
+        robot.forthValues.push(robot.getDamage());
         }});
         
         ht.put("range", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getRange());
+        robot.forthValues.push(robot.getRange());
         }});
         
         ht.put("team", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getGang());
+        robot.forthValues.push(robot.getGang());
         }});
         
         ht.put("type", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getType());
+        robot.forthValues.push(robot.getType());
         }});
         
         //Action Keys
         ht.put("turn!", new Word(){void execute(Stack<Value> S){
-        //(ScoutAI)robot.turn(robot.forthValues.pop());
+            ScoutAI temp = (ScoutAI) robot;
+        temp.turn((int)robot.forthValues.pop());
+        }});
+        
+        ht.put("move!", new Word(){void execute(Stack<Value> S){
+            ScoutAI temp = (ScoutAI) robot;
+        temp.move();
         }});
         
         
+        //Need to fix the robotAI shoot function first
+        ht.put("shoot!", null);
+        
+        
+        
+        //Check coordinate system
+        ht.put("check!", null);
+        
+        ht.put("scan!", null);
+        
+        ht.put("identify!", null);
+        
+        ht.put("send!", null);
+        
+        ht.put("mesg?", null);
+        
+        ht.put("recv!", null);
         
 }
     
