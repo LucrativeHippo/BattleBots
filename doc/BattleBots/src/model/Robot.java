@@ -27,6 +27,7 @@ public class Robot {
 	
 	private String gang;
 	private String name;
+        private String type;
         private boolean isHuman;
 	
 	public GameBoard board;
@@ -301,6 +302,20 @@ public class Robot {
                     this.healthLeft = this.healthLeft - damage;
                 }
 	}
+
+        /**
+         * This function returns a string of the robot's type
+         * @return String of "SCOUT", "SNIPER", or "TANK"
+         */
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+        
+        
         
         /**
          * This function will take in a Hex space and deal damage to any robots

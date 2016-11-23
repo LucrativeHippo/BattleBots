@@ -3,6 +3,7 @@ package model;
 import static java.lang.Math.abs;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 import org.json.simple.JSONObject;
 
 public class TankAI extends Tank{
@@ -16,10 +17,12 @@ public class TankAI extends Tank{
 	
 	public TankAI(String name) {
             super(name);
+            this.forthValues = new Stack();
             this.setMovement(1);
             this.setDamage(3);
             this.setRange(1);
             this.setHealth(3);
+            this.setType("TANK");
             
             this.setShotsLeft(1);
             this.setMovementLeft(1);

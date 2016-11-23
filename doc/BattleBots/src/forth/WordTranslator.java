@@ -201,7 +201,35 @@ public class WordTranslator {
         ht.put("rot", null);
         
         ht.put("health", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getHealth());
+        }});
         
+        ht.put("healthLeft", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getHealthLeft());
+        }});
+        
+        ht.put("moves", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getMovement());
+        }});
+        
+        ht.put("movesLeft", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getMovementLeft());
+        }});
+        
+        ht.put("attack", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getDamage());
+        }});
+        
+        ht.put("range", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getRange());
+        }});
+        
+        ht.put("team", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.getGang());
+        }});
+        
+        ht.put("type", new Word(){void execute(Stack<Value> S){
+        robot.forthValues.add(robot.get);
         }});
 }
     

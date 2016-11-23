@@ -8,6 +8,7 @@ public class Scout extends Robot {
             this.setDamage(1);
             this.setRange(2);
             this.setHealth(1);
+            this.setType("SCOUT");
             
             this.setShotsLeft(1);
             this.setMovementLeft(3);

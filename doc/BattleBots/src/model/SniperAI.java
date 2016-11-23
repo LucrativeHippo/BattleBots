@@ -2,6 +2,7 @@ package model;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 import org.json.simple.JSONObject;
 
 public class SniperAI extends Sniper{
@@ -15,10 +16,12 @@ public class SniperAI extends Sniper{
 	
 	public SniperAI(String name) {
             super(name);
+            this.forthValues = new Stack();
             this.setMovement(2);
             this.setDamage(2);
             this.setRange(3);
             this.setHealth(2);
+            this.setType("SNIPER");
             
             this.setShotsLeft(1);
             this.setMovementLeft(2);

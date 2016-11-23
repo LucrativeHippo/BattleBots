@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 import javax.imageio.ImageIO;
 import org.json.simple.JSONObject;
 
@@ -17,10 +18,12 @@ public class ScoutAI extends Scout {
 	
 	public ScoutAI(String name) {
             super(name);
+            this.forthValues = new Stack();
             this.setMovement(3);
             this.setDamage(1);
             this.setRange(2);
             this.setHealth(1);
+            this.setType("SCOUT");
             
             this.setShotsLeft(1);
             this.setMovementLeft(3);

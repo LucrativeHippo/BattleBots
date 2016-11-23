@@ -8,6 +8,7 @@ public class Sniper extends Robot{
             this.setDamage(2);
             this.setRange(3);
             this.setHealth(2);
+            this.setType("SNIPER");
             
             this.setShotsLeft(1);
             this.setMovementLeft(2);
