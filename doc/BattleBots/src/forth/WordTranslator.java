@@ -8,6 +8,7 @@ package forth;
 import java.util.Hashtable;
 import java.util.Stack;
 import model.Robot;
+import model.ScoutAI;
 
 /**
  *
@@ -200,6 +201,8 @@ public class WordTranslator {
         ht.put("swap", null);
         ht.put("rot", null);
         
+        
+        //Status keys
         ht.put("health", new Word(){void execute(Stack<Value> S){
         robot.forthValues.add(robot.getHealth());
         }});
@@ -229,8 +232,16 @@ public class WordTranslator {
         }});
         
         ht.put("type", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.get);
+        robot.forthValues.add(robot.getType());
         }});
+        
+        //Action Keys
+        ht.put("turn!", new Word(){void execute(Stack<Value> S){
+        //(ScoutAI)robot.turn(robot.forthValues.pop());
+        }});
+        
+        
+        
 }
     
     public Hashtable getHashTable(){
