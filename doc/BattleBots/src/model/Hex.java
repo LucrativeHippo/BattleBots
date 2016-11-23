@@ -51,12 +51,12 @@ public class Hex {
 	public static Point PointAtHex(int mousex, int mousey) {
 		Point p = new Point(-1,-1);
 		mousex -= border;
-		mousey -= (border*10);
-		int row = (int) (mousey / (s+t)); 
+		mousey -= border;
+		int row = (int) (mousey / (s+t));
+                System.out.println("S: " + s + " T: " + t + " r "+r + " h " + h);
 		int column = (int) ((mousex - (row%2)*r)/h);
 		int dy = mousey - row*(s+t);
 		int dx = mousex - (column*h);
-		System.out.println("dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column + "\n");	
 		if(row%2==0){
 			if(dx > r){
 				if(dy * r/t > dx - r){
@@ -83,7 +83,7 @@ public class Hex {
 				}
 			}
 		}
-		
+		System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
 		p.x=column;
 		p.y=row;
 		return p;

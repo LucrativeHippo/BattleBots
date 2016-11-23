@@ -94,9 +94,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                                 gameInfo.setNumPlayers(numPlayers);
                                 gameInfo.setNumHumans(numHumans);
                                 gameInfo.setBoardSize(boardSize);
-                                System.out.println("NumPlayers: " + gameInfo.getNumPlayers());
-                                System.out.println("NumHumans: " + gameInfo.getNumHumans());
-                                System.out.println("Boardsize: " + gameInfo.getBoardSize());
 	        	view.showGame(this, this, gameInfo);
 	        	gameControl.start();
                         break;
