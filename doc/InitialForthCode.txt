@@ -1,0 +1,106 @@
+Forth Code
+
+scan
+identify - giving information of a specific robot in the list
+check if target within shooting range 
+if not - move towards target or to middle of the board
+if yes - fire then if target died move towards if target alive move away end turn
+
+
+
+variable targetHealth 4;
+variable targetVerLocation ;
+variable targetHorLocation ;
+variable targetTeam ;
+: leastHealth targetHealth > ;
+: Range 3 ;
+: enemy? getGang? (--s) <> ;
+: play (--) shotsLeft 1 !
+    BEGIN
+    scan! 
+    0 do identify! (i -- st hd vd rh)
+	enemy? if leastHealth? if 
+			       drop drop
+			       targetHealth  pop!  // pops the top value of the stack into targetHealth
+			       targetHorLocation pop!
+			       targetVerLocation pop!
+			       else ."not a good target"
+			       drop
+			       then
+	       else ."not an enemy"
+	       then drop
+    leastHealth? 4 => if 
+		      getHorLocation? boardSize 2 / < getVerLocation? boardSize 2 / < and if relativeDirection? 1 <> if
+														      
+											    
+										      
+							      
+		      getHorLocation? boardSize 2 / > getVerLocation? boardSize 2 / < and if relativeDirection? 2 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / < getVerLocation? boardSize 2 / > and if relativeDirection? 5 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / > getVerLocation? boardSize 2 / > and if relativeDirection? 4 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / < getVerLocation? boardSize 2 / = and if relativeDirection? 0 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / = getVerLocation? boardSize 2 / < and if relativeDirection? 1 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / = getVerLocation? boardSize 2 / > and if relativeDirection? 4 <> if
+		      
+		      
+		      getHorLocation? boardSize 2 / > getVerLocation? boardSize 2 / = and if relativeDirection? 3 <> if
+							      
+			move!
+			else
+			then drop drop
+
+    leastHealth 4 < if shotLeft 0 > if
+				    targetHorLocation? targetVerLocation?
+				    shoot!
+				    drop drop
+				    else ."No shots left"
+				    then drop
+		    else ."invalid target"
+		    then drop
+		    BEGIN
+			      // retreat away from the target
+			      getHorDirection? targetHorDirection = if
+								    drop
+								    getHorLocation! 1 +
+								    else if getHorDirection? targetHorDirection < if
+													      drop
+													      getHorLocation! 1 +
+													      else
+													      getHorLocation! 1 -
+													      then
+			      getVerDirection? targetVerDirection = if
+								    drop
+								    getVerDirection! 1 -
+								    else if getVerDirection? targetVerDirection < if
+													      drop
+													      getVerLocation! 1 +
+													      else
+													      getVerLocation! 1 -
+													      then
+									
+
+
+		    UNTIL movementLeft 0=
+		    
+    UNITL movementLeft 0=
+
+
+
+		
+
+r111 dup r111
+
+
+robot will shoot at any robot in scan range with the least health after which it will move away from
+the attacked robot. If there are no robots in range it will move towards the centre
+of the board.
