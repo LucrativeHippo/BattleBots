@@ -233,5 +233,23 @@ public class ScoutAI extends Scout {
                 throw new Exception("A robot AI is checking for a directional value not between 0 and 5");
             }
         }
+        
+        // the scout can scan max 46 hexgons, it scans 6 hex for each direction
+        public int getDirectionOfEnemy(int index){
+            Robot tmp = this.scannedRobotsList.get(index);
+            if(tmp != null)
+            {                
+                int direction = 0;
+                while (direction < 6)
+            {
+                
+            }
+            
+            }
+            else
+            {
+                System.out.println("there are no robots within your range.");
+            }
+        }
 
 }
