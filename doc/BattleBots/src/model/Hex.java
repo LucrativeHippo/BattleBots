@@ -35,7 +35,7 @@ public class Hex {
 		int x = i * (h)+ (j%2) * h/2;
 		int y = j * (s+t);
 		int posX = x + border;
-		int posY = y + border*10;
+		int posY = y + border+100;
 		int xpoints[] = {posX+r, posX+h, posX+h, posX+r, posX, posX};
 		int ypoints[] = {posY,posY-t, posY-t-s,posY-t-s-t,posY-t-s,posY-t};
 		hexagon = new Polygon(xpoints,ypoints,6);
@@ -51,36 +51,42 @@ public class Hex {
 	public static Point PointAtHex(int mousex, int mousey) {
 		Point p = new Point(-1,-1);
 		mousex -= border;
-		mousey -= border;
+		mousey -= (border+50);
+                System.out.println("MOUSE X: " + mousex);
+                System.out.println("MOUSE Y: " + mousey);
 		int row = (int) (mousey / (s+t));
                 System.out.println("S: " + s + " T: " + t + " r "+r + " h " + h);
 		int column = (int) ((mousex - (row%2)*r)/h);
 		int dy = mousey - row*(s+t);
 		int dx = mousex - (column*h);
+                System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
+                if(mousex < 0 || mousey < -15) return p;
+                if (mousex - (row%2)*r < 0) return p;
 		if(row%2==0){
-			if(dx > r){
-				if(dy * r/t > dx - r){
+			if(dx  > r){
+				if(dy * t/r > dx - r){
 					row--;
 				}
 			}
-			if(dx < r){
-				if((t-dy)*r/t < dx){
-					row--;
-					column--;
-				}
+                        else if(dx < r){
+//				if((t-dy)*t/r < dx){
+//					row--;
+//					column++;
+//				}
 			}
 		}
 		else{
 			if(dx > h){
-				if(dy * r/t > dx - h){
-					row--;
-					column++;
-				}
+//				if(dy * t/r > dx - h){
+//					row--;
+//					column++;
+//				}
 			}
 			if(dx < h){
-				if((t-dy)*r/t < dx - r){
-					row--;
-				}
+   
+                            //if((t-dy)*t/r < dx - r){
+				//	row--;
+				//}
 			}
 		}
 		System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
@@ -88,7 +94,7 @@ public class Hex {
 		p.y=row;
 		return p;
 	}
-	
+
 	/**
 	 * This function will return a boolean value of true or false based 
 	 * on whether or not the current Hex space is empty of any robots or not
