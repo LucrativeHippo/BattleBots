@@ -38,6 +38,7 @@ public class WordTranslator {
         commands.pop();
         }});
         
+        //This will deal with "+" for addition
         ht.put("+", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop(); 
            IntValue var2 = (IntValue) S.pop();
@@ -45,6 +46,8 @@ public class WordTranslator {
            var3.i = var1.i + var2.i;
            S.push(var3);
         }});
+        
+        //This will deal with "-" for subtraction
         ht.put("-", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop(); 
            IntValue var2 = (IntValue) S.pop();
@@ -52,6 +55,8 @@ public class WordTranslator {
            var3.i = var2.i - var1.i;
            S.push(var3);
         }});
+        
+        //This will deal with "*" for multiplication
         ht.put("*", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop(); 
            IntValue var2 = (IntValue) S.pop();
@@ -59,6 +64,9 @@ public class WordTranslator {
            var3.i = var2.i * var1.i;
            S.push(var3);
         }});
+        
+        //This will deal with "/mod" for division, which will push the quotient
+        //and remainder to the stack
         ht.put("/mod", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop(); 
            IntValue var2 = (IntValue) S.pop();
@@ -70,6 +78,7 @@ public class WordTranslator {
            S.push(var3);
         }});
         
+        //This will deal with "<", pushing a boolean on the stack
         ht.put("<", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop();
            IntValue var2 = (IntValue) S.pop();
@@ -82,6 +91,8 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with "<=", pushing a boolean on the stack
         ht.put("<=", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop();
            IntValue var2 = (IntValue) S.pop();
@@ -94,6 +105,8 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with "=", pushing a boolean on the stack
         ht.put("=", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop();
            IntValue var2 = (IntValue) S.pop();
@@ -106,6 +119,8 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with "<>", pushing a boolean on the stack
         ht.put("<>", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop();
            IntValue var2 = (IntValue) S.pop();
@@ -118,6 +133,8 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with "=>", pushing a boolean on the stack
         ht.put("=>", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop();
            IntValue var2 = (IntValue) S.pop();
@@ -130,6 +147,8 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with ">", pushing a boolean on the stack
         ht.put(">", new Word(){void execute(Stack<Value> S){
            IntValue var1 = (IntValue) S.pop();
            IntValue var2 = (IntValue) S.pop();
@@ -143,6 +162,7 @@ public class WordTranslator {
            
         }});
         
+        //This will deal with "and", pushing a boolean on the stack
         ht.put("and", new Word(){void execute(Stack<Value> S){
            BoolValue var1 = (BoolValue) S.pop();
            BoolValue var2 = (BoolValue) S.pop();
@@ -155,6 +175,8 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with "or", pushing a boolean on the stack
         ht.put("or", new Word(){void execute(Stack<Value> S){
            BoolValue var1 = (BoolValue) S.pop();
            BoolValue var2 = (BoolValue) S.pop();
@@ -167,6 +189,9 @@ public class WordTranslator {
            S.push(var3);
            
         }});
+        
+        //This will deal with "invert", pushing a new boolean opposite of the
+        //one currently on the stack
         ht.put("invert", new Word(){void execute(Stack<Value> S){
            BoolValue var1 = (BoolValue) S.pop();
            if(var1.b == true ){
@@ -178,6 +203,10 @@ public class WordTranslator {
            
         }});
         
+        //This will deal with "if", parsing through the if code when the top
+        //of the stack has a true boolean and then deleting everything that
+        //is associated with the else statement.  It will do the opposite if
+        //the top of the stack is false
         ht.put("if", new Word(){void execute(Stack<Value> S){
            BoolValue var1 = (BoolValue) robot.forthValues.pop();
            Stack ifCommands = new Stack();
@@ -211,6 +240,7 @@ public class WordTranslator {
            }
         }});
         
+        //Don't need these
         //ht.put("else", null);//These are dealt with with the if statement.
         //ht.put("then", null);
         ht.put("loop", null);
@@ -227,11 +257,19 @@ public class WordTranslator {
         ht.put(".", null);
         ht.put("random", null);
         
+        //This will just delete the element at the top of the stack
         ht.put("drop", new Word(){void execute(Stack<Value> S){
         S.pop();
         }});
         
-        ht.put("dup", null);
+        //This will duplicate the value at the top of the stack.
+        ht.put("dup", new Word(){void execute(Stack<Value> S){
+        Stack temp = new Stack();
+        temp.push(robot.forthValues.peek());
+        robot.forthValues.push(temp.pop());
+        }});
+        
+        //
         ht.put("swap", null);
         ht.put("rot", null);
         
@@ -325,7 +363,13 @@ public class WordTranslator {
         }});
         
         
-        ht.put("send!", null);
+        ht.put("send!", new Word(){void execute(Stack<Value> S){
+            Value send = (Value) robot.forthValues.pop();
+            String target = (String) robot.forthValues.pop();
+           // Iterator search = new Iterator(robot.board.)
+            
+        }});
+        
         
         ht.put("mesg?", null);
         
