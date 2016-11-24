@@ -234,22 +234,31 @@ public class ScoutAI extends Scout {
             }
         }
         
-        // the scout can scan max 46 hexgons, it scans 6 hex for each direction
+        
+        // the scout can scan max 37 hexgons, it scans 6 hex for each direction and include the one it stands on
+        
         public int getDirectionOfEnemy(int index){
+            
             Robot tmp = this.scannedRobotsList.get(index);
             if(tmp != null)
-            {                
-                int direction = 0;
-                while (direction < 6)
             {
-                
-            }
-            
+                if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].)
+                {
+                    
+                }
             }
             else
             {
                 System.out.println("there are no robots within your range.");
             }
         }
+        
+        
+        public int getRangeOfEnemy(int index){
+            Robot tmp = this.scannedRobotsList.get(index);
+            if(tmp != null)
+            {
+                
+            }
 
 }
