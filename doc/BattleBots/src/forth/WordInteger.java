@@ -5,6 +5,7 @@
  */
 package forth;
 import java.util.Stack;
+import model.Robot;
 
 
 /**
@@ -13,11 +14,12 @@ import java.util.Stack;
  */
 public class WordInteger extends Word{
     int intWord;
-    @Override
-    void execute(Stack S){
+    Robot robot;
+    
+    void execute(){
         IntValue intValue = new IntValue();
         intValue.i = intWord;
-        S.push(intValue);
+        robot.forthValues.push(intValue);
     }
     
 }

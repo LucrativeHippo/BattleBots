@@ -39,167 +39,167 @@ public class WordTranslator {
         }});
         
         //This will deal with "+" for addition
-        ht.put("+", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop(); 
-           IntValue var2 = (IntValue) S.pop();
-           IntValue var3 = new IntValue();
-           var3.i = var1.i + var2.i;
-           S.push(var3);
+        ht.put("+", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           int var3;
+           var3 = var1 + var2;
+           robot.forthValues.push(var3);
         }});
         
         //This will deal with "-" for subtraction
-        ht.put("-", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop(); 
-           IntValue var2 = (IntValue) S.pop();
-           IntValue var3 = new IntValue();
-           var3.i = var2.i - var1.i;
-           S.push(var3);
+        ht.put("-", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           int var3;
+           var3 = var2 - var1;
+           robot.forthValues.push(var3);
         }});
         
         //This will deal with "*" for multiplication
-        ht.put("*", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop(); 
-           IntValue var2 = (IntValue) S.pop();
-           IntValue var3 = new IntValue();
-           var3.i = var2.i * var1.i;
-           S.push(var3);
+        ht.put("*", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           int var3;
+           var3 = var1 * var2;
+           robot.forthValues.push(var3);
         }});
         
         //This will deal with "/mod" for division, which will push the quotient
         //and remainder to the stack
-        ht.put("/mod", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop(); 
-           IntValue var2 = (IntValue) S.pop();
-           IntValue var3 = new IntValue();
-           IntValue var4 = new IntValue();
-           var3.i = var2.i/var1.i;
-           var4.i = var2.i%var1.i;
-           S.push(var4);
-           S.push(var3);
+        ht.put("/mod", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           int var3;
+           int var4;
+           var3 = var2/var1;
+           var4 = var2%var1;
+           robot.forthValues.push(var4);
+           robot.forthValues.push(var3);
         }});
         
         //This will deal with "<", pushing a boolean on the stack
-        ht.put("<", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop();
-           IntValue var2 = (IntValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if(var1.i > var2.i){
-               var3.b = true;
+        ht.put("<", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           Boolean var3;
+           if(var1 > var2){
+               var3 = true;
            }else{
-               var3.b = false;
+               var3 = false;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "<=", pushing a boolean on the stack
-        ht.put("<=", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop();
-           IntValue var2 = (IntValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if(var1.i >= var2.i){
-               var3.b = true;
+        ht.put("<=", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           Boolean var3;
+           if(var1 >= var2){
+               var3 = true;
            }else{
-               var3.b = false;
+               var3 = false;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "=", pushing a boolean on the stack
-        ht.put("=", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop();
-           IntValue var2 = (IntValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if(var1.i == var2.i){
-               var3.b = true;
+        ht.put("=", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           Boolean var3;
+           if(var1 == var2){
+               var3 = true;
            }else{
-               var3.b = false;
+               var3 = false;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "<>", pushing a boolean on the stack
-        ht.put("<>", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop();
-           IntValue var2 = (IntValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if(var1.i != var2.i){
-               var3.b = true;
+        ht.put("<>", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           Boolean var3;
+           if(var1 != var2){
+               var3 = true;
            }else{
-               var3.b = false;
+               var3 = false;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "=>", pushing a boolean on the stack
-        ht.put("=>", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop();
-           IntValue var2 = (IntValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if(var1.i > var2.i){
-               var3.b = false;
+        ht.put("=>", new Word(){void execute(){
+          int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           Boolean var3;
+           if(var1 > var2){
+               var3 = false;
            }else{
-               var3.b = true;
+               var3 = true;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with ">", pushing a boolean on the stack
-        ht.put(">", new Word(){void execute(Stack<Value> S){
-           IntValue var1 = (IntValue) S.pop();
-           IntValue var2 = (IntValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if(var1.i >= var2.i){
-               var3.b = false;
+        ht.put(">", new Word(){void execute(){
+           int var1 = (int)robot.forthValues.pop(); 
+           int var2 = (int)robot.forthValues.pop();
+           Boolean var3;
+           if(var1 >= var2){
+               var3 = false;
            }else{
-               var3.b = true;
+               var3 = true;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "and", pushing a boolean on the stack
-        ht.put("and", new Word(){void execute(Stack<Value> S){
-           BoolValue var1 = (BoolValue) S.pop();
-           BoolValue var2 = (BoolValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if((var1.b == true )&& (var2.b == true)){
-               var3.b = true;
+        ht.put("and", new Word(){void execute(){
+           Boolean var1 = (Boolean)robot.forthValues.pop();
+           Boolean var2 = (Boolean)robot.forthValues.pop();
+           Boolean var3;
+           if((var1 == true )&& (var2 == true)){
+               var3 = true;
            }else{
-               var3.b = false;
+               var3 = false;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "or", pushing a boolean on the stack
-        ht.put("or", new Word(){void execute(Stack<Value> S){
-           BoolValue var1 = (BoolValue) S.pop();
-           BoolValue var2 = (BoolValue) S.pop();
-           BoolValue var3 = new BoolValue();
-           if((var1.b == false )&& (var2.b == false)){
-               var3.b = false;
+        ht.put("or", new Word(){void execute(){
+           Boolean var1 = (Boolean)robot.forthValues.pop();
+           Boolean var2 = (Boolean)robot.forthValues.pop();
+           Boolean var3;
+           if((var1 == false )&& (var2 == false)){
+               var3 = false;
            }else{
-               var3.b = true;
+               var3 = true;
            }
-           S.push(var3);
+           robot.forthValues.push(var3);
            
         }});
         
         //This will deal with "invert", pushing a new boolean opposite of the
         //one currently on the stack
         ht.put("invert", new Word(){void execute(Stack<Value> S){
-           BoolValue var1 = (BoolValue) S.pop();
-           if(var1.b == true ){
-               var1.b = false;
+           Boolean var1 = (Boolean) robot.forthValues.pop();
+           if(var1 == true ){
+               var1 = false;
            }else{
-               var1.b = true;
+               var1 = true;
            }
-           S.push(var1);
+           robot.forthValues.push(var1);
            
         }});
         
