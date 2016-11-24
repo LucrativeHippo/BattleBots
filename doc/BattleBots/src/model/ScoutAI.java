@@ -319,10 +319,6 @@ public class ScoutAI extends Scout {
                 {
                     return 0;
                 }
-                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
-                {
-                    return 0;
-                }
                 else if((this.getHorizontalLocation()+1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
                 {
                     return 0;
