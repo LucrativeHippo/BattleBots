@@ -178,7 +178,7 @@ public class Interpreter {
         while(!initalfourthWords.empty()){
             forthWords.add(initalfourthWords.remove(0));
         }
-        WordTranslator translate = new WordTranslator(robot);
+        WordTranslator translate = new WordTranslator(robot, forthWords);
         translate.getHashTable().get(forthWords.pop());
         
     }

@@ -17,21 +17,25 @@ import model.ScoutAI;
 public class WordTranslator {
     Hashtable ht;
     Robot robot;
+    Stack forthCommands;
     
-    public WordTranslator(Robot robotAI){
+    public WordTranslator(Robot robotAI, Stack commands){
     
         robot = robotAI;
+        forthCommands = commands;
         ht = new Hashtable();
         
         ht.put("play", null);
         
         ht.put("begin", null);
         
-        ht.put("(", new Word(){void execute(Stack<Value> S){
-            while((String)S.peek() != ")"){
-                S.pop();
+        ht.put(("until"), null);
+        
+        ht.put("(", new Word(){void execute(){
+            while((String)forthCommands.peek() != ")"){
+                commands.pop();
             }
-        S.pop();
+        commands.pop();
         }});
         
         ht.put("+", new Word(){void execute(Stack<Value> S){
@@ -175,18 +179,40 @@ public class WordTranslator {
         }});
         
         ht.put("if", new Word(){void execute(Stack<Value> S){
-           BoolValue var1 = (BoolValue) S.pop();
+           BoolValue var1 = (BoolValue) robot.forthValues.pop();
+           Stack ifCommands = new Stack();
            if(var1.b == true ){
-               
-            //Add strings to a stringValue until else is reached
+               while(forthCommands.peek() != "else"){
+                   ifCommands.push(forthCommands.pop());
+               }
+               Stack orderedIfCommands = new Stack();
+               while(!ifCommands.empty()){
+                   orderedIfCommands.push(ifCommands.pop());
+               }
+               WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
+               while(forthCommands.peek() != "then"){
+                   forthCommands.pop();
+               }
+               forthCommands.pop();
            }else{
-               
+               while(forthCommands.peek() != "else"){
+                   forthCommands.pop();
+               }
+               forthCommands.pop();
+               while(forthCommands.peek() != "then"){
+                   ifCommands.push(forthCommands.pop());
+               }
+               Stack orderedIfCommands = new Stack();
+               while(!ifCommands.empty()){
+                   orderedIfCommands.push(ifCommands.pop());
+               }
+               WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
+               forthCommands.pop();
            }
-           
-           
         }});
-        ht.put("else", null);
-        ht.put("then", null);
+        
+        //ht.put("else", null);//These are dealt with with the if statement.
+        //ht.put("then", null);
         ht.put("loop", null);
         
         ht.put(":", null);
@@ -312,6 +338,12 @@ public class WordTranslator {
     }
     
     public void addStackValues(){
+        
+    }
+    
+    public static void main(String [] args) {
+        
+        
         
     }
 }
