@@ -19,6 +19,7 @@ public class ScoutAI extends Scout {
 	public ScoutAI(String name) {
             super(name);
             this.forthValues = new Stack();
+            this.mailBox = new Stack();
             this.setMovement(3);
             this.setDamage(1);
             this.setRange(2);

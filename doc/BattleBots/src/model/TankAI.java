@@ -18,6 +18,7 @@ public class TankAI extends Tank{
 	public TankAI(String name) {
             super(name);
             this.forthValues = new Stack();
+            this.mailBox = new Stack();
             this.setMovement(1);
             this.setDamage(3);
             this.setRange(1);

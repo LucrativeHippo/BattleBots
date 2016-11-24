@@ -15,6 +15,8 @@ public class Robot {
 	private int healthLeft;
         
         public Stack forthValues;
+        
+        public Stack mailBox;
 	
 	private int relativeDirection;
 	private int directionDimension;

@@ -298,6 +298,7 @@ public class WordTranslator {
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getHealthLeft());
         }});
         
+        
         ht.put("send!", null);
         
         ht.put("mesg?", null);

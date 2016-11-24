@@ -17,6 +17,7 @@ public class SniperAI extends Sniper{
 	public SniperAI(String name) {
             super(name);
             this.forthValues = new Stack();
+            this.mailBox = new Stack();
             this.setMovement(2);
             this.setDamage(2);
             this.setRange(3);
