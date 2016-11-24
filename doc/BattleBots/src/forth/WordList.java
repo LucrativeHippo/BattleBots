@@ -22,7 +22,7 @@ public class WordList extends Word{
                 rs.push(s);
           }else
           {
-           ListWord.get(ListWord.indexOf(s)).execute(rs);       
+          // ListWord.get(ListWord.indexOf(s)).execute(rs);       
           }
             
         }

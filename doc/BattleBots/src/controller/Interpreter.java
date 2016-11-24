@@ -15,6 +15,7 @@ import java.util.Stack;
 import model.Robot;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import forth.Word;
 /**
  *
  * @author mkp003
@@ -159,7 +160,7 @@ public class Interpreter {
      * @param instructionCode The JSON object associated with the specific robot
      * @param robot Robot associated with the code
      */
-    public void executeCode(JSONObject instructionCode, Robot robot){
+    public void executeCode(JSONObject instructionCode, Robot robot) throws NoSuchMethodException{
         Stack initalfourthWords = new Stack();
         JSONObject temp = (JSONObject)instructionCode.get("script");
         List commands = (List)temp.get("code");
@@ -176,10 +177,10 @@ public class Interpreter {
         
         Stack forthWords = new Stack();
         while(!initalfourthWords.empty()){
-            forthWords.add(initalfourthWords.remove(0));
+            forthWords.add((Word)initalfourthWords.remove(0));
         }
         WordTranslator translate = new WordTranslator(robot, forthWords);
-        translate.getHashTable().get(forthWords.pop());
+        translate.getHashMap().get(forthWords.pop()).execute();
         
     }
     
@@ -265,7 +266,7 @@ public class Interpreter {
         
         //test functions
         
-        interpret.executeCode(testScript, null);
+        //interpret.executeCode(testScript, null);
         
         
         

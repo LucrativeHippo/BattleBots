@@ -5,331 +5,359 @@
  */
 package forth;
 
+import controller.Interpreter;
 import java.util.Hashtable;
 import java.util.Stack;
 import model.Robot;
 import model.ScoutAI;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.*;
+import java.lang.reflect.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import forth.Execute;
+
 
 /**
  *
  * @author mkp003
  */
-public class WordTranslator {
-    Hashtable ht;
+public class WordTranslator implements Execute{
+    HashMap <String, Execute> ht;
     Robot robot;
     Stack forthCommands;
     
-    public WordTranslator(Robot robotAI, Stack commands){
+    public WordTranslator(Robot robotAI, Stack commands) throws NoSuchMethodException{
     
         robot = robotAI;
         forthCommands = commands;
-        ht = new Hashtable();
+        ht= new HashMap<String, Execute>();
         
-        ht.put("play", null);
+        //ht.put("play", null);
         
-        ht.put("begin", null);
+        //ht.put("begin", null);
         
-        ht.put(("until"), null);
-        
-        ht.put("(", new Word(){void execute(){
-            while((String)forthCommands.peek() != ")"){
-                commands.pop();
-            }
-        commands.pop();
-        }});
-        
-        //This will deal with "+" for addition
-        ht.put("+", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           int var3;
-           var3 = var1 + var2;
-           robot.forthValues.push(var3);
-        }});
+        //ht.put(("until"), null);
         
         //This will deal with "-" for subtraction
-        ht.put("-", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           int var3;
-           var3 = var2 - var1;
-           robot.forthValues.push(var3);
-        }});
+        ht.put("-", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            int var3;
+            var3 = var2 - var1;
+            robot.forthValues.push(var3);
+        });
+        
+        
+        
+        ht.put("(", (Execute) () -> {
+            while((String)forthCommands.peek() != ")"){
+                forthCommands.pop();
+            }
+            forthCommands.pop();
+        });
+        
+        
+        //This will deal with "+" for addition
+        ht.put("+", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            System.out.println("test1");
+            int var2 = (int)robot.forthValues.pop();
+            int var3;
+            System.out.println("test2");
+            var3 = var1 + var2;
+            System.out.println(var3);
+            robot.forthValues.push(var3);
+        });
+      
+        
         
         //This will deal with "*" for multiplication
-        ht.put("*", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           int var3;
-           var3 = var1 * var2;
-           robot.forthValues.push(var3);
-        }});
+        ht.put("*", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            int var3;
+            var3 = var1 * var2;
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "/mod" for division, which will push the quotient
         //and remainder to the stack
-        ht.put("/mod", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           int var3;
-           int var4;
-           var3 = var2/var1;
-           var4 = var2%var1;
-           robot.forthValues.push(var4);
-           robot.forthValues.push(var3);
-        }});
+        ht.put("/mod", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            int var3;
+            int var4;
+            var3 = var2/var1;
+            var4 = var2%var1;
+            robot.forthValues.push(var4);
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "<", pushing a boolean on the stack
-        ht.put("<", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           Boolean var3;
-           if(var1 > var2){
-               var3 = true;
-           }else{
-               var3 = false;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("<", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            Boolean var3;
+            if(var1 > var2){
+                var3 = true;
+            }else{
+                var3 = false;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "<=", pushing a boolean on the stack
-        ht.put("<=", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           Boolean var3;
-           if(var1 >= var2){
-               var3 = true;
-           }else{
-               var3 = false;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("<=", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            Boolean var3;
+            if(var1 >= var2){
+                var3 = true;
+            }else{
+                var3 = false;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "=", pushing a boolean on the stack
-        ht.put("=", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           Boolean var3;
-           if(var1 == var2){
-               var3 = true;
-           }else{
-               var3 = false;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("=", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            Boolean var3;
+            if(var1 == var2){
+                var3 = true;
+            }else{
+                var3 = false;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "<>", pushing a boolean on the stack
-        ht.put("<>", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           Boolean var3;
-           if(var1 != var2){
-               var3 = true;
-           }else{
-               var3 = false;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("<>", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            Boolean var3;
+            if(var1 != var2){
+                var3 = true;
+            }else{
+                var3 = false;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "=>", pushing a boolean on the stack
-        ht.put("=>", new Word(){void execute(){
-          int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           Boolean var3;
-           if(var1 > var2){
-               var3 = false;
-           }else{
-               var3 = true;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("=>", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            Boolean var3;
+            if(var1 > var2){
+                var3 = false;
+            }else{
+                var3 = true;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with ">", pushing a boolean on the stack
-        ht.put(">", new Word(){void execute(){
-           int var1 = (int)robot.forthValues.pop(); 
-           int var2 = (int)robot.forthValues.pop();
-           Boolean var3;
-           if(var1 >= var2){
-               var3 = false;
-           }else{
-               var3 = true;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put(">", (Execute) () -> {
+            int var1 = (int)robot.forthValues.pop();
+            int var2 = (int)robot.forthValues.pop();
+            Boolean var3;
+            if(var1 >= var2){
+                var3 = false;
+            }else{
+                var3 = true;
+            }
+            robot.forthValues.push(var3);
+        });
+        
+     
         
         //This will deal with "and", pushing a boolean on the stack
-        ht.put("and", new Word(){void execute(){
-           Boolean var1 = (Boolean)robot.forthValues.pop();
-           Boolean var2 = (Boolean)robot.forthValues.pop();
-           Boolean var3;
-           if((var1 == true )&& (var2 == true)){
-               var3 = true;
-           }else{
-               var3 = false;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("and", (Execute) () -> {
+            Boolean var1 = (Boolean)robot.forthValues.pop();
+            Boolean var2 = (Boolean)robot.forthValues.pop();
+            Boolean var3;
+            if((var1 == true )&& (var2 == true)){
+                var3 = true;
+            }else{
+                var3 = false;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "or", pushing a boolean on the stack
-        ht.put("or", new Word(){void execute(){
-           Boolean var1 = (Boolean)robot.forthValues.pop();
-           Boolean var2 = (Boolean)robot.forthValues.pop();
-           Boolean var3;
-           if((var1 == false )&& (var2 == false)){
-               var3 = false;
-           }else{
-               var3 = true;
-           }
-           robot.forthValues.push(var3);
-           
-        }});
+        ht.put("or", (Execute) () -> {
+            Boolean var1 = (Boolean)robot.forthValues.pop();
+            Boolean var2 = (Boolean)robot.forthValues.pop();
+            Boolean var3;
+            if((var1 == false )&& (var2 == false)){
+                var3 = false;
+            }else{
+                var3 = true;
+            }
+            robot.forthValues.push(var3);
+        });
         
         //This will deal with "invert", pushing a new boolean opposite of the
         //one currently on the stack
-        ht.put("invert", new Word(){void execute(Stack<Value> S){
-           Boolean var1 = (Boolean) robot.forthValues.pop();
-           if(var1 == true ){
-               var1 = false;
-           }else{
-               var1 = true;
-           }
-           robot.forthValues.push(var1);
-           
-        }});
+        ht.put("invert", (Execute) () -> {
+            Boolean var1 = (Boolean) robot.forthValues.pop();
+            if(var1 == true ){
+                var1 = false;
+            }else{
+                var1 = true;
+            }
+            robot.forthValues.push(var1);
+        });
+        
+       
         
         //This will deal with "if", parsing through the if code when the top
         //of the stack has a true boolean and then deleting everything that
         //is associated with the else statement.  It will do the opposite if
         //the top of the stack is false
-        ht.put("if", new Word(){void execute(Stack<Value> S){
-           BoolValue var1 = (BoolValue) robot.forthValues.pop();
-           Stack ifCommands = new Stack();
-           if(var1.b == true ){
-               while(forthCommands.peek() != "else"){
-                   ifCommands.push(forthCommands.pop());
-               }
-               Stack orderedIfCommands = new Stack();
-               while(!ifCommands.empty()){
-                   orderedIfCommands.push(ifCommands.pop());
-               }
-               WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
-               while(forthCommands.peek() != "then"){
-                   forthCommands.pop();
-               }
-               forthCommands.pop();
-           }else{
-               while(forthCommands.peek() != "else"){
-                   forthCommands.pop();
-               }
-               forthCommands.pop();
-               while(forthCommands.peek() != "then"){
-                   ifCommands.push(forthCommands.pop());
-               }
-               Stack orderedIfCommands = new Stack();
-               while(!ifCommands.empty()){
-                   orderedIfCommands.push(ifCommands.pop());
-               }
-               WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
-               forthCommands.pop();
-           }
-        }});
+        ht.put("if", (Execute) () -> {
+            BoolValue var1 = (BoolValue) robot.forthValues.pop();
+            Stack ifCommands = new Stack();
+            if(var1.b == true ){
+                while(forthCommands.peek() != "else"){
+                    ifCommands.push(forthCommands.pop());
+                }
+                Stack orderedIfCommands = new Stack();
+                while(!ifCommands.empty()){
+                    orderedIfCommands.push(ifCommands.pop());
+                }
+                try {
+                    WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
+                } catch (NoSuchMethodException ex) {
+                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                while(forthCommands.peek() != "then"){
+                    forthCommands.pop();
+                }
+                forthCommands.pop();
+            }else{
+                while(forthCommands.peek() != "else"){
+                    forthCommands.pop();
+                }
+                forthCommands.pop();
+                while(forthCommands.peek() != "then"){
+                    ifCommands.push(forthCommands.pop());
+                }
+                Stack orderedIfCommands = new Stack();
+                while(!ifCommands.empty()){
+                    orderedIfCommands.push(ifCommands.pop());
+                }
+                try {
+                    WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
+                } catch (NoSuchMethodException ex) {
+                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                forthCommands.pop();
+            }
+        });
+        
+        
         
         //Don't need these
         //ht.put("else", null);//These are dealt with with the if statement.
         //ht.put("then", null);
-        ht.put("loop", null);
+        //ht.put("loop", null);
         
-        ht.put(":", null);
-        ht.put(";", null);
+        //ht.put(":", null);
+        //ht.put(";", null);
         
-        ht.put("variable", new Word(){void execute(Stack<Value> S){
-        S.pop();
-        }});
+        ht.put("variable", (Execute) () -> {
+            robot.forthValues.pop();
+        });
         
-        ht.put("?", null);
-        ht.put("!", null);
-        ht.put(".", null);
-        ht.put("random", null);
+        //ht.put("?", null);
+        //ht.put("!", null);
+        //ht.put(".", null);
+        //ht.put("random", null);
         
         //This will just delete the element at the top of the stack
-        ht.put("drop", new Word(){void execute(Stack<Value> S){
-        S.pop();
-        }});
+        ht.put("drop", (Execute) () -> {
+            robot.forthValues.pop();
+        });
         
         //This will duplicate the value at the top of the stack.
-        ht.put("dup", new Word(){void execute(Stack<Value> S){
-        Stack temp = new Stack();
-        temp.push(robot.forthValues.peek());
-        robot.forthValues.push(temp.pop());
-        }});
+        ht.put("dup", (Execute) () -> {
+            Stack temp = new Stack();
+            temp.push(robot.forthValues.peek());
+            robot.forthValues.push(temp.pop());
+        });
         
         //This will swap the top two values on the stack
-        ht.put("swap", new Word(){void execute(Stack<Value> S){
-        Stack temp = new Stack();
-        temp.push(robot.forthValues.peek());
-        robot.forthValues.push(temp.pop());
-        }});
+        ht.put("swap", (Execute) () -> {
+            Stack temp = new Stack();
+            temp.push(robot.forthValues.peek());
+            robot.forthValues.push(temp.pop());
+        });
         
-        ht.put("rot", null);
+        
+        
+        //ht.put("rot", null);
         
         
         //Status keys
-        ht.put("health", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getHealth());
-        }});
+        ht.put("health", (Execute) () -> {
+            robot.forthValues.add(robot.getHealth());
+        });
         
-        ht.put("healthLeft", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getHealthLeft());
-        }});
+        ht.put("healthLeft", (Execute) () -> {
+            robot.forthValues.add(robot.getHealthLeft());
+        });
         
-        ht.put("moves", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getMovement());
-        }});
+        ht.put("moves", (Execute) () -> {
+            robot.forthValues.add(robot.getMovement());
+        });
         
-        ht.put("movesLeft", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.add(robot.getMovementLeft());
-        }});
+        ht.put("movesLeft", (Execute) () -> {
+            robot.forthValues.add(robot.getMovementLeft());
+        });
         
-        ht.put("attack", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.push(robot.getDamage());
-        }});
+        ht.put("attack", (Execute) () -> {
+            robot.forthValues.push(robot.getDamage());
+        });
         
-        ht.put("range", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.push(robot.getRange());
-        }});
+        ht.put("range", (Execute) () -> {
+            robot.forthValues.push(robot.getRange());
+        });
         
-        ht.put("team", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.push(robot.getGang());
-        }});
+        ht.put("team", (Execute) () -> {
+            robot.forthValues.push(robot.getGang());
+        });
         
-        ht.put("type", new Word(){void execute(Stack<Value> S){
-        robot.forthValues.push(robot.getType());
-        }});
+        ht.put("type", (Execute) () -> {
+            robot.forthValues.push(robot.getType());
+        });
         
         //Action Keys
-        ht.put("turn!", new Word(){void execute(Stack<Value> S){
+        ht.put("turn!", (Execute) () -> {
             ScoutAI temp = (ScoutAI) robot;
-        temp.turn((int)robot.forthValues.pop());
-        }});
+            temp.turn((int)robot.forthValues.pop());
+        });
         
-        ht.put("move!", new Word(){void execute(Stack<Value> S){
+        ht.put("move!", (Execute) () -> {
             ScoutAI temp = (ScoutAI) robot;
-        temp.move();
-        }});
+            temp.move();
+        });
+        
         
         
         //Need to fix the robotAI shoot function first
-        ht.put("shoot!", null);
+        //ht.put("shoot!", null);
         
         
         
-        ht.put("check!", new Word(){void execute(Stack<Value> S){
+        ht.put("check!", new Execute(){public void execute(){
             ScoutAI temp = (ScoutAI) robot;
             Exception x = null;
             try{
@@ -352,47 +380,95 @@ public class WordTranslator {
         }});
         
         
-        ht.put("scan!", new Word(){void execute(Stack<Value> S){
+        
+        
+        ht.put("scan!", (Execute) () -> {
             ScoutAI temp = (ScoutAI) robot;
             robot.forthValues.push(temp.scan());
-        }});
+        });
         
         
-        ht.put("identify!", new Word(){void execute(Stack<Value> S){
+        ht.put("identify!", (Execute) () -> {
             int index = (int) robot.forthValues.pop();
             ScoutAI scaned = (ScoutAI)robot;
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getGang());
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getRange());
             //robot.forthValues.push(scaned.scannedRobotsList.get(index).getRelativeDirection());
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getHealthLeft());
-        }});
+        });
         
         
-        ht.put("send!", new Word(){void execute(Stack<Value> S){
+        ht.put("send!", (Execute) () -> {
             Value send = (Value) robot.forthValues.pop();
             String target = (String) robot.forthValues.pop();
-           // Iterator search = new Iterator(robot.board.)
-            
-        }});
+            // Iterator search = new Iterator(robot.board.)
+        });
         
         
-        ht.put("mesg?", null);
+        //ht.put("mesg?", null);
         
-        ht.put("recv!", null);
+        //ht.put("recv!", null);
         
 }
     
-    public Hashtable getHashTable(){
+    public HashMap<String, Execute> getHashMap(){
         return ht;
     }
     
     public void addStackValues(){
         
     }
+    public void executePlus(){
+           int var1 = (int)robot.forthValues.pop(); 
+           System.out.println("test1");
+           int var2 = (int)robot.forthValues.pop();
+           int var3;
+           System.out.println("test2");
+           var3 = var1 + var2;
+           System.out.println(var3);
+           robot.forthValues.push(var3);
+        }
     
-    public static void main(String [] args) {
+    
+    public static void main(String [] args) throws NoSuchMethodException {
         
+        Stack forthWords = new Stack();
+        //forthWords.push("1");
+        //forthWords.push("1");
+        forthWords.push("-");
+        ScoutAI scout1 = new ScoutAI("scout");
+        scout1.forthValues.push(1);
+        scout1.forthValues.push(1);
+       
+        WordTranslator translate = new WordTranslator(scout1, forthWords);
+        //translate.getHashMap().get(forthWords.pop());
+        HashMap<String, Execute> temp = translate.getHashMap();
+        temp.get("-").execute();
+         System.out.println(scout1.forthValues.pop());
         
+        /*
+        Interpreter interpret = new Interpreter();
+        JSONObject testRobot = new JSONObject();
+        ScoutAI scout1 = new ScoutAI("scout");
+        JSONArray list2 = new JSONArray();
+        list2.add("+");
+        testRobot.put("code", list2);
+        JSONObject testScript = new JSONObject();
+        testScript.put("script", testRobot);
+        System.out.println(testScript);
+        scout1.forthValues.push(1);
+        scout1.forthValues.push(2);
+        interpret.executeCode(testScript, scout1);
+     
+        System.out.println(scout1.forthValues.pop());
+        */
         
     }
+
+    @Override
+    public void execute() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }
