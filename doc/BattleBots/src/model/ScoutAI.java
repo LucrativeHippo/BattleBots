@@ -334,20 +334,72 @@ public class ScoutAI extends Scout {
                 {
                     return 0;
                 }
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            }    
+                else if((this.getHorizontalLocation()-3 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 8;
+                }
+                else if((this.getHorizontalLocation()-2 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 5;
+                }
+                else if((this.getHorizontalLocation()-1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 2;
+                }
+                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 1;
+                }
+                else if((this.getHorizontalLocation()+1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 1;
+                }
+                else if((this.getHorizontalLocation()+2 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 1;
+                }
+                else if((this.getHorizontalLocation()-3 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 7;
+                }
+                else if((this.getHorizontalLocation()-2 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 4;
+                }
+                else if((this.getHorizontalLocation()-1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 3;
+                }
+                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 2;
+                }
+                else if((this.getHorizontalLocation()+1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 2;
+                }
+                else if((this.getHorizontalLocation()-3 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+3 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 6;
+                }
+                else if((this.getHorizontalLocation()-2 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+3 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 5;
+                }
+                else if((this.getHorizontalLocation()-1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+3 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 4;
+                }
+                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+3 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    return 3;
+                }
+            }
             else
             {
                 System.out.println("there are no robots within your range.");
             }
+            return 0;
         }
         
         
