@@ -260,12 +260,43 @@ public class WordTranslator {
         
         
         
-        //Check coordinate system
-        ht.put("check!", null);
+        ht.put("check!", new Word(){void execute(Stack<Value> S){
+            ScoutAI temp = (ScoutAI) robot;
+            Exception x = null;
+            try{
+                if(temp.check((int)robot.forthValues.peek())){
+                    robot.forthValues.pop();
+                    robot.forthValues.push("EMPTY");
+                }
+                else{
+                    robot.forthValues.pop();
+                    robot.forthValues.push("OCCUPIED");
+                }
+            }
+            catch(Exception e){
+                x = e;
+            }
+            if( x != null){
+                robot.forthValues.pop();
+                robot.forthValues.push("OUT OF BOUNDS");
+            }
+        }});
         
-        ht.put("scan!", null);
         
-        ht.put("identify!", null);
+        ht.put("scan!", new Word(){void execute(Stack<Value> S){
+            ScoutAI temp = (ScoutAI) robot;
+            robot.forthValues.push(temp.scan());
+        }});
+        
+        
+        ht.put("identify!", new Word(){void execute(Stack<Value> S){
+            int index = (int) robot.forthValues.pop();
+            ScoutAI scaned = (ScoutAI)robot;
+            robot.forthValues.push(scaned.scannedRobotsList.get(index).getGang());
+            robot.forthValues.push(scaned.scannedRobotsList.get(index).getRange());
+            //robot.forthValues.push(scaned.scannedRobotsList.get(index).getRelativeDirection());
+            robot.forthValues.push(scaned.scannedRobotsList.get(index).getHealthLeft());
+        }});
         
         ht.put("send!", null);
         
