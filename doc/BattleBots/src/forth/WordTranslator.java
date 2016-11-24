@@ -269,8 +269,13 @@ public class WordTranslator {
         robot.forthValues.push(temp.pop());
         }});
         
-        //
-        ht.put("swap", null);
+        //This will swap the top two values on the stack
+        ht.put("swap", new Word(){void execute(Stack<Value> S){
+        Stack temp = new Stack();
+        temp.push(robot.forthValues.peek());
+        robot.forthValues.push(temp.pop());
+        }});
+        
         ht.put("rot", null);
         
         
