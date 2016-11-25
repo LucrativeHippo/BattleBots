@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Stack;
 
 import model.Game;
@@ -185,10 +187,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 		
 	}
         
-        public void createTeams(){
+        /**
+         * This function will generate all of the robots and their gangs with
+         * the given stack of robot codes given from the team selection page.
+         * It will then return an array of Robots all assigned and in the order
+         * of their place in a round.
+         * @return 
+         */
+        public Robot[] createTeams(){
             Stack humanGangs = new <Gang>Stack();
             Stack CMPTGangs = new <GangAI>Stack();
+            Robot array[] = new Robot[numPlayers*3];
             Interpreter assign = new Interpreter();
+            //For however many humans there are, generate the robots off of the 
+            //Stack of robot code and put them into a new Gang
             for ( int i = 0; i < numHumans; i++){
                 Scout temp1 = new Scout(assign.getRobotName(chosenRobotCodes.pop()));
                 Sniper temp2 = new Sniper(assign.getRobotName(chosenRobotCodes.pop()));
@@ -196,6 +208,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                 Gang humans = new Gang(temp1, temp2, temp3);
                 humanGangs.push(humans);
             }
+            //Similar to the for loop above, we will do the same except we will
+            //do it for computer controlled robots
             for ( int j = 0; j < (numPlayers - numHumans); j++){
                 ScoutAI temp11 = new ScoutAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
                 chosenRobotCodes.pop();
@@ -206,6 +220,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                 GangAI CMPT = new GangAI(temp11, temp21, temp31);
                 CMPTGangs.push(CMPT);
             }
+            //Depending on how many players there are, we will need to have the
+            //correct colors of teams avaliable to assign
             Stack<String> teams = new Stack<String>();
             if(numPlayers == 2){
                 teams.push("GREEN");
@@ -224,13 +240,38 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                 teams.push("ORANGE");
                 teams.push("RED");
             }
+            //Each gang will be assigned a color team and then added to a list
+            LinkedList<Robot> listOfRobots = new LinkedList();
             for(int k = 0; k < numPlayers; k++){
                 while(!humanGangs.empty()){
                     Gang toColor = (Gang) humanGangs.pop();
-                    
+                    toColor.setTeam(teams.pop());
+                    listOfRobots.addLast(toColor.getScoutRobot());
+                    listOfRobots.addLast(toColor.getSniperRobot());
+                    listOfRobots.addLast(toColor.getTankRobot());
+                }
+                while(!CMPTGangs.empty()){
+                    GangAI toColor2 = (GangAI) CMPTGangs.pop();
+                    toColor2.setTeam(teams.pop());
+                    listOfRobots.addLast(toColor2.getScout());
+                    listOfRobots.addLast(toColor2.getSniper());
+                    listOfRobots.addLast(toColor2.getTank());
                 }
             }
+            //We want the list of robots to be in the order of all scouts,
+            //followed by snipers, followed by tanks.
+            int count = 0;
+            while(!listOfRobots.isEmpty()){
+                array[count] =listOfRobots.removeFirst();
+                count = count + 3;
+                if(count > numPlayers*3){
+                    count = count%(numPlayers*3);
+                }
+            }
+            return array;
         }
+        
+        
         
         
         
