@@ -173,7 +173,7 @@ public class GameBoard {
        Scout robot1 = new Scout("scout");
        Tank robot2 = new Tank("tank");
        Sniper robot3 = new Sniper("sniper");
-       Gang redTeam = new Gang("Red", robot1, robot3, robot2);
+       Gang redTeam = new Gang(robot1, robot3, robot2);
        GameBoard game = new GameBoard(5);
        
        if(robot3 == null){

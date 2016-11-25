@@ -10,11 +10,13 @@ import model.Game;
 import model.GameInfo;
 import model.GameObserver;
 import model.Gang;
+import model.GangAI;
 import model.Robot;
 import model.RobotController;
 import model.Scout;
 import model.Sniper;
 import model.Tank;
+import org.json.simple.JSONObject;
 import view.View;
 
 public class GameController implements ActionListener, KeyListener, GameObserver{
@@ -34,8 +36,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     private int numPlayers = 6;
     private int numHumans = 0;
     
+    private Stack<JSONObject> chosenRobotCodes;
+    
 
     public void start() {
+        chosenRobotCodes = new Stack();
         view = new View(WIDTH, HEIGHT);
         view.showMainMenu(this); 
     }
@@ -175,22 +180,18 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	}
         
         public void createTeams(){
-            
-            Stack humanStack = new Stack();
-            Stack CPUplayerStack = new Stack();
-            
-            Scout scout = new Scout("scout");
-            Sniper sniper = new Sniper("sniper");
-            Tank tank = new Tank("Tank");
-            
-            Scout s2 = new Scout("scout2");
-            Sniper sniper2 = new Sniper("Sniper2");
-            Tank tank2 = new Tank("Tank2");
-            
+            Stack humanGangs = new <Gang>Stack();
+            Stack CMPTGangs = new <GangAI>Stack();
+            Interpreter assign = new Interpreter();
             for ( int i = 0; i < numHumans; i++){
-                Gang gang = new Gang("team", scout, sniper,tank);
+                Scout temp1 = new Scout(assign.getRobotName(chosenRobotCodes.pop()));
+                Sniper temp2 = new Sniper(assign.getRobotName(chosenRobotCodes.pop()));
+                Tank temp3 = new Tank(assign.getRobotName(chosenRobotCodes.pop()));
+                
             }
         }
+        
+        
         
         public static void main(String [] args){
         	GameController gc = new GameController();
