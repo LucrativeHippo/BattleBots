@@ -11,6 +11,7 @@ import java.util.ListIterator;
 import java.util.Stack;
 
 import model.Game;
+import model.GameBoard;
 import model.GameInfo;
 import model.GameObserver;
 import model.Gang;
@@ -276,6 +277,14 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             return listOfRobots;
         }
         
+        
+        public void setTeamPositions(GameBoard gameBoard){
+            if(gameBoard.getBoardSize() == 5){
+                //Iterator<Robot> iterate = gameBoard.robotList;
+                //
+            }
+        }
+        
         /**
          * This function will determine if the game is over; that either there
          * are no robots left in play or there is only robots from one team left 
@@ -297,6 +306,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                 }
             }
             return true;
+        }
+        
+        
+        public void play(GameBoard gameBoard){
+            
         }
         
         
