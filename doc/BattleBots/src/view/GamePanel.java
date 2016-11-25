@@ -47,17 +47,17 @@ public class GamePanel extends JPanel implements GameObserver{
                 Scout sc = new Scout("team");
                 sc.setType("Scout");
                 sc.setGang("GREEN");
-                gameBoard.spaces[4][5].robotList.add(sc);
+                gameBoard.spaces[4][3].robotList.add(sc);
                 
                 Sniper sniper = new Sniper("team");
                 sniper.setType("Sniper");
                 sniper.setGang("PURPLE");
-                gameBoard.spaces[4][6].robotList.add(sniper);
+                gameBoard.spaces[4][3].robotList.add(sniper);
                 
                 Tank t = new Tank("team");
                 t.setType("Tank");
                 t.setGang("ORANGE");
-                gameBoard.spaces[4][4].robotList.add(t);
+                gameBoard.spaces[4][3].robotList.add(t);
                 
 		setBackground(Color.WHITE);
 		addMouseListener(new MouseAdapter(){
@@ -129,7 +129,7 @@ public class GamePanel extends JPanel implements GameObserver{
                                                 gameBoard.spaces[i][j].drawHexWithRobot(gameBoard.spaces[i][j].robotList.get(k).getType(),g2, c, i,j, true, offset);
                                             }
                                             else
-                                                gameBoard.spaces[i][j].drawHexWithRobot( gameBoard.spaces[i][j].robotList.get(k).getType(),g2, c, i,j+1, false, offset);
+                                                gameBoard.spaces[i][j].drawHexWithRobot( gameBoard.spaces[i][j].robotList.get(k).getType(),g2, c, i,j, false, offset);
                                             offset+=8;
                                         }
                                         }
