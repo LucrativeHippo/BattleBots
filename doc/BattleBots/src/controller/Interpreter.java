@@ -158,7 +158,7 @@ public class Interpreter {
     
     
     //Checks if a string is an integer
-    boolean isInteger(String s){
+    public boolean isInteger(String s){
         int size = s.length();
 
     for (int i = 0; i < size; i++) {
@@ -172,7 +172,7 @@ public class Interpreter {
     }
     
     //Checks if a string is a boolean
-    boolean isBoolean(String s){
+    public boolean isBoolean(String s){
         return "true".equals(s)||"false".equals(s);
     }
     
@@ -330,7 +330,7 @@ public class Interpreter {
         //forthWords.push("1");
         //forthWords.push("1");
         forthWords.push("-");
-        ScoutAI scout1 = new ScoutAI("scout");
+        ScoutAI scout1 = new ScoutAI("scout", null);
         JSONArray test1 = new JSONArray();
         test1.add("1 1 +");
         test1.add("2 -");
@@ -354,6 +354,8 @@ public class Interpreter {
         test1.add("healthLeft");
         test1.add("range");
         test1.add("team");
+        test1.add("type");
+        test1.add("true if 1 1 + else 1 1 - then 1");
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
         testRobot.put("code", test1);

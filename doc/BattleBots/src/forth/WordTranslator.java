@@ -30,6 +30,7 @@ public class WordTranslator implements Execute{
     HashMap <String, Execute> ht;
     Robot robot;
     Stack forthCommands;
+    Interpreter interpreter;
     
     public WordTranslator(Robot robotAI, Stack commands) throws NoSuchMethodException{
     
@@ -220,25 +221,44 @@ public class WordTranslator implements Execute{
         //is associated with the else statement.  It will do the opposite if
         //the top of the stack is false
         ht.put("if", (Execute) () -> {
-            BoolValue var1 = (BoolValue) robot.forthValues.pop();
+            Boolean var1 = (boolean)robot.forthValues.pop();
             Stack ifCommands = new Stack();
-            if(var1.b == true ){
-                while(forthCommands.peek() != "else"){
-                    ifCommands.push(forthCommands.pop());
-                }
-                Stack orderedIfCommands = new Stack();
-                while(!ifCommands.empty()){
-                    orderedIfCommands.push(ifCommands.pop());
-                }
+            if(var1 == true ){
                 try {
-                    WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
+                    while(forthCommands.peek().toString().compareTo("else")!=0){
+                        System.out.println("hi");
+                        ifCommands.push(forthCommands.pop());
+                    }
+                    Stack orderedIfCommands2 = new Stack();
+                    while(!ifCommands.empty()){
+                        orderedIfCommands2.push(ifCommands.pop());
+                    }
+                    Stack orderedIfCommands = new Stack();
+                    while(!orderedIfCommands2.empty()){
+                        orderedIfCommands.push(orderedIfCommands2.pop());
+                    }
+                    Interpreter interpreter = new Interpreter();
+                    WordTranslator translate;
+                    translate = new WordTranslator(robot, orderedIfCommands2);
+                    while(!orderedIfCommands2.empty()){
+                        
+                        if(interpreter.isInteger((String)orderedIfCommands2.peek())){
+                            robot.forthValues.push(Integer.parseInt((String)orderedIfCommands2.pop()));
+                        }else if(interpreter.isBoolean((String)orderedIfCommands2.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands2.pop()));
+                        }else{
+                            translate.getHashMap().get(orderedIfCommands2.pop()).execute();
+                        }
+                        if(!orderedIfCommands2.empty()){
+                            System.out.println(robot.forthValues.peek());
+                        }}
+                    while(forthCommands.peek().toString().compareTo("then")!=0){
+                        forthCommands.pop();
+                    }
+                    forthCommands.pop();
                 } catch (NoSuchMethodException ex) {
                     Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                while(forthCommands.peek() != "then"){
-                    forthCommands.pop();
-                }
-                forthCommands.pop();
             }else{
                 while(forthCommands.peek() != "else"){
                     forthCommands.pop();
@@ -306,19 +326,19 @@ public class WordTranslator implements Execute{
         
         //Status keys
         ht.put("health", (Execute) () -> {
-            robot.forthValues.add(robot.getHealth());
+            robot.forthValues.push(robot.getHealth());
         });
         
         ht.put("healthLeft", (Execute) () -> {
-            robot.forthValues.add(robot.getHealthLeft());
+            robot.forthValues.push(robot.getHealthLeft());
         });
         
         ht.put("moves", (Execute) () -> {
-            robot.forthValues.add(robot.getMovement());
+            robot.forthValues.push(robot.getMovement());
         });
         
         ht.put("movesLeft", (Execute) () -> {
-            robot.forthValues.add(robot.getMovementLeft());
+            robot.forthValues.push(robot.getMovementLeft());
         });
         
         ht.put("attack", (Execute) () -> {
@@ -424,7 +444,7 @@ public class WordTranslator implements Execute{
         //forthWords.push("1");
         //forthWords.push("1");
         forthWords.push("-");
-        ScoutAI scout1 = new ScoutAI("scout");
+        ScoutAI scout1 = new ScoutAI("scout", null);
         scout1.forthValues.push(1);
         scout1.forthValues.push(1);
        
