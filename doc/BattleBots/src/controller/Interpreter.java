@@ -206,7 +206,7 @@ public class Interpreter {
         while(!medium.empty()){
             forthWords.add(medium.remove(0));
         }
-        System.out.println(forthWords.toString());
+        
         WordTranslator translate = new WordTranslator(robot, forthWords);
         while(!forthWords.empty()){ 
             if(this.isInteger((String)forthWords.peek())){
@@ -217,7 +217,7 @@ public class Interpreter {
                 translate.getHashMap().get(forthWords.pop()).execute();
             }
             if(!forthWords.empty()){
-                System.out.println(robot.forthValues.peek());
+                System.out.println("The top of the stack is " + robot.forthValues.peek());
             }
         }
     }
@@ -327,11 +327,11 @@ public class Interpreter {
     */
         
         Stack forthWords = new Stack();
-        //forthWords.push("1");
-        //forthWords.push("1");
+        
         forthWords.push("-");
         ScoutAI scout1 = new ScoutAI("scout", null);
         JSONArray test1 = new JSONArray();
+        /*
         test1.add("1 1 +");
         test1.add("2 -");
         test1.add("1 1 *");
@@ -355,7 +355,11 @@ public class Interpreter {
         test1.add("range");
         test1.add("team");
         test1.add("type");
+                
         test1.add("true if 1 1 + else 1 1 - then 1");
+        test1.add("false if 1 1 + else 1 1 - then 1");
+                */
+        test1.add("true if false if true if 5 5 + else 1 1 - then 1 + else 7 7 * then 2 - else 1 then 5 -");
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
         testRobot.put("code", test1);

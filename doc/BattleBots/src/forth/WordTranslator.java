@@ -223,34 +223,126 @@ public class WordTranslator implements Execute{
         ht.put("if", (Execute) () -> {
             Boolean var1 = (boolean)robot.forthValues.pop();
             Stack ifCommands = new Stack();
+            System.out.println("begin if");
             if(var1 == true ){
                 try {
-                    while(forthCommands.peek().toString().compareTo("else")!=0){
-                        System.out.println("hi");
+                    if(forthCommands.isEmpty()){
+                        System.out.println("empty");
+                    }
+                    while((forthCommands.peek().toString().compareTo("else")!=0)&&(forthCommands.peek().toString().compareTo("if")!=0)){
+                        
+                        
+                        ifCommands.push(forthCommands.pop());
+                        //
+                        //Testing
+                        System.out.println("Test 1:" + ifCommands.peek());
+                        //
+                        //
+                        
+                        
+                        
+                        
+                       
+                    }
+                    if(forthCommands.peek().toString().compareTo("if")==0){
+                            ifCommands.push(forthCommands.pop());
+                            
+                            System.out.println("is a " + ifCommands.peek());
+                        }
+                        
+                    System.out.println("hey");
+                    Stack orderedIfCommands = new Stack();
+                    while(!ifCommands.empty()){
+                        orderedIfCommands.push(ifCommands.pop());
+                        
+                    }
+                   
+                    Interpreter interpreter = new Interpreter();
+                    WordTranslator translate;
+                    translate = new WordTranslator(robot, commands);
+                    while(!orderedIfCommands.empty()){
+                        
+                        if(interpreter.isInteger((String)orderedIfCommands.peek())){
+                            robot.forthValues.push(Integer.parseInt((String)orderedIfCommands.pop()));
+                        }else if(interpreter.isBoolean((String)orderedIfCommands.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands.pop()));
+                        }else{
+                            System.out.println("recursion");
+                            translate.getHashMap().get(orderedIfCommands.pop()).execute();
+                        }
+                        if(!orderedIfCommands.empty()){
+                            //
+                            //Testing
+                            System.out.println("top of temp stack" + robot.forthValues.peek());
+                            //
+                            //
+                        }}
+                    while((forthCommands.peek().toString().compareTo("then")!=0)&&(forthCommands.peek().toString().compareTo("if")!=0)){
+                        //
+                        //Testing
+                        System.out.println(forthCommands.peek());
+                        //
+                        //
+                        forthCommands.pop();
+                        
+                    }
+                    System.out.println("end then loop");
+                    if(forthCommands.peek().toString().compareTo("then")==0){
+                    forthCommands.pop();
+                        Stack thenStack = new Stack();
+                        //while((forthCommands.peek().toString().compareTo(";")!=0)&&forthCommands.peek().toString().compareTo("until")!=0){
+                            
+                        //}
+                    
+                            //
+                            //
+                            //  CHECK THEN IN ROBOTS
+                            //
+                            //
+                            //
+                    }
+                } catch (NoSuchMethodException ex) {
+                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                try {
+                    int numIf = 0;
+                    while((forthCommands.peek().toString().compareTo("else") != 0)||(numIf!=0)){
+                        if(forthCommands.peek().toString().compareTo("if")==0){numIf=numIf+1;}
+                        if(forthCommands.peek().toString().compareTo("else")==0){numIf=numIf-1;}
+                        forthCommands.pop();
+                    }
+                    forthCommands.pop();
+                    while((forthCommands.peek().toString().compareTo("then") != 0)&&(forthCommands.peek().toString().compareTo("then") != 0)){
                         ifCommands.push(forthCommands.pop());
                     }
-                    Stack orderedIfCommands2 = new Stack();
-                    while(!ifCommands.empty()){
-                        orderedIfCommands2.push(ifCommands.pop());
-                    }
+                    if(forthCommands.peek().toString().compareTo("if")==0){
+                            ifCommands.push(forthCommands.pop());
+                            
+                            System.out.println("is a " + ifCommands.peek());
+                        }
                     Stack orderedIfCommands = new Stack();
-                    while(!orderedIfCommands2.empty()){
-                        orderedIfCommands.push(orderedIfCommands2.pop());
+                    while(!ifCommands.empty()){
+                        orderedIfCommands.push(ifCommands.pop());
                     }
                     Interpreter interpreter = new Interpreter();
                     WordTranslator translate;
-                    translate = new WordTranslator(robot, orderedIfCommands2);
-                    while(!orderedIfCommands2.empty()){
+                    translate = new WordTranslator(robot, orderedIfCommands);
+                    while(!orderedIfCommands.empty()){
                         
-                        if(interpreter.isInteger((String)orderedIfCommands2.peek())){
-                            robot.forthValues.push(Integer.parseInt((String)orderedIfCommands2.pop()));
-                        }else if(interpreter.isBoolean((String)orderedIfCommands2.peek())){
-                            robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands2.pop()));
+                        if(interpreter.isInteger((String)orderedIfCommands.peek())){
+                            robot.forthValues.push(Integer.parseInt((String)orderedIfCommands.pop()));
+                        }else if(interpreter.isBoolean((String)orderedIfCommands.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands.pop()));
                         }else{
-                            translate.getHashMap().get(orderedIfCommands2.pop()).execute();
+                            translate.getHashMap().get(orderedIfCommands.pop()).execute();
                         }
-                        if(!orderedIfCommands2.empty()){
-                            System.out.println(robot.forthValues.peek());
+                        if(!orderedIfCommands.empty()){
+                            //
+                            //Testing
+                            System.out.println("The top of the if statement is" + robot.forthValues.peek());
+                            //
+                            //
                         }}
                     while(forthCommands.peek().toString().compareTo("then")!=0){
                         forthCommands.pop();
@@ -259,24 +351,6 @@ public class WordTranslator implements Execute{
                 } catch (NoSuchMethodException ex) {
                     Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else{
-                while(forthCommands.peek() != "else"){
-                    forthCommands.pop();
-                }
-                forthCommands.pop();
-                while(forthCommands.peek() != "then"){
-                    ifCommands.push(forthCommands.pop());
-                }
-                Stack orderedIfCommands = new Stack();
-                while(!ifCommands.empty()){
-                    orderedIfCommands.push(ifCommands.pop());
-                }
-                try {
-                    WordTranslator translateIf = new WordTranslator(robot, ifCommands);//Just have to execute somehow
-                } catch (NoSuchMethodException ex) {
-                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                forthCommands.pop();
             }
         });
         
@@ -440,18 +514,8 @@ public class WordTranslator implements Execute{
     
     public static void main(String [] args) throws NoSuchMethodException {
         
-        Stack forthWords = new Stack();
-        //forthWords.push("1");
-        //forthWords.push("1");
-        forthWords.push("-");
-        ScoutAI scout1 = new ScoutAI("scout", null);
-        scout1.forthValues.push(1);
-        scout1.forthValues.push(1);
-       
-        WordTranslator translate = new WordTranslator(scout1, forthWords);
-        translate.getHashMap().get(forthWords.pop()).execute();
-         System.out.println(scout1.forthValues.pop());
-         
+        
+        
          
         
         /*
