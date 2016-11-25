@@ -2,6 +2,7 @@ package model;
 
 import forth.Word;
 import java.io.IOException;
+import static java.lang.Math.abs;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -319,10 +320,6 @@ public class ScoutAI extends Scout {
                 {
                     return 0;
                 }
-                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
-                {
-                    return 0;
-                }
                 else if((this.getHorizontalLocation()+1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
                 {
                     return 0;
@@ -403,13 +400,25 @@ public class ScoutAI extends Scout {
                 return 0;
             }
         
-        /*
+           
+        
+        
         public int getRangeOfEnemy(int index){
             Robot tmp = this.scannedRobotsList.get(index);
-            if(tmp != null)
-            {
+            int distance = 0;
+             if(tmp != null)
+             {
                 
+               if(abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation()) >  abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation());
                 }
-           */ 
-
-}
+                else
+                {
+                    distance = abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation());
+                }
+             }
+            return distance;
+        }
+  
+ }
