@@ -18,8 +18,9 @@ public class ScoutAI extends Scout {
         private int damageTaken;
         public LinkedList<Robot> scannedRobotsList;
 	
-	public ScoutAI(String name) {
+	public ScoutAI(String name, JSONObject code) {
             super(name);
+            instructionCode = code;
             this.forthValues = new Stack();
             this.mailBox = new Stack();
             this.setMovement(3);

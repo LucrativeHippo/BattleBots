@@ -15,8 +15,9 @@ public class SniperAI extends Sniper{
         private int damageTaken;
         public LinkedList<Robot> scannedRobotsList;
 	
-	public SniperAI(String name) {
+	public SniperAI(String name, JSONObject code) {
             super(name);
+            instructionCode = code;
             this.forthValues = new Stack();
             this.mailBox = new Stack();
             this.setMovement(2);

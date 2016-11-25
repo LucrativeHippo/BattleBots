@@ -14,8 +14,11 @@ import model.GangAI;
 import model.Robot;
 import model.RobotController;
 import model.Scout;
+import model.ScoutAI;
 import model.Sniper;
+import model.SniperAI;
 import model.Tank;
+import model.TankAI;
 import org.json.simple.JSONObject;
 import view.View;
 
@@ -187,8 +190,17 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                 Scout temp1 = new Scout(assign.getRobotName(chosenRobotCodes.pop()));
                 Sniper temp2 = new Sniper(assign.getRobotName(chosenRobotCodes.pop()));
                 Tank temp3 = new Tank(assign.getRobotName(chosenRobotCodes.pop()));
-                
+                Gang humans = new Gang(temp1, temp2, temp3);
+                humanGangs.push(humans);
             }
+            for ( int j = 0; j < (numPlayers - numHumans); j++){
+                ScoutAI temp11 = new ScoutAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                SniperAI temp21 = new SniperAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                TankAI temp31 = new TankAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                GangAI humans = new GangAI(temp11, temp21, temp31);
+                humanGangs.push(humans);
+            }
+            
         }
         
         

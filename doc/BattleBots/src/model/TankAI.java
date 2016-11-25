@@ -15,8 +15,9 @@ public class TankAI extends Tank{
         private int damageTaken;
         public LinkedList<Robot> scannedRobotsList;
 	
-	public TankAI(String name) {
+	public TankAI(String name, JSONObject code) {
             super(name);
+            instructionCode = code;
             this.forthValues = new Stack();
             this.mailBox = new Stack();
             this.setMovement(1);
