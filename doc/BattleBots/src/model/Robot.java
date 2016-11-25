@@ -347,6 +347,11 @@ public class Robot {
                 }
 	}
 	
+        /**
+         * This function will take in a character input to determine which
+         * direction a robot will move in
+         * @param relativeDirection 
+         */
 	public void move(char relativeDirection ){
             if(this.getMovementLeft()>0){
                 if(relativeDirection == 'd'){

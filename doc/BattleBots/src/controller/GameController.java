@@ -280,8 +280,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         
         public void setTeamPositions(GameBoard gameBoard){
             if(gameBoard.getBoardSize() == 5){
-                //Iterator<Robot> iterate = gameBoard.robotList;
-                //
+                Iterator<Robot> iterate = gameBoard.robotList.iterator();
+                
             }
         }
         

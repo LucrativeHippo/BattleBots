@@ -9,9 +9,8 @@ import java.util.LinkedList;
 public class GameBoard {
 	
 	public Hex[][] spaces;
-	Robot robotArray[];
-        LinkedList<Robot> robotList;
-        LinkedList<Robot> deadRobotsList;
+        public LinkedList<Robot> robotList;
+        public LinkedList<Robot> deadAliveList;
 	
 	private int numHumans;
 	private int numPlayers;
