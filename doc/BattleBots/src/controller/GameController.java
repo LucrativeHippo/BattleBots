@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 import java.util.Stack;
 
 import model.Game;
@@ -40,6 +41,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     private int numHumans = 0;
     
     private Stack<JSONObject> chosenRobotCodes;
+    
+    private List<Robot> robotTurnOrder;
     
 
     public void start() {
@@ -195,12 +198,38 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             }
             for ( int j = 0; j < (numPlayers - numHumans); j++){
                 ScoutAI temp11 = new ScoutAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                chosenRobotCodes.pop();
                 SniperAI temp21 = new SniperAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                chosenRobotCodes.pop();
                 TankAI temp31 = new TankAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
-                GangAI humans = new GangAI(temp11, temp21, temp31);
-                humanGangs.push(humans);
+                chosenRobotCodes.pop();
+                GangAI CMPT = new GangAI(temp11, temp21, temp31);
+                CMPTGangs.push(CMPT);
             }
-            
+            Stack<String> teams = new Stack<String>();
+            if(numPlayers == 2){
+                teams.push("GREEN");
+                teams.push("RED");
+            }
+            else if(numPlayers == 3){
+                teams.push("BLUE");
+                teams.push("YELLOW");
+                teams.push("RED");
+            }
+            else{
+                teams.push("PURPLE");
+                teams.push("BLUE");
+                teams.push("GREEN");
+                teams.push("YELLOW");
+                teams.push("ORANGE");
+                teams.push("RED");
+            }
+            for(int k = 0; k < numPlayers; k++){
+                while(!humanGangs.empty()){
+                    Gang toColor = (Gang) humanGangs.pop();
+                    
+                }
+            }
         }
         
         
