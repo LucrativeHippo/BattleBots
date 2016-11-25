@@ -42,12 +42,55 @@ public class Hex {
 
 	}
 	public void drawHex(Graphics2D graphics, Color color){
-		graphics.setColor(Color.WHITE);
+		graphics.setColor(Color.GREEN);
 		graphics.fillPolygon(hexagon);
 		graphics.setColor(Color.black);
 		graphics.drawPolygon(hexagon);
 	}
-	
+        
+        public void drawHexWithRobot(String s, Graphics2D graphics, Color color, int row, int column, boolean isEven, int offset){
+            if ("Scout".equals(s))
+                drawHexWithScout(graphics, color, row, column, isEven, offset);
+            
+            if ("Sniper".equals(s))
+                drawHexWithSniper(graphics, color, row, column, isEven, offset);
+            
+            if ("Tank".equals(s))
+                drawHexWithTank(graphics, color, row, column, isEven, offset);
+            
+  
+        }
+        
+        public void drawHexWithScout(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
+                graphics.setColor(color);
+                if(isEven)
+                    graphics.fillOval(row*h + r  ,column*52  + r + r+ offset,r , r );
+                else
+                    graphics.fillOval(row*h + r + r,column*52 + r +r + offset,r , r );
+		graphics.setColor(Color.BLACK);
+		graphics.drawPolygon(hexagon);            
+        }
+        
+        public void drawHexWithSniper(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
+                graphics.setColor(color);
+                if(isEven)
+                    graphics.fillRoundRect(row*h + r  ,column*52  + r + r,r , r ,16,16);
+                else
+                    graphics.fillRoundRect(row*h + r + r,column*52 + r +r + offset,r , r, 16,16 );
+		graphics.setColor(Color.BLACK);
+		graphics.drawPolygon(hexagon);            
+        }
+
+        public void drawHexWithTank(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
+                graphics.setColor(color);
+                if(isEven)
+                    graphics.fillRect(row*h + r  ,column*52  + r + r + offset,r , r );
+                else
+                    graphics.fillRect(row*h + r + r,column*52 + r +r + offset,r , r );
+		graphics.setColor(Color.BLACK);
+		graphics.drawPolygon(hexagon);            
+        }
+
 	public static Point PointAtHex(int mousex, int mousey) {
 		Point p = new Point(-1,-1);
 		mousex -= border;

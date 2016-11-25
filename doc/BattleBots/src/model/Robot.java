@@ -275,7 +275,7 @@ public class Robot {
 	public void setGang(String gang) {
 		this.gang = gang;
 	}
-	
+        
         /**
          * This function returns a string of the robot's name
          * @return String name
