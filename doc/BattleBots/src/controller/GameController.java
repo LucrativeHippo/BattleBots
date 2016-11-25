@@ -4,12 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Stack;
 
 import model.Game;
 import model.GameInfo;
 import model.GameObserver;
+import model.Gang;
 import model.Robot;
 import model.RobotController;
+import model.Scout;
+import model.Sniper;
+import model.Tank;
 import view.View;
 
 public class GameController implements ActionListener, KeyListener, GameObserver{
@@ -165,8 +170,27 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	@Override
 	public void gameChanged() {
 		// TODO Auto-generated method stub
+         
 		
 	}
+        
+        public void createTeams(){
+            
+            Stack humanStack = new Stack();
+            Stack CPUplayerStack = new Stack();
+            
+            Scout scout = new Scout("scout");
+            Sniper sniper = new Sniper("sniper");
+            Tank tank = new Tank("Tank");
+            
+            Scout s2 = new Scout("scout2");
+            Sniper sniper2 = new Sniper("Sniper2");
+            Tank tank2 = new Tank("Tank2");
+            
+            for ( int i = 0; i < numHumans; i++){
+                Gang gang = new Gang("team", scout, sniper,tank);
+            }
+        }
         
         public static void main(String [] args){
         	GameController gc = new GameController();
