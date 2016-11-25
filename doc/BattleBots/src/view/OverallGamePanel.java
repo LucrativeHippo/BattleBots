@@ -37,11 +37,11 @@ public class OverallGamePanel extends JPanel{
 		southButtons.add(Box.createVerticalGlue());
 		southButtons.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
-		JLabel labe = new JLabel("                         " );
+		/*JLabel labe = new JLabel("                         " );
 		labe.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
 		labe.setForeground(Color.BLACK);
 		labe.setAlignmentX(Component.CENTER_ALIGNMENT);
-		southButtons.add(labe);
+		southButtons.add(labe);*/
 		
 		JButton helpButton = new JButton(" Help");
 		helpButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
@@ -71,11 +71,11 @@ public class OverallGamePanel extends JPanel{
 		right.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		right.setBorder(BorderFactory.createLineBorder(Color.black));
 		
-		JLabel label = new JLabel("                         " );
+		/*JLabel label = new JLabel("                         " );
 		label.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
 		label.setForeground(Color.BLACK);
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
-		right.add(label);
+		right.add(label);*/
 
 		
 		add(southButtons);

@@ -51,7 +51,7 @@ public class Hex {
 	public static Point PointAtHex(int mousex, int mousey) {
 		Point p = new Point(-1,-1);
 		mousex -= border;
-		mousey -= (border+50);
+		mousey -= (border+(50));
                 System.out.println("MOUSE X: " + mousex);
                 System.out.println("MOUSE Y: " + mousey);
 		int row = (int) (mousey / (s+t));
@@ -59,20 +59,40 @@ public class Hex {
 		int column = (int) ((mousex - (row%2)*r)/h);
 		int dy = mousey - row*(s+t);
 		int dx = mousex - (column*h);
+                
+                boolean rowIsOdd = row % 2 == 1;
                 System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
                 if(mousex < 0 || mousey < -15) return p;
                 if (mousex - (row%2)*r < 0) return p;
-		if(row%2==0){
+                if(dy > s){
+                    return p;
+                }
+                /*
+                if (dy < (-(t/r) * dx) + t) // LEFT edge
+        {
+            row--;
+            if (!rowIsOdd)
+                column--;
+        }
+    else if (dy < ((t/r) * dx) - t) // RIGHT edge
+        {
+            row--;
+            if (rowIsOdd)
+                column++;
+        }
+		/*if(row%2==0){
+                        //If we click on the right side of the Hex
 			if(dx  > r){
-				if(dy * t/r > dx - r){
-					row--;
+                                //If we are clicking in the 
+				if((dy-r) * (t/r) < dx - r){
+					//row++;
 				}
 			}
                         else if(dx < r){
-//				if((t-dy)*t/r < dx){
-//					row--;
-//					column++;
-//				}
+				if((t-r-dy)*(t/r) > dx){
+					//row++;
+					//column--;
+				}
 			}
 		}
 		else{
@@ -88,7 +108,7 @@ public class Hex {
 				//	row--;
 				//}
 			}
-		}
+		}*/
 		System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
 		p.x=column;
 		p.y=row;
