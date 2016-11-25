@@ -208,18 +208,18 @@ public class Interpreter {
         }
         System.out.println(forthWords.toString());
         WordTranslator translate = new WordTranslator(robot, forthWords);
-        while(!forthWords.empty()){
-            
-        if(this.isInteger((String)forthWords.peek())){
-            robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
-        }else if(this.isBoolean((String)forthWords.peek())){
-            robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
-        }else{
-            translate.getHashMap().get(forthWords.pop()).execute();
+        while(!forthWords.empty()){ 
+            if(this.isInteger((String)forthWords.peek())){
+                robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
+            }else if(this.isBoolean((String)forthWords.peek())){
+                robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
+            }else{
+                translate.getHashMap().get(forthWords.pop()).execute();
+            }
+            if(!forthWords.empty()){
+                System.out.println(robot.forthValues.peek());
+            }
         }
-        if(!forthWords.empty()){
-        System.out.println(robot.forthValues.peek());
-        }}
     }
     
     
