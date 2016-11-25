@@ -7,11 +7,10 @@ public class GangAI {
 	private SniperAI sniper;
 	private TankAI tank;
 	
-	public GangAI(String team, ScoutAI scout, SniperAI sniper, TankAI tank) {
-		this.team = team;
-//		scout = new Scout();
-//		sniper = new Sniper();
-//		tank = new Tank();
+	public GangAI(ScoutAI scout1, SniperAI sniper1, TankAI tank1) {
+		scout = scout1;
+		sniper = sniper1;
+		tank = tank1;
 		
 	}
 	public String getTeam() {

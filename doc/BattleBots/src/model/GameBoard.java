@@ -173,7 +173,7 @@ public class GameBoard {
        Scout robot1 = new Scout("scout");
        Tank robot2 = new Tank("tank");
        Sniper robot3 = new Sniper("sniper");
-       Gang redTeam = new Gang("Red", robot1, robot3, robot2);
+       Gang redTeam = new Gang(robot1, robot3, robot2);
        GameBoard game = new GameBoard(5);
        
        if(robot3 == null){
@@ -196,9 +196,9 @@ public class GameBoard {
        System.out.println(robot3.getHealthLeft() + "sniper");
        
        
-       ScoutAI robot4 = new ScoutAI("scoutAI");
-       TankAI robot5 = new TankAI("tankAI");
-       SniperAI robot6 = new SniperAI("sniperAI");
+       ScoutAI robot4 = new ScoutAI("scoutAI", null);
+       TankAI robot5 = new TankAI("tankAI", null);
+       SniperAI robot6 = new SniperAI("sniperAI", null);
        
        game.spaces[3][3].robotList.add(robot4);
        game.spaces[3][3].robotList.add(robot5);

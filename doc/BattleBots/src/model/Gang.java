@@ -3,15 +3,14 @@ package model;
 public class Gang {
 	private String team;
 	private int numRobots;
-	private Scout scout;
-	private Sniper sniper;
-	private Tank tank;
+	private Scout scoutRobot;
+	private Sniper sniperRobot;
+	private Tank tankRobot;
 	
-	public Gang(String team, Scout scout, Sniper sniper, Tank tank) {
-		this.team = team;
-//		scout = new Scout();
-//		sniper = new Sniper();
-//		tank = new Tank();
+	public Gang(Scout scout, Sniper sniper, Tank tank) {
+		scoutRobot = scout;
+		sniperRobot = sniper;
+		tankRobot = tank;
 		
 	}
 	public String getTeam() {
