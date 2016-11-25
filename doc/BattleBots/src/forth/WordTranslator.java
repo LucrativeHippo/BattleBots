@@ -65,12 +65,9 @@ public class WordTranslator implements Execute{
         //This will deal with "+" for addition
         ht.put("+", (Execute) () -> {
             int var1 = (int)robot.forthValues.pop();
-            System.out.println("test1");
             int var2 = (int)robot.forthValues.pop();
             int var3;
-            System.out.println("test2");
             var3 = var1 + var2;
-            System.out.println(var3);
             robot.forthValues.push(var3);
         });
       
@@ -126,7 +123,7 @@ public class WordTranslator implements Execute{
         
         //This will deal with "=", pushing a boolean on the stack
         ht.put("=", (Execute) () -> {
-            int var1 = (int)robot.forthValues.pop();
+           int var1 = (int)robot.forthValues.pop();
             int var2 = (int)robot.forthValues.pop();
             Boolean var3;
             if(var1 == var2){
@@ -139,7 +136,7 @@ public class WordTranslator implements Execute{
         
         //This will deal with "<>", pushing a boolean on the stack
         ht.put("<>", (Execute) () -> {
-            int var1 = (int)robot.forthValues.pop();
+           int var1 = (int)robot.forthValues.pop();
             int var2 = (int)robot.forthValues.pop();
             Boolean var3;
             if(var1 != var2){
@@ -152,7 +149,7 @@ public class WordTranslator implements Execute{
         
         //This will deal with "=>", pushing a boolean on the stack
         ht.put("=>", (Execute) () -> {
-            int var1 = (int)robot.forthValues.pop();
+           int var1 = (int)robot.forthValues.pop();
             int var2 = (int)robot.forthValues.pop();
             Boolean var3;
             if(var1 > var2){
@@ -165,7 +162,7 @@ public class WordTranslator implements Execute{
         
         //This will deal with ">", pushing a boolean on the stack
         ht.put(">", (Execute) () -> {
-            int var1 = (int)robot.forthValues.pop();
+           int var1 = (int)robot.forthValues.pop();
             int var2 = (int)robot.forthValues.pop();
             Boolean var3;
             if(var1 >= var2){
@@ -296,9 +293,10 @@ public class WordTranslator implements Execute{
         
         //This will swap the top two values on the stack
         ht.put("swap", (Execute) () -> {
-            Stack temp = new Stack();
-            temp.push(robot.forthValues.peek());
-            robot.forthValues.push(temp.pop());
+            Object temp1 = robot.forthValues.pop();
+            Object temp2 = robot.forthValues.pop();
+            robot.forthValues.push(temp1);
+            robot.forthValues.push(temp2);
         });
         
         
@@ -418,16 +416,6 @@ public class WordTranslator implements Execute{
     public void addStackValues(){
         
     }
-    public void executePlus(){
-           int var1 = (int)robot.forthValues.pop(); 
-           System.out.println("test1");
-           int var2 = (int)robot.forthValues.pop();
-           int var3;
-           System.out.println("test2");
-           var3 = var1 + var2;
-           System.out.println(var3);
-           robot.forthValues.push(var3);
-        }
     
     
     public static void main(String [] args) throws NoSuchMethodException {
@@ -441,10 +429,10 @@ public class WordTranslator implements Execute{
         scout1.forthValues.push(1);
        
         WordTranslator translate = new WordTranslator(scout1, forthWords);
-        //translate.getHashMap().get(forthWords.pop());
-        HashMap<String, Execute> temp = translate.getHashMap();
-        temp.get("-").execute();
+        translate.getHashMap().get(forthWords.pop()).execute();
          System.out.println(scout1.forthValues.pop());
+         
+         
         
         /*
         Interpreter interpret = new Interpreter();

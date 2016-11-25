@@ -16,6 +16,7 @@ import model.Robot;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import forth.Word;
+import model.ScoutAI;
 /**
  *
  * @author mkp003
@@ -154,6 +155,29 @@ public class Interpreter {
         return (int)temp.get("moved");
     }
     
+    
+    
+    //Checks if a string is an integer
+    boolean isInteger(String s){
+        int size = s.length();
+
+    for (int i = 0; i < size; i++) {
+        if (!Character.isDigit(s.charAt(i))) {
+            return false;
+        }
+    }
+
+    return size > 0;
+    
+    }
+    
+    //Checks if a string is a boolean
+    boolean isBoolean(String s){
+        return "true".equals(s)||"false".equals(s);
+    }
+    
+    
+    
     /**
      * This function is responsible for executing the forth code associated with
      * with a given robot during it's turn.
@@ -161,7 +185,7 @@ public class Interpreter {
      * @param robot Robot associated with the code
      */
     public void executeCode(JSONObject instructionCode, Robot robot) throws NoSuchMethodException{
-        Stack initalfourthWords = new Stack();
+        Stack initialfourthWords = new Stack();
         JSONObject temp = (JSONObject)instructionCode.get("script");
         List commands = (List)temp.get("code");
         int lines = commands.size();
@@ -171,23 +195,42 @@ public class Interpreter {
            String[] commandArray = line.split("\\s+");
            int x = commandArray.length;
            for(int j = 0; j < x; j++){
-               initalfourthWords.add(commandArray[j]);
+               initialfourthWords.add(commandArray[j]);
            }
         }
-        
-        Stack forthWords = new Stack();
-        while(!initalfourthWords.empty()){
-            forthWords.add((Word)initalfourthWords.remove(0));
+        Stack medium = new Stack();
+        while(!initialfourthWords.empty()){
+            medium.push(initialfourthWords.pop());
         }
+        Stack forthWords = new Stack();
+        while(!medium.empty()){
+            forthWords.add(medium.remove(0));
+        }
+        System.out.println(forthWords.toString());
         WordTranslator translate = new WordTranslator(robot, forthWords);
-        translate.getHashMap().get(forthWords.pop()).execute();
-        
+        while(!forthWords.empty()){
+            
+        if(this.isInteger((String)forthWords.peek())){
+            robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
+        }else if(this.isBoolean((String)forthWords.peek())){
+            robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
+        }else{
+            translate.getHashMap().get(forthWords.pop()).execute();
+        }
+        if(!forthWords.empty()){
+        System.out.println(robot.forthValues.peek());
+        }}
     }
     
     
     
+    
+    
+    
     //Here we will test the functions associated with the Interpreter
-    public static void main(String [] args) {
+    public static void main(String [] args) throws NoSuchMethodException {
+       
+        /*
         JSONObject testRobot = new JSONObject();
         testRobot.put("team", "A5");
         testRobot.put("class", "Scout");
@@ -281,6 +324,47 @@ public class Interpreter {
         list.add(" dup 1 shoot! leave ");
         list.add(" then 1 + dup 5 > ");
         list.add(" until drop ; ");
-    }
+    */
+        
+        Stack forthWords = new Stack();
+        //forthWords.push("1");
+        //forthWords.push("1");
+        forthWords.push("-");
+        ScoutAI scout1 = new ScoutAI("scout");
+        JSONArray test1 = new JSONArray();
+        test1.add("1 1 +");
+        test1.add("2 -");
+        test1.add("1 1 *");
+        test1.add("2 /mod");
+        test1.add("<");
+        test1.add("1 0 >");
+        test1.add("0 0 =");
+        test1.add("0 1 =>");
+        test1.add("0 1 <=");
+        test1.add("0 0 <>");
+        test1.add("true false and");
+        test1.add("true false or");
+        test1.add("false invert");
+        test1.add("1 2 3 drop drop drop");
+        test1.add("true dup 1 dup");
+        test1.add("true false swap swap swap");
+        test1.add("health");
+        test1.add("moves");
+        test1.add("movesLeft");
+        test1.add("healthLeft");
+        test1.add("range");
+        test1.add("team");
+        Interpreter interpret = new Interpreter();
+        JSONObject testRobot = new JSONObject();
+        testRobot.put("code", test1);
+        JSONObject testScript = new JSONObject();
+        testScript.put("script", testRobot);
+        
+        interpret.executeCode(testScript, scout1);
+        System.out.println(scout1.forthValues.pop());
+       
+                
+                }
+              
     
 }
