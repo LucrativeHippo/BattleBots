@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -190,11 +191,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         /**
          * This function will generate all of the robots and their gangs with
          * the given stack of robot codes given from the team selection page.
-         * It will then return an array of Robots all assigned and in the order
-         * of their place in a round.
-         * @return 
+         * It will then return a Linked list of Robots all assigned and in the 
+         * order of their place in a round.
+         * @return LinkedList of robots in play
          */
-        public Robot[] createTeams(){
+        public LinkedList<Robot> createTeams(){
             Stack humanGangs = new <Gang>Stack();
             Stack CMPTGangs = new <GangAI>Stack();
             Robot array[] = new Robot[numPlayers*3];
@@ -268,7 +269,34 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     count = count%(numPlayers*3);
                 }
             }
-            return array;
+            listOfRobots.clear();
+            for(int l = 0; l < (numPlayers*3); l++){
+                listOfRobots.add(array[l]);
+            }
+            return listOfRobots;
+        }
+        
+        /**
+         * This function will determine if the game is over; that either there
+         * are no robots left in play or there is only robots from one team left 
+         * in play; a boolean of true or false will be returned
+         * @param AliveRobotList
+         * @return True if the game is over, false otherwise
+         */
+        public boolean isGameOver(LinkedList<Robot> AliveRobotList){
+            if(AliveRobotList.isEmpty()){//Are there no robots in play?
+                return true;
+            }
+            Iterator<Robot> iterate = AliveRobotList.iterator();
+            String firstColor = iterate.next().getGang();
+            while(iterate.hasNext()){
+                //If there are any robots that have a different color than the
+                //First robot in the list, then the game is not over
+                if(firstColor.compareTo(iterate.next().getGang()) != 0){
+                    return false;
+                }
+            }
+            return true;
         }
         
         
