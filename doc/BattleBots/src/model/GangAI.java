@@ -30,6 +30,9 @@ public class GangAI {
          */
 	public void setTeam(String team) {
 		this.team = team;
+                this.scout.setGang(team);
+                this.sniper.setGang(team);
+                this.tank.setGang(team);
 	}
         
         /**

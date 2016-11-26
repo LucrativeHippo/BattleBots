@@ -30,6 +30,9 @@ public class Gang {
          */
 	public void setTeam(String team) {
 		this.team = team;
+                this.scoutRobot.setGang(team);
+                this.sniperRobot.setGang(team);
+                this.tankRobot.setGang(team);
 	}
         
         /**

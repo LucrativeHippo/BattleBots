@@ -24,6 +24,7 @@ import model.Robot;
 import model.Scout;
 import model.Sniper;
 import model.Tank;
+import static controller.GameController.gameController;
 
 
 public class GamePanel extends JPanel implements GameObserver{
@@ -44,7 +45,10 @@ public class GamePanel extends JPanel implements GameObserver{
 			gameBoard = new GameBoard(7);
 		}
                 
-                Scout sc = new Scout("team");
+                gameController.createTeams(gameBoard);
+                gameController.setTeamPositions(gameBoard);
+                
+                /*Scout sc = new Scout("team");
                 sc.setType("Scout");
                 sc.setGang("GREEN");
                 sc.setHorizontalLocation(5);
@@ -68,7 +72,7 @@ public class GamePanel extends JPanel implements GameObserver{
                 t.setGang("ORANGE");
                 t.setHorizontalLocation(4);
                 t.setVerticalLocation(3);
-                gameBoard.spaces[4][3].robotList.add(t);
+                gameBoard.spaces[4][3].robotList.add(t);*/
                 
                 
                 

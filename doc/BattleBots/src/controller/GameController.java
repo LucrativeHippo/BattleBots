@@ -294,10 +294,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     listOfRobots.addLast(toColor.getScoutRobot());
                     listOfRobots.addLast(toColor.getSniperRobot());
                     listOfRobots.addLast(toColor.getTankRobot());
-//                    System.out.println("Robots  "+ listOfRobots.pop().getVerticalLocation());
-//                    System.out.println("Robots  "+ listOfRobots.pop().getVerticalLocation());
-//                    System.out.println("Robots  "+ listOfRobots.pop().getVerticalLocation());
-//                    System.out.println("Size: " + humanGangs.size());
                 }
                 while(!CMPTGangs.empty()){
                     GangAI toColor2 = (GangAI) CMPTGangs.pop();
@@ -318,12 +314,12 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     count = (numPlayers*3)%count;
                 }
             }
-            System.out.println(array[0].getGang());
-            System.out.println(array[1].getGang());
-            System.out.println(array[2].getGang());
-            System.out.println(array[3].getGang());
-            System.out.println(array[4].getGang());
-            System.out.println(array[5].getGang());
+            System.out.println(array[0].getGang()+ "Is the color");
+            //System.out.println(array[1].getGang()+ "Is the color");
+            System.out.println(array[2].getGang() + "Is the color");
+            System.out.println(array[3].getGang()+ "Is the color");
+            System.out.println(array[4].getGang()+ "Is the color");
+            System.out.println(array[5].getGang()+ "Is the color");
             listOfRobots.clear();
             for(int l = 0; l < (numPlayers*3); l++){
                 listOfRobots.add(array[l]);
