@@ -22,7 +22,9 @@ public class ScoutAI extends Scout {
             super(name);
             instructionCode = code;
             this.forthValues = new Stack();
-            this.mailBox = new Stack();
+            this.sniperMailBox = new Stack();
+            this.scoutMailBox = new Stack();
+            this.tankMailBox = new Stack();
             this.setMovement(3);
             this.setDamage(1);
             this.setRange(2);

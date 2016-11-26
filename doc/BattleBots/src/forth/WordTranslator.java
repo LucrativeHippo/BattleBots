@@ -476,19 +476,58 @@ public class WordTranslator implements Execute{
         
         //Action Keys
         ht.put("turn!", (Execute) () -> {
-            ScoutAI temp = (ScoutAI) robot;
-            temp.turn((int)robot.forthValues.pop());
+            if(robot.getType().compareTo("SNIPER")==0){
+                SniperAI temp = (SniperAI) robot;
+                temp.turn((int)robot.forthValues.pop());
+            }
+             if(robot.getType().compareTo("SCOUT")==0){
+                ScoutAI temp = (ScoutAI) robot;
+                temp.turn((int)robot.forthValues.pop());
+            }
+              if(robot.getType().compareTo("TANK")==0){
+                TankAI temp = (TankAI) robot;
+                temp.turn((int)robot.forthValues.pop());
+            }
+            
         });
         
         ht.put("move!", (Execute) () -> {
-            ScoutAI temp = (ScoutAI) robot;
-            temp.move();
+            if(robot.getType().compareTo("SNIPER")==0){
+                SniperAI temp = (SniperAI) robot;
+                temp.move();
+            }
+             if(robot.getType().compareTo("SCOUT")==0){
+                ScoutAI temp = (ScoutAI) robot;
+                temp.move();
+             }
+                
+              if(robot.getType().compareTo("TANK")==0){
+                TankAI temp = (TankAI) robot;
+                temp.move();
+              
+              }
         });
         
-        
-        
-        //Need to fix the robotAI shoot function first
-        //ht.put("shoot!", null);
+        ht.put("shoot!", (Execute)  () -> {
+            int range = (int)robot.forthValues.pop();
+            int direction = (int)robot.forthValues.pop();
+            
+            if(robot.getType().compareTo("SNIPER")==0){
+                SniperAI temp = (SniperAI) robot;
+                //temp.shoot(direction, range);
+            }
+             if(robot.getType().compareTo("SCOUT")==0){
+                ScoutAI temp = (ScoutAI) robot;
+                //temp.shoot(direction, range);
+             }
+                
+              if(robot.getType().compareTo("TANK")==0){
+                TankAI temp = (TankAI) robot;
+                //temp.shoot(direction, range);
+              
+              }
+            
+        });
         
         
         

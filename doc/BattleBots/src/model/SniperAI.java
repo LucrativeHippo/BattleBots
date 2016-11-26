@@ -19,7 +19,9 @@ public class SniperAI extends Sniper{
             super(name);
             instructionCode = code;
             this.forthValues = new Stack();
-            this.mailBox = new Stack();
+            this.sniperMailBox = new Stack();
+            this.scoutMailBox = new Stack();
+            this.tankMailBox = new Stack();
             this.setMovement(2);
             this.setDamage(2);
             this.setRange(3);

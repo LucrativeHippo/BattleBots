@@ -19,7 +19,9 @@ public class TankAI extends Tank{
             super(name);
             instructionCode = code;
             this.forthValues = new Stack();
-            this.mailBox = new Stack();
+            this.sniperMailBox = new Stack();
+            this.scoutMailBox = new Stack();
+            this.tankMailBox = new Stack();
             this.setMovement(1);
             this.setDamage(3);
             this.setRange(1);
