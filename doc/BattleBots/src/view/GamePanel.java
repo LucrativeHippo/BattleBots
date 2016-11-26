@@ -45,33 +45,35 @@ public class GamePanel extends JPanel implements GameObserver{
 			gameBoard = new GameBoard(7);
 		}
                 
-//                gameBoard.robotList = gameController.createTeams(gameBoard);
-//                gameController.setTeamPositions(gameBoard);
-//                gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
-                
-                Scout sc = new Scout("team");
-                sc.setType("SCOUT");
-                sc.setGang("GREEN");
-                sc.setHorizontalLocation(5);
-                sc.setVerticalLocation(5);
-                sc.board = gameBoard;
+                gameBoard.robotList = gameController.createTeams(gameBoard);
+                gameController.setTeamPositions(gameBoard);
+                gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
+                gameBoard.setAliveList();
                 gameController.gameBoard = gameBoard;
-                gameBoard.spaces[5][5].robotList.add(sc);
-                System.out.println("COORDINATES: " + sc.getHorizontalLocation() +" " + sc.getVerticalLocation());
                 
-                gameinfo.setCurrentRobot(sc);
-                
-                
-                  for(int i = 0; i < size; i ++){
-                    for(int j = 0; j < size; j++){
-                        Sniper sn = new Sniper("team");
-                         sn.setType("SNIPER");
-                         sn.setGang("PURPLE");
-                        sn.setHorizontalLocation(i);
-                        sn.setVerticalLocation(j);
-                        gameBoard.spaces[i][j].robotList.add(sn);
-                    }
-                }
+//                Scout sc = new Scout("team");
+//                sc.setType("SCOUT");
+//                sc.setGang("GREEN");
+//                sc.setHorizontalLocation(5);
+//                sc.setVerticalLocation(5);
+//                sc.board = gameBoard;
+//                gameController.gameBoard = gameBoard;
+//                gameBoard.spaces[5][5].robotList.add(sc);
+//                System.out.println("COORDINATES: " + sc.getHorizontalLocation() +" " + sc.getVerticalLocation());
+//                
+//                gameinfo.setCurrentRobot(sc);
+//                
+//                
+//                  for(int i = 0; i < size; i ++){
+//                    for(int j = 0; j < size; j++){
+//                        Sniper sn = new Sniper("team");
+//                         sn.setType("SNIPER");
+//                         sn.setGang("PURPLE");
+//                        sn.setHorizontalLocation(i);
+//                        sn.setVerticalLocation(j);
+//                        gameBoard.spaces[i][j].robotList.add(sn);
+//                    }
+//                }
 //                Sniper sniper = new Sniper("team");
 //                sniper.setType("SNIPER");
 //                sniper.setGang("PURPLE");
@@ -98,9 +100,9 @@ public class GamePanel extends JPanel implements GameObserver{
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                              //gameinfo.getCurrentRobot().move('x');
-                              //System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
-                              //				repaint();
+                              gameinfo.getCurrentRobot().move('x');
+                              System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
+                              				repaint();
 
 				Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
                                 //System.out.println("MOUSE POSITION " + e.getX() + " "+ e.getY());
@@ -117,6 +119,7 @@ public class GamePanel extends JPanel implements GameObserver{
                                         }
 				repaint();
                                 }
+                                gameController.isGameOver(gameBoard.aliveList);
 			}
                    
 		});

@@ -34,11 +34,14 @@ public class WordTranslator implements Execute{
     Robot robot;
     Stack forthCommands;
     Interpreter interpreter;
+    int loopCount;
+    int loopMax;
     
     public WordTranslator(Robot robotAI, Stack commands) throws NoSuchMethodException{
     
         robot = robotAI;
         forthCommands = commands;
+        interpreter = new Interpreter();
         ht= new HashMap<String, Execute>();
         
         //ht.put("play", null);
@@ -328,7 +331,6 @@ public class WordTranslator implements Execute{
                     while(!ifCommands.empty()){
                         orderedIfCommands.push(ifCommands.pop());
                     }
-                    Interpreter interpreter = new Interpreter();
                     WordTranslator translate;
                     translate = new WordTranslator(robot, orderedIfCommands);
                     while(!orderedIfCommands.empty()){
@@ -357,28 +359,183 @@ public class WordTranslator implements Execute{
             }
         });
         
-        
-        
-        //Don't need these
-        //ht.put("else", null);//These are dealt with with the if statement.
-        //ht.put("then", null);
-        //ht.put("loop", null);
-        
-        //ht.put(":", null);
-        //ht.put(";", null);
-        
-        ht.put("variable", (Execute) () -> {
-            robot.forthValues.pop();
+
+        ht.put("do", (Execute)  () -> {
+            int temp1 = (int)robot.forthValues.pop();
+            int temp2 = (int)robot.forthValues.pop();
+            this.loopMax = temp2;
+            this.loopCount = temp1;
+             
+            Stack backwardsForth = new Stack();
+            while(forthCommands.peek().toString().compareTo("loop")!=0){
+                backwardsForth.push(forthCommands.pop());
+               
+            }
+            forthCommands.pop(); //pops the loop string
+            forthCommands.pop(); //pops the ;
+            
+            Stack loopForth = new Stack();
+            while(!backwardsForth.isEmpty()){
+                loopForth.push(backwardsForth.pop());
+            }
+            Stack temp = new Stack(); 
+            for(int i=temp1; i < temp2; i++){
+                while(!loopForth.empty()){
+                    
+                    try {
+                        WordTranslator translate;
+                        translate = new WordTranslator(robot, commands);
+                        if(interpreter.isInteger((String)loopForth.peek())){
+                            robot.forthValues.push(Integer.parseInt((String)loopForth.peek()));
+                            temp.push(loopForth.pop());
+                        }else if(interpreter.isBoolean((String)loopForth.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)loopForth.peek()));
+                            temp.push(loopForth.pop());
+                        }else{
+                            translate.getHashMap().get((String)loopForth.peek()).execute();
+                            temp.push(loopForth.pop());
+                        }
+                        if(!loopForth.empty()){
+                            
+                        }
+                    } catch (NoSuchMethodException ex) {
+                        Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+                while(!temp.isEmpty()){
+                    loopForth.push(temp.pop());
+                }
+            }
+            
+            
         });
         
-        //ht.put("?", null);
+        ht.put("begin", (Execute)  () -> {
+            boolean loopEnd = false;
+            Stack backwardsForth = new Stack();
+            while(forthCommands.peek().toString().compareTo("until")!=0){
+                backwardsForth.push(forthCommands.pop());
+               
+            }
+            forthCommands.pop(); //pops the loop string
+            forthCommands.pop(); //pops the ;
+            
+            Stack loopForth = new Stack();
+            while(!backwardsForth.isEmpty()){
+                loopForth.push(backwardsForth.pop());
+            }
+            Stack temp = new Stack(); 
+            while(loopEnd = false){
+                while(!loopForth.empty()){
+                    
+                    try {
+                        WordTranslator translate;
+                        translate = new WordTranslator(robot, commands);
+                        if(interpreter.isInteger((String)loopForth.peek())){
+                            robot.forthValues.push(Integer.parseInt((String)loopForth.peek()));
+                            temp.push(loopForth.pop());
+                        }else if(interpreter.isBoolean((String)loopForth.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)loopForth.peek()));
+                            temp.push(loopForth.pop());
+                        }else{
+                            translate.getHashMap().get((String)loopForth.peek()).execute();
+                            temp.push(loopForth.pop());
+                        }
+                        if(!loopForth.empty()){
+                            
+                        }
+                    } catch (NoSuchMethodException ex) {
+                        Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+                if(robot.forthValues.peek().toString().compareTo("true")==0){
+                    loopEnd = true;
+                }
+                while(!temp.isEmpty()){
+                    loopForth.push(temp.pop());
+                }
+            }
+            
+        });
+        
+        
+        
+        ht.put(":", (Execute) () -> {
+            String key = (String)forthCommands.pop();
+            //
+            //
+            System.out.println("beginning : dictionary");
+            //
+            //
+            Stack backwardsForth = new Stack();
+            while(forthCommands.peek().toString().compareTo(";")!=0){
+                backwardsForth.push(forthCommands.pop());
+               
+            }
+            forthCommands.pop();
+            Stack variableForth = new Stack();
+            while(!backwardsForth.isEmpty()){
+                variableForth.push(backwardsForth.pop());
+            }
+            
+            ht.put(key, (Execute)  () -> {
+                 Stack temp = new Stack(); 
+               
+                if(variableForth.isEmpty()){
+                    System.out.println("empty");
+                    robot.forthValues.push(0);
+                }else{
+                while(!variableForth.empty()){
+                    
+                    try {
+                        WordTranslator translate;
+                        translate = new WordTranslator(robot, commands);
+                        if(interpreter.isInteger((String)variableForth.peek())){
+                            robot.forthValues.push(Integer.parseInt((String)variableForth.peek()));
+                            temp.push(variableForth.pop());
+                        }else if(interpreter.isBoolean((String)variableForth.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)variableForth.peek()));
+                            temp.push(variableForth.pop());
+                        }else{
+                            translate.getHashMap().get((String)variableForth.peek()).execute();
+                            temp.push(variableForth.pop());
+                        }
+                        if(!variableForth.empty()){
+                            //
+                            //Testing
+                            System.out.println("The top of the variable stack is" + robot.forthValues.peek());
+                            //
+                            //
+                        }
+                    } catch (NoSuchMethodException ex) {
+                        Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+                while(!temp.isEmpty()){
+                    variableForth.push(temp.pop());
+                }
+                }});
+            
+           
+           
+        
+        
+        
+        });
+        
+        //Does nothing as the value is already pushed to the top of the stack
+        ht.put("?", (Execute)  () -> {
+            
+        });
         
 
 
 
 
-
-        //ht.put("!", null);
+        //
+        ht.put("!", (Execute)  () -> {
+            
+        });
         
         
         
