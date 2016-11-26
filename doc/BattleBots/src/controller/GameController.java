@@ -342,9 +342,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     System.out.println(gameBoard.spaces[0][4].robotList.size());
                     Iterator<Robot> iterate2 = gameBoard.spaces[0][4].robotList.iterator();
                     while(iterate2.hasNext()){
-                        System.out.println(iterate2.hasNext());
-                        iterate2.next().setVerticalLocation(4);
-                        System.out.println("Robot value assigned ");
+                        iterate2.next().setVerticalAndHorizontal(0, 4);
                     }
                     iterate2 = gameBoard.spaces[8][4].robotList.iterator();
                     while(iterate2.hasNext()){
@@ -477,14 +475,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         }
         
         
-        public void play(GameBoard gameBoard){
+        public void play(GameBoard gameBoard) throws NoSuchMethodException{
             while(!isGameOver(gameBoard.deadAliveList)){
                 Iterator<Robot> turnIterate = gameBoard.deadAliveList.iterator();
                 currentRobot = turnIterate.next();
                 if(!currentRobot.isHuman()){
+                    ScoutAI temp = (ScoutAI) currentRobot;
+                    JSONObject code = temp.getCode();
                     Interpreter interpret = new Interpreter();
-                    interpret.executeCode((ScoutAI) currentRobot., currentRobot);
+                    interpret.executeCode(code, temp);
                 }
+                else{
+                    
+                }
+                
             }
             
         }
