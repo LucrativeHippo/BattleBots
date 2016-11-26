@@ -184,15 +184,15 @@ public class GameBoard {
            //throw new RuntimeException();
        }
        else{
-       game.spaces[5][5].robotList.add(robot3);
-       game.spaces[5][5].robotList.add(robot2);
-       game.spaces[5][5].robotList.add(robot1);
+       game.spaces[7][5].robotList.add(robot3);
+       game.spaces[0][5].robotList.add(robot2);
+       game.spaces[0][5].robotList.add(robot1);
        robot1.board = game;
        robot2.board = game;
        robot3.board = game;
        System.out.println(game.spaces[5][5].robotList.size());
        //Testing the gameBoard Class
-       robot1.shoot(game.spaces[5][5]);
+       robot1.shoot(game.spaces[7][5]);
        }
        System.out.println(robot2.getHealthLeft() + "tank");
        System.out.println(robot1.getHealthLeft() + "scout");

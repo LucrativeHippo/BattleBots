@@ -287,70 +287,119 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             Iterator<Robot> iterate = gameBoard.robotList.iterator();
             if(gameBoard.getBoardSize() == 5){
                 if(numPlayers == 2){
-                    //RED team
+                    //RED then GREEN repeat
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[8][4].robotList.add(iterate.next());
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[8][4].robotList.add(iterate.next());
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
-                    //GREEN team
                     gameBoard.spaces[8][4].robotList.add(iterate.next());
-                    gameBoard.spaces[8][4].robotList.add(iterate.next());
-                    gameBoard.spaces[8][4].robotList.add(iterate.next());
+                    Iterator<Robot> iterate2 = gameBoard.spaces[0][4].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(0, 4);
+                    }
+                    iterate2 = gameBoard.spaces[8][4].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(8, 4);
+                    }
                 }
                 else{//number of players must be 3
-                    //RED team
+                    //RED the YELLOW the BLUE
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[6][0].robotList.add(iterate.next());
+                    gameBoard.spaces[6][8].robotList.add(iterate.next());
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[6][0].robotList.add(iterate.next());
+                    gameBoard.spaces[6][8].robotList.add(iterate.next());
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
-                    //YELLOW team
                     gameBoard.spaces[6][0].robotList.add(iterate.next());
-                    gameBoard.spaces[6][0].robotList.add(iterate.next());
-                    gameBoard.spaces[6][0].robotList.add(iterate.next());
-                    //BLUE team
                     gameBoard.spaces[6][8].robotList.add(iterate.next());
-                    gameBoard.spaces[6][8].robotList.add(iterate.next());
-                    gameBoard.spaces[6][8].robotList.add(iterate.next());
+                    Iterator<Robot> iterate2 = gameBoard.spaces[0][4].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(0, 4);
+                    }
+                    iterate2 = gameBoard.spaces[6][0].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(6, 0);
+                    }
+                    iterate2 = gameBoard.spaces[6][8].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(6, 8);
+                    }
                 }
             }
             else{
                 if(numPlayers == 3){
-                    //RED team
+                    //RED the YELLOW the BLUE
                     gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
                     gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
                     gameBoard.spaces[0][6].robotList.add(iterate.next());
-                    //YELLOW team
                     gameBoard.spaces[9][0].robotList.add(iterate.next());
-                    gameBoard.spaces[9][0].robotList.add(iterate.next());
-                    gameBoard.spaces[9][0].robotList.add(iterate.next());
-                    //BLUE team
                     gameBoard.spaces[9][12].robotList.add(iterate.next());
-                    gameBoard.spaces[9][12].robotList.add(iterate.next());
-                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    Iterator<Robot> iterate2 = gameBoard.spaces[0][6].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(0, 6);
+                    }
+                    iterate2 = gameBoard.spaces[9][0].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(9, 0);
+                    }
+                    iterate2 = gameBoard.spaces[9][12].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(9, 12);
+                    }
                 }
                 else{
-                    //RED team
+                    //RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE
+                    //scout
                     gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[3][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[12][6].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    gameBoard.spaces[3][12].robotList.add(iterate.next());
+                    //Sniper
                     gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[3][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[12][6].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    gameBoard.spaces[3][12].robotList.add(iterate.next());
+                    //Tank
                     gameBoard.spaces[0][6].robotList.add(iterate.next());
-                    //ORANGE team
                     gameBoard.spaces[3][0].robotList.add(iterate.next());
-                    gameBoard.spaces[3][0].robotList.add(iterate.next());
-                    gameBoard.spaces[3][0].robotList.add(iterate.next());
-                    //YELLOW team
                     gameBoard.spaces[9][0].robotList.add(iterate.next());
-                    gameBoard.spaces[9][0].robotList.add(iterate.next());
-                    gameBoard.spaces[9][0].robotList.add(iterate.next());
-                    //GREEN team
                     gameBoard.spaces[12][6].robotList.add(iterate.next());
-                    gameBoard.spaces[12][6].robotList.add(iterate.next());
-                    gameBoard.spaces[12][6].robotList.add(iterate.next());
-                    //BLUE team
                     gameBoard.spaces[9][12].robotList.add(iterate.next());
-                    gameBoard.spaces[9][12].robotList.add(iterate.next());
-                    gameBoard.spaces[9][12].robotList.add(iterate.next());
-                    //PURPLE team
                     gameBoard.spaces[3][12].robotList.add(iterate.next());
-                    gameBoard.spaces[3][12].robotList.add(iterate.next());
-                    gameBoard.spaces[3][12].robotList.add(iterate.next());
+                    Iterator<Robot> iterate2 = gameBoard.spaces[0][6].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(0, 6);
+                    }
+                    iterate2 = gameBoard.spaces[3][0].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(3, 0);
+                    }
+                    iterate2 = gameBoard.spaces[9][0].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(9, 0);
+                    }
+                    iterate2 = gameBoard.spaces[12][6].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(12, 6);
+                    }
+                    iterate2 = gameBoard.spaces[9][12].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(9, 12);
+                    }
+                    iterate2 = gameBoard.spaces[3][12].robotList.iterator();
+                    while(iterate2.hasNext()){
+                        iterate2.next().setVerticalAndHorizontal(3, 12);
+                    }
                 }
             }
         }

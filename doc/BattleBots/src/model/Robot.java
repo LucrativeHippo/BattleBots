@@ -244,6 +244,16 @@ public class Robot {
 	public void setVerticalLocation(int verticalLocation) {
 		this.verticalLocation = verticalLocation;
 	}
+        
+        /**
+         * This function sets both the x and y positions of a robot
+         * @param x
+         * @param y 
+         */
+        public void setVerticalAndHorizontal(int x, int y){
+            this.setVerticalLocation(y);
+            this.setHorizontalLocation(x);
+        }
 	
         /**
          * This function returns the value of isTurn to determine if it is a 
@@ -336,7 +346,7 @@ public class Robot {
                 else if(space.isEmpty() == true){
                     return;//The space is empty
                 }
-                else if(!this.getRangeOfEnemy(space)){
+                else if(!this.isEnemyInRange(space)){
                     return;//Space is out of range
                 }
                 else{
@@ -355,7 +365,7 @@ public class Robot {
          * @param space
          * @return True if within range, false otherwise
          */
-        public boolean getRangeOfEnemy(Hex space){
+        public boolean isEnemyInRange(Hex space){
             int distance = 0;
                if(abs(this.getHorizontalLocation() - space.robotList.peek().getHorizontalLocation()) >  abs(this.getVerticalLocation() - space.robotList.peek().getVerticalLocation())){
                     distance = abs(this.getHorizontalLocation() - space.robotList.peek().getHorizontalLocation());
