@@ -198,6 +198,11 @@ public class GameBoard {
        System.out.println(robot1.getHealthLeft() + "scout");
        System.out.println(robot3.getHealthLeft() + "sniper");
        
+       System.out.println("Scout vert is" + robot1.getVerticalLocation() + "scout horz is" + robot1.getHorizontalLocation() );
+       
+       robot1.move('d');
+       System.out.println("Scout vert is" + robot1.getVerticalLocation() + "scout horz is" + robot1.getHorizontalLocation() );
+
        
        ScoutAI robot4 = new ScoutAI("scoutAI", null);
        TankAI robot5 = new TankAI("tankAI", null);

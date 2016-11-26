@@ -401,6 +401,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                         iterate2.next().setVerticalAndHorizontal(3, 12);
                     }
                 }
+                
             }
         }
         
