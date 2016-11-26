@@ -48,6 +48,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     private List<Robot> robotTurnOrder;
     
+    private GameBoard gameBoard; ////Need to set this
+    
 
     public void start() {
         chosenRobotCodes = new Stack();
@@ -196,7 +198,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
          * order of their place in a round.
          * @return LinkedList of robots in play
          */
-        public LinkedList<Robot> createTeams(){
+        public LinkedList<Robot> createTeams(GameBoard game){
             Stack humanGangs = new <Gang>Stack();
             Stack CMPTGangs = new <GangAI>Stack();
             Robot array[] = new Robot[numPlayers*3];
@@ -205,8 +207,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             //Stack of robot code and put them into a new Gang
             for ( int i = 0; i < numHumans; i++){
                 Scout temp1 = new Scout(assign.getRobotName(chosenRobotCodes.pop()));
+                temp1.setGameBoard(game);
                 Sniper temp2 = new Sniper(assign.getRobotName(chosenRobotCodes.pop()));
+                temp2.setGameBoard(game);
                 Tank temp3 = new Tank(assign.getRobotName(chosenRobotCodes.pop()));
+                temp3.setGameBoard(game);
                 Gang humans = new Gang(temp1, temp2, temp3);
                 humanGangs.push(humans);
             }

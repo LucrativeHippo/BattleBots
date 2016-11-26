@@ -44,6 +44,10 @@ public class Robot {
                 this.isHuman = true;
 	}
         
+        public void setGameBoard(GameBoard game){
+            this.board = game;
+        }
+        
         public void setPreviousX(int previousX) {
             this.previousX = previousX;
         }
@@ -405,11 +409,17 @@ public class Robot {
                     }
                 }
                 if(relativeDirection == 'z'){
-                    if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1]!=null){
+                    if(this.getVerticalLocation()%2 == 0){
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
                         this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                    }
+                    else{//different for odd rows
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
