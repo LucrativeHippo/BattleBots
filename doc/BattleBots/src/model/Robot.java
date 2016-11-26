@@ -418,8 +418,8 @@ public class Robot {
                     }
                     else{//different for odd rows
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
-                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
+                        this.setHorizontalLocation(this.getVerticalLocation()-1);
                         this.setMovementLeft(this.getMovementLeft()-1);
                     }
                 }
