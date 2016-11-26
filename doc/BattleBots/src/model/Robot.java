@@ -63,6 +63,15 @@ public class Robot {
         public int getPreviousY() {
             return previousY;
         }
+        
+        /**
+         * This function will return true or false depending if the current 
+         * robot is human or not
+         * @return True if human, false otherwise
+         */
+        public boolean isHuman(){
+            return isHuman;
+        }
 
         /**
          * This function returns the distance a specific robot can travel

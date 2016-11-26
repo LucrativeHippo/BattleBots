@@ -480,8 +480,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         public void play(GameBoard gameBoard){
             while(!isGameOver(gameBoard.deadAliveList)){
                 Iterator<Robot> turnIterate = gameBoard.deadAliveList.iterator();
-                Robot currentPlayer = turnIterate.next();
-               // if(currentPlayer.)
+                currentRobot = turnIterate.next();
+                if(currentRobot.)
             }
             
         }
