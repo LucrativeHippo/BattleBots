@@ -47,7 +47,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     private int numPlayers = 6;
     private int numHumans = 0;
     
-    private Stack<JSONObject> chosenRobotCodes;
+    public static Stack<JSONObject> chosenRobotCodes;
     
     private List<Robot> robotTurnOrder;
     
@@ -57,8 +57,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     public void start() {
         chosenRobotCodes = new Stack();
         view = new View(WIDTH, HEIGHT);
-        view.showMainMenu(this); 
-        //These robot codes are for testing, must remove at some point
         JSONObject testRobot = new JSONObject();
         testRobot.put("team", "A5");
         testRobot.put("class", "Scout");
@@ -89,6 +87,9 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         chosenRobotCodes.push(testScript);
         chosenRobotCodes.push(testScript);
         chosenRobotCodes.push(testScript);
+        view.showMainMenu(this); 
+        //These robot codes are for testing, must remove at some point
+        
     }
     
     
