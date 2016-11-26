@@ -409,7 +409,7 @@ public class Robot {
                     }
                 }
                 if(relativeDirection == 'z'){
-                    if(this.getVerticalLocation()%2 == 0){
+                    if(this.getHorizontalLocation()%2 == 0){
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
                         this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
