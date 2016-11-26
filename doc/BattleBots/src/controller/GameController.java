@@ -277,11 +277,81 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             return listOfRobots;
         }
         
-        
+        /**
+         * This function takes in the gameBoard and then places all the teams 
+         * into the correct starting spaces on the board based on the number
+         * of players and the size of the board
+         * @param gameBoard 
+         */
         public void setTeamPositions(GameBoard gameBoard){
+            Iterator<Robot> iterate = gameBoard.robotList.iterator();
             if(gameBoard.getBoardSize() == 5){
-                Iterator<Robot> iterate = gameBoard.robotList.iterator();
-                
+                if(numPlayers == 2){
+                    //RED team
+                    gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    //GREEN team
+                    gameBoard.spaces[8][4].robotList.add(iterate.next());
+                    gameBoard.spaces[8][4].robotList.add(iterate.next());
+                    gameBoard.spaces[8][4].robotList.add(iterate.next());
+                }
+                else{//number of players must be 3
+                    //RED team
+                    gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    gameBoard.spaces[0][4].robotList.add(iterate.next());
+                    //YELLOW team
+                    gameBoard.spaces[6][0].robotList.add(iterate.next());
+                    gameBoard.spaces[6][0].robotList.add(iterate.next());
+                    gameBoard.spaces[6][0].robotList.add(iterate.next());
+                    //BLUE team
+                    gameBoard.spaces[6][8].robotList.add(iterate.next());
+                    gameBoard.spaces[6][8].robotList.add(iterate.next());
+                    gameBoard.spaces[6][8].robotList.add(iterate.next());
+                }
+            }
+            else{
+                if(numPlayers == 3){
+                    //RED team
+                    gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    //YELLOW team
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    //BLUE team
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                }
+                else{
+                    //RED team
+                    gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    gameBoard.spaces[0][6].robotList.add(iterate.next());
+                    //ORANGE team
+                    gameBoard.spaces[3][0].robotList.add(iterate.next());
+                    gameBoard.spaces[3][0].robotList.add(iterate.next());
+                    gameBoard.spaces[3][0].robotList.add(iterate.next());
+                    //YELLOW team
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    gameBoard.spaces[9][0].robotList.add(iterate.next());
+                    //GREEN team
+                    gameBoard.spaces[12][6].robotList.add(iterate.next());
+                    gameBoard.spaces[12][6].robotList.add(iterate.next());
+                    gameBoard.spaces[12][6].robotList.add(iterate.next());
+                    //BLUE team
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    gameBoard.spaces[9][12].robotList.add(iterate.next());
+                    //PURPLE team
+                    gameBoard.spaces[3][12].robotList.add(iterate.next());
+                    gameBoard.spaces[3][12].robotList.add(iterate.next());
+                    gameBoard.spaces[3][12].robotList.add(iterate.next());
+                }
             }
         }
         
