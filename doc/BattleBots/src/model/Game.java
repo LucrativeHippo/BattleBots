@@ -7,7 +7,7 @@ public class Game implements RobotController, GameInfo {
         public int boardSize;
         public int numPlayers;
         public int numHumans;
-
+        public Robot currentRobot;
 	
 	public Game(int width, int height){
 		
@@ -97,6 +97,16 @@ public class Game implements RobotController, GameInfo {
     @Override
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
+    }
+
+    @Override
+    public Robot getCurrentRobot() {
+        return this.currentRobot;
+    }
+
+    @Override
+    public void setCurrentRobot(Robot currentRobot) {
+        this.currentRobot = currentRobot;
     }
 
 }

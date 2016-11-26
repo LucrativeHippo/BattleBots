@@ -28,4 +28,8 @@ public interface GameInfo {
     
     public void setNumPlayers(int numPlayers);
     
+    public Robot getCurrentRobot();
+    
+    public void setCurrentRobot(Robot robot);
+    
 }

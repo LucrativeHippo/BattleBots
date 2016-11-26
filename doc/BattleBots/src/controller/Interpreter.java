@@ -17,6 +17,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import forth.Word;
 import model.ScoutAI;
+import model.SniperAI;
+import model.TankAI;
 /**
  *
  * @author mkp003
@@ -359,7 +361,10 @@ public class Interpreter {
         test1.add("true if 1 1 + else 1 1 - then 1");
         test1.add("false if 1 1 + else 1 1 - then 1");
                 */
-        test1.add("true if false if true if 5 5 + else 1 1 - then 1 + else 7 7 * then 2 - else 1 then 5 -");
+        //test1.add("true if false if true if 5 5 + else 1 1 - then 1 + else 7 7 * then 2 - else 1 then 5 -");
+        //Not sure how to test        
+        //test1.add(".\"hi\"");
+        test1.add("5 random 50 random");
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
         testRobot.put("code", test1);
