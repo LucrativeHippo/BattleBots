@@ -236,7 +236,7 @@ public class SniperAI extends Sniper{
             Robot tmp = this.scannedRobotsList.get(index);
             if(tmp != null)
             {
-            if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()-2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()-2 ==this.scannedRobotsList.get(index).getVerticalLocation()))
                 {
                     return 8;
                 }
@@ -316,9 +316,9 @@ public class SniperAI extends Sniper{
             else
             {
                 System.out.println("there are no robots within your range.");    
+                return 0;
             }
-            return 0;
-        }
+         }
          
          public int getRangeOfEnemy(int index){
             Robot tmp = this.scannedRobotsList.get(index);

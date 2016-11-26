@@ -391,7 +391,7 @@ public class ScoutAI extends Scout {
                 {
                     return 4;
                 }
-                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+3 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                else
                 {
                     return 3;
                 }
@@ -399,9 +399,9 @@ public class ScoutAI extends Scout {
             else
             {
                 System.out.println("there are no robots within your range.");
-            }
                 return 0;
             }
+        }
         
            
         
