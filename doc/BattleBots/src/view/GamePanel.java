@@ -82,7 +82,7 @@ public class GamePanel extends JPanel implements GameObserver{
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                              gameinfo.getCurrentRobot().move('z');
+                              gameinfo.getCurrentRobot().move('x');
                               System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
                               				repaint();
 
