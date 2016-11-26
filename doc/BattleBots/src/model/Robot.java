@@ -331,10 +331,13 @@ public class Robot {
         public void shoot(Hex space){
 		if(space == null){
                     System.out.println("The space is out of range");
-                    return;
+                    return;//The space does not exist
                 }
                 else if(space.isEmpty() == true){
-                    return;
+                    return;//The space is empty
+                }
+                else if(!this.getRangeOfEnemy(space)){
+                    return;//Space is out of range
                 }
                 else{
                     Iterator<Robot> robotIterator = space.robotList.iterator();
@@ -345,15 +348,25 @@ public class Robot {
                 }
 	}
         
+        
+        /**
+         * This function will determine if a given robot is within range of a
+         * given Hex space for it to be able to shoot at it
+         * @param space
+         * @return True if within range, false otherwise
+         */
         public boolean getRangeOfEnemy(Hex space){
-               if(abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation()) >  abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation()))
-                {
-                    distance = abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation());
+            int distance = 0;
+               if(abs(this.getHorizontalLocation() - space.robotList.peek().getHorizontalLocation()) >  abs(this.getVerticalLocation() - space.robotList.peek().getVerticalLocation())){
+                    distance = abs(this.getHorizontalLocation() - space.robotList.peek().getHorizontalLocation());
+                }else{
+                    distance = abs(this.getVerticalLocation() - space.robotList.peek().getVerticalLocation());
                 }
-                else
-                {
-                    distance = abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation());
-                }
+            if(distance <= this.getRange()){
+                return true;
+            }else{
+                return false;
+            }
         }
 	
         /**
