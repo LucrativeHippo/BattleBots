@@ -134,16 +134,16 @@ public class Hex {
 		Point p = new Point(-1,-1);
 		mousex -= border;
 		mousey -= (border+(50));
-                System.out.println("MOUSE X: " + mousex);
-                System.out.println("MOUSE Y: " + mousey);
+//                System.out.println("MOUSE X: " + mousex);
+//                System.out.println("MOUSE Y: " + mousey);
 		int row = (int) (mousey / (s+t));
-                System.out.println("S: " + s + " T: " + t + " r "+r + " h " + h);
+               // System.out.println("S: " + s + " T: " + t + " r "+r + " h " + h);
 		int column = (int) ((mousex - (row%2)*r)/h);
 		int dy = mousey - row*(s+t);
 		int dx = mousex - (column*h);
                 
                 boolean rowIsOdd = row % 2 == 1;
-                System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
+                //System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
                 if(mousex < 0 || mousey < -15) return p;
                 if (mousex - (row%2)*r < 0) return p;
                 if(dy > s){
@@ -191,7 +191,7 @@ public class Hex {
 				//}
 			}
 		}*/
-		System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
+		//System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
 		p.x=column;
 		p.y=row;
 		return p;

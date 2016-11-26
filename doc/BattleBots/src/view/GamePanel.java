@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -25,7 +26,7 @@ import model.Sniper;
 import model.Tank;
 
 
-public class GamePanel extends JPanel implements GameObserver, KeyListener{
+public class GamePanel extends JPanel implements GameObserver{
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,11 +47,13 @@ public class GamePanel extends JPanel implements GameObserver, KeyListener{
                 Scout sc = new Scout("team");
                 sc.setType("Scout");
                 sc.setGang("GREEN");
-                sc.setHorizontalLocation(4);
-                sc.setVerticalLocation(4);
-                gameBoard.spaces[4][4].robotList.add(sc);
+                sc.setHorizontalLocation(5);
+                sc.setVerticalLocation(5);
+                sc.board = gameBoard;
+                gameBoard.spaces[5][5].robotList.add(sc);
+                System.out.println("COORDINATES: " + sc.getHorizontalLocation() +" " + sc.getVerticalLocation());
+                
                 gameinfo.setCurrentRobot(sc);
-                System.out.println("scout x,y: " + gameinfo.getCurrentRobot().getHorizontalLocation() + "," + gameinfo.getCurrentRobot().getVerticalLocation());
                 
                 
                 Sniper sniper = new Sniper("team");
@@ -67,6 +70,8 @@ public class GamePanel extends JPanel implements GameObserver, KeyListener{
                 t.setVerticalLocation(3);
                 gameBoard.spaces[4][3].robotList.add(t);
                 
+                
+                
 //                System.out.println("CurrentRobot: " + gameinfo.getCurrentRobot().getName());
 //                System.out.println("scout damage: " + sc.getDamage());
 //                System.out.println("scout Health: " + sc.getHealthLeft());
@@ -76,7 +81,11 @@ public class GamePanel extends JPanel implements GameObserver, KeyListener{
 		setBackground(Color.WHITE);
 		addMouseListener(new MouseAdapter(){
 			@Override
-			public void mouseClicked(MouseEvent e) { 
+			public void mouseClicked(MouseEvent e) {
+                              gameinfo.getCurrentRobot().move('z');
+                              System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
+                              				repaint();
+
 				Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
                                 //System.out.println("MOUSE POSITION " + e.getX() + " "+ e.getY());
 				if (p.x < 0 || p.y < 0 || p.x >= size || p.y >= size) return;
@@ -93,8 +102,19 @@ public class GamePanel extends JPanel implements GameObserver, KeyListener{
 				repaint();
                                 }
 			}
-
+                   
 		});
+                addKeyListener(new KeyAdapter(){
+                    @Override
+                    public void keyPressed(KeyEvent ke){
+
+                        if (ke.getKeyCode() == KeyEvent.VK_A){
+                            gameinfo.getCurrentRobot().move('a');
+                        repaint();
+                        }
+
+                    }
+                });
 	}
         
 	@Override
@@ -162,19 +182,5 @@ public class GamePanel extends JPanel implements GameObserver, KeyListener{
 		}
 	}
 
-    @Override
-    public void keyTyped(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void keyReleased(KeyEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
         
 }
