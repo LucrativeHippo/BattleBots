@@ -238,6 +238,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             Stack CMPTGangs = new <GangAI>Stack();
             Robot array[] = new Robot[numPlayers*3];
             Interpreter assign = new Interpreter();
+            System.out.println("Humans: " + numHumans );
             //For however many humans there are, generate the robots off of the 
             //Stack of robot code and put them into a new Gang
             for ( int i = 0; i < numHumans; i++){
@@ -264,6 +265,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             }
             //Depending on how many players there are, we will need to have the
             //correct colors of teams avaliable to assign
+            
             Stack<String> teams = new Stack<String>();
             if(numPlayers == 2){
                 teams.push("GREEN");
@@ -286,11 +288,16 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             LinkedList<Robot> listOfRobots = new LinkedList();
             for(int k = 0; k < numPlayers; k++){
                 while(!humanGangs.empty()){
+                    System.out.println("Size: " + humanGangs.size());
                     Gang toColor = (Gang) humanGangs.pop();
                     toColor.setTeam(teams.pop());
                     listOfRobots.addLast(toColor.getScoutRobot());
                     listOfRobots.addLast(toColor.getSniperRobot());
                     listOfRobots.addLast(toColor.getTankRobot());
+//                    System.out.println("Robots  "+ listOfRobots.pop().getVerticalLocation());
+//                    System.out.println("Robots  "+ listOfRobots.pop().getVerticalLocation());
+//                    System.out.println("Robots  "+ listOfRobots.pop().getVerticalLocation());
+//                    System.out.println("Size: " + humanGangs.size());
                 }
                 while(!CMPTGangs.empty()){
                     GangAI toColor2 = (GangAI) CMPTGangs.pop();
@@ -304,15 +311,30 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             //followed by snipers, followed by tanks.
             int count = 0;
             while(!listOfRobots.isEmpty()){
-                array[count] =listOfRobots.removeFirst();
-                count = count + 3;
-                if(count > numPlayers*3){
-                    count = count%(numPlayers*3);
+                System.out.println(count);
+                array[count] =listOfRobots.pop();
+                count = count + numPlayers;
+                if(count >= numPlayers*3){
+                    count = (numPlayers*3)%count;
                 }
             }
+            System.out.println(array[0].getGang());
+            System.out.println(array[1].getGang());
+            System.out.println(array[2].getGang());
+            System.out.println(array[3].getGang());
+            System.out.println(array[4].getGang());
+            System.out.println(array[5].getGang());
             listOfRobots.clear();
             for(int l = 0; l < (numPlayers*3); l++){
                 listOfRobots.add(array[l]);
+            }
+            while(!listOfRobots.isEmpty()){
+                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
+                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
+                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
+                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
+                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
+                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
             }
             return listOfRobots;
         }
@@ -324,6 +346,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
          * @param gameBoard 
          */
         public void setTeamPositions(GameBoard gameBoard){
+            System.out.println("!!!!!!!!!"+gameBoard.robotList.peek().getDamage());
             Iterator<Robot> iterate = gameBoard.robotList.iterator();
             if(gameBoard.getBoardSize() == 5){
                 if(numPlayers == 2){
@@ -334,9 +357,12 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     gameBoard.spaces[8][4].robotList.add(iterate.next());
                     gameBoard.spaces[0][4].robotList.add(iterate.next());
                     gameBoard.spaces[8][4].robotList.add(iterate.next());
+                    System.out.println(gameBoard.spaces[0][4].robotList.size());
                     Iterator<Robot> iterate2 = gameBoard.spaces[0][4].robotList.iterator();
                     while(iterate2.hasNext()){
-                        iterate2.next().setVerticalAndHorizontal(0, 4);
+                        System.out.println(iterate2.hasNext());
+                        iterate2.next().setVerticalLocation(4);
+                        System.out.println("Robot value assigned ");
                     }
                     iterate2 = gameBoard.spaces[8][4].robotList.iterator();
                     while(iterate2.hasNext()){
