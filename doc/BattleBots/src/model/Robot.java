@@ -1,5 +1,6 @@
 package model;
 
+import static java.lang.Math.abs;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -16,7 +17,9 @@ public class Robot {
         
         public Stack forthValues;
         
-        public Stack mailBox;
+        public Stack scoutMailBox;
+        public Stack sniperMailBox;
+        public Stack tankMailBox;
 	
 	private int relativeDirection;
 	private int directionDimension;
@@ -338,14 +341,20 @@ public class Robot {
                         while(robotIterator.hasNext()){
                             Robot temp = robotIterator.next();
                             temp.recieveDamage(this.getDamage());
-                            if(temp.isHuman == false){
-                              //record damage dealt for AI and damage taken
-                              //
-                              //
-                            }
                         }
                 }
 	}
+        
+        public boolean getRangeOfEnemy(Hex space){
+               if(abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation()) >  abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation());
+                }
+                else
+                {
+                    distance = abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation());
+                }
+        }
 	
         /**
          * This function will take in a character input to determine which
