@@ -331,6 +331,11 @@ public class Robot {
                     this.healthLeft = this.healthLeft - damage;
                 }
 	}
+        
+        public void restartParameters(){
+            this.movementLeft = this.getMovement();
+            this.shotsLeft = 1;
+        }
 
         /**
          * This function returns a string of the robot's type
@@ -353,6 +358,7 @@ public class Robot {
          * @param space Hex space to be shot at
          */
         public void shoot(Hex space){
+            while(this.shotsLeft != 0){
 		if(space == null){
                     System.out.println("The space is out of range");
                     return;//The space does not exist
@@ -370,6 +376,7 @@ public class Robot {
                             temp.recieveDamage(this.getDamage());
                         }
                 }
+            }
 	}
         
         
