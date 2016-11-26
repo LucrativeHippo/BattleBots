@@ -128,8 +128,17 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "endTurn":{
-                        System.out.println("!_________" + gameController.gameBoard.aliveList );
-                       // gameInfo.setCurrentRobot(gameController.gameBoard.aliveList.iterator().next());
+                        //System.out.println("---------" + gameBoard.aliveList.getFirst().getGang());
+                        Iterator<Robot> iterate = gameController.gameBoard.aliveList.iterator();
+                        while(iterate.hasNext() && gameInfo.getCurrentRobot() != iterate.next()){
+                        }
+                        if (!iterate.hasNext() ){
+                            iterate = gameController.gameBoard.aliveList.iterator();
+                            gameInfo.setCurrentRobot(iterate.next());
+                        }
+                        else{
+                            gameInfo.setCurrentRobot(iterate.next());
+                        }
                         break;
                     }
                     case "help":{
