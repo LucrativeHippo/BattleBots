@@ -10,6 +10,8 @@ import java.util.Hashtable;
 import java.util.Stack;
 import model.Robot;
 import model.ScoutAI;
+import model.SniperAI;
+import model.TankAI;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import java.lang.reflect.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import forth.Execute;
+import java.util.Random;
 
 
 /**
@@ -369,9 +372,40 @@ public class WordTranslator implements Execute{
         });
         
         //ht.put("?", null);
+        
+
+
+
+
+
         //ht.put("!", null);
-        //ht.put(".", null);
-        //ht.put("random", null);
+        
+        
+        
+        
+        
+        
+        
+        ht.put(".", (Execute)  () -> {
+            String s = new String();
+            if(forthCommands.peek().toString().compareTo("\"")!=0){
+                System.out.println("There is no string");
+            }else{
+                forthCommands.pop();
+            while(forthCommands.peek().toString().compareTo("\"")!=0){
+            s = s.concat((String)forthCommands.pop());
+            }
+            System.out.println(s);
+            }
+        });
+        
+        //Generates a random number between 0 and the given integer
+        ht.put("random", (Execute)  () -> {
+            int temp1 = (int)robot.forthValues.pop();
+            Random randomNum = new Random();
+            int temp2 = randomNum.nextInt(temp1);
+            robot.forthValues.push(temp2);
+        });
         
         //This will just delete the element at the top of the stack
         ht.put("drop", (Execute) () -> {
@@ -394,8 +428,17 @@ public class WordTranslator implements Execute{
         });
         
         
-        
-        //ht.put("rot", null);
+        //Rotates the top 3 values of the stack
+        ht.put("rot", (Execute) () -> {
+            Object temp1 = robot.forthValues.pop();
+            Object temp2 = robot.forthValues.pop();
+            Object temp3 = robot.forthValues.pop();
+            robot.forthValues.push(temp2);
+            robot.forthValues.push(temp1);
+            robot.forthValues.push(temp3);
+            
+            
+        });
         
         
         //Status keys
@@ -489,17 +532,99 @@ public class WordTranslator implements Execute{
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getHealthLeft());
         });
         
-        
+        //Sends a message to a specified ally
         ht.put("send!", (Execute) () -> {
-            Value send = (Value) robot.forthValues.pop();
+            Boolean sent = false;
+            Object send = robot.forthValues.pop();
             String target = (String) robot.forthValues.pop();
-            // Iterator search = new Iterator(robot.board.)
+            Iterator<Robot> search = robot.board.deadAliveList.iterator();
+                while(search.hasNext()){
+                    Robot temp = search.next();
+                    if(temp.getName().compareTo(target)==0){
+                        if(robot.getType().compareTo("SNIPER")==0){
+                            if(temp.sniperMailBox.size()>6){
+                            System.out.println("mailbox is full");
+                            }else{
+                        
+                            temp.sniperMailBox.push(send);
+                            sent = true;
+                            }
+                        }else
+                        if(robot.getType().compareTo("SCOUT")==0){
+                            if(temp.scoutMailBox.size()>6){
+                            System.out.println("mailbox is full");
+                            }else{
+                        
+                            temp.scoutMailBox.push(send);
+                            sent = true;
+                            }
+                        }
+                        else if(robot.getType().compareTo("TANK")==0){
+                                if(temp.tankMailBox.size()>6){
+                                System.out.println("mailbox is full");
+                            }else{
+                        
+                                temp.tankMailBox.push(send);
+                                sent = true;
+                                }
+                            
+                            }
+                        }
+                }
+                robot.forthValues.push(sent);
+        });
+        
+        //Checks if the robot has mail from the a specific target and returns true if it does, false otherwise
+        ht.put("mesg?", (Execute)  () -> {
+            Boolean message = false; 
+            String target = (String) robot.forthValues.pop();
+            Iterator<Robot> search = robot.board.deadAliveList.iterator();
+                while(search.hasNext()){
+                    Robot temp = search.next();
+                    if(temp.getName().compareTo(target)==0){
+                        if(temp.getType().compareTo("SNIPER")==0){
+                            if(robot.sniperMailBox.size()!=0){
+                                message = true;
+                            }
+                        }
+                        if(temp.getType().compareTo("TANK")!=0){
+                            if(robot.tankMailBox.size()==0){
+                                message = true;
+                            }
+                        }
+                        if(temp.getType().compareTo("SCOUT")!=0){
+                            if(robot.scoutMailBox.size()==0){
+                                message = true;
+                            }
+                        }
+                    }
+                }
+                robot.forthValues.push(message);
+                
         });
         
         
-        //ht.put("mesg?", null);
-        
-        //ht.put("recv!", null);
+        //Puts the top mail item from a specified robot onto the stack
+        ht.put("recv!", (Execute)  () -> {
+            String target = (String) robot.forthValues.pop();
+            Iterator<Robot> search = robot.board.deadAliveList.iterator();
+                while(search.hasNext()){
+                    Robot temp = search.next();
+                    if(temp.getName().compareTo(target)==0){
+                        if(temp.getType().compareTo("SNIPER")==0){
+                            robot.forthValues.push(robot.sniperMailBox.pop());
+                        }
+                        if(temp.getType().compareTo("TANK")!=0){
+                            robot.forthValues.push(robot.tankMailBox.pop());
+                        }
+                        if(temp.getType().compareTo("SCOUT")!=0){
+                            robot.forthValues.push(robot.scoutMailBox.pop());
+                        }
+                    }
+                }
+              
+                
+        });
         
 }
     
