@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -10,7 +11,7 @@ public class GameBoard {
 	
 	public Hex[][] spaces;
         public LinkedList<Robot> robotList;
-        public LinkedList<Robot> deadAliveList;
+        public LinkedList<Robot> aliveList;
 	
 	private int numHumans;
 	private int numPlayers;
@@ -114,6 +115,14 @@ public class GameBoard {
 	public int getNumHumans() {
 		return numHumans;
 	}
+        
+        public void setAliveList(){
+            aliveList = new <Robot>LinkedList();
+            Iterator<Robot> iterate = robotList.iterator();
+            while(iterate.hasNext()){
+                aliveList.add(iterate.next());
+            }
+        }
 
         /**
          * This method is responsible for setting the number of human players 

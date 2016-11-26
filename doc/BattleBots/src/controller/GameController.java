@@ -51,7 +51,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     private List<Robot> robotTurnOrder;
     
-    private GameBoard gameBoard; ////Need to set this
+    public GameBoard gameBoard; ////Need to set this
     
 
     public void start() {
@@ -126,6 +126,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     case "quit":{
                             System.exit(0);
                             break;
+                    }
+                    case "endTurn":{
+                        System.out.println("!_________" + gameController.gameBoard.aliveList );
+                       // gameInfo.setCurrentRobot(gameController.gameBoard.aliveList.iterator().next());
+                        break;
                     }
                     case "help":{
                 	    view.showHelp(this, WIDTH, HEIGHT);
@@ -303,34 +308,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     listOfRobots.addLast(toColor2.getTank());
                 }
             }
+
             //We want the list of robots to be in the order of all scouts,
             //followed by snipers, followed by tanks.
             int count = 0;
             while(!listOfRobots.isEmpty()){
-                System.out.println(count);
                 array[count] =listOfRobots.pop();
                 count = count + numPlayers;
                 if(count >= numPlayers*3){
-                    count = (numPlayers*3)%count;
+                    count = count%((numPlayers*3)-1);
                 }
             }
-            System.out.println(array[0].getGang()+ "Is the color");
-            //System.out.println(array[1].getGang()+ "Is the color");
-            System.out.println(array[2].getGang() + "Is the color");
-            System.out.println(array[3].getGang()+ "Is the color");
-            System.out.println(array[4].getGang()+ "Is the color");
-            System.out.println(array[5].getGang()+ "Is the color");
             listOfRobots.clear();
             for(int l = 0; l < (numPlayers*3); l++){
                 listOfRobots.add(array[l]);
-            }
-            while(!listOfRobots.isEmpty()){
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
             }
             return listOfRobots;
         }
@@ -356,9 +347,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     System.out.println(gameBoard.spaces[0][4].robotList.size());
                     Iterator<Robot> iterate2 = gameBoard.spaces[0][4].robotList.iterator();
                     while(iterate2.hasNext()){
-                        System.out.println(iterate2.hasNext());
-                        iterate2.next().setVerticalLocation(4);
-                        System.out.println("Robot value assigned ");
+                        iterate2.next().setVerticalAndHorizontal(0, 4);
                     }
                     iterate2 = gameBoard.spaces[8][4].robotList.iterator();
                     while(iterate2.hasNext()){
@@ -491,11 +480,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         }
         
         
-        public void play(GameBoard gameBoard){
-            while(!isGameOver(gameBoard.deadAliveList)){
-                Iterator<Robot> turnIterate = gameBoard.deadAliveList.iterator();
-                Robot currentPlayer = turnIterate.next();
-               // if(currentPlayer.)
+        public void play(GameBoard gameBoard) throws NoSuchMethodException{
+            while(!isGameOver(gameBoard.aliveList)){
+                Iterator<Robot> turnIterate = gameBoard.aliveList.iterator();
+                currentRobot = turnIterate.next();
+                if(!currentRobot.isHuman()){
+                    ScoutAI temp = (ScoutAI) currentRobot;
+                    JSONObject code = temp.getCode();
+                    Interpreter interpret = new Interpreter();
+                    interpret.executeCode(code, temp);
+                }
+                else{
+                    
+                }
+                
             }
             
         }

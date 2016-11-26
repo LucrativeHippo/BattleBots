@@ -52,6 +52,16 @@ public class OverallGamePanel extends JPanel{
 		helpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		helpButton.setFocusPainted(false);
 		southButtons.add(helpButton);
+                
+                JButton endTurnButton = new JButton(" End Turn");
+                endTurnButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));
+                endTurnButton.setBackground(Color.BLACK);
+		endTurnButton.setForeground(Color.WHITE);
+		endTurnButton.setActionCommand("endTurn");
+		endTurnButton.addActionListener(alistener);
+		endTurnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		endTurnButton.setFocusPainted(false);
+		southButtons.add(endTurnButton);
 		
 		JButton quitButton = new JButton(" Quit ");
 		quitButton.setFont(new Font("Rockwell",Font.PLAIN, FONT_SIZE));

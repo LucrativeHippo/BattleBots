@@ -60,13 +60,13 @@ public class Hex {
          * @param offset offsets y coordinate if more than one robot on hex
          */
         public void drawHexWithRobot(String type, Graphics2D graphics, Color color, int row, int column, boolean isEven, int offset){
-            if ("Scout".equals(type))
+            if ("SCOUT".equals(type))
                 drawHexWithScout(graphics, color, row, column, isEven, offset);
             
-            if ("Sniper".equals(type))
+            if ("SNIPER".equals(type))
                 drawHexWithSniper(graphics, color, row, column, isEven, offset);
             
-            if ("Tank".equals(type))
+            if ("TANK".equals(type))
                 drawHexWithTank(graphics, color, row, column, isEven, offset);
             
   
@@ -83,10 +83,17 @@ public class Hex {
          */
         public void drawHexWithScout(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
                 graphics.setColor(color);
-                if(isEven)
+                if(isEven){
                     graphics.fillOval(row*h + r  ,column*52  + h + offset,r , r );
-                else
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawOval(row*h + r  ,column*52  + h + offset,r , r );
+                }
+
+                else{
                     graphics.fillOval(row*h + h,column*52 + h + offset,r , r );
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawOval(row*h + h,column*52 + h + offset,r , r );
+                }
 		graphics.setColor(Color.BLACK);
 		graphics.drawPolygon(hexagon);            
         }
@@ -103,10 +110,16 @@ public class Hex {
          */
         public void drawHexWithSniper(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
                 graphics.setColor(color);
-                if(isEven)
+                if(isEven){
                     graphics.fillRoundRect(row*h + r  ,column*52  + h,r , r ,16,16);
-                else
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawRoundRect(row*h + r  ,column*52  + h,r , r ,16,16);
+                }
+                else{
                     graphics.fillRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
+                }
 		graphics.setColor(Color.BLACK);
 		graphics.drawPolygon(hexagon);            
         }
@@ -122,10 +135,16 @@ public class Hex {
          */
         public void drawHexWithTank(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
                 graphics.setColor(color);
-                if(isEven)
+                if(isEven){
                     graphics.fillRect(row*h + r  ,column*52  + h + offset,r , r );
-                else
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawRect(row*h + r  ,column*52  + h + offset,r , r );
+                }
+                else{
                     graphics.fillRect(row*h + r + r,column*52 + h + offset,r , r );
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawRect(row*h + r + r,column*52 + h + offset,r , r );
+                }
 		graphics.setColor(Color.BLACK);
 		graphics.drawPolygon(hexagon);            
         }
