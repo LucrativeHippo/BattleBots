@@ -45,8 +45,9 @@ public class GamePanel extends JPanel implements GameObserver{
 			gameBoard = new GameBoard(7);
 		}
                 
-                gameController.createTeams(gameBoard);
+                gameBoard.robotList = gameController.createTeams(gameBoard);
                 gameController.setTeamPositions(gameBoard);
+                gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.peek());
                 
                 /*Scout sc = new Scout("team");
                 sc.setType("Scout");

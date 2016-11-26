@@ -303,34 +303,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     listOfRobots.addLast(toColor2.getTank());
                 }
             }
+
             //We want the list of robots to be in the order of all scouts,
             //followed by snipers, followed by tanks.
             int count = 0;
             while(!listOfRobots.isEmpty()){
-                System.out.println(count);
                 array[count] =listOfRobots.pop();
                 count = count + numPlayers;
                 if(count >= numPlayers*3){
-                    count = (numPlayers*3)%count;
+                    count = count%((numPlayers*3)-1);
                 }
             }
-            System.out.println(array[0].getGang()+ "Is the color");
-            //System.out.println(array[1].getGang()+ "Is the color");
-            System.out.println(array[2].getGang() + "Is the color");
-            System.out.println(array[3].getGang()+ "Is the color");
-            System.out.println(array[4].getGang()+ "Is the color");
-            System.out.println(array[5].getGang()+ "Is the color");
             listOfRobots.clear();
             for(int l = 0; l < (numPlayers*3); l++){
                 listOfRobots.add(array[l]);
-            }
-            while(!listOfRobots.isEmpty()){
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
-                System.out.println("Testing robot " + listOfRobots.peek().getType()+" Color: " + listOfRobots.pop().getGang());
             }
             return listOfRobots;
         }
