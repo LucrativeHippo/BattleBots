@@ -325,6 +325,7 @@ public class Robot {
 	public void recieveDamage(int damage){
 		if(this.healthLeft <= damage){
                     this.healthLeft = 0;
+                    this.board.aliveList.remove(this);
                 }
                 else{
                     this.healthLeft = this.healthLeft - damage;
