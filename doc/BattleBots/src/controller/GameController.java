@@ -51,7 +51,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     private List<Robot> robotTurnOrder;
     
-    private GameBoard gameBoard; ////Need to set this
+    public GameBoard gameBoard; ////Need to set this
     
 
     public void start() {
@@ -126,6 +126,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     case "quit":{
                             System.exit(0);
                             break;
+                    }
+                    case "endTurn":{
+                        System.out.println("!_________" + gameController.gameBoard.aliveList );
+                       // gameInfo.setCurrentRobot(gameController.gameBoard.aliveList.iterator().next());
+                        break;
                     }
                     case "help":{
                 	    view.showHelp(this, WIDTH, HEIGHT);
@@ -476,8 +481,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         
         
         public void play(GameBoard gameBoard) throws NoSuchMethodException{
-            while(!isGameOver(gameBoard.deadAliveList)){
-                Iterator<Robot> turnIterate = gameBoard.deadAliveList.iterator();
+            while(!isGameOver(gameBoard.aliveList)){
+                Iterator<Robot> turnIterate = gameBoard.aliveList.iterator();
                 currentRobot = turnIterate.next();
                 if(!currentRobot.isHuman()){
                     ScoutAI temp = (ScoutAI) currentRobot;

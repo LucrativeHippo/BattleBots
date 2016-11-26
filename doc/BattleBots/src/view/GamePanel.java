@@ -45,35 +45,46 @@ public class GamePanel extends JPanel implements GameObserver{
 			gameBoard = new GameBoard(7);
 		}
                 
-                gameBoard.robotList = gameController.createTeams(gameBoard);
-                gameController.setTeamPositions(gameBoard);
-                gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.peek());
+//                gameBoard.robotList = gameController.createTeams(gameBoard);
+//                gameController.setTeamPositions(gameBoard);
+//                gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
                 
-                /*Scout sc = new Scout("team");
-                sc.setType("Scout");
+                Scout sc = new Scout("team");
+                sc.setType("SCOUT");
                 sc.setGang("GREEN");
                 sc.setHorizontalLocation(5);
                 sc.setVerticalLocation(5);
                 sc.board = gameBoard;
+                gameController.gameBoard = gameBoard;
                 gameBoard.spaces[5][5].robotList.add(sc);
                 System.out.println("COORDINATES: " + sc.getHorizontalLocation() +" " + sc.getVerticalLocation());
                 
                 gameinfo.setCurrentRobot(sc);
                 
                 
-                Sniper sniper = new Sniper("team");
-                sniper.setType("Sniper");
-                sniper.setGang("PURPLE");
-                sniper.setHorizontalLocation(0);
-                sniper.setVerticalLocation(5);
-                gameBoard.spaces[0][5].robotList.add(sniper);
-                
-                Tank t = new Tank("team");
-                t.setType("Tank");
-                t.setGang("ORANGE");
-                t.setHorizontalLocation(4);
-                t.setVerticalLocation(3);
-                gameBoard.spaces[4][3].robotList.add(t);*/
+                  for(int i = 0; i < size; i ++){
+                    for(int j = 0; j < size; j++){
+                        Sniper sn = new Sniper("team");
+                         sn.setType("SNIPER");
+                         sn.setGang("PURPLE");
+                        sn.setHorizontalLocation(i);
+                        sn.setVerticalLocation(j);
+                        gameBoard.spaces[i][j].robotList.add(sn);
+                    }
+                }
+//                Sniper sniper = new Sniper("team");
+//                sniper.setType("SNIPER");
+//                sniper.setGang("PURPLE");
+//                sniper.setHorizontalLocation(0);
+//                sniper.setVerticalLocation(5);
+//                gameBoard.spaces[0][5].robotList.add(sniper);
+//                
+//                Tank t = new Tank("team");
+//                t.setType("TANK");
+//                t.setGang("ORANGE");
+//                t.setHorizontalLocation(4);
+//                t.setVerticalLocation(3);
+//                gameBoard.spaces[4][3].robotList.add(t);
                 
                 
                 
@@ -87,9 +98,9 @@ public class GamePanel extends JPanel implements GameObserver{
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                              gameinfo.getCurrentRobot().move('x');
-                              System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
-                              				repaint();
+                              //gameinfo.getCurrentRobot().move('x');
+                              //System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
+                              //				repaint();
 
 				Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
                                 //System.out.println("MOUSE POSITION " + e.getX() + " "+ e.getY());
@@ -178,8 +189,9 @@ public class GamePanel extends JPanel implements GameObserver{
                                             if(j%2==0){
                                                 gameBoard.spaces[i][j].drawHexWithRobot(temp.getType(),g2, c, i,j, true, offset);
                                             }
-                                            else
-                                                gameBoard.spaces[i][j].drawHexWithRobot( temp.getType(),g2, c, i,j, false, offset);
+                                            else{
+                                                gameBoard.spaces[i][j].drawHexWithRobot( temp.getType(),g2, c, i,j, false, offset);                                                
+                                            }
                                             offset+=8;                                        }                                            
                                         }
 				}

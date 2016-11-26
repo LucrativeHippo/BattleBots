@@ -576,7 +576,7 @@ public class WordTranslator implements Execute{
             Boolean sent = false;
             Object send = robot.forthValues.pop();
             String target = (String) robot.forthValues.pop();
-            Iterator<Robot> search = robot.board.deadAliveList.iterator();
+            Iterator<Robot> search = robot.board.aliveList.iterator();
                 while(search.hasNext()){
                     Robot temp = search.next();
                     if(temp.getName().compareTo(target)==0){
@@ -617,7 +617,7 @@ public class WordTranslator implements Execute{
         ht.put("mesg?", (Execute)  () -> {
             Boolean message = false; 
             String target = (String) robot.forthValues.pop();
-            Iterator<Robot> search = robot.board.deadAliveList.iterator();
+            Iterator<Robot> search = robot.board.aliveList.iterator();
                 while(search.hasNext()){
                     Robot temp = search.next();
                     if(temp.getName().compareTo(target)==0){
@@ -646,7 +646,7 @@ public class WordTranslator implements Execute{
         //Puts the top mail item from a specified robot onto the stack
         ht.put("recv!", (Execute)  () -> {
             String target = (String) robot.forthValues.pop();
-            Iterator<Robot> search = robot.board.deadAliveList.iterator();
+            Iterator<Robot> search = robot.board.aliveList.iterator();
                 while(search.hasNext()){
                     Robot temp = search.next();
                     if(temp.getName().compareTo(target)==0){

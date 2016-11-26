@@ -10,7 +10,7 @@ public class GameBoard {
 	
 	public Hex[][] spaces;
         public LinkedList<Robot> robotList;
-        public LinkedList<Robot> deadAliveList;
+        public LinkedList<Robot> aliveList;
 	
 	private int numHumans;
 	private int numPlayers;
