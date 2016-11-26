@@ -211,15 +211,20 @@ public class Interpreter {
         
         WordTranslator translate = new WordTranslator(robot, forthWords);
         while(!forthWords.empty()){ 
+            System.out.println(forthWords.peek());
             if(this.isInteger((String)forthWords.peek())){
                 robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
             }else if(this.isBoolean((String)forthWords.peek())){
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
             }else{
                 translate.getHashMap().get(forthWords.pop()).execute();
+               
             }
-            if(!forthWords.empty()){
+            
+            if(!robot.forthValues.empty()){
+                
                 System.out.println("The top of the stack is " + robot.forthValues.peek());
+               
             }
         }
     }
@@ -364,7 +369,12 @@ public class Interpreter {
         //test1.add("true if false if true if 5 5 + else 1 1 - then 1 + else 7 7 * then 2 - else 1 then 5 -");
         //Not sure how to test        
         //test1.add(".\"hi\"");
-        test1.add("5 random 50 random");
+        //test1.add("5 random 50 random");
+        //test1.add(": hi 1 1 + ;");
+        //test1.add("hi hi hi ? hi");
+        //test1.add("10 0 do 1 1 + loop ;");
+        test1.add(": play (--) 1 1 + ;");
+        test1.add("play");
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
         testRobot.put("code", test1);
