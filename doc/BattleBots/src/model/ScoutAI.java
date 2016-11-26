@@ -40,6 +40,14 @@ public class ScoutAI extends Scout {
             //this.totalMoves = 
             
 	}
+        
+        /**
+         * This function will return the JSON file of the instruction code
+         * @return 
+         */
+        public JSONObject getCode(){
+            return instructionCode;
+        }
 	
 
         public void move(){

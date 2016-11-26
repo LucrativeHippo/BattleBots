@@ -481,7 +481,10 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             while(!isGameOver(gameBoard.deadAliveList)){
                 Iterator<Robot> turnIterate = gameBoard.deadAliveList.iterator();
                 currentRobot = turnIterate.next();
-                if(currentRobot.)
+                if(!currentRobot.isHuman()){
+                    Interpreter interpret = new Interpreter();
+                    interpret.executeCode((ScoutAI) currentRobot., currentRobot);
+                }
             }
             
         }

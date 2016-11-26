@@ -35,6 +35,14 @@ public class SniperAI extends Sniper{
             
 	}
 	
+        /**
+         * This function will return the JSON file of the instruction code
+         * @return 
+         */
+        public JSONObject getCode(){
+            return instructionCode;
+        }
+        
 	public void move(){
             if(this.getMovementLeft()>0){
             if(this.getRelativeDirection()==0){

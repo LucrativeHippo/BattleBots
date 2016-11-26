@@ -34,6 +34,14 @@ public class TankAI extends Tank{
             scannedRobotsList = new LinkedList();
             
 	}
+        
+        /**
+         * This function will return the JSON file of the instruction code
+         * @return 
+         */
+        public JSONObject getCode(){
+            return instructionCode;
+        }
 	
 	public void move(){
             if(this.getMovementLeft()>0){
