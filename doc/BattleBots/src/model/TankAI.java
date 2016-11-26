@@ -292,18 +292,41 @@ public class TankAI extends Tank{
             Robot tmp = this.scannedRobotsList.get(index);
             int distance = 0;
              if(tmp != null)
-             {
-                
-               if(abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation()) >  abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation()))
+            {
+                if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()-1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
                 {
-                    distance = abs(this.getHorizontalLocation() - this.scannedRobotsList.get(index).getHorizontalLocation());
+                    distance = 1;
+                }
+                else if((this.getHorizontalLocation()+1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()-1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = 1;
+                }
+                else if((this.getHorizontalLocation()-1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = 1;
+                }
+                else if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = 0;
+                }
+                else if((this.getHorizontalLocation()+1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation() ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = 1;
+                }
+                else if((this.getHorizontalLocation()-1 == this.scannedRobotsList.get(index).getHorizontalLocation())&&(this.getVerticalLocation()+1 ==this.scannedRobotsList.get(index).getVerticalLocation()))
+                {
+                    distance = 1;
                 }
                 else
                 {
-                    distance = abs(this.getVerticalLocation() - this.scannedRobotsList.get(index).getVerticalLocation());
+                    distance = 1;
                 }
-             }
-            return distance;
+            }
+            else
+            {
+                System.out.println("there are no robots within your range.");
+            }
+             return distance;
         }
 
 }
