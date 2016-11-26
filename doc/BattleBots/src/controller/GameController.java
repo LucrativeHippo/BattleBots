@@ -24,6 +24,7 @@ import model.Sniper;
 import model.SniperAI;
 import model.Tank;
 import model.TankAI;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import view.View;
 
@@ -33,6 +34,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
     public Robot currentRobot;
+    
+    public static GameController gameController;
     
     private View view;
 	
@@ -55,6 +58,37 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         chosenRobotCodes = new Stack();
         view = new View(WIDTH, HEIGHT);
         view.showMainMenu(this); 
+        //These robot codes are for testing, must remove at some point
+        JSONObject testRobot = new JSONObject();
+        testRobot.put("team", "A5");
+        testRobot.put("class", "Scout");
+        testRobot.put("name", "runner");
+        testRobot.put("matches", 5);
+        testRobot.put("wins", 2);
+        testRobot.put("losses", 3);
+        testRobot.put("executions", 5);
+        testRobot.put("lived", 1);
+        testRobot.put("died", 4);
+        testRobot.put("absorbed", 4);
+        testRobot.put("killed", 0);
+        testRobot.put("moved", 17);
+        JSONArray list = new JSONArray();
+        list.add(": play ( -- ) ");
+        list.add(" 0 begin dup lastShot ? + 1 6 /mod drop ");
+        list.add(" empty? if .\"no one there\" ");
+        list.add(" else dup lastShot ! ");
+        list.add(" dup 1 shoot! leave ");
+        list.add(" then 1 + dup 5 > ");
+        list.add(" until drop ; ");
+        testRobot.put("code", list);
+        JSONObject testScript = new JSONObject();
+        testScript.put("script", testRobot);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
     }
     
     
@@ -449,6 +483,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         
         public static void main(String [] args){
         	GameController gc = new GameController();
+                gameController = gc;
         	gc.start();        
         }
 
