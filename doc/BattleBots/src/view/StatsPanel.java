@@ -1,6 +1,7 @@
 package view;
 
 import static controller.GameController.gameBoard;
+import controller.Interpreter;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -123,13 +124,16 @@ public class StatsPanel extends JPanel{
                 southPanel.add(Box.createRigidArea(new Dimension(BUTTON_SPACER_SIZE, 0)));
                 southPanel.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER*7))); 
 
-                
-                for (int i = 1; i < 8; i++){
-                    JLabel team = new JLabel("Team" + i);
+                Interpreter interpret = new Interpreter();
+                while (!gameBoard.robotList.isEmpty()){
+                    while(gameBoard.robotList.peek().isHuman()){
+                        gameBoard.robotList.pop();
+                    }
+                    JLabel team = new JLabel("Robot");
                     team.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
                     team.setForeground(Color.BLACK);
                     
-                    JLabel teamWins = new JLabel("0");
+                    JLabel teamWins = new JLabel(Integer.toString(interpret.getRobotWins(gameBoard.robotList.peek().getCode())));
                     teamWins.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
                     teamWins.setForeground(Color.BLACK);
                     

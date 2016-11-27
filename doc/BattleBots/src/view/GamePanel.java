@@ -1,5 +1,6 @@
 package view;
 
+import controller.GameController;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -62,7 +63,7 @@ public class GamePanel extends JPanel implements GameObserver{
                     gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
 
                 gameBoard.setAliveList();
-                gameController.gameBoard = gameBoard;
+                GameController.gameBoard = gameBoard;
                 
                 
                
