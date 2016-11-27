@@ -39,29 +39,29 @@ public class Robot {
 	
 
 	public Robot(String name) {
-		super();
-		this.name = name;
-                this.isHuman = true;
+	  super();
+	  this.name = name;
+          this.isHuman = true;
 	}
         
         public void setGameBoard(GameBoard game){
-            this.board = game;
+          this.board = game;
         }
         
         public void setPreviousX(int previousX) {
-            this.previousX = previousX;
+          this.previousX = previousX;
         }
 
         public void setPreviousY(int previousY) {
-            this.previousY = previousY;
+          this.previousY = previousY;
         }
 
         public int getPreviousX() {
-            return previousX;
+          return previousX;
         }
 
         public int getPreviousY() {
-            return previousY;
+          return previousY;
         }
         
         /**
@@ -70,7 +70,7 @@ public class Robot {
          * @return True if human, false otherwise
          */
         public boolean isHuman(){
-            return isHuman;
+          return isHuman;
         }
 
         /**
@@ -78,7 +78,7 @@ public class Robot {
          * @return Integer of moves the robot can make. 
          */
 	public int getMovement() {
-		return movement;
+	  return movement;
 	}
 	
         /**
@@ -86,7 +86,7 @@ public class Robot {
          * @param movement Total moves a robot can make each turn
          */
 	public void setMovement(int movement) {
-		this.movement = movement;
+	  this.movement = movement;
 	}
 	
         /**
@@ -94,7 +94,7 @@ public class Robot {
          * @return Integer of damage that can be dealt
          */
 	public int getDamage() {
-		return damage;
+	  return damage;
 	}
 	
         /**
@@ -102,7 +102,7 @@ public class Robot {
          * @param damage Integer between 1 and 3 of damage a robot can do.
          */
 	public void setDamage(int damage) {
-		this.damage = damage;
+	  this.damage = damage;
 	}
 	
         /**
@@ -110,7 +110,7 @@ public class Robot {
          * @return Integer of robot's range
          */
 	public int getRange() {
-		return range;
+	  return range;
 	}
 	
         /**
@@ -118,7 +118,7 @@ public class Robot {
          * @param range Integer of the robot's range
          */
 	public void setRange(int range) {
-		this.range = range;
+	  this.range = range;
 	}
 	
         /**
@@ -126,7 +126,7 @@ public class Robot {
          * @return Integer of the robot's starting health
          */
 	public int getHealth() {
-		return health;
+	  return health;
 	}
 	
         /**
@@ -134,7 +134,7 @@ public class Robot {
          * @param health Integer of the health we want the robot to start with
          */
 	public void setHealth(int health) {
-		this.health = health;
+	  this.health = health;
 	}
 	
         /**
@@ -142,7 +142,7 @@ public class Robot {
          * @return Integer of shots left
          */
 	public int getShotsLeft() {
-		return shotsLeft;
+	  return shotsLeft;
 	}
 	
         /**
@@ -150,7 +150,7 @@ public class Robot {
          * @param shotsLeft Integer of the number of shots we want to set
          */
 	public void setShotsLeft(int shotsLeft) {
-		this.shotsLeft = shotsLeft;
+	  this.shotsLeft = shotsLeft;
 	}
 	
         /**
@@ -159,7 +159,7 @@ public class Robot {
          * @return Integer of the number of moves left
          */
 	public int getMovementLeft() {
-		return movementLeft;
+	  return movementLeft;
 	}
 	
         /**
@@ -167,7 +167,7 @@ public class Robot {
          * @param movementLeft Integer of the number of moves left
          */
 	public void setMovementLeft(int movementLeft) {
-		this.movementLeft = movementLeft;
+	  this.movementLeft = movementLeft;
 	}
 	
         /**
@@ -175,7 +175,7 @@ public class Robot {
          * @return Integer value of health left
          */
 	public int getHealthLeft() {
-		return healthLeft;
+	  return healthLeft;
 	}
 	
         /**
@@ -183,7 +183,7 @@ public class Robot {
          * @param healthLeft 
          */
 	public void setHealthLeft(int healthLeft) {
-		this.healthLeft = healthLeft;
+	  this.healthLeft = healthLeft;
 	}
 	
         /**
@@ -192,7 +192,7 @@ public class Robot {
          * @return Integer value of 1 to 6 of the robots direction
          */
 	public int getRelativeDirection() {
-		return relativeDirection;
+	  return relativeDirection;
 	}
 	
         /**
@@ -201,7 +201,7 @@ public class Robot {
          * @param relativeDirection Integer from 1 to 6
          */
 	public void setRelativeDirection(int relativeDirection) {
-		this.relativeDirection = relativeDirection;
+	  this.relativeDirection = relativeDirection;
 	}
 	
         /**
@@ -369,12 +369,14 @@ public class Robot {
                     return;//Space is out of range
                 }
                 else{
+                    while(this.shotsLeft != 0){
                     Iterator<Robot> robotIterator = space.robotList.iterator();
                         while(robotIterator.hasNext()){
                             Robot temp = robotIterator.next();
                             temp.recieveDamage(this.getDamage());
                             this.setShotsLeft(0);
                         }
+                    }
                 }
 	}
         
@@ -387,10 +389,15 @@ public class Robot {
          */
         public boolean isEnemyInRange(Hex space){
             int distance = 0;
-               if(abs(this.getHorizontalLocation() - space.robotList.peek().getHorizontalLocation()) >  abs(this.getVerticalLocation() - space.robotList.peek().getVerticalLocation())){
-                    distance = abs(this.getHorizontalLocation() - space.robotList.peek().getHorizontalLocation());
+               if(abs(this.getHorizontalLocation() - 
+                       space.robotList.peek().getHorizontalLocation()) >  
+                       abs(this.getVerticalLocation() - 
+                               space.robotList.peek().getVerticalLocation())){
+                    distance = abs(this.getHorizontalLocation() - 
+                            space.robotList.peek().getHorizontalLocation());
                 }else{
-                    distance = abs(this.getVerticalLocation() - space.robotList.peek().getVerticalLocation());
+                    distance = abs(this.getVerticalLocation() - 
+                            space.robotList.peek().getVerticalLocation());
                 }
             if(distance <= this.getRange()){
                 return true;
