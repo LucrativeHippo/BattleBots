@@ -187,6 +187,7 @@ public class Interpreter {
      * @param robot Robot associated with the code
      */
     public void executeCode(JSONObject instructionCode, Robot robot) throws NoSuchMethodException{
+        System.out.println("The interpreter is starting");
         Stack initialfourthWords = new Stack();
         JSONObject temp = (JSONObject)instructionCode.get("script");
         List commands = (List)temp.get("code");
@@ -208,7 +209,7 @@ public class Interpreter {
         while(!medium.empty()){
             forthWords.add(medium.remove(0));
         }
-        
+        System.out.println("Words interpreted from JSON");
         WordTranslator translate = new WordTranslator(robot, forthWords);
         while(!forthWords.empty()){ 
             System.out.println(forthWords.peek());
