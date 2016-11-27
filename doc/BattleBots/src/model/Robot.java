@@ -33,7 +33,7 @@ public class Robot {
 	private String gang;
 	private String name;
         private String type;
-        private boolean isHuman;
+        public boolean isHuman;
 	
 	public GameBoard board;
 	

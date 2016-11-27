@@ -29,6 +29,7 @@ public class ScoutAI extends Scout {
             this.setRange(2);
             this.setHealth(1);
             this.setType("SCOUT");
+            this.isHuman = false;
             
             this.setShotsLeft(1);
             this.setMovementLeft(3);

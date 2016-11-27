@@ -27,6 +27,7 @@ public class TankAI extends Tank{
             this.setRange(1);
             this.setHealth(3);
             this.setType("TANK");
+            this.isHuman = false;
             
             this.setShotsLeft(1);
             this.setMovementLeft(1);

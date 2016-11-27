@@ -27,6 +27,7 @@ public class SniperAI extends Sniper{
             this.setRange(3);
             this.setHealth(2);
             this.setType("SNIPER");
+            this.isHuman = false;
             
             this.setShotsLeft(1);
             this.setMovementLeft(2);
