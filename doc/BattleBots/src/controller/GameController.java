@@ -73,7 +73,10 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         testRobot.put("killed", 0);
         testRobot.put("moved", 17);
         JSONArray list = new JSONArray();
-        list.add("1 1 +");
+        list.add("variable moved ; ( have i moved? )");
+        list.add("moved false ! ");
+        list.add(": play moved ? if ( do nothing ) else move move move moved true ! then ;");
+        //list.add("type range attack team");
         testRobot.put("code", list);
         JSONObject testScript = new JSONObject();
         testScript.put("script", testRobot);
@@ -336,10 +339,13 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             //do it for computer controlled robots
             for ( int j = 0; j < (numPlayers - numHumans); j++){
                 ScoutAI temp11 = new ScoutAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                temp11.setGameBoard(game);
                 chosenRobotCodes.pop();
                 SniperAI temp21 = new SniperAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                temp21.setGameBoard(game);
                 chosenRobotCodes.pop();
                 TankAI temp31 = new TankAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                temp31.setGameBoard(game);
                 chosenRobotCodes.pop();
                 GangAI CMPT = new GangAI(temp11, temp21, temp31);
                 CMPTGangs.push(CMPT);
