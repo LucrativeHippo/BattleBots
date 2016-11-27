@@ -21,7 +21,7 @@ public class OverallGamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	static final int FONT_SIZE = 72;
 	static final int BUTTON_SPACER_SIZE = 300;
-	public OverallGamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo){
+	public OverallGamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo) throws NoSuchMethodException{
 		
 		GamePanel gamepanel = new GamePanel(height, height, alistener, klistener, gameinfo);
 		gamepanel.setAlignmentX(Component.RIGHT_ALIGNMENT);

@@ -214,7 +214,7 @@ public class GamePanel extends JPanel implements GameObserver{
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				repaint();
 				Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
                                 //System.out.println("MOUSE POSITION " + e.getX() + " "+ e.getY());
 				if (p.x < 0 || p.y < 0 || p.x >= size || p.y >= size) return;

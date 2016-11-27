@@ -196,9 +196,9 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             gameInfo.setCurrentRobot(iterate.next());
                             if (!gameInfo.getCurrentRobot().isHuman()){
                         Interpreter interpret = new Interpreter();
-                        ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
+                       // ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
                                 try {
-                                    interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
+                                    interpret.executeCode(gameInfo.getCurrentRobot().getCode(), gameInfo.getCurrentRobot());
                                 } catch (NoSuchMethodException ex) {
                                     Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
