@@ -111,9 +111,9 @@ public class Hex {
         public void drawHexWithSniper(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
                 graphics.setColor(color);
                 if(isEven){
-                    graphics.fillRoundRect(row*h + r  ,column*52  + h,r , r ,16,16);
+                    graphics.fillRoundRect(row*h + r  ,column*52  + h + offset,r , r ,16,16);
                     graphics.setColor(Color.BLACK);
-                    graphics.drawRoundRect(row*h + r  ,column*52  + h,r , r ,16,16);
+                    graphics.drawRoundRect(row*h + r  ,column*52  + h + offset,r , r ,16,16);
                 }
                 else{
                     graphics.fillRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
