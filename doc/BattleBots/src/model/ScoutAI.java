@@ -2,6 +2,7 @@ package model;
 
 import forth.Word;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -16,6 +17,7 @@ public class ScoutAI extends Scout {
         private int damageDealt;
         private int damageTaken;
         public LinkedList<Robot> scannedRobotsList;
+        
 	
 	public ScoutAI(String name, JSONObject code) {
             super(name);
@@ -122,15 +124,21 @@ public class ScoutAI extends Scout {
                     }
                 }
                 if(this.getRelativeDirection() == 3){
+                   System.out.println("hex exists " + this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists);
                     try{
+                        
                         if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists){
+                           
                         this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
+                    
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setVerticalLocation(this.getVerticalLocation());
                         this.setMovementLeft(this.getMovementLeft()-1);
                         totalMoves = totalMoves +1;
+                        
                         }
+                        System.out.println("hi3");
                     }
                     catch(Exception e){
                         

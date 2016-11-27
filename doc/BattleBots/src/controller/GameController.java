@@ -73,7 +73,10 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         testRobot.put("killed", 0);
         testRobot.put("moved", 17);
         JSONArray list = new JSONArray();
-        list.add("1 1 +");
+        list.add("variable moved ; ( have i moved? )");
+        list.add("moved false ! ");
+        list.add(": play moved ? if ( do nothing ) else move move move moved true ! then ;");
+        //list.add("type range attack team");
         testRobot.put("code", list);
         JSONObject testScript = new JSONObject();
         testScript.put("script", testRobot);

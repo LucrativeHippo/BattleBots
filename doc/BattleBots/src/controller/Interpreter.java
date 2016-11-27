@@ -217,7 +217,7 @@ public class Interpreter {
                 robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
             }else if(this.isBoolean((String)forthWords.peek())){
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
-            }else if(translate.variables.containsKey(forthWords.peek())){
+            }else if(robot.variables.containsKey(forthWords.peek())){
                     translate.getHashMap().get("variable").execute();
                     }else
             {
