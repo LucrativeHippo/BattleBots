@@ -1,5 +1,6 @@
 package view;
 
+import static controller.GameController.gameBoard;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -26,7 +27,7 @@ public class WinnerPanel extends JPanel{
         setBackground(Color.DARK_GRAY);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(Box.createRigidArea(new Dimension(0, height / 5)));
-        JLabel label = new JLabel("VICTORY GOES TO PLAYER: " );
+        JLabel label = new JLabel("<html>" +"VICTORY GOES TO TEAM: "+"<font color='"+gameBoard.aliveList.peek().getGang()+ "'>" +gameBoard.aliveList.peek().getGang()+ "</font></html>",JLabel.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, FONT_SIZE));
         label.setForeground(Color.BLACK);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
