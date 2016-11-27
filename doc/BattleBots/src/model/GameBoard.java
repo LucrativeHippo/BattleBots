@@ -183,7 +183,7 @@ public class GameBoard {
             }
 	}
         
-        public static void main(String [] args) {
+        public static void main(String [] args) throws Exception {
        Scout robot1 = new Scout("scout");
        Tank robot2 = new Tank("tank");
        Sniper robot3 = new Sniper("sniper");

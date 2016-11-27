@@ -50,68 +50,144 @@ public class ScoutAI extends Scout {
         }
 	
 
-        public void move(){
-            if(this.getMovementLeft()>0){
-            if(this.getRelativeDirection()==0){
-                if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()]!=null){
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                    this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
-                    this.setHorizontalLocation(this.getHorizontalLocation()+1);
-                    this.setVerticalLocation(this.getVerticalLocation());
-                    this.setMovementLeft(this.getMovementLeft()-1);
-                    totalMoves = totalMoves +1;
+        public void move() throws Exception{
+          Exception x = null;
+          if(this.getMovementLeft()>0){
+            if(this.getRelativeDirection() == 0){
+              try{
+                if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].hexExists){
+                 this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                        this.setVerticalLocation(this.getVerticalLocation());
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        totalMoves = totalMoves +1;
+                        }
+                    }
+                    catch(Exception e){
+                        //do nothing
+                    }
                 }
-            }
-            if(this.getRelativeDirection()==1){
-                if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1]!=null){
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
-                    this.setHorizontalLocation(this.getHorizontalLocation());
-                    this.setVerticalLocation(this.getVerticalLocation()+1);
-                    this.setMovementLeft(this.getMovementLeft()-1);
+                if(this.getRelativeDirection() == 1){
+                    try{
+                    if(this.getVerticalLocation()%2 == 0){
+                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation());
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
+                    else{
+                        if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
                     totalMoves = totalMoves +1;
+                    }
+                    catch(Exception e){
+                        
+                    }
                 }
-            }
-            if(this.getRelativeDirection()==2){
-                if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1]!=null){
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                    this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
-                    this.setHorizontalLocation(this.getHorizontalLocation()-1);
-                    this.setVerticalLocation(this.getVerticalLocation()+1);
-                    this.setMovementLeft(this.getMovementLeft()-1);
+                if(this.getRelativeDirection() == 2){
+                    try{
+                    if(this.getVerticalLocation()%2 == 0){
+                        if (this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        System.out.println("We were on an even horizontal position, now we have moved");
+                        }
+                    }
+                    else{//different for odd rows
+                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        System.out.println("We were on an odd horizontal position, now we have moved");
+                        }
+                    }
                     totalMoves = totalMoves +1;
+                    }
+                    catch(Exception e){
+                        
+                    }
                 }
-            }
-            if(this.getRelativeDirection()==3){
-                if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()]!=null){
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                    this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
-                    this.setHorizontalLocation(this.getHorizontalLocation()-1);
-                    this.setVerticalLocation(this.getVerticalLocation());
-                    this.setMovementLeft(this.getMovementLeft()-1);
+                if(this.getRelativeDirection() == 3){
+                    try{
+                        if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                        this.setVerticalLocation(this.getVerticalLocation());
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        totalMoves = totalMoves +1;
+                        }
+                    }
+                    catch(Exception e){
+                        
+                    }
+                    }
+                if(this.getRelativeDirection() == 4){
+                    try{
+                    if(this.getVerticalLocation()%2 == 1){
+                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation());
+                        this.setVerticalLocation(this.getVerticalLocation()-1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
+                    else{
+                        if (this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                        this.setVerticalLocation(this.getVerticalLocation()-1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
                     totalMoves = totalMoves +1;
+                    }
+                    catch(Exception e){
+                        
+                    }
                 }
-            }
-            if(this.getRelativeDirection()==4){
-                if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1]!=null){
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
-                    this.setHorizontalLocation(this.getHorizontalLocation());
-                    this.setVerticalLocation(this.getVerticalLocation()-1);
-                    this.setMovementLeft(this.getMovementLeft()-1);
+                if(this.getRelativeDirection() == 5){
+                    try{
+                    if(this.getVerticalLocation()%2 == 1){
+                        if (this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                        this.setVerticalLocation(this.getVerticalLocation()-1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
+                    else{
+                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation());
+                        this.setVerticalLocation(this.getVerticalLocation()-1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
                     totalMoves = totalMoves +1;
+                    }
+                    catch(Exception e){
+                        
+                    }
                 }
-            }
-            if(this.getRelativeDirection()==5){
-                if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1]!=null){
-                    this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                    this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].robotList.add(this);
-                    this.setHorizontalLocation(this.getHorizontalLocation()+1);
-                    this.setVerticalLocation(this.getVerticalLocation()-1);
-                    this.setMovementLeft(this.getMovementLeft()-1);
-                    totalMoves = totalMoves +1;
-                }
-            }
             }
         }
         
