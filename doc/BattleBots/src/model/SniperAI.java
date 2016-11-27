@@ -8,7 +8,7 @@ import org.json.simple.JSONObject;
 
 public class SniperAI extends Sniper{
 
-	private JSONObject instructionCode;
+	//private JSONObject instructionCode;
         private int totalMoves;
         private int robotsKilled;
         private int damageDealt;

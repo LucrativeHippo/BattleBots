@@ -3,6 +3,7 @@ package model;
 import static java.lang.Math.abs;
 import java.util.Iterator;
 import java.util.Stack;
+import org.json.simple.JSONObject;
 
 public class Robot {
 
@@ -20,6 +21,7 @@ public class Robot {
         public Stack scoutMailBox;
         public Stack sniperMailBox;
         public Stack tankMailBox;
+        public JSONObject instructionCode;
 	
 	private int relativeDirection;
 	private int directionDimension;
