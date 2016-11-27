@@ -217,7 +217,10 @@ public class Interpreter {
                 robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
             }else if(this.isBoolean((String)forthWords.peek())){
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
-            }else{
+            }else if(translate.variables.containsKey(forthWords.peek())){
+                    translate.getHashMap().get("variable").execute();
+                    }else
+            {
                 
                 translate.getHashMap().get(forthWords.pop()).execute();
                
@@ -377,7 +380,7 @@ public class Interpreter {
         //test1.add("10 0 do 1 1 + loop ;");
         
         test1.add("variable a ; ");
-        test1.add("1 18 + a ! ");
+        test1.add("19 12 * a ! ");
         test1.add("a ? ");
         
         Interpreter interpret = new Interpreter();

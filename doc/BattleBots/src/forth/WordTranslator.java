@@ -33,15 +33,16 @@ public class WordTranslator implements Execute{
     HashMap <String, Execute> ht;
     Robot robot;
     Stack forthCommands;
+    Stack variableStack;
     Interpreter interpreter;
     int loopCount;
     int loopMax;
-    int tempVariable1 = -999;
-    int tempVariable2 = -999;
-    int tempVariable3 = -999;
+    public Hashtable<String, Object> variables = new Hashtable();
+    
     
     public WordTranslator(Robot robotAI, Stack commands) throws NoSuchMethodException{
     
+        variableStack = new Stack();
         robot = robotAI;
         forthCommands = commands;
         interpreter = new Interpreter();
@@ -540,19 +541,22 @@ public class WordTranslator implements Execute{
         
         ht.put("variable", (Execute)  () -> {
             String key = (String)forthCommands.pop();
-            if(tempVariable1 ==-999){
-                tempVariable1 = 0;
+            if(!variables.containsKey(key)){
+                variables.put(key, 0);
             forthCommands.pop();
             }
-            ht.put(key, (Execute)  () -> {
-            
-            });
-            
+            variableStack.push(key); 
         });
         
         //Does nothing as the value is already pushed to the top of the stack
         ht.put("?", (Execute)  () -> {
-            robot.forthValues.push(tempVariable1);
+            if(!variableStack.isEmpty()){
+                
+            robot.forthValues.push(variables.get((String)variableStack.pop()));
+            System.out.println("accessed variable");
+            }else{
+                System.out.println("There are no variable to be accessed");
+            }
         });
         
 
@@ -561,7 +565,12 @@ public class WordTranslator implements Execute{
 
         //
         ht.put("!", (Execute)  () -> {
-            tempVariable1 = (int)robot.forthValues.pop();
+            if(!variableStack.isEmpty()){
+            variables.put((String)variableStack.pop(), robot.forthValues.pop());
+            System.out.println("accessed variable");
+            }else{
+                System.out.println("There are no variable to be accessed");
+            }
         });
         
         
