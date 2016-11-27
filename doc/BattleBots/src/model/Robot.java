@@ -74,6 +74,10 @@ public class Robot {
         public boolean isHuman(){
           return isHuman;
         }
+        
+        public JSONObject getCode(){
+            return this.instructionCode;
+        }
 
         /**
          * This function returns the distance a specific robot can travel
