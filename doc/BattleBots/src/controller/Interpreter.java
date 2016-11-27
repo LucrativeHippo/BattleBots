@@ -218,6 +218,7 @@ public class Interpreter {
             }else if(this.isBoolean((String)forthWords.peek())){
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
             }else{
+                
                 translate.getHashMap().get(forthWords.pop()).execute();
                
             }
@@ -374,8 +375,11 @@ public class Interpreter {
         //test1.add(": hi 1 1 + ;");
         //test1.add("hi hi hi ? hi");
         //test1.add("10 0 do 1 1 + loop ;");
-        test1.add(": play (--) 1 1 + ;");
-        test1.add("play");
+        
+        test1.add("variable a ; ");
+        test1.add("1 18 + a ! ");
+        test1.add("a ? ");
+        
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
         testRobot.put("code", test1);
@@ -383,7 +387,7 @@ public class Interpreter {
         testScript.put("script", testRobot);
         
         interpret.executeCode(testScript, scout1);
-        System.out.println(scout1.forthValues.pop());
+        //System.out.println(scout1.forthValues.pop());
        
                 
                 }

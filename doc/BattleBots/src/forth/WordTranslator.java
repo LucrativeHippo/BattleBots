@@ -36,6 +36,9 @@ public class WordTranslator implements Execute{
     Interpreter interpreter;
     int loopCount;
     int loopMax;
+    int tempVariable1 = -999;
+    int tempVariable2 = -999;
+    int tempVariable3 = -999;
     
     public WordTranslator(Robot robotAI, Stack commands) throws NoSuchMethodException{
     
@@ -60,9 +63,15 @@ public class WordTranslator implements Execute{
         });
         
         
+        ht.put(";", (Execute) () -> {
+            
+        });
         
+        //Removes comments from the code
         ht.put("(", (Execute) () -> {
-            while((String)forthCommands.peek() != ")"){
+            
+            while(forthCommands.peek().toString().compareTo(")")!=0){
+                
                 forthCommands.pop();
             }
             forthCommands.pop();
@@ -462,6 +471,10 @@ public class WordTranslator implements Execute{
         
         ht.put(":", (Execute) () -> {
             String key = (String)forthCommands.pop();
+            if(key.compareTo("play")==0){
+                
+            }else{
+
             //
             //
             System.out.println("beginning : dictionary");
@@ -518,14 +531,28 @@ public class WordTranslator implements Execute{
             
            
            
-        
+            }
         
         
         });
         
+        
+        
+        ht.put("variable", (Execute)  () -> {
+            String key = (String)forthCommands.pop();
+            if(tempVariable1 ==-999){
+                tempVariable1 = 0;
+            forthCommands.pop();
+            }
+            ht.put(key, (Execute)  () -> {
+            
+            });
+            
+        });
+        
         //Does nothing as the value is already pushed to the top of the stack
         ht.put("?", (Execute)  () -> {
-            
+            robot.forthValues.push(tempVariable1);
         });
         
 
@@ -534,7 +561,7 @@ public class WordTranslator implements Execute{
 
         //
         ht.put("!", (Execute)  () -> {
-            
+            tempVariable1 = (int)robot.forthValues.pop();
         });
         
         
@@ -607,7 +634,7 @@ public class WordTranslator implements Execute{
             robot.forthValues.push(robot.getHealthLeft());
         });
         
-        ht.put("moves", (Execute) () -> {
+        ht.put("move", (Execute) () -> {
             System.out.println("Robot about to move");
             robot.forthValues.push(robot.getMovement());
             System.out.println("Robot has moved");
