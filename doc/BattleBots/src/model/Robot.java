@@ -1,6 +1,7 @@
 package model;
 
 import static java.lang.Math.abs;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Stack;
 import org.json.simple.JSONObject;
@@ -38,6 +39,8 @@ public class Robot {
         public boolean isHuman;
 	
 	public GameBoard board;
+        
+        public Hashtable<String, Object> variables = new Hashtable();
 	
 
         /**

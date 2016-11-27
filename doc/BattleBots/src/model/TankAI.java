@@ -1,6 +1,7 @@
 package model;
 
 import static java.lang.Math.abs;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -14,6 +15,7 @@ public class TankAI extends Tank{
         private int damageDealt;
         private int damageTaken;
         public LinkedList<Robot> scannedRobotsList;
+        
 	
 	public TankAI(String name, JSONObject code) {
             super(name);
