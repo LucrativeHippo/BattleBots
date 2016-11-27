@@ -73,7 +73,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         testRobot.put("killed", 0);
         testRobot.put("moved", 17);
         JSONArray list = new JSONArray();
-        list.add("move");
+        list.add("1 1 +");
         testRobot.put("code", list);
         JSONObject testScript = new JSONObject();
         testScript.put("script", testRobot);
