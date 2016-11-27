@@ -25,6 +25,8 @@ import model.Scout;
 import model.Sniper;
 import model.Tank;
 import static controller.GameController.gameController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class GamePanel extends JPanel implements GameObserver{
@@ -47,7 +49,7 @@ public class GamePanel extends JPanel implements GameObserver{
                 
                 gameBoard.robotList = gameController.createTeams(gameBoard);
                 gameController.setTeamPositions(gameBoard);
-                gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
+                gameinfo.setCurrentRobot(gameBoard.spaces[0][6].robotList.get(1));
                 gameBoard.setAliveList();
                 gameController.gameBoard = gameBoard;
                 
@@ -100,7 +102,11 @@ public class GamePanel extends JPanel implements GameObserver{
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                              gameinfo.getCurrentRobot().move('x');
+                            try {
+                                gameinfo.getCurrentRobot().move('x');
+                            } catch (Exception ex) {
+                                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                               System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
                               				repaint();
 
@@ -128,7 +134,11 @@ public class GamePanel extends JPanel implements GameObserver{
                     public void keyPressed(KeyEvent ke){
 
                         if (ke.getKeyCode() == KeyEvent.VK_A){
-                            gameinfo.getCurrentRobot().move('a');
+                            try {
+                                gameinfo.getCurrentRobot().move('a');
+                            } catch (Exception ex) {
+                                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         repaint();
                         }
 

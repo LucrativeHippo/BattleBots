@@ -2,6 +2,8 @@ package model;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 
@@ -27,26 +29,26 @@ public class GameBoard {
                         this.spaces[i][j] = new Hex(i, j , 60 );
                     }
                 }
-                this.spaces[0][0].hexExists = false;
-                this.spaces[1][0].hexExists = false;
-                this.spaces[7][0].hexExists = false;
-                this.spaces[8][0].hexExists = false;
-                this.spaces[0][1].hexExists = false;
-                this.spaces[7][1].hexExists = false;
-                this.spaces[8][1].hexExists = false;
-                this.spaces[0][2].hexExists = false;
-                this.spaces[8][2].hexExists = false;
-                this.spaces[8][3].hexExists = false;
-                this.spaces[8][5].hexExists = false;
-                this.spaces[0][6].hexExists = false;
-                this.spaces[8][6].hexExists = false;
-                this.spaces[0][7].hexExists = false;
-                this.spaces[7][7].hexExists = false;
-                this.spaces[8][7].hexExists = false;
-                this.spaces[0][8].hexExists = false;
-                this.spaces[1][8].hexExists = false;
-                this.spaces[7][8].hexExists = false;
-                this.spaces[8][8].hexExists = false;
+//                this.spaces[0][0].hexExists = false;
+//                this.spaces[1][0].hexExists = false;
+//                this.spaces[7][0].hexExists = false;
+//                this.spaces[8][0].hexExists = false;
+//                this.spaces[0][1].hexExists = false;
+//                this.spaces[7][1].hexExists = false;
+//                this.spaces[8][1].hexExists = false;
+//                this.spaces[0][2].hexExists = false;
+//                this.spaces[8][2].hexExists = false;
+//                this.spaces[8][3].hexExists = false;
+//                this.spaces[8][5].hexExists = false;
+//                this.spaces[0][6].hexExists = false;
+//                this.spaces[8][6].hexExists = false;
+//                this.spaces[0][7].hexExists = false;
+//                this.spaces[7][7].hexExists = false;
+//                this.spaces[8][7].hexExists = false;
+//                this.spaces[0][8].hexExists = false;
+//                this.spaces[1][8].hexExists = false;
+//                this.spaces[7][8].hexExists = false;
+//                this.spaces[8][8].hexExists = false;
                 
             }
             else if(size == 7){
@@ -209,7 +211,11 @@ public class GameBoard {
        
        System.out.println("Scout vert is" + robot1.getVerticalLocation() + "scout horz is" + robot1.getHorizontalLocation() );
        
-       robot1.move('d');
+            try {
+                robot1.move('d');
+            } catch (Exception ex) {
+                Logger.getLogger(GameBoard.class.getName()).log(Level.SEVERE, null, ex);
+            }
        System.out.println("Scout vert is" + robot1.getVerticalLocation() + "scout horz is" + robot1.getHorizontalLocation() );
 
        

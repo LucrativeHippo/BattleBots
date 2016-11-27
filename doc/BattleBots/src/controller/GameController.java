@@ -9,6 +9,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import model.Game;
 import model.GameBoard;
@@ -87,6 +89,20 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         chosenRobotCodes.push(testScript);
         chosenRobotCodes.push(testScript);
         chosenRobotCodes.push(testScript);
+        
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
+        chosenRobotCodes.push(testScript);
         view.showMainMenu(this); 
         //These robot codes are for testing, must remove at some point
         
@@ -98,22 +114,46 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
             if(arg0.getKeyChar() == 'd'){
-                currentRobot.move('d');
+                try {
+                    currentRobot.move('d');
+                } catch (Exception ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(arg0.getKeyChar() == 'x'){
-                currentRobot.move('x');
+                try {
+                    currentRobot.move('x');
+                } catch (Exception ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(arg0.getKeyChar() == 'z'){
-                currentRobot.move('z');
+                try {
+                    currentRobot.move('z');
+                } catch (Exception ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(arg0.getKeyChar() == 'a'){
-                currentRobot.move('a');
+                try {
+                    currentRobot.move('a');
+                } catch (Exception ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(arg0.getKeyChar() == 'w'){
-                currentRobot.move('w');
+                try {
+                    currentRobot.move('w');
+                } catch (Exception ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(arg0.getKeyChar() == 'e'){
-                currentRobot.move('e');
+                try {
+                    currentRobot.move('e');
+                } catch (Exception ex) {
+                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 		
 	}
@@ -128,15 +168,16 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "endTurn":{
-                        //System.out.println("---------" + gameBoard.aliveList.getFirst().getGang());
                         Iterator<Robot> iterate = gameController.gameBoard.aliveList.iterator();
                         while(iterate.hasNext() && gameInfo.getCurrentRobot() != iterate.next()){
                         }
                         if (!iterate.hasNext() ){
                             iterate = gameController.gameBoard.aliveList.iterator();
+                            gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
                         }
                         else{
+                            gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
                         }
                         break;
