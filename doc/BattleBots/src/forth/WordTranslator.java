@@ -112,6 +112,11 @@ public class WordTranslator implements Execute{
             robot.forthValues.push(var3);
         });
         
+        
+        ht.put(";", (Execute) () -> {
+            
+        });
+        
         //This will deal with "<", pushing a boolean on the stack
         ht.put("<", (Execute) () -> {
             int var1 = (int)robot.forthValues.pop();
@@ -282,6 +287,9 @@ public class WordTranslator implements Execute{
                             robot.forthValues.push(Integer.parseInt((String)orderedIfCommands.pop()));
                         }else if(interpreter.isBoolean((String)orderedIfCommands.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands.pop()));
+                        }else if(translate.variables.containsKey(orderedIfCommands.peek())){
+                            translate.getHashMap().get("variable").execute();
+                            
                         }else{
                             System.out.println("recursion");
                             translate.getHashMap().get(orderedIfCommands.pop()).execute();
@@ -349,6 +357,9 @@ public class WordTranslator implements Execute{
                             robot.forthValues.push(Integer.parseInt((String)orderedIfCommands.pop()));
                         }else if(interpreter.isBoolean((String)orderedIfCommands.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands.pop()));
+                        }else if(translate.variables.containsKey(orderedIfCommands.peek())){
+                            translate.getHashMap().get("variable").execute();
+                            
                         }else{
                             translate.getHashMap().get(orderedIfCommands.pop()).execute();
                         }
@@ -401,6 +412,9 @@ public class WordTranslator implements Execute{
                         }else if(interpreter.isBoolean((String)loopForth.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)loopForth.peek()));
                             temp.push(loopForth.pop());
+                        }else if(translate.variables.containsKey(loopForth.peek())){
+                            translate.getHashMap().get("variable").execute();
+                            temp.push(loopForth.peek());
                         }else{
                             translate.getHashMap().get((String)loopForth.peek()).execute();
                             temp.push(loopForth.pop());
@@ -447,6 +461,9 @@ public class WordTranslator implements Execute{
                         }else if(interpreter.isBoolean((String)loopForth.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)loopForth.peek()));
                             temp.push(loopForth.pop());
+                        }else if(translate.variables.containsKey(loopForth.peek())){
+                            translate.getHashMap().get("variable").execute();
+                            temp.push(loopForth.peek());
                         }else{
                             translate.getHashMap().get((String)loopForth.peek()).execute();
                             temp.push(loopForth.pop());
@@ -510,6 +527,9 @@ public class WordTranslator implements Execute{
                         }else if(interpreter.isBoolean((String)variableForth.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)variableForth.peek()));
                             temp.push(variableForth.pop());
+                        }else if(translate.variables.containsKey(variableForth.peek())){
+                            translate.getHashMap().get("variable").execute();
+                            temp.push(variableForth.peek());
                         }else{
                             translate.getHashMap().get((String)variableForth.peek()).execute();
                             temp.push(variableForth.pop());
@@ -689,16 +709,28 @@ public class WordTranslator implements Execute{
         ht.put("move!", (Execute) () -> {
             if(robot.getType().compareTo("SNIPER")==0){
                 SniperAI temp = (SniperAI) robot;
-                temp.move();
+                try {
+                    temp.move();
+                } catch (Exception ex) {
+                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
              if(robot.getType().compareTo("SCOUT")==0){
                 ScoutAI temp = (ScoutAI) robot;
-                temp.move();
+                try {
+                    temp.move();
+                } catch (Exception ex) {
+                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                }
              }
                 
               if(robot.getType().compareTo("TANK")==0){
                 TankAI temp = (TankAI) robot;
-                temp.move();
+                try {
+                    temp.move();
+                } catch (Exception ex) {
+                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
+                }
               
               }
         });
