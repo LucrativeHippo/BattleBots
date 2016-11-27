@@ -336,10 +336,13 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             //do it for computer controlled robots
             for ( int j = 0; j < (numPlayers - numHumans); j++){
                 ScoutAI temp11 = new ScoutAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                temp11.setGameBoard(game);
                 chosenRobotCodes.pop();
                 SniperAI temp21 = new SniperAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                temp21.setGameBoard(game);
                 chosenRobotCodes.pop();
                 TankAI temp31 = new TankAI(assign.getRobotName(chosenRobotCodes.peek()), chosenRobotCodes.peek());
+                temp31.setGameBoard(game);
                 chosenRobotCodes.pop();
                 GangAI CMPT = new GangAI(temp11, temp21, temp31);
                 CMPTGangs.push(CMPT);
