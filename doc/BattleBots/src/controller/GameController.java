@@ -398,6 +398,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             listOfRobots.clear();
             for(int l = 0; l < (numPlayers*3); l++){
                 listOfRobots.add(array[l]);
+           
+                
             }
             return listOfRobots;
         }
@@ -409,7 +411,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
          * @param gameBoard 
          */
         public void setTeamPositions(GameBoard gameBoard){
-            System.out.println("!!!!!!!!!"+gameBoard.robotList.peek().getDamage());
             Iterator<Robot> iterate = gameBoard.robotList.iterator();
             if(gameBoard.getBoardSize() == 5){
                 if(numPlayers == 2){
