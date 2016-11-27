@@ -26,6 +26,8 @@ import model.Sniper;
 import model.Tank;
 import static controller.GameController.gameController;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -105,8 +107,12 @@ public class GamePanel extends JPanel implements GameObserver{
 		        Action moveD = new AbstractAction(){
                      @Override
                      public void actionPerformed(ActionEvent e) {
+                         try {
                              //System.out.print('d');
                              gameinfo.getCurrentRobot().move('d');
+                         } catch (Exception ex) {
+                             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                         }
                               repaint();
                         }
             
@@ -114,8 +120,12 @@ public class GamePanel extends JPanel implements GameObserver{
                 Action moveX = new AbstractAction(){
                      @Override
                      public void actionPerformed(ActionEvent e) {
-                         //System.out.print('x');
+                         try {
+                             //System.out.print('x');
                              gameinfo.getCurrentRobot().move('x');
+                         } catch (Exception ex) {
+                             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                         }
                               repaint();
                         }
             
@@ -123,8 +133,12 @@ public class GamePanel extends JPanel implements GameObserver{
                 Action moveZ = new AbstractAction(){
                      @Override
                      public void actionPerformed(ActionEvent e) {
-                        // System.out.print('z');
+                         try {
+                             // System.out.print('z');
                              gameinfo.getCurrentRobot().move('z');
+                         } catch (Exception ex) {
+                             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                         }
                               repaint();
                         }
             
@@ -133,27 +147,39 @@ public class GamePanel extends JPanel implements GameObserver{
                 Action moveA = new AbstractAction(){
                      @Override
                      public void actionPerformed(ActionEvent e) {
-                        // System.out.print('a');
+                         try {
+                             // System.out.print('a');
                              gameinfo.getCurrentRobot().move('a');
-                              repaint();
+                             repaint();
+                         } catch (Exception ex) {
+                             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                         }
                         }
             
                  };
                  Action moveW = new AbstractAction(){
                      @Override
                      public void actionPerformed(ActionEvent e) {
-                         //System.out.print('w');
+                         try {
+                             //System.out.print('w');
                              gameinfo.getCurrentRobot().move('w');
-                              repaint();
+                             repaint();
+                         } catch (Exception ex) {
+                             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                         }
                         }
             
                  }; 
                  Action moveE = new AbstractAction(){
                      @Override
                      public void actionPerformed(ActionEvent e) {
-                       //  System.out.print('e');
+                         try {
+                             //  System.out.print('e');
                              gameinfo.getCurrentRobot().move('e');
-                              repaint();
+                             repaint();
+                         } catch (Exception ex) {
+                             Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+                         }
                         }
             
                  };                 
@@ -177,13 +203,6 @@ public class GamePanel extends JPanel implements GameObserver{
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-                            try {
-                                gameinfo.getCurrentRobot().move('x');
-                            } catch (Exception ex) {
-                                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                              System.out.println("Coordinates: " + gameinfo.getCurrentRobot().getHorizontalLocation() + " " + gameinfo.getCurrentRobot().getVerticalLocation());
-                              				repaint();
 
 				Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
                                 //System.out.println("MOUSE POSITION " + e.getX() + " "+ e.getY());

@@ -358,7 +358,6 @@ public class Robot {
          * @param space Hex space to be shot at
          */
         public void shoot(Hex space){
-            while(this.shotsLeft != 0){
 		if(space == null){
                     System.out.println("The space is out of range");
                     return;//The space does not exist
@@ -374,8 +373,8 @@ public class Robot {
                         while(robotIterator.hasNext()){
                             Robot temp = robotIterator.next();
                             temp.recieveDamage(this.getDamage());
+                            this.setShotsLeft(0);
                         }
-                }
                 }
 	}
         
