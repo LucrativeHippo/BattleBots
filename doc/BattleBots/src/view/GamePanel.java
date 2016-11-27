@@ -25,6 +25,7 @@ import model.Scout;
 import model.Sniper;
 import model.Tank;
 import static controller.GameController.gameController;
+import controller.Interpreter;
 import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import model.ScoutAI;
 
 
 public class GamePanel extends JPanel implements GameObserver{
@@ -42,7 +44,7 @@ public class GamePanel extends JPanel implements GameObserver{
 	
 	int size;
 	
-	public GamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo) {
+	public GamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo) throws NoSuchMethodException {
 		if(gameinfo.getBoardSize() == 5){
 			size = 9;
 			gameBoard = new GameBoard(5);
@@ -54,10 +56,16 @@ public class GamePanel extends JPanel implements GameObserver{
                 
                 gameBoard.robotList = gameController.createTeams(gameBoard);
                 gameController.setTeamPositions(gameBoard);
-                gameinfo.setCurrentRobot(gameBoard.spaces[0][6].robotList.get(1));
+                if(gameinfo.getBoardSize() == 7)
+                    gameinfo.setCurrentRobot(gameBoard.spaces[0][6].robotList.get(1));
+                else
+                    gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
+
                 gameBoard.setAliveList();
                 gameController.gameBoard = gameBoard;
                 
+                
+               
 //                Scout sc = new Scout("team");
 //                sc.setType("SCOUT");
 //                sc.setGang("GREEN");
@@ -222,7 +230,11 @@ public class GamePanel extends JPanel implements GameObserver{
                                         }
 				repaint();
                                 }
-                               // gameController.isGameOver(gameBoard.aliveList);
+                                
+                                if(gameController.isGameOver(gameBoard.aliveList)){
+                                    gameController.view.showWinner(gameController);
+
+                                }
 			}
                    
 		});
