@@ -73,14 +73,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         testRobot.put("killed", 0);
         testRobot.put("moved", 17);
         JSONArray list = new JSONArray();
-        list.add("variable moved ; ( have I moved? ) ");
-        list.add("moved false !                      ");
-        list.add(": play moved ? if                  ");
-        list.add("                 moves              ");
-        list.add("               else                ");
-        list.add("                   moves moves moves  ");
-        list.add("                   moved true !    ");
-        list.add("               then ;              ");
+        list.add("1 1 +");
         testRobot.put("code", list);
         JSONObject testScript = new JSONObject();
         testScript.put("script", testRobot);
@@ -184,10 +177,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
                             if (!gameInfo.getCurrentRobot().isHuman()){
-                        System.out.println("hihihihihihihihi");
-
-                        Interpreter interpret = new Interpreter();
-                        ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
+                              Interpreter interpret = new Interpreter();
+                              ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
                                 try {
                                     interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
                                     System.out.println("hihihihihihihihi");

@@ -126,6 +126,11 @@ public class StatsPanel extends JPanel{
 
                 Interpreter interpret = new Interpreter();
                 while (!gameBoard.robotList.isEmpty()){
+                    if(gameBoard.robotList.peek() == null){
+                        System.out.println("The robot is null for some reason");
+                    }
+                    System.out.println(gameBoard.robotList.peek().toString());
+                    System.out.println(gameBoard.robotList.peek().getDamage());
                     while(gameBoard.robotList.peek().isHuman()){
                         gameBoard.robotList.pop();
                     }

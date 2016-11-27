@@ -9,6 +9,7 @@ public class Tank extends Robot{
             this.setRange(1);
             this.setHealth(3);
             this.setType("TANK");
+            this.isHuman = true;
             
             this.setShotsLeft(1);
             this.setMovementLeft(1);

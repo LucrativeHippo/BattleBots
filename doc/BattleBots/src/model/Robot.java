@@ -43,7 +43,6 @@ public class Robot {
 	public Robot(String name) {
 	  super();
 	  this.name = name;
-          this.isHuman = true;
 	}
         
         public void setGameBoard(GameBoard game){
@@ -75,6 +74,11 @@ public class Robot {
           return isHuman;
         }
         
+        /**
+         * This function returns the JSONObject representing the robot code for
+         * the current robot.
+         * @return 
+         */
         public JSONObject getCode(){
             return this.instructionCode;
         }
@@ -216,7 +220,7 @@ public class Robot {
          * @return Integer for the range dimension (1 through 3)
          */
 	public int getDirectionDimension() {
-		return directionDimension;
+	  return directionDimension;
 	}
 	
         /**
@@ -225,7 +229,7 @@ public class Robot {
          * @param directionDimension Integer for the range dimension (1 to 3)
          */
 	public void setDirectionDimension(int directionDimension) {
-		this.directionDimension = directionDimension;
+	  this.directionDimension = directionDimension;
 	}
 	
         /**
@@ -234,7 +238,7 @@ public class Robot {
          * @return Integer of x coordinate
          */
 	public int getHorizontalLocation() {
-		return horizontalLocation;
+	  return horizontalLocation;
 	}
 	
         /**
@@ -243,7 +247,7 @@ public class Robot {
          * @param horizontalLocation Integer of x position to set
          */
 	public void setHorizontalLocation(int horizontalLocation) {
-		this.horizontalLocation = horizontalLocation;
+	  this.horizontalLocation = horizontalLocation;
 	}
 	
         /**
@@ -252,7 +256,7 @@ public class Robot {
          * @return Integer of y coordinate
          */
 	public int getVerticalLocation() {
-		return verticalLocation;
+	  return verticalLocation;
 	}
 	
         /**
@@ -261,7 +265,7 @@ public class Robot {
          * @param verticalLocation  Integer of y position to set
          */
 	public void setVerticalLocation(int verticalLocation) {
-		this.verticalLocation = verticalLocation;
+	  this.verticalLocation = verticalLocation;
 	}
         
         /**
@@ -270,8 +274,8 @@ public class Robot {
          * @param y 
          */
         public void setVerticalAndHorizontal(int x, int y){
-            this.setVerticalLocation(y);
-            this.setHorizontalLocation(x);
+          this.setVerticalLocation(y);
+          this.setHorizontalLocation(x);
         }
 	
         /**
@@ -280,7 +284,7 @@ public class Robot {
          * @return True if it is it's turn, false otherwise
          */
 	public boolean isTurn() {
-		return isTurn;
+	  return isTurn;
 	}
 	
         /**
@@ -289,7 +293,7 @@ public class Robot {
          * @param isTurn True or False
          */
 	public void setTurn(boolean isTurn) {
-		this.isTurn = isTurn;
+	  this.isTurn = isTurn;
 	}
 	
         /**
@@ -297,7 +301,7 @@ public class Robot {
          * @return String of "Red", "Blue", "Orange", "Yellow", "Green, "Purple"
          */
 	public String getGang() {
-		return gang;
+	  return gang;
 	}
 	
         /**
@@ -305,7 +309,7 @@ public class Robot {
          * @param gang "Red", "Blue", "Orange", "Yellow", "Green, "Purple"
          */
 	public void setGang(String gang) {
-		this.gang = gang;
+	  this.gang = gang;
 	}
         
         /**
@@ -313,7 +317,7 @@ public class Robot {
          * @return String name
          */
 	public String getName() {
-		return name;
+	  return name;
 	}
 	
         /**
@@ -321,7 +325,7 @@ public class Robot {
          * @param name String to set name to
          */
 	public void setName(String name) {
-		this.name = name;
+	  this.name = name;
 	}	
 	
         /**
@@ -329,18 +333,17 @@ public class Robot {
          * @param damage Integer of damage inflicted
          */
 	public void recieveDamage(int damage){
-		if(this.healthLeft <= damage){
-                    this.healthLeft = 0;
-                    this.board.aliveList.remove(this);
-                }
-                else{
-                    this.healthLeft = this.healthLeft - damage;
-                }
+	  if(this.healthLeft <= damage){
+            this.healthLeft = 0;
+            this.board.aliveList.remove(this);
+            } else{
+            this.healthLeft = this.healthLeft - damage;
+            }
 	}
         
         public void restartParameters(){
-            this.movementLeft = this.getMovement();
-            this.shotsLeft = 1;
+          this.movementLeft = this.getMovement();
+          this.shotsLeft = 1;
         }
 
         /**
@@ -348,14 +351,12 @@ public class Robot {
          * @return String of "SCOUT", "SNIPER", or "TANK"
          */
         public String getType() {
-            return type;
+          return type;
         }
 
         public void setType(String type) {
-            this.type = type;
+          this.type = type;
         }
-        
-        
         
         /**
          * This function will take in a Hex space and deal damage to any robots
@@ -364,28 +365,24 @@ public class Robot {
          * @param space Hex space to be shot at
          */
         public void shoot(Hex space){
-		if(space == null){
-                    System.out.println("The space is out of range");
-                    return;//The space does not exist
+	  if(space == null){
+            System.out.println("The space is out of range");
+            return;//The space does not exist
+            } else if(space.isEmpty() == true){
+            return;//The space is empty
+            } else if(!this.isEnemyInRange(space)){
+            return;//Space is out of range
+            } else{
+            while(this.shotsLeft != 0){
+              Iterator<Robot> robotIterator = space.robotList.iterator();
+                while(robotIterator.hasNext()){
+                  Robot temp = robotIterator.next();
+                    temp.recieveDamage(this.getDamage());
+                    this.setShotsLeft(0);
                 }
-                else if(space.isEmpty() == true){
-                    return;//The space is empty
-                }
-                else if(!this.isEnemyInRange(space)){
-                    return;//Space is out of range
-                }
-                else{
-                    while(this.shotsLeft != 0){
-                    Iterator<Robot> robotIterator = space.robotList.iterator();
-                        while(robotIterator.hasNext()){
-                            Robot temp = robotIterator.next();
-                            temp.recieveDamage(this.getDamage());
-                            this.setShotsLeft(0);
-                        }
-                    }
-                }
+            }
+            }
 	}
-        
         
         /**
          * This function will determine if a given robot is within range of a
@@ -394,21 +391,21 @@ public class Robot {
          * @return True if within range, false otherwise
          */
         public boolean isEnemyInRange(Hex space){
-            int distance = 0;
-               if(abs(this.getHorizontalLocation() - 
-                       space.robotList.peek().getHorizontalLocation()) >  
-                       abs(this.getVerticalLocation() - 
-                               space.robotList.peek().getVerticalLocation())){
-                    distance = abs(this.getHorizontalLocation() - 
-                            space.robotList.peek().getHorizontalLocation());
-                }else{
-                    distance = abs(this.getVerticalLocation() - 
-                            space.robotList.peek().getVerticalLocation());
-                }
-            if(distance <= this.getRange()){
-                return true;
+          int distance = 0;
+          if(abs(this.getHorizontalLocation() - 
+            space.robotList.peek().getHorizontalLocation()) >  
+            abs(this.getVerticalLocation() - 
+            space.robotList.peek().getVerticalLocation())){
+            distance = abs(this.getHorizontalLocation() - 
+            space.robotList.peek().getHorizontalLocation());
             }else{
-                return false;
+            distance = abs(this.getVerticalLocation() - 
+            space.robotList.peek().getVerticalLocation());
+            }
+            if(distance <= this.getRange()){
+              return true;
+            }else{
+              return false;
             }
         }
 	
@@ -419,12 +416,12 @@ public class Robot {
          * @throws java.lang.Exception 
          */
 	public void move(char relativeDirection ) throws Exception{
-            Exception x = null;
-            if(this.getMovementLeft()>0){
-                if(relativeDirection == 'd'){
-                    try{
-                        if (this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
+          Exception x = null;
+          if(this.getMovementLeft()>0){
+            if(relativeDirection == 'd'){
+              try{
+                if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].hexExists){
+                 this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
                         this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()+1);
                         this.setVerticalLocation(this.getVerticalLocation());
