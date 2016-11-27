@@ -39,7 +39,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     public static GameController gameController;
     
-    private View view;
+    public View view;
 	
     private GameInfo gameInfo;
     
@@ -73,13 +73,14 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         testRobot.put("killed", 0);
         testRobot.put("moved", 17);
         JSONArray list = new JSONArray();
-        list.add(": play ( -- ) ");
-        list.add(" 0 begin dup lastShot ? + 1 6 /mod drop ");
-        list.add(" empty? if .\"no one there\" ");
-        list.add(" else dup lastShot ! ");
-        list.add(" dup 1 shoot! leave ");
-        list.add(" then 1 + dup 5 > ");
-        list.add(" until drop ; ");
+        list.add("variable moved ; ( have I moved? ) ");
+        list.add("moved false !                      ");
+        list.add(": play moved ? if                  ");
+        list.add("                 moves              ");
+        list.add("               else                ");
+        list.add("                   moves moves moves  ");
+        list.add("                   moved true !    ");
+        list.add("               then ;              ");
         testRobot.put("code", list);
         JSONObject testScript = new JSONObject();
         testScript.put("script", testRobot);
@@ -168,6 +169,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             break;
                     }
                     case "endTurn":{
+                        
                         Iterator<Robot> iterate = gameController.gameBoard.aliveList.iterator();
                         while(iterate.hasNext() && gameInfo.getCurrentRobot() != iterate.next()){
                         }
@@ -175,10 +177,33 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             iterate = gameController.gameBoard.aliveList.iterator();
                             gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
+                            if (!gameInfo.getCurrentRobot().isHuman()){
+                        System.out.println("hihihihihihihihi");
+
+                        Interpreter interpret = new Interpreter();
+                        ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
+                                try {
+                                    interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
+                                    System.out.println("hihihihihihihihi");
+                                    System.out.println(interpret.getRobotClass(temp.getCode()));
+                                } catch (NoSuchMethodException ex) {
+                                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
                         }
                         else{
                             gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
+                            if (!gameInfo.getCurrentRobot().isHuman()){
+                        Interpreter interpret = new Interpreter();
+                        ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
+                                try {
+                                    interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
+                                } catch (NoSuchMethodException ex) {
+                                    Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            
                         }
                         break;
                     }
