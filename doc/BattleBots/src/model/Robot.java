@@ -41,8 +41,9 @@ public class Robot {
 	
 
         /**
-         * This function will set the gameBoard the robot will be playing on 
-         * robot
+         * Constructor for the robot class.  This will generate a new robot with
+         * the given name.
+         * @param name
          */
 	public Robot(String name) {
 	  super();

@@ -379,6 +379,36 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                 while(!CMPTGangs.empty()){
                     GangAI toColor2 = (GangAI) CMPTGangs.pop();
                     toColor2.setTeam(teams.pop());
+                    if(toColor2.getTeam().compareTo("RED") == 0){
+                      toColor2.getScout().setRelativeDirection(0);
+                      toColor2.getSniper().setRelativeDirection(0);
+                      toColor2.getTank().setRelativeDirection(0);
+                    }
+                    if(toColor2.getTeam().compareTo("ORANGE") == 0){
+                      toColor2.getScout().setRelativeDirection(1);
+                      toColor2.getSniper().setRelativeDirection(1);
+                      toColor2.getTank().setRelativeDirection(1);
+                    }
+                    if(toColor2.getTeam().compareTo("YELLOW") == 0){
+                      toColor2.getScout().setRelativeDirection(2);
+                      toColor2.getSniper().setRelativeDirection(2);
+                      toColor2.getTank().setRelativeDirection(2);
+                    }
+                    if(toColor2.getTeam().compareTo("GREEN") == 0){
+                      toColor2.getScout().setRelativeDirection(3);
+                      toColor2.getSniper().setRelativeDirection(3);
+                      toColor2.getTank().setRelativeDirection(3);
+                    }
+                    if(toColor2.getTeam().compareTo("BLUE") == 0){
+                      toColor2.getScout().setRelativeDirection(4);
+                      toColor2.getSniper().setRelativeDirection(4);
+                      toColor2.getTank().setRelativeDirection(4);
+                    }
+                    if(toColor2.getTeam().compareTo("PURPLE") == 0){
+                      toColor2.getScout().setRelativeDirection(5);
+                      toColor2.getSniper().setRelativeDirection(5);
+                      toColor2.getTank().setRelativeDirection(5);
+                    }
                     listOfRobots.addLast(toColor2.getScout());
                     listOfRobots.addLast(toColor2.getSniper());
                     listOfRobots.addLast(toColor2.getTank());
