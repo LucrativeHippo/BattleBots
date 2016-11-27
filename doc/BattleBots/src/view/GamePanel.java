@@ -79,8 +79,11 @@ public class GamePanel extends JPanel implements GameObserver{
 //                        sn.setHorizontalLocation(i);
 //                        sn.setVerticalLocation(j);
 //                        gameBoard.spaces[i][j].robotList.add(sn);
+//                        gameBoard.aliveList.add(sn);
+//                        gameBoard.setAliveList();
 //                    }
 //                }
+                  
 //                Sniper sniper = new Sniper("team");
 //                sniper.setType("SNIPER");
 //                sniper.setGang("PURPLE");
@@ -219,25 +222,10 @@ public class GamePanel extends JPanel implements GameObserver{
                                         }
 				repaint();
                                 }
-                                gameController.isGameOver(gameBoard.aliveList);
+                               // gameController.isGameOver(gameBoard.aliveList);
 			}
                    
 		});
-                addKeyListener(new KeyAdapter(){
-                    @Override
-                    public void keyPressed(KeyEvent ke){
-
-                        if (ke.getKeyCode() == KeyEvent.VK_A){
-                            try {
-                                gameinfo.getCurrentRobot().move('a');
-                            } catch (Exception ex) {
-                                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        repaint();
-                        }
-
-                    }
-                });
 	}
         
 	@Override
