@@ -1,5 +1,6 @@
 package view;
 
+import static controller.GameController.gameBoard;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import model.GameInfo;
 
 public class StatsPanel extends JPanel{
 

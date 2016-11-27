@@ -59,7 +59,7 @@ public class View extends JFrame {
 		switchDisplay(panel);
 	}
 
-	public void showGame(ActionListener actionlistener, KeyListener keyListener, GameInfo gameInfo) {
+	public void showGame(ActionListener actionlistener, KeyListener keyListener, GameInfo gameInfo) throws NoSuchMethodException {
 		JPanel panel = new OverallGamePanel(getWidth(), getHeight(), actionlistener, keyListener, gameInfo);
 		switchDisplay(panel);
 	}

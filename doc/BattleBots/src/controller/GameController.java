@@ -53,7 +53,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     
     private List<Robot> robotTurnOrder;
     
-    public GameBoard gameBoard; ////Need to set this
+    static public GameBoard gameBoard; ////Need to set this
     
 
     public void start() {
@@ -168,6 +168,12 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             System.exit(0);
                             break;
                     }
+                    case "playagain":{
+                        view.showGameProperties(this);
+                    }
+                    case "stats":{
+                        view.showStats(this);
+                    }
                     case "endTurn":{
                         
                         Iterator<Robot> iterate = gameController.gameBoard.aliveList.iterator();
@@ -231,7 +237,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                                 gameInfo.setNumPlayers(numPlayers);
                                 gameInfo.setNumHumans(numHumans);
                                 gameInfo.setBoardSize(boardSize);
-	        	view.showGame(this, this, gameInfo);
+             try {
+                 view.showGame(this, this, gameInfo);
+             } catch (NoSuchMethodException ex) {
+                 Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+             }
 	        	gameControl.start();
                         break;
                     }
