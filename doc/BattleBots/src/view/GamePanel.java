@@ -58,9 +58,9 @@ public class GamePanel extends JPanel implements GameObserver{
                 gameBoard.robotList = gameController.createTeams(gameBoard);
                 gameController.setTeamPositions(gameBoard);
                 if(gameinfo.getBoardSize() == 7)
-                    gameinfo.setCurrentRobot(gameBoard.spaces[0][6].robotList.get(1));
+                    gameinfo.setCurrentRobot(gameBoard.spaces[0][6].robotList.get(0));
                 else
-                    gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(1));
+                    gameinfo.setCurrentRobot(gameBoard.spaces[0][4].robotList.get(0));
 
                 gameBoard.setAliveList();
                 GameController.gameBoard = gameBoard;
