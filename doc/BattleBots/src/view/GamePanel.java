@@ -25,8 +25,11 @@ import model.Scout;
 import model.Sniper;
 import model.Tank;
 import static controller.GameController.gameController;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 
 public class GamePanel extends JPanel implements GameObserver{
@@ -98,7 +101,79 @@ public class GamePanel extends JPanel implements GameObserver{
 //                sc.recieveDamage(2);
 //                System.out.println("scout Health after damage: " + sc.getHealthLeft());
                 
-		setBackground(Color.WHITE);
+	              setBackground(Color.WHITE);
+		        Action moveD = new AbstractAction(){
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                             //System.out.print('d');
+                             gameinfo.getCurrentRobot().move('d');
+                              repaint();
+                        }
+            
+                };
+                Action moveX = new AbstractAction(){
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                         //System.out.print('x');
+                             gameinfo.getCurrentRobot().move('x');
+                              repaint();
+                        }
+            
+                };    
+                Action moveZ = new AbstractAction(){
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                        // System.out.print('z');
+                             gameinfo.getCurrentRobot().move('z');
+                              repaint();
+                        }
+            
+                };
+  
+                Action moveA = new AbstractAction(){
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                        // System.out.print('a');
+                             gameinfo.getCurrentRobot().move('a');
+                              repaint();
+                        }
+            
+                 };
+                 Action moveW = new AbstractAction(){
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                         //System.out.print('w');
+                             gameinfo.getCurrentRobot().move('w');
+                              repaint();
+                        }
+            
+                 }; 
+                 Action moveE = new AbstractAction(){
+                     @Override
+                     public void actionPerformed(ActionEvent e) {
+                       //  System.out.print('e');
+                             gameinfo.getCurrentRobot().move('e');
+                              repaint();
+                        }
+            
+                 };                 
+                getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), "moveD");
+                getActionMap().put("moveD", moveD);
+                
+                getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_X, 0), "moveX");
+                getActionMap().put("moveX", moveX);
+                
+                getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, 0), "moveZ");
+                getActionMap().put("moveZ", moveZ);
+                
+                getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0), "moveA");
+                getActionMap().put("moveA", moveA);
+                
+                getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "moveW");
+                getActionMap().put("moveW", moveW);
+                
+                getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0), "moveE");
+                getActionMap().put("moveE", moveE);   
 		addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
