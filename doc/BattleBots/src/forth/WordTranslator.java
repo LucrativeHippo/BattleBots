@@ -608,7 +608,9 @@ public class WordTranslator implements Execute{
         });
         
         ht.put("moves", (Execute) () -> {
+            System.out.println("Robot about to move");
             robot.forthValues.push(robot.getMovement());
+            System.out.println("Robot has moved");
         });
         
         ht.put("movesLeft", (Execute) () -> {
