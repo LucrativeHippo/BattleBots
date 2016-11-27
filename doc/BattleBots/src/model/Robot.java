@@ -40,27 +40,56 @@ public class Robot {
 	public GameBoard board;
 	
 
+        /**
+         * This function will set the gameBoard the robot will be playing on 
+         * robot
+         */
 	public Robot(String name) {
 	  super();
 	  this.name = name;
 	}
         
+        /**
+         * This function will set the gameBoard the robot will be playing on 
+         * robot
+         * @param game
+         */
         public void setGameBoard(GameBoard game){
           this.board = game;
         }
         
+        /**
+         * This function will set the previous Horizontal position of the 
+         * robot
+         * @return 
+         */
         public void setPreviousX(int previousX) {
           this.previousX = previousX;
         }
 
+        /**
+         * This function will set the previous Vertical position of the 
+         * robot
+         * @return 
+         */
         public void setPreviousY(int previousY) {
           this.previousY = previousY;
         }
 
+        /**
+         * This function will retrieve the previous Horizontal position of the 
+         * robot
+         * @return 
+         */
         public int getPreviousX() {
           return previousX;
         }
 
+        /**
+         * This function will retrieve the previous vertical position of the 
+         * robot
+         * @return 
+         */
         public int getPreviousY() {
           return previousY;
         }
@@ -420,62 +449,73 @@ public class Robot {
           if(this.getMovementLeft()>0){
             if(relativeDirection == 'd'){
               try{
-                if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].hexExists){
-                 this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
-                        this.setVerticalLocation(this.getVerticalLocation());
+                if(this.board.spaces[this.getHorizontalLocation()+1]
+                    [this.getVerticalLocation()].hexExists){
+                  this.board.spaces[this.getHorizontalLocation()+1]
+                      [this.getVerticalLocation()].robotList.add(this);
+                  this.board.spaces[this.getHorizontalLocation()]
+                      [this.getVerticalLocation()].robotList.remove(this);
+                  this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                  this.setVerticalLocation(this.getVerticalLocation());
+                  this.setMovementLeft(this.getMovementLeft()-1);
+                    }
+                }
+                catch(Exception e){
+                        //do nothing
+                    }
+                }
+                if(relativeDirection == 'x'){
+                  try{
+                    if(this.getVerticalLocation()%2 == 0){
+                      if(this.board.spaces[this.getHorizontalLocation()]
+                          [this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation());
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
                         this.setMovementLeft(this.getMovementLeft()-1);
                         }
+                    }else{
+                      if(this.board.spaces[this.getHorizontalLocation()+1]
+                          [this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()+1]
+                            [this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
+                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
+                        this.setVerticalLocation(this.getVerticalLocation()+1);
+                        this.setMovementLeft(this.getMovementLeft()-1);
+                        }
+                    }
                     }
                     catch(Exception e){
                         //do nothing
                     }
                 }
-                if(relativeDirection == 'x'){
-                    try{
-                    if(this.getVerticalLocation()%2 == 0){
-                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                        this.setHorizontalLocation(this.getHorizontalLocation());
-                        this.setVerticalLocation(this.getVerticalLocation()+1);
-                        this.setMovementLeft(this.getMovementLeft()-1);
-                        }
-                    }
-                    else{
-                        if(this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()+1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()+1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                        this.setHorizontalLocation(this.getHorizontalLocation()+1);
-                        this.setVerticalLocation(this.getVerticalLocation()+1);
-                        this.setMovementLeft(this.getMovementLeft()-1);
-                        }
-                    }
-                    }
-                    catch(Exception e){
-                        
-                    }
-                }
                 if(relativeDirection == 'z'){
                     try{
                     if(this.getVerticalLocation()%2 == 0){
-                        if (this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()+1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                      if(this.board.spaces[this.getHorizontalLocation()-1]
+                          [this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()-1]
+                            [this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setVerticalLocation(this.getVerticalLocation()+1);
                         this.setMovementLeft(this.getMovementLeft()-1);
-                        System.out.println("We were on an even horizontal position, now we have moved");
                         }
-                    }
-                    else{//different for odd rows
-                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                    }else{//different for odd rows
+                      if(this.board.spaces[this.getHorizontalLocation()]
+                          [this.getVerticalLocation()+1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()+1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
                         this.setVerticalLocation(this.getVerticalLocation()+1);
                         this.setMovementLeft(this.getMovementLeft()-1);
-                        System.out.println("We were on an odd horizontal position, now we have moved");
                         }
                     }
                     }
@@ -484,34 +524,42 @@ public class Robot {
                     }
                 }
                 if(relativeDirection == 'a'){
-                    try{
-                        if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
-                        this.setHorizontalLocation(this.getHorizontalLocation()-1);
-                        this.setVerticalLocation(this.getVerticalLocation());
-                        this.setMovementLeft(this.getMovementLeft()-1);
+                  try{
+                    if(this.board.spaces[this.getHorizontalLocation()-1]
+                        [this.getVerticalLocation()].hexExists){
+                       this.board.spaces[this.getHorizontalLocation()-1]
+                           [this.getVerticalLocation()].robotList.add(this);
+                       this.board.spaces[this.getHorizontalLocation()]
+                           [this.getVerticalLocation()].robotList.remove(this);
+                       this.setHorizontalLocation(this.getHorizontalLocation()-1);
+                       this.setVerticalLocation(this.getVerticalLocation());
+                       this.setMovementLeft(this.getMovementLeft()-1);
                         }
                     }
                     catch(Exception e){
-                        
+                        //do nothing
                     }
                     }
                 if(relativeDirection == 'w'){
-                    try{
+                  try{
                     if(this.getVerticalLocation()%2 == 1){
-                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                      if(this.board.spaces[this.getHorizontalLocation()]
+                          [this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation());
                         this.setVerticalLocation(this.getVerticalLocation()-1);
                         this.setMovementLeft(this.getMovementLeft()-1);
                         }
-                    }
-                    else{
-                        if (this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()-1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()-1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                    }else{
+                      if(this.board.spaces[this.getHorizontalLocation()-1]
+                          [this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()-1]
+                            [this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()-1);
                         this.setVerticalLocation(this.getVerticalLocation()-1);
                         this.setMovementLeft(this.getMovementLeft()-1);
@@ -519,24 +567,29 @@ public class Robot {
                     }
                     }
                     catch(Exception e){
-                        
+                        //do notthing
                     }
                 }
                 if(relativeDirection == 'e'){
-                    try{
+                  try{
                     if(this.getVerticalLocation()%2 == 1){
-                        if (this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                      if(this.board.spaces[this.getHorizontalLocation()+1]
+                          [this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()+1]
+                          [this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                          [this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation()+1);
                         this.setVerticalLocation(this.getVerticalLocation()-1);
                         this.setMovementLeft(this.getMovementLeft()-1);
                         }
-                    }
-                    else{
-                        if(this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].hexExists){
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].robotList.add(this);
-                        this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()].robotList.remove(this);
+                    }else{
+                      if(this.board.spaces[this.getHorizontalLocation()]
+                          [this.getVerticalLocation()-1].hexExists){
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()-1].robotList.add(this);
+                        this.board.spaces[this.getHorizontalLocation()]
+                            [this.getVerticalLocation()].robotList.remove(this);
                         this.setHorizontalLocation(this.getHorizontalLocation());
                         this.setVerticalLocation(this.getVerticalLocation()-1);
                         this.setMovementLeft(this.getMovementLeft()-1);
@@ -544,7 +597,7 @@ public class Robot {
                     }
                     }
                     catch(Exception e){
-                        
+                        //do nothing
                     }
                 }
             }
