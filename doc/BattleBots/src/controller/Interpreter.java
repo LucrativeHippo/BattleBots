@@ -15,7 +15,6 @@ import java.util.Stack;
 import model.Robot;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import forth.Word;
 import model.ScoutAI;
 import model.SniperAI;
 import model.TankAI;
