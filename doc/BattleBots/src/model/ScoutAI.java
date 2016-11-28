@@ -1,6 +1,6 @@
 package model;
 
-import forth.Word;
+
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
