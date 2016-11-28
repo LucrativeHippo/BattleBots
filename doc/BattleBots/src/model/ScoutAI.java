@@ -51,7 +51,11 @@ public class ScoutAI extends Scout {
             return instructionCode;
         }
 	
-
+        @Override
+        public void move(char relativeDirection){
+            //Robot AIs should not be able to take move input!
+        }
+        
         public void move() throws Exception{
           Exception x = null;
           if(this.getMovementLeft()>0){
@@ -275,6 +279,7 @@ public class ScoutAI extends Scout {
          * to do
          * @param space Hex space to be shot at
          */
+        @Override
         public void shoot(Hex space){
 		if(space == null){
                     System.out.println("The space is out of range");

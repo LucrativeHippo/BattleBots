@@ -186,12 +186,16 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     case "endTurn":{
                         
                         Iterator<Robot> iterate = gameController.gameBoard.aliveList.iterator();
+                        //While there are still robots, we will iterate through
+                        //the list until we come accross the current robot
                         while(iterate.hasNext() && gameInfo.getCurrentRobot() != iterate.next()){
                         }
+                        //If the last robot to play was at the end of the list
                         if (!iterate.hasNext() ){
                             iterate = gameController.gameBoard.aliveList.iterator();
                             gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
+                            //If the robot is not a human, it should execute code instead
                             if (!gameInfo.getCurrentRobot().isHuman()){
                               Interpreter interpret = new Interpreter();
                               ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
@@ -201,15 +205,17 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                                     System.out.println(interpret.getRobotClass(temp.getCode()));
                                 } catch (NoSuchMethodException ex) {
                                     Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+                                    System.out.println("Error, code not executed");
                                 }
                             }
                         }
+                        //If the round is not over
                         else{
                             gameInfo.getCurrentRobot().restartParameters();
                             gameInfo.setCurrentRobot(iterate.next());
                             if (!gameInfo.getCurrentRobot().isHuman()){
-                        Interpreter interpret = new Interpreter();
-                       // ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
+                              Interpreter interpret = new Interpreter();
+                       //     ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
                                 try {
                                     interpret.executeCode(gameInfo.getCurrentRobot().getCode(), gameInfo.getCurrentRobot());
                                 } catch (NoSuchMethodException ex) {

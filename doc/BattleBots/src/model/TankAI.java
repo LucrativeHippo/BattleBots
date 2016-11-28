@@ -45,6 +45,11 @@ public class TankAI extends Tank{
         public JSONObject getCode(){
             return instructionCode;
         }
+        
+        @Override
+        public void move(char relativeDirection){
+            //Robot AIs should not be able to take move input!
+        }
 	
 	public void move() throws Exception{
           Exception x = null;
@@ -267,6 +272,7 @@ public class TankAI extends Tank{
          * to do
          * @param space Hex space to be shot at
          */
+        @Override
         public void shoot(Hex space){
 		if(space == null){
                     System.out.println("The space is out of range");
