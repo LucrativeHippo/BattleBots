@@ -41,6 +41,7 @@ public class Robot {
 	public GameBoard board;
         
         public Hashtable<String, Object> variables = new Hashtable();
+        public Stack variableStack = new Stack();
 	
 
         /**

@@ -379,9 +379,12 @@ public class Interpreter {
         //test1.add("hi hi hi ? hi");
         //test1.add("10 0 do 1 1 + loop ;");
         
-        test1.add("variable a ; ");
-        test1.add("19 12 * a ! ");
-        test1.add("a ? ");
+        //test1.add("variable a ; ");
+        //test1.add("19 12 * a ! ");
+        //test1.add("a ? ");
+        test1.add("variable moved ; ( have i moved? )");
+        test1.add(": moved? moved ? ; ");
+        test1.add("moved? ");
         
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
