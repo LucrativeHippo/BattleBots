@@ -61,44 +61,50 @@ public class TeamSelectionPanel extends JPanel{
                 team.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(team);
               
-                JLabel wins = new JLabel("   Wins");
+                JLabel wins = new JLabel("   Class");
                 wins.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
                 wins.setForeground(Color.BLACK);
                 wins.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(wins);
                    
                
-                JLabel losses = new JLabel("   Losses");
+                JLabel losses = new JLabel("   Name");
                 losses.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
                 losses.setForeground(Color.BLACK);
                 losses.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(losses);
                 
-                JLabel ties = new JLabel("   Ties");
+                JLabel ties = new JLabel("   Mathces");
                 ties.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
                 ties.setForeground(Color.BLACK);
                 ties.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(ties);
                 
-                JLabel scout = new JLabel("   Scout Kills");
+                JLabel scout = new JLabel("   Wins");
                 scout.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
                 scout.setForeground(Color.BLACK);
                 scout.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(scout);
                 
-                JLabel sniper = new JLabel("   Sniper Kills");
+                JLabel sniper = new JLabel("   Losses");
                 sniper.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
                 sniper.setForeground(Color.BLACK);
                 sniper.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(sniper);
                 
-                JLabel tank = new JLabel("   Tank Kills");
+                JLabel tank = new JLabel("   Executions");
                 tank.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
                 tank.setForeground(Color.BLACK);
                 tank.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(tank);
-                for(int i = 0; i < 7; i++){
-                    for(int j = 1; j<7;j++){
+                
+                JLabel lived = new JLabel("   Lived");
+                lived.setFont(new Font("Rockwell",Font.BOLD, FONT_SIZE/6));
+                lived.setForeground(Color.BLACK);
+                lived.setBorder(BorderFactory.createLineBorder(Color.black));
+                teamStats.add(lived);
+                for(int i = 0; i < 8; i++){
+                    for(int j = 1; j<8;j++){
                         teamStats.add(new JLabel("        " + i));
                     }
                 }
