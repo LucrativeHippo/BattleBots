@@ -124,7 +124,7 @@ public class ScoutAI extends Scout {
                     }
                 }
                 if(this.getRelativeDirection() == 3){
-                   System.out.println("hex exists " + this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists);
+                   
                     try{
                         
                         if(this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists){
