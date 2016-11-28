@@ -20,6 +20,7 @@ public class WinnerPanel extends JPanel{
     static final int BUTTON_SPACER_SIZE = 20;
     static final int BUTTON_WIDTH = 140;
     static final int BUTTON_HEIGHT = 30;
+    static final int VERTICAL_SPACER = 50;
 
     //need actionlistener as parameter
 	public WinnerPanel(int width, int height, ActionListener actionlistener) {
@@ -50,6 +51,16 @@ public class WinnerPanel extends JPanel{
         playAgainButton.addActionListener(actionlistener);
         playAgainButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(playAgainButton);
+        
+        JButton quit = new JButton("Quit");
+        quit.setSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        quit.setBackground(Color.BLACK);
+        quit.setForeground(Color.WHITE);
+        quit.setActionCommand("quit");
+        quit.addActionListener(actionlistener);
+        quit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(quit);
+        add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER)));
 
         add(Box.createRigidArea(new Dimension(0, BUTTON_SPACER_SIZE)));
 

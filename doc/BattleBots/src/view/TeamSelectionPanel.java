@@ -52,7 +52,7 @@ public class TeamSelectionPanel extends JPanel{
 		
                 JPanel teamStats = new JPanel();
                 teamStats.setBackground(Color.GRAY);
-                teamStats.setLayout(new GridLayout(12,12));
+                teamStats.setLayout(new GridLayout(11,11));
                 teamStats.setBorder(BorderFactory.createLineBorder(Color.black));
                 
                 JLabel team = new JLabel("   Team");
@@ -128,11 +128,12 @@ public class TeamSelectionPanel extends JPanel{
                 moved.setBorder(BorderFactory.createLineBorder(Color.black));
                 teamStats.add(moved);
                
-                for(int i = 0; i < 12; i++){
-                    for(int j = 1; j<12;j++){
+                for(int i = 0; i < 11; i++){
+                    for(int j = 1; j<11;j++){
                         teamStats.add(new JLabel("        " + i));
                     }
                 }
+               
                 
                 upperRow.add(Box.createHorizontalGlue());
                 upperRow.add(teamStats);

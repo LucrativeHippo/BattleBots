@@ -218,6 +218,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             }
                             
                         }
+                        view.repaint();
+
                         break;
                     }
                     case "help":{
@@ -258,12 +260,12 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                     }
                     case "five":{
                             boardSize = 5;
-                            numPlayers = 2;
+                            //numPlayers = 2;
                             break;
                     }
                     case "seven":{
                             boardSize = 7;
-                            numPlayers = 6;
+                            //numPlayers = 6;
                             break;
                     }
                     case "zeroHumans":{
