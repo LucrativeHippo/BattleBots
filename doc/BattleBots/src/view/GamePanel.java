@@ -223,14 +223,19 @@ public class GamePanel extends JPanel implements GameObserver{
                                 if (!gameBoard.spaces[p.x][p.y].robotList.isEmpty()){
                                     gameinfo.getCurrentRobot().shoot(gameBoard.spaces[p.x][p.y]);
                                     
-                                    Iterator<Robot> robots = gameBoard.spaces[p.x][p.y].robotList.iterator();
-                                        while(robots.hasNext()){
+                                        while(!gameBoard.spaces[p.x][p.y].isEmpty()){
+                                          Iterator<Robot> robots = gameBoard.spaces[p.x][p.y].robotList.iterator();
+                                            System.out.println("robot on hex");
+                                            if (!robots.hasNext()){
+                                                break;
+                                            }
                                             Robot temp = robots.next();
-                                            if (temp.getHealthLeft()<= 0)
+                                            if (temp.getHealthLeft()<= 0){
                                                 gameBoard.spaces[p.x][p.y].robotList.remove(temp);
-                                            repaint();
+                                            System.out.println("robot removed");
+                                            }
                                         }
-                                        repaint();
+				repaint();
                                 }
                                 
                                 if(gameController.isGameOver(gameBoard.aliveList)){
