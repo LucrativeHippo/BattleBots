@@ -9,12 +9,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import model.GameInfo;
+import model.Robot;
 
 public class StatsPanel extends JPanel{
 
@@ -125,14 +127,23 @@ public class StatsPanel extends JPanel{
                 southPanel.add(Box.createRigidArea(new Dimension(0, VERTICAL_SPACER*7))); 
 
                 Interpreter interpret = new Interpreter();
+                boolean statsComplete = false;
+                LinkedList<Robot> list = gameBoard.robotList;
                 while (!gameBoard.robotList.isEmpty()){
                     if(gameBoard.robotList.peek() == null){
                         System.out.println("The robot is null for some reason");
                     }
                     System.out.println(gameBoard.robotList.peek().toString());
                     System.out.println(gameBoard.robotList.peek().getDamage());
-                    while(gameBoard.robotList.peek().isHuman()){
+                    while(list.peek().isHuman()){
                         gameBoard.robotList.pop();
+                        if(gameBoard.robotList.isEmpty()){
+                            statsComplete = true;
+                            break;
+                        }
+                    }
+                    if(statsComplete == true){
+                        break;
                     }
                     JLabel team = new JLabel("Robot");
                     team.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));

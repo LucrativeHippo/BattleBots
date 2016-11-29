@@ -228,8 +228,9 @@ public class GamePanel extends JPanel implements GameObserver{
                                             Robot temp = robots.next();
                                             if (temp.getHealthLeft()<= 0)
                                                 gameBoard.spaces[p.x][p.y].robotList.remove(temp);
+                                            repaint();
                                         }
-				repaint();
+                                        repaint();
                                 }
                                 
                                 if(gameController.isGameOver(gameBoard.aliveList)){

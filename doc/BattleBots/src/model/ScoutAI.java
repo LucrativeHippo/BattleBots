@@ -273,6 +273,133 @@ public class ScoutAI extends Scout {
                 }
 	}
         
+        public void robotShooting(int direction, int range){
+          if(range > this.getRange()){
+                
+          }
+          else{
+            if(this.getVerticalLocation()%2 == 0){
+              if(range == 1){
+                if(direction == 0){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()]);
+                }else if(direction == 1){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()][this.getVerticalLocation()+1]);
+                }else if(direction == 2){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()+1]);
+                }else if(direction == 3){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()]);
+                }else if(direction == 4){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()-1]);
+                }else{
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()][this.getVerticalLocation()-1]);
+                }
+              }
+              if(range == 2){
+                if(direction == 0){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+2][this.getVerticalLocation()+0]);
+                }else if(direction == 1){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()+1]);
+                }else if(direction == 2){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()+2]);
+                }else if(direction == 3){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()][this.getVerticalLocation()+2]);
+                }else if(direction == 4){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()+2]);
+                }else if(direction == 5){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()+1]);
+                }else if(direction == 6){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()]);
+                }else if(direction == 7){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()-1]);
+                }else if(direction == 8){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()-2]);
+                }else if(direction == 9){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()][this.getVerticalLocation()-2]);
+                }else if(direction == 10){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()+2]);
+                }else if(direction == 11){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()+1]);
+                }
+              }
+              else{
+                if(direction == 0){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+3][this.getVerticalLocation()]);
+                }else if(direction == 1){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+2][this.getVerticalLocation()+1]);
+                }else if(direction == 2){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+2][this.getVerticalLocation()+2]);
+                }else if(direction == 3){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()+3]);
+                }else if(direction == 4){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()][this.getVerticalLocation()+3]);
+                }else if(direction == 5){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()+3]);
+                }else if(direction == 6){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()+3]);
+                }else if(direction == 7){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()+2]);
+                }else if(direction == 8){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-3][this.getVerticalLocation()+1]);
+                }else if(direction == 9){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-3][this.getVerticalLocation()]);
+                }else if(direction == 10){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-3][this.getVerticalLocation()-1]);
+                }else if(direction == 11){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()-2]);
+                }else if(direction == 12){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-2][this.getVerticalLocation()-3]);
+                }else if(direction == 13){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()-1][this.getVerticalLocation()-3]);
+                }else if(direction == 14){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()][this.getVerticalLocation()-3]);
+                }else if(direction == 15){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+1][this.getVerticalLocation()-3]);
+                }else if(direction == 16){
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+2][this.getVerticalLocation()-2]);
+                }else{
+                  this.shoot(this.board.spaces
+                      [this.getHorizontalLocation()+2][this.getVerticalLocation()-1]);
+              }
+                }
+            }
+          }
+        }
+        
         /**
          * This function will take in a Hex space and deal damage to any robots
          * on that space by the amount of damage that the current robot is able
