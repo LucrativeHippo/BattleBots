@@ -142,6 +142,7 @@ public class ScoutAI extends Scout {
                         totalMoves = totalMoves +1;
                         
                         }
+                        System.out.println("hi3");
                     }
                     catch(Exception e){
                         

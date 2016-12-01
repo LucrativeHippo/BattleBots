@@ -75,7 +75,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         JSONArray list = new JSONArray();
         list.add("variable moved ; ( have i moved? )");
         list.add(": moved? moved ? ; ");
-        list.add("false moved ! 15 15 ; ");
+        list.add(" moved false ! 15 15 ; ");
         list.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
         list.add("variable shot ;  ( have I shot this play? )");
         //list.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");

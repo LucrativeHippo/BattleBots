@@ -824,7 +824,7 @@ public class WordTranslator implements Execute{
             ScoutAI scaned = (ScoutAI)robot;
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getGang());
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getRange());
-            //robot.forthValues.push(scaned.scannedRobotsList.get(index).getRelativeDirection());
+            robot.forthValues.push(scaned.scannedRobotsList.get(index).getRelativeDirection());
             robot.forthValues.push(scaned.scannedRobotsList.get(index).getHealthLeft());
         });
         
