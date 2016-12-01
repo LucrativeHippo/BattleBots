@@ -59,6 +59,7 @@ public class WordTranslator implements Execute{
             int var2 = (int)robot.forthValues.pop();
             int var3;
             var3 = var2 - var1;
+            System.out.println("the subtraction value is" + var3);
             robot.forthValues.push(var3);
         });
         
@@ -82,9 +83,12 @@ public class WordTranslator implements Execute{
         //This will deal with "+" for addition
         ht.put("+", (Execute) () -> {
             int var1 = (int)robot.forthValues.pop();
+            System.out.println(var1);
             int var2 = (int)robot.forthValues.pop();
+            System.out.println(var2);
             int var3;
             var3 = var1 + var2;
+            System.out.println("the addition value is" + var3);
             robot.forthValues.push(var3);
         });
       
@@ -96,6 +100,7 @@ public class WordTranslator implements Execute{
             int var2 = (int)robot.forthValues.pop();
             int var3;
             var3 = var1 * var2;
+            System.out.println("the multiplication value is" + var2);
             robot.forthValues.push(var3);
         });
         
@@ -247,7 +252,7 @@ public class WordTranslator implements Execute{
             Stack ifCommands = new Stack();
             System.out.println("begin if");
             if(var1 == true ){
-                try {
+               
                     
                     if(forthCommands.isEmpty()){
                         System.out.println("empty");
@@ -281,9 +286,7 @@ public class WordTranslator implements Execute{
                         
                     }
                    
-                    Interpreter interpreter = new Interpreter();
-                    WordTranslator translate;
-                    translate = new WordTranslator(robot, commands);
+                    
                     while(!orderedIfCommands.empty()){
                         
                         if(interpreter.isInteger((String)orderedIfCommands.peek())){
@@ -291,11 +294,11 @@ public class WordTranslator implements Execute{
                         }else if(interpreter.isBoolean((String)orderedIfCommands.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands.pop()));
                         }else if(robot.variables.containsKey(orderedIfCommands.peek())){
-                            translate.getHashMap().get("variable").execute();
+                            robot.variableStack.push(orderedIfCommands.pop());
                             
                         }else{
                             System.out.println("recursion");
-                            translate.getHashMap().get(orderedIfCommands.pop()).execute();
+                            this.getHashMap().get(orderedIfCommands.pop()).execute();
                         }
                         if(!orderedIfCommands.empty()){
                             //
@@ -316,6 +319,7 @@ public class WordTranslator implements Execute{
                     System.out.println("end then loop");
                     if(forthCommands.peek().toString().compareTo("then")==0){
                     forthCommands.pop();
+                    
                         Stack thenStack = new Stack();
                         //while((forthCommands.peek().toString().compareTo(";")!=0)&&forthCommands.peek().toString().compareTo("until")!=0){
                             
@@ -328,16 +332,14 @@ public class WordTranslator implements Execute{
                             //
                             //
                     }
-                } catch (NoSuchMethodException ex) {
-                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
                 
             }else{
-                try {
+                
                     forthCommands.pop();
                     int numIf = 0;
                     while((forthCommands.peek().toString().compareTo("else") != 0)||(numIf!=0)){
-                        System.out.println("begin if");
+                        System.out.println("begin else");
                         if(forthCommands.peek().toString().compareTo("if")==0){numIf=numIf+1;}
                         if(forthCommands.peek().toString().compareTo("else")==0){numIf=numIf-1;}
                         forthCommands.pop();
@@ -355,8 +357,7 @@ public class WordTranslator implements Execute{
                     while(!ifCommands.empty()){
                         orderedIfCommands.push(ifCommands.pop());
                     }
-                    WordTranslator translate;
-                    translate = new WordTranslator(robot, orderedIfCommands);
+                    
                     while(!orderedIfCommands.empty()){
                         
                         
@@ -365,11 +366,12 @@ public class WordTranslator implements Execute{
                         }else if(interpreter.isBoolean((String)orderedIfCommands.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)orderedIfCommands.pop()));
                         }else if(robot.variables.containsKey(orderedIfCommands.peek())){
-                            translate.getHashMap().get("variable").execute();
+                            System.out.println(orderedIfCommands.peek());
+                            robot.variableStack.push(orderedIfCommands.pop());
                             
                         }else{
                              
-                            translate.getHashMap().get(orderedIfCommands.pop()).execute();
+                            this.getHashMap().get(orderedIfCommands.pop()).execute();
                         }
                         if(!orderedIfCommands.empty()){
                             //
@@ -382,9 +384,8 @@ public class WordTranslator implements Execute{
                         forthCommands.pop();
                     }
                     forthCommands.pop();
-                } catch (NoSuchMethodException ex) {
-                    Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    forthCommands.pop();
+                 
             }
         });
         
@@ -511,56 +512,59 @@ public class WordTranslator implements Execute{
                 backwardsForth.push(forthCommands.pop());
                
             }
-            forthCommands.pop();
+            backwardsForth.push(forthCommands.pop());
             
+            robot.functions.put(key, backwardsForth);
             
             
             ht.put(key, (Execute)  () -> {
                 
-               
-                if(backwardsForth.isEmpty()){
+                
+                
+                if(robot.functions.get(key).isEmpty()){
                     System.out.println("empty");
-                    robot.forthValues.push(0);
                 }else{
-                    while(!backwardsForth.isEmpty()){
-                forthCommands.push(backwardsForth.pop());
-                System.out.println("function stuff" + forthCommands.peek());
-            }
+                    Stack backwards = robot.functions.get(key);
+                
                     
-                while(!forthCommands.empty()){
+                    while(!backwards.isEmpty()){
+                        forthCommands.push(backwards.pop());
+                        System.out.println(forthCommands.peek());
+                    }
+                 
+                while(forthCommands.peek().toString().compareTo(";")!=0){
                     
-                    try {
-                        WordTranslator translate;
-                        translate = new WordTranslator(robot, commands);
+                        
+                        
                         if(interpreter.isInteger((String)forthCommands.peek())){
-                            robot.forthValues.push(Integer.parseInt((String)forthCommands.peek()));
-                            backwardsForth.push(forthCommands.pop());
+                            System.out.println("integer added to robotvalue stack is " + forthCommands.peek());
+                            robot.forthValues.push(Integer.parseInt((String)forthCommands.pop()));
+                             
                         }else if(interpreter.isBoolean((String)forthCommands.peek())){
-                            robot.forthValues.push(Boolean.parseBoolean((String)forthCommands.peek()));
-                            backwardsForth.push(forthCommands.pop());
-                        }else if(robot.variables.containsKey(forthCommands.peek())){
+                            robot.forthValues.push(Boolean.parseBoolean((String)forthCommands.pop()));
+                        }else if(robot.variables.containsKey((String)forthCommands.peek())){
                             System.out.println("hello2");
-                            backwardsForth.push(forthCommands.peek());
-                            forthCommands.push(forthCommands.pop());
-                            translate.getHashMap().get("variable").execute();
+                            robot.variableStack.push(forthCommands.pop());
+                            System.out.println(robot.variableStack.peek());
                             
-                        }else if(!forthCommands.isEmpty()){
-                            translate.getHashMap().get((String)forthCommands.peek()).execute();
-                            if(!forthCommands.isEmpty()){
-                            backwardsForth.push(forthCommands.pop());
+                        }else if((!forthCommands.isEmpty()&&this.getHashMap().containsKey((String)forthCommands.peek()))){
+                            {
+                                this.getHashMap().get((String)forthCommands.pop()).execute();
                             }
+                        }else{
+                            System.out.println(forthCommands.peek());
                         }
                         if(!forthCommands.empty()){
+                            
                             //
                             //Testing
                             System.out.println("The top of the function stack is" + forthCommands.peek());
                             //
                             //
                         }
-                    } catch (NoSuchMethodException ex) {
-                        Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            }
+                    
+                    
+            }forthCommands.pop(); // pops the ; off the end of the function
                 
                 }});
             
@@ -574,23 +578,26 @@ public class WordTranslator implements Execute{
         
         
         ht.put("variable", (Execute)  () -> {
-            String key = (String)forthCommands.pop();
+            String key = (String)forthCommands.peek();
+            System.out.println("creating new variable " + key);
             if(!robot.variables.containsKey(key)){
-                System.out.println("hello3");
+                System.out.println("hi");
                 robot.variables.put(key, new Object());
-            forthCommands.pop();
+                robot.variableStack.push(forthCommands.pop());
             
+            }else{
+                forthCommands.pop();
             }
-            
-            robot.variableStack.push(key); 
+            System.out.println("hi3");
         });
         
         //Does nothing as the value is already pushed to the top of the stack
         ht.put("?", (Execute)  () -> {
-            System.out.println("hello");
+            System.out.println("executing the ? dictionary");
             if(!robot.variableStack.isEmpty()){
                System.out.println("accessed variable"); 
-            robot.forthValues.push(robot.variables.get((String)robot.variableStack.peek()));
+            robot.forthValues.push(robot.variables.get((String)robot.variableStack.pop()));
+            System.out.println(robot.forthValues.peek()); 
             
             }else{
                 System.out.println("There are no variable to be accessed");
@@ -603,8 +610,9 @@ public class WordTranslator implements Execute{
 
         //
         ht.put("!", (Execute)  () -> {
+            System.out.println("executing the ! dictionary");
             if(!robot.variableStack.isEmpty()){
-            System.out.println("accessed variable");
+                System.out.println("accessed variable");
                 robot.variables.put((String)robot.variableStack.peek(), robot.forthValues.pop());
             
             }else{
@@ -641,6 +649,7 @@ public class WordTranslator implements Execute{
         
         //This will just delete the element at the top of the stack
         ht.put("drop", (Execute) () -> {
+            System.out.println("DROP");
             robot.forthValues.pop();
         });
         
@@ -804,6 +813,7 @@ public class WordTranslator implements Execute{
         
         
         ht.put("scan!", (Execute) () -> {
+            System.out.println("SCANNING");
             ScoutAI temp = (ScoutAI) robot;
             robot.forthValues.push(temp.scan());
         });

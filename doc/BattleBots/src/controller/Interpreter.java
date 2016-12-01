@@ -216,8 +216,9 @@ public class Interpreter {
                 robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
             }else if(this.isBoolean((String)forthWords.peek())){
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
-            }else if(robot.variables.containsKey(forthWords.peek())){
-                    translate.getHashMap().get("variable").execute();
+            }else if(robot.variables.containsKey((String)forthWords.peek())){
+                System.out.println("hi76876");
+                    robot.variableStack.push(forthWords.pop());
                     }else
             {
                 
@@ -381,9 +382,14 @@ public class Interpreter {
         //test1.add("variable a ; ");
         //test1.add("19 12 * a ! ");
         //test1.add("a ? ");
-        test1.add("variable moved ; ( have i moved? )");
-        test1.add(": moved? moved ? ; ");
-        test1.add("moved? ");
+        test1.add(": hi 1 1 + 23 67 * ;");
+        test1.add(": hello 1 1 - 78 8 * ;");
+        test1.add(": hi2 1 1 * ;");
+        test1.add(": play ( --- ) hi hello hi2");
+        
+        //test1.add("variable moved ; ( have i moved? )");
+        //test1.add(": moved? moved ? ; ");
+        //test1.add("moved? ");
         
         Interpreter interpret = new Interpreter();
         JSONObject testRobot = new JSONObject();
