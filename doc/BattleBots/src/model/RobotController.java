@@ -1,9 +1,9 @@
 package model;
 
 public interface RobotController {
-    public void start();
+  public void start();
 
-    public void togglePaused();
+  public void togglePaused();
 
-    public Robot getRobot();
+  public Robot getRobot();
 }

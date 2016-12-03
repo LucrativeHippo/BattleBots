@@ -48,139 +48,137 @@ public class Hex {
 		graphics.drawPolygon(hexagon);
 	}
         
-        /**
-         * calls the proper function to draw a 
-         * certain type of robot
-         * @param type the type of robot
-         * @param graphics
-         * @param color the colour of the robot
-         * @param row   row on the gameboard
-         * @param column column on the gameboard
-         * @param isEven true if even row false otherwise
-         * @param offset offsets y coordinate if more than one robot on hex
-         */
-        public void drawHexWithRobot(String type, Graphics2D graphics, Color color, int row, int column, boolean isEven, int offset){
-            if ("SCOUT".equals(type))
-                drawHexWithScout(graphics, color, row, column, isEven, offset);
-            
-            if ("SNIPER".equals(type))
-                drawHexWithSniper(graphics, color, row, column, isEven, offset);
-            
+  /**
+   * calls the proper function to draw a 
+   * certain type of robot
+   * @param type the type of robot
+   * @param graphics
+   * @param color the colour of the robot
+   * @param row   row on the gameboard
+   * @param column column on the gameboard
+   * @param isEven true if even row false otherwise
+   * @param offset offsets y coordinate if more than one robot on hex
+   */
+  public void drawHexWithRobot(String type, Graphics2D graphics, Color color, int row, int column, boolean isEven, int offset){
+    if ("SCOUT".equals(type))
+      drawHexWithScout(graphics, color, row, column, isEven, offset);
+        if ("SNIPER".equals(type))
+          drawHexWithSniper(graphics, color, row, column, isEven, offset);
             if ("TANK".equals(type))
-                drawHexWithTank(graphics, color, row, column, isEven, offset);
-            
+              drawHexWithTank(graphics, color, row, column, isEven, offset);
+    }
   
-        }
-        /**
-         * draws a circle shape on a 
-         * hex space on the Game Board
-         * @param graphics
-         * @param color the colour of the robot
-         * @param row   row on the gameboard
-         * @param column column on the gameboard
-         * @param isEven true if even row false otherwise
-         * @param offset offsets y coordinate if more than one robot on hex
-         */
-        public void drawHexWithScout(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
-                graphics.setColor(color);
-                if(isEven){
-                    graphics.fillOval(row*h + r  ,column*52  + h + offset,r , r );
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawOval(row*h + r  ,column*52  + h + offset,r , r );
-                }
-
-                else{
-                    graphics.fillOval(row*h + h,column*52 + h + offset,r , r );
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawOval(row*h + h,column*52 + h + offset,r , r );
-                }
+  
+  /**
+   * draws a circle shape on a 
+   * hex space on the Game Board
+   * @param graphics
+   * @param color the colour of the robot
+   * @param row   row on the gameboard
+   * @param column column on the gameboard
+   * @param isEven true if even row false otherwise
+   * @param offset offsets y coordinate if more than one robot on hex
+   */
+  public void drawHexWithScout(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
+    graphics.setColor(color);
+      if(isEven){
+        graphics.fillOval(row*h + r  ,column*52  + h + offset,r , r );
+        graphics.setColor(Color.BLACK);
+        graphics.drawOval(row*h + r  ,column*52  + h + offset,r , r );
+      } else{
+        graphics.fillOval(row*h + h,column*52 + h + offset,r , r );
+        graphics.setColor(Color.BLACK);
+        graphics.drawOval(row*h + h,column*52 + h + offset,r , r );
+      }
 		graphics.setColor(Color.BLACK);
 		graphics.drawPolygon(hexagon);            
-        }
+  }
         
-        /**
-         * draws a rounded rectangle shape on a 
-         * hex space on the Game Board
-         * @param graphics
-         * @param color the colour of the robot
-         * @param row   row on the gameboard
-         * @param column column on the gameboard
-         * @param isEven true if even row false otherwise
-         * @param offset offsets y coordinate if more than one robot on hex
-         */
-        public void drawHexWithSniper(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
-                graphics.setColor(color);
-                if(isEven){
-                    graphics.fillRoundRect(row*h + r  ,column*52  + h + offset,r , r ,16,16);
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawRoundRect(row*h + r  ,column*52  + h + offset,r , r ,16,16);
-                }
-                else{
-                    graphics.fillRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
-                }
+  /**
+   * draws a rounded rectangle shape on a 
+   * hex space on the Game Board
+   * @param graphics
+   * @param color the colour of the robot
+   * @param row   row on the gameboard
+   * @param column column on the gameboard
+   * @param isEven true if even row false otherwise
+   * @param offset offsets y coordinate if more than one robot on hex
+   */
+  public void drawHexWithSniper(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
+    graphics.setColor(color);
+    if(isEven){
+        graphics.fillRoundRect(row*h + r  ,column*52  + h + offset,r , r ,16,16);
+        graphics.setColor(Color.BLACK);
+        graphics.drawRoundRect(row*h + r  ,column*52  + h + offset,r , r ,16,16);
+    } else{
+        graphics.fillRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
+        graphics.setColor(Color.BLACK);
+        graphics.drawRoundRect(row*h + h,column*52 + h + offset,r , r, 16,16 );
+    }
 		graphics.setColor(Color.BLACK);
 		graphics.drawPolygon(hexagon);            
-        }
-        /**
-         * draws a rectangle shape on a 
-         * hex space on the Game Board
-         * @param graphics
-         * @param color the colour of the robot
-         * @param row   row on the gameboard
-         * @param column column on the gameboard
-         * @param isEven true if even row false otherwise
-         * @param offset offsets y coordinate if more than one robot on hex
-         */
-        public void drawHexWithTank(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
-                graphics.setColor(color);
-                if(isEven){
-                    graphics.fillRect(row*h + r  ,column*52  + h + offset,r , r );
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawRect(row*h + r  ,column*52  + h + offset,r , r );
-                }
-                else{
-                    graphics.fillRect(row*h + r + r,column*52 + h + offset,r , r );
-                    graphics.setColor(Color.BLACK);
-                    graphics.drawRect(row*h + r + r,column*52 + h + offset,r , r );
-                }
+  }
+  
+  /**
+   * draws a rectangle shape on a 
+   * hex space on the Game Board
+   * @param graphics
+   * @param color the colour of the robot
+   * @param row   row on the gameboard
+   * @param column column on the gameboard
+   * @param isEven true if even row false otherwise
+   * @param offset offsets y coordinate if more than one robot on hex
+   */
+  public void drawHexWithTank(Graphics2D graphics, Color color, int row, int column, boolean isEven,int offset){
+    graphics.setColor(color);
+    if(isEven){
+      graphics.fillRect(row*h + r  ,column*52  + h + offset,r , r );
+      graphics.setColor(Color.BLACK);
+      graphics.drawRect(row*h + r  ,column*52  + h + offset,r , r );
+    } else{
+      graphics.fillRect(row*h + r + r,column*52 + h + offset,r , r );
+      graphics.setColor(Color.BLACK);
+      graphics.drawRect(row*h + r + r,column*52 + h + offset,r , r );
+    }
 		graphics.setColor(Color.BLACK);
 		graphics.drawPolygon(hexagon);            
-        }
-
+  }
+  /**
+  * this function keep tracking at where the mouse has been clicked on the game board
+  * @param mousex the horizontal location on the game Panel where the mouse clicked
+  * @param mousey the vertical location on the game Panel where the mouse clicked
+  * @return the location where the mouse clicked
+  */
 	public static Point PointAtHex(int mousex, int mousey) {
 		Point p = new Point(-1,-1);
 		mousex -= border;
 		mousey -= (border+(50));
-//                System.out.println("MOUSE X: " + mousex);
-//                System.out.println("MOUSE Y: " + mousey);
+    // System.out.println("MOUSE X: " + mousex);
+    // System.out.println("MOUSE Y: " + mousey);
 		int row = (int) (mousey / (s+t));
-               // System.out.println("S: " + s + " T: " + t + " r "+r + " h " + h);
+    // System.out.println("S: " + s + " T: " + t + " r "+r + " h " + h);
 		int column = (int) ((mousex - (row%2)*r)/h);
 		int dy = mousey - row*(s+t);
 		int dx = mousex - (column*h);
                 
-                boolean rowIsOdd = row % 2 == 1;
-                //System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
-                if(mousex < 0 || mousey < -15) return p;
-                if (mousex - (row%2)*r < 0) return p;
-                if(dy > s){
-                    return p;
-                }
-                /*
-                if (dy < (-(t/r) * dx) + t) // LEFT edge
-        {
-            row--;
-            if (!rowIsOdd)
-                column--;
-        }
-    else if (dy < ((t/r) * dx) - t) // RIGHT edge
-        {
-            row--;
-            if (rowIsOdd)
-                column++;
-        }
+    boolean rowIsOdd = row % 2 == 1;
+    //System.out.println("\n" + "dx=" + dx + " dy= " + dy + " row = " + row + " column = " + column);	
+    if(mousex < 0 || mousey < -15) return p;
+    if (mousex - (row%2)*r < 0) return p;
+    if(dy > s){
+      return p;
+    }
+    /*
+    if (dy < (-(t/r) * dx) + t) // LEFT edge{
+      row--;
+      if (!rowIsOdd)
+      column--;
+    }
+    else if (dy < ((t/r) * dx) - t) // RIGHT edge{
+      row--;
+      if (rowIsOdd)
+        column++;
+      }
 		/*if(row%2==0){
                         //If we click on the right side of the Hex
 			if(dx  > r){
