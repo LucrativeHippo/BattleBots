@@ -267,10 +267,9 @@ public class TankAI extends Tank{
 	}
         
         /**
-         * This function will take in a Hex space and deal damage to any robots
-         * on that space by the amount of damage that the current robot is able
-         * to do
-         * @param space Hex space to be shot at
+         * This function will allow a robot to shoot at a given direction and 
+         * @param direction
+         * @param range 
          */
         public void robotShooting(int direction, int range){
           if(range > this.getRange()){
