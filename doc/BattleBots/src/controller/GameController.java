@@ -11,6 +11,7 @@ import java.util.ListIterator;
 import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 import model.Game;
 import model.GameBoard;
