@@ -219,6 +219,23 @@ public class GameController implements ActionListener, KeyListener, GameObserver
           }
 
         }
+                
+        for(int i = 0; i < gameInfo.getBoardSize(); i++){
+      	for(int j = 0; j < gameInfo.getBoardSize(); j++){
+      		if(gameBoard.spaces[i][j] != null && gameBoard.spaces[i][j].hexExists == true){
+                        Iterator<Robot> robots2 = gameBoard.spaces[i][j].robotList.iterator();
+                        while(robots2.hasNext()){
+      			if(!gameBoard.spaces[i][j].robotList.isEmpty() && robots2.next().getHealthLeft() == 0){
+                            Iterator<Robot> robots = gameBoard.spaces[i][j].robotList.iterator();
+                            while (robots.hasNext()){
+                            gameBoard.spaces[i][j].robotList.remove(robots.next());
+                            }
+                            
+                        }
+                        }
+                }
+              }
+        }
         view.repaint();
 
         break;
