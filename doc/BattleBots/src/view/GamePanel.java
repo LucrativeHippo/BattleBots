@@ -66,54 +66,7 @@ public class GamePanel extends JPanel implements GameObserver{
                 
                 
                
-//                Scout sc = new Scout("team");
-//                sc.setType("SCOUT");
-//                sc.setGang("GREEN");
-//                sc.setHorizontalLocation(5);
-//                sc.setVerticalLocation(5);
-//                sc.board = gameBoard;
-//                gameController.gameBoard = gameBoard;
-//                gameBoard.spaces[5][5].robotList.add(sc);
-//                System.out.println("COORDINATES: " + sc.getHorizontalLocation() +" " + sc.getVerticalLocation());
-//                
-//                gameinfo.setCurrentRobot(sc);
-//                
-//                
-//                  for(int i = 0; i < size; i ++){
-//                    for(int j = 0; j < size; j++){
-//                        Sniper sn = new Sniper("team");
-//                         sn.setType("SNIPER");
-//                         sn.setGang("PURPLE");
-//                        sn.setHorizontalLocation(i);
-//                        sn.setVerticalLocation(j);
-//                        gameBoard.spaces[i][j].robotList.add(sn);
-//                        gameBoard.aliveList.add(sn);
-//                        gameBoard.setAliveList();
-//                    }
-//                }
-                  
-//                Sniper sniper = new Sniper("team");
-//                sniper.setType("SNIPER");
-//                sniper.setGang("PURPLE");
-//                sniper.setHorizontalLocation(0);
-//                sniper.setVerticalLocation(5);
-//                gameBoard.spaces[0][5].robotList.add(sniper);
-//                
-//                Tank t = new Tank("team");
-//                t.setType("TANK");
-//                t.setGang("ORANGE");
-//                t.setHorizontalLocation(4);
-//                t.setVerticalLocation(3);
-//                gameBoard.spaces[4][3].robotList.add(t);
-                
-                
-                
-//                System.out.println("CurrentRobot: " + gameinfo.getCurrentRobot().getName());
-//                System.out.println("scout damage: " + sc.getDamage());
-//                System.out.println("scout Health: " + sc.getHealthLeft());
-//                sc.recieveDamage(2);
-//                System.out.println("scout Health after damage: " + sc.getHealthLeft());
-                
+              
       setBackground(Color.WHITE);
 		  Action moveD = new AbstractAction(){
         @Override
@@ -227,14 +180,13 @@ public class GamePanel extends JPanel implements GameObserver{
         public void mouseClicked(MouseEvent e) {
           repaint();
           Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
-          //System.out.println("MOUSE POSITION " + e.getX() + " "+ e.getY());
+          
           if (p.x < 0 || p.y < 0 || p.x >= size || p.y >= size) return;
           //shoot instead of getting rid of space
           if (!gameBoard.spaces[p.x][p.y].robotList.isEmpty()){
             gameinfo.getCurrentRobot().shoot(gameBoard.spaces[p.x][p.y]);
             Iterator<Robot> robots = gameBoard.spaces[p.x][p.y].robotList.iterator();
             while(!gameBoard.spaces[p.x][p.y].isEmpty() && robots.hasNext()){
-              System.out.println("robot on hex");
               if (!robots.hasNext()){
                 break;
               }
@@ -242,13 +194,14 @@ public class GamePanel extends JPanel implements GameObserver{
               if (temp.getHealthLeft()<= 0){
                 gameBoard.spaces[p.x][p.y].robotList.remove(temp);
                 robots = gameBoard.spaces[p.x][p.y].robotList.iterator();
-                System.out.println("robot removed");
               } else{
               
               }
             }
             repaint();
-          }                 
+          }                
+          
+          // check if the game is over everytime a human player
           if(gameController.isGameOver(gameBoard.aliveList)){
             gameController.view.showWinner(gameController);
           }
