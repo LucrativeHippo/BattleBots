@@ -77,11 +77,17 @@ public class TeamSelectionPanel extends JPanel {
     teamStats.setBackground(Color.GRAY);
     teamStats.setLayout(new BoxLayout(teamStats, BoxLayout.PAGE_AXIS));
     teamStats.setBorder(BorderFactory.createLineBorder(Color.black));
+    //teamStats.setPreferredSize(new Dimension(800, 600));
+    //teamStats.setMinimumSize(new Dimension(800, 600));
+    //teamStats.setMaximumSize(new Dimension(800, 600));
 
     JPanel headers = new JPanel();
     headers.setBackground(Color.GRAY);
     headers.setLayout(new GridLayout(1, 12));
     headers.setBorder(BorderFactory.createLineBorder(Color.black));
+    headers.setPreferredSize(new Dimension(1000, 20));
+    headers.setMinimumSize(new Dimension(1000, 20));
+    headers.setMaximumSize(new Dimension(1000, 20));
 
     JLabel team = new JLabel("   Team");
     team.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
@@ -162,6 +168,8 @@ public class TeamSelectionPanel extends JPanel {
     JPanel teams = new JPanel();
     teams.setBackground(Color.GRAY);
     teams.setLayout(new BoxLayout(teams, BoxLayout.PAGE_AXIS));
+    
+    
 
     ScrollPane pane1 = new ScrollPane();
     pane1.add(teams);
@@ -174,6 +182,9 @@ public class TeamSelectionPanel extends JPanel {
     teamsToFight.setBackground(Color.GRAY);
     teamsToFight.setBorder(BorderFactory.createLineBorder(Color.black));
     teamsToFight.setLayout(new BoxLayout(teamsToFight, BoxLayout.PAGE_AXIS));
+    teamsToFight.setPreferredSize(new Dimension(500, 200));
+    teamsToFight.setMinimumSize(new Dimension(500, 200));
+    teamsToFight.setMaximumSize(new Dimension(500, 200));
 
     JLabel TTF = new JLabel("Select teams to fight");
     TTF.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
@@ -189,6 +200,9 @@ public class TeamSelectionPanel extends JPanel {
     upperRight.setBackground(Color.GRAY);
     upperRight.setLayout(new BoxLayout(upperRight, BoxLayout.X_AXIS));
     upperRight.setBorder(BorderFactory.createLineBorder(Color.black));
+    upperRight.setPreferredSize(new Dimension(400, 600));
+    upperRight.setMinimumSize(new Dimension(400, 600));
+    upperRight.setMaximumSize(new Dimension(400, 600));
 
     JPanel checkBoxPanel = new JPanel();
     checkBoxPanel.setBackground(Color.GRAY);
@@ -196,12 +210,16 @@ public class TeamSelectionPanel extends JPanel {
     checkBoxPanel.setBorder(BorderFactory.createLineBorder(Color.black));
     //checkBoxPanel.add(Box.createVerticalGlue());
 
+    LinkedList<String> teamNames = new LinkedList();
     //This is the statistics for each robot in the list
     for (int i = 1; i <= size; i++) {
       JPanel rows = new JPanel();
       rows.setBackground(Color.GRAY);
       rows.setLayout(new GridLayout(1, 12));
       rows.setBorder(BorderFactory.createLineBorder(Color.black));
+      rows.setPreferredSize(new Dimension(1000, 20));
+    rows.setMinimumSize(new Dimension(1000, 20));
+    rows.setMaximumSize(new Dimension(1000, 20));
 
       robot = chosenRobotCodes.pop();
 
@@ -290,11 +308,17 @@ public class TeamSelectionPanel extends JPanel {
 //                teamStats.add(Box.createVerticalGlue());
 //                teamStats.add(Box.createVerticalGlue());
 //                
-      sample = new JCheckBox(" " + interpret.getRobotName(robot));
+      
+      //Checkbox dealing with the Team selection
+      if(!teamNames.contains(interpret.getRobotTeam(robot))){
+        teamNames.add(interpret.getRobotTeam(robot));
+        sample = new JCheckBox(" " + interpret.getRobotTeam(robot));
       sample.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
       sample.setForeground(Color.BLACK);
       sample.setAlignmentX(Component.CENTER_ALIGNMENT);
       teams.add(sample);
+      }
+      
 
       newCheck = new JCheckBox(" " + interpret.getRobotName(robot));
       newCheck.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
@@ -317,8 +341,11 @@ public class TeamSelectionPanel extends JPanel {
     
     
     ScrollPane statsPane = new ScrollPane();
-    statsPane.setSize(800, 400);
+    //statsPane.setSize(800, 400);
     statsPane.add(teamStats);
+    statsPane.setPreferredSize(new Dimension(1000, 600));
+    statsPane.setMinimumSize(new Dimension(1000, 600));
+    statsPane.setMaximumSize(new Dimension(1000, 600));
 
     upperRow.add(Box.createHorizontalGlue());
     upperRow.add(statsPane);
@@ -428,17 +455,38 @@ public class TeamSelectionPanel extends JPanel {
 
       });
 
-              SwingUtilities.invokeLater(new Runnable(){
+       //Adding the new team to the list of teams
+        if(!teamNames.contains(inTeam)){  
+          
+        JCheckBox newCheckteam1 = new JCheckBox(" " + inTeam);
+        newCheckteam1.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
+      newCheckteam1.setForeground(Color.BLACK);
+      newCheckteam1.setAlignmentX(Component.CENTER_ALIGNMENT);
+      teamNames.add(inTeam);
+      newCheckteam1.addItemListener(new ItemListener() {
+
+        @Override
+        public void itemStateChanged(ItemEvent ie) {
+          if (ie.getStateChange() == ItemEvent.SELECTED) {
+            anyCheckBoxes = true;
+          } else {
+            anyCheckBoxes = false;
+          }
+        }
+
+      });
+      SwingUtilities.invokeLater(new Runnable(){
 
                 @Override
                 public void run() {
-                  checkBoxPanel.add(newCheck1);
-                  checkBoxPanel.revalidate();
-                  checkBoxPanel.repaint();
-                  
+                   teams.add(newCheckteam1);
+                  teams.revalidate();
+                  teams.repaint();
                 }
 
               });
+        }
+             
           
           
           System.out.print("New Robot");
@@ -446,6 +494,9 @@ public class TeamSelectionPanel extends JPanel {
       rows.setBackground(Color.GRAY);
       rows.setLayout(new GridLayout(1, 12));
       rows.setBorder(BorderFactory.createLineBorder(Color.black));
+      rows.setPreferredSize(new Dimension(1000, 20));
+    rows.setMinimumSize(new Dimension(1000, 20));
+    rows.setMaximumSize(new Dimension(1000, 20));
 
       JLabel team1 = new JLabel(" " + inTeam);
       team1.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
@@ -538,6 +589,7 @@ public class TeamSelectionPanel extends JPanel {
                   teamStats.add(rows);
                   teamStats.revalidate();
                   teamStats.repaint();
+                   
                 }
 
               });
