@@ -221,7 +221,7 @@ public class Interpreter {
                     robot.variableStack.push(forthWords.pop());
                     }else
             {
-                
+                System.out.println(forthWords.peek());
                 translate.getHashMap().get(forthWords.pop()).execute();
                
             }

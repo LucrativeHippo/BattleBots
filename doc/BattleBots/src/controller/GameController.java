@@ -74,18 +74,18 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     JSONArray list = new JSONArray();
     list.add("variable moved ; ( have i moved? )");
     list.add(": moved? moved ? ; ");
-    list.add(" moved false ! 15 15 ; ");
+    list.add("moved false ! 15 15 ; ");
     list.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
     list.add("variable shot ;  ( have I shot this play? )");
-        //list.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
-    //list.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if pop pop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
+    list.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
+    list.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if drop drop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
     list.add(": doNotShoot ( id ir -- ) ( pretend shoot ) drop drop ; ");
-        //list.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
-    //list.add(": nonZeroRange? ( i --bi) dup 0 <> ; ");
-    //list.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then pop ( remove ih ) ;");
-    //list.add(": shootEveryone ( try shot at all targets ) scan! 1 dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
+    list.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
+    list.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
+    list.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
+    list.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
     list.add(": play ( -- ) firstMove shot false ! ( prepare to shoot ) doNotShoot ;");
-        //list.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) doNotShoot ; ");
+    list.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
     //list.add("moved? ;");
 
     testRobot.put("code", list);

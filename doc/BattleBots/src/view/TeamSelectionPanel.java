@@ -665,5 +665,17 @@ public class TeamSelectionPanel extends JPanel {
     add(Box.createVerticalGlue());
     add(lowerRow);
     add(Box.createVerticalGlue());
+  
+  Iterator <JSONObject>iterate1 = robotCodes.iterator();
+  while(iterate1.hasNext()){
+      chosenRobotCodes.push(iterate1.next());
   }
+  
+  }
+  
+  
+  
+      
+    
 }
+
