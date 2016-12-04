@@ -1,0 +1,11 @@
+ 
+  During my pair programming session with Justin, I started off as the "Driver". We started
+off working on the GameController class trying to save information to use for creating the 
+gameboard. After working on this for a while, we had a null pointer exception that we 
+struggled with. We spent some time debugging by discussing what is going on and trying 
+multiple things to fix it. Once we where at a deadlock, we decided to switch roles so I
+was the "Navigator" and Justin was the "Driver". We started working on the StatsPanel 
+class which is a GUI. Justin was not as familiar as I was with the layout of JPanels so 
+I guided him to create the Panel. During this time of a lighter subject I realized our 
+previous problem had a simple solution and was able to quickly fix it once our pair 
+programming session was finished.
