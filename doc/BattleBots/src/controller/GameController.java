@@ -30,6 +30,7 @@ import model.TankAI;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import view.View;
+import static view.TeamSelectionPanel.selectedRobots;
 
 public class GameController implements ActionListener, KeyListener, GameObserver {
 
@@ -92,25 +93,97 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     JSONObject testScript = new JSONObject();
     testScript.put("script", testRobot);
     chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
+    
+    /*
+    JSONObject testRobot1 = new JSONObject();
+    testRobot1.put("team", "A5");
+    testRobot1.put("class", "Sniper");
+    testRobot1.put("name", "sniper");
+    testRobot1.put("matches", 5);
+    testRobot1.put("wins", 2);
+    testRobot1.put("losses", 3);
+    testRobot1.put("executions", 5);
+    testRobot1.put("lived", 1);
+    testRobot1.put("died", 4);
+    testRobot1.put("absorbed", 4);
+    testRobot1.put("killed", 0);
+    testRobot1.put("moved", 17);
+    JSONArray list1 = new JSONArray();
+    list1.add("variable moved ; ( have i moved? )");
+    list1.add(": moved? moved ? ; ");
+    list1.add("moved false ! 15 15 ; ");
+    list1.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
+    list1.add("variable shot ;  ( have I shot this play? )");
+    list1.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
+    list1.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if drop drop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
+    list1.add(": doNotShoot ( id ir -- ) ( pretend shoot ) drop drop ; ");
+    list1.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
+    list1.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
+    list1.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
+    list1.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
+    list1.add(": play ( -- ) firstMove shot false ! ( prepare to shoot ) doNotShoot ;");
+    list1.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
+    //list1.add("moved? ;");
 
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
+    testRobot1.put("code", list1);
+    JSONObject testScript1 = new JSONObject();
+    testScript.put("script", testRobot1);
+    chosenRobotCodes.push(testScript1);
+    
+    JSONObject testRobot2 = new JSONObject();
+    testRobot2.put("team", "A5");
+    testRobot2.put("class", "Tank");
+    testRobot2.put("name", "tanker");
+    testRobot2.put("matches", 5);
+    testRobot2.put("wins", 2);
+    testRobot2.put("losses", 3);
+    testRobot2.put("executions", 5);
+    testRobot2.put("lived", 1);
+    testRobot2.put("died", 4);
+    testRobot2.put("absorbed", 4);
+    testRobot2.put("killed", 0);
+    testRobot2.put("moved", 17);
+    JSONArray list2 = new JSONArray();
+    list2.add("variable moved ; ( have i moved? )");
+    list2.add(": moved? moved ? ; ");
+    list2.add("moved false ! 15 15 ; ");
+    list2.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
+    list2.add("variable shot ;  ( have I shot this play? )");
+    list2.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
+    list2.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if drop drop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
+    list2.add(": doNotShoot ( id ir -- ) ( pretend shoot ) drop drop ; ");
+    list2.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
+    list2.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
+    list2.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
+    list2.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
+    list2.add(": play ( -- ) firstMove shot false ! ( prepare to shoot ) doNotShoot ;");
+    list2.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
+    //list2.add("moved? ;");
 
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
-    chosenRobotCodes.push(testScript);
+    testRobot2.put("code", list2);
+    JSONObject testScript2 = new JSONObject();
+    testScript.put("script", testRobot2);
+    chosenRobotCodes.push(testScript2);
+    */
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
+//    chosenRobotCodes.push(testScript);
     view.showMainMenu(this);
         //These robot codes are for testing, must remove at some point
 
@@ -247,6 +320,14 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         gameInfo.setNumPlayers(numPlayers);
         gameInfo.setNumHumans(numHumans);
         gameInfo.setBoardSize(boardSize);
+        chosenRobotCodes = new Stack<>();
+        Iterator<JSONObject> iterateSelect = selectedRobots.iterator();
+        while(iterateSelect.hasNext()){
+          chosenRobotCodes.push(iterateSelect.next());
+        }
+        
+        
+        
         try {
           view.showGame(this, this, gameInfo);
         } catch (NoSuchMethodException ex) {

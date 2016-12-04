@@ -26,12 +26,14 @@ import java.awt.event.ItemListener;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.AbstractAction;
+import javax.swing.JComboBox;
 import javax.swing.SwingUtilities;
 import org.json.simple.JSONObject;
 
 public class TeamSelectionPanel extends JPanel {
 
-  LinkedList<JSONObject> robotCodes;
+  public static LinkedList<JSONObject> robotCodes;
+  public static LinkedList<JSONObject> selectedRobots;
   private static final long serialVersionUID = 1L;
 
   static final int FONT_SIZE = 72;
@@ -43,6 +45,7 @@ public class TeamSelectionPanel extends JPanel {
 
   public TeamSelectionPanel(int width, int height, ActionListener listener) {
 
+    selectedRobots = new LinkedList<>();
     robotCodes = new LinkedList<>();
     while (!chosenRobotCodes.isEmpty()) {
       robotCodes.add(chosenRobotCodes.pop());
@@ -312,10 +315,43 @@ public class TeamSelectionPanel extends JPanel {
       //Checkbox dealing with the Team selection
       if(!teamNames.contains(interpret.getRobotTeam(robot))){
         teamNames.add(interpret.getRobotTeam(robot));
-        sample = new JCheckBox(" " + interpret.getRobotTeam(robot));
+        sample = new JCheckBox("" + interpret.getRobotTeam(robot));
       sample.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
       sample.setForeground(Color.BLACK);
       sample.setAlignmentX(Component.CENTER_ALIGNMENT);
+      sample.addItemListener(new ItemListener() {
+
+        @Override
+        public void itemStateChanged(ItemEvent ie) {
+          String theTeam = sample.getText();
+          Interpreter interpret2 = new Interpreter();
+          JSONObject storage = null;
+          Iterator<JSONObject> iterate2 = robotCodes.iterator();
+          if (ie.getStateChange() == ItemEvent.SELECTED) {
+            while(iterate2.hasNext()){
+              storage = iterate2.next();
+              
+              if(theTeam.compareTo(interpret2.getRobotTeam(storage)) == 0){
+                if((selectedRobots == null) || !selectedRobots.contains(storage)){
+                  selectedRobots.add(storage);
+                }
+              }
+            }
+          } else {
+            while(iterate2.hasNext()){
+              storage = iterate2.next();
+              
+              if(theTeam.equals(interpret2.getRobotTeam(storage))){
+                if(selectedRobots.contains(storage)){
+                  selectedRobots.remove(storage);
+                }
+              }
+            }
+          }
+        }
+
+      });
+      
       teams.add(sample);
       }
       
@@ -384,7 +420,9 @@ public class TeamSelectionPanel extends JPanel {
     JPanel three = new JPanel();
     three.setBackground(Color.GRAY);
     three.setLayout(new FlowLayout());
-    JTextField tn2 = new JTextField(12);
+    String[] robos = {"Scout", "Sniper", "Tank"};
+    JComboBox tn2 = new JComboBox(robos);
+    tn2.setSelectedIndex(0);
     tn2.setBorder(BorderFactory.createLineBorder(Color.black));
     JLabel TN2 = new JLabel("Class: ");
     TN2.setFont(new Font("Rockwell", Font.PLAIN, FONT_SIZE / 6));
@@ -408,7 +446,7 @@ public class TeamSelectionPanel extends JPanel {
       public void actionPerformed(ActionEvent ae) {
         String inTeam = tn.getText();
         String inRobot = tn1.getText();
-        String inClass = tn2.getText();
+        String inClass = (String)tn2.getSelectedItem();
 
         if (inTeam.equals("")) {
           tn.setText("Enter Team Name");
@@ -416,15 +454,12 @@ public class TeamSelectionPanel extends JPanel {
         if (inRobot.equals("")) {
           tn1.setText("Enter Robot Name");
         }
-        if (inClass.equals("")) {
-          tn2.setText("Enter Class");
-        }
 
-        if (!inTeam.equals("") && !inRobot.equals("") && !inClass.equals("") && !anyCheckBoxes) {
+        if (!inTeam.equals("") && !inRobot.equals("") && !anyCheckBoxes) {
           JSONObject newRobot = new JSONObject();
           newRobot.put("team", inTeam);
-          newRobot.put("class", inRobot);
-          newRobot.put("name", inClass);
+          newRobot.put("class", inClass);
+          newRobot.put("name", inRobot);
           newRobot.put("matches", 0);
           newRobot.put("wins", 0);
           newRobot.put("losses", 0);
@@ -437,6 +472,8 @@ public class TeamSelectionPanel extends JPanel {
           newRobot.put("code", null);
           JSONObject newRobot2 = new JSONObject();
           newRobot2.put("script", newRobot);
+          //Create some Forth Code
+          robotCodes.add(newRobot2);
           
           JCheckBox newCheck1 = new JCheckBox(" " + inRobot);
         newCheck1.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
@@ -458,19 +495,39 @@ public class TeamSelectionPanel extends JPanel {
        //Adding the new team to the list of teams
         if(!teamNames.contains(inTeam)){  
           
-        JCheckBox newCheckteam1 = new JCheckBox(" " + inTeam);
+        JCheckBox newCheckteam1 = new JCheckBox(inTeam);
         newCheckteam1.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
       newCheckteam1.setForeground(Color.BLACK);
       newCheckteam1.setAlignmentX(Component.CENTER_ALIGNMENT);
       teamNames.add(inTeam);
       newCheckteam1.addItemListener(new ItemListener() {
 
-        @Override
+         @Override
         public void itemStateChanged(ItemEvent ie) {
+          String theTeam = newCheckteam1.getText();
+          Interpreter interpret2 = new Interpreter();
+          JSONObject storage = null;
+          Iterator<JSONObject> iterate2 = robotCodes.iterator();
           if (ie.getStateChange() == ItemEvent.SELECTED) {
-            anyCheckBoxes = true;
+            while(iterate2.hasNext()){
+              storage = iterate2.next();
+              
+              if(theTeam.compareTo(interpret2.getRobotTeam(storage)) == 0){
+                if((selectedRobots == null) || !selectedRobots.contains(storage)){
+                  selectedRobots.add(storage);
+                }
+              }
+            }
           } else {
-            anyCheckBoxes = false;
+            while(iterate2.hasNext()){
+              storage = iterate2.next();
+              
+              if(theTeam.equals(interpret2.getRobotTeam(storage))){
+                if(selectedRobots.contains(storage)){
+                  selectedRobots.remove(storage);
+                }
+              }
+            }
           }
         }
 
