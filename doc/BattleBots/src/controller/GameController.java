@@ -94,7 +94,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     testScript.put("script", testRobot);
     chosenRobotCodes.push(testScript);
     
-    /*
+    
     JSONObject testRobot1 = new JSONObject();
     testRobot1.put("team", "A5");
     testRobot1.put("class", "Sniper");
@@ -127,7 +127,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
     testRobot1.put("code", list1);
     JSONObject testScript1 = new JSONObject();
-    testScript.put("script", testRobot1);
+    testScript1.put("script", testRobot1);
     chosenRobotCodes.push(testScript1);
     
     JSONObject testRobot2 = new JSONObject();
@@ -162,9 +162,9 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
     testRobot2.put("code", list2);
     JSONObject testScript2 = new JSONObject();
-    testScript.put("script", testRobot2);
+    testScript2.put("script", testRobot2);
     chosenRobotCodes.push(testScript2);
-    */
+    
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
@@ -352,6 +352,10 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         }
         gameControl.start();
         break;
+      }
+      
+      case "update":{
+        
       }
       case "backTS": {
         view.showGameProperties(this);
