@@ -76,6 +76,10 @@ public class WordTranslator implements Execute{
             
         });
         
+        ht.put("until", (Execute) () -> {
+            
+        });
+        
         //Removes comments from the code
         ht.put("(", (Execute) () -> {
             System.out.println("in the bracket");
@@ -303,6 +307,10 @@ public class WordTranslator implements Execute{
                             robot.forthValues.push(Integer.parseInt((String)forthCommands.pop()));
                         }else if(interpreter.isBoolean((String)forthCommands.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)forthCommands.pop()));
+                        }else if(forthCommands.peek().toString().compareTo(".\"")==0){
+                            System.out.println("there is a string");
+                            forthCommands.pop();
+                            this.getHashMap().get("string").execute();
                         }else if(robot.variables.containsKey(forthCommands.peek())){
                             robot.variableStack.push(forthCommands.pop());
                             
@@ -364,7 +372,7 @@ public class WordTranslator implements Execute{
                     if(forthCommands.peek().toString().compareTo("loop")==0){
                         ifCommands.push(forthCommands.pop());
                          System.out.println(ifCommands.peek());
-                         System.out.println("hi8");
+                         
                     }
                     if(forthCommands.peek().toString().compareTo("if")==0){
                             ifCommands.push(forthCommands.pop());
@@ -385,6 +393,10 @@ public class WordTranslator implements Execute{
                             robot.forthValues.push(Integer.parseInt((String)forthCommands.pop()));
                         }else if(interpreter.isBoolean((String)forthCommands.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)forthCommands.pop()));
+                        }else if(forthCommands.peek().toString().compareTo(".\"")==0){
+                            System.out.println("there is a string");
+                            forthCommands.pop();
+                            this.getHashMap().get("string").execute();
                         }else if(robot.variables.containsKey(forthCommands.peek())){
                             System.out.println(forthCommands.peek());
                             robot.variableStack.push(forthCommands.pop());
@@ -431,7 +443,7 @@ public class WordTranslator implements Execute{
                 loopForth.push(backwardsForth.pop());
             }
             Stack temp = new Stack(); 
-            for(int i=temp1; i < temp2; i++){
+            for(int i=temp1; i < temp2+1; i++){
                 while(!loopForth.empty()){
                     
                   
@@ -442,6 +454,17 @@ public class WordTranslator implements Execute{
                         }else if(interpreter.isBoolean((String)loopForth.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)loopForth.peek()));
                             temp.push(loopForth.pop());
+                        }else if(loopForth.peek().toString().compareTo(".\"")==0){
+                            
+
+
+                        //CANNOT handle strings properly
+                            
+                            
+                            temp.push(loopForth.pop());
+                            System.out.println("there is a string");
+                            this.getHashMap().get("string").execute();
+                            
                         }else if(robot.variables.containsKey(loopForth.peek())){
                             robot.variableStack.push(temp.peek());
                             temp.push(loopForth.pop());
@@ -471,47 +494,50 @@ public class WordTranslator implements Execute{
                 backwardsForth.push(forthCommands.pop());
                
             }
-            forthCommands.pop(); //pops the loop string
-            forthCommands.pop(); //pops the ;
+            backwardsForth.push(forthCommands.pop()); //pops the until string
             
             Stack loopForth = new Stack();
             while(!backwardsForth.isEmpty()){
                 loopForth.push(backwardsForth.pop());
             }
             Stack temp = new Stack(); 
-            while(loopEnd = false){
+            while(loopEnd == false){
                 while(!loopForth.empty()){
                     
-                    try {
-                        WordTranslator translate;
-                        translate = new WordTranslator(robot, commands);
+                    
+                        
                         if(interpreter.isInteger((String)loopForth.peek())){
                             robot.forthValues.push(Integer.parseInt((String)loopForth.peek()));
                             temp.push(loopForth.pop());
                         }else if(interpreter.isBoolean((String)loopForth.peek())){
                             robot.forthValues.push(Boolean.parseBoolean((String)loopForth.peek()));
                             temp.push(loopForth.pop());
+                        }else if(forthCommands.peek().toString().compareTo(".\"")==0){
+                            System.out.println("there is a string");
+                            forthCommands.pop();
+                            this.getHashMap().get("string").execute();
+                           
                         }else if(robot.variables.containsKey(loopForth.peek())){
-                            translate.getHashMap().get("variable").execute();
-                            temp.push(loopForth.peek());
+                            robot.variableStack.push(temp.peek());
+                            temp.push(loopForth.pop());
                         }else{
-                            translate.getHashMap().get((String)loopForth.peek()).execute();
+                            this.getHashMap().get((String)loopForth.peek()).execute();
                             temp.push(loopForth.pop());
                         }
                         if(!loopForth.empty()){
                             
                         }
-                    } catch (NoSuchMethodException ex) {
-                        Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
             }
-                if(robot.forthValues.peek().toString().compareTo("true")==0){
-                    loopEnd = true;
-                }
                 while(!temp.isEmpty()){
                     loopForth.push(temp.pop());
                 }
+            if(robot.forthValues.peek().toString().compareTo("false")==0){
+                robot.forthValues.pop();
+                loopEnd = true;
             }
+            }
+            
             
         });
         
@@ -546,9 +572,10 @@ public class WordTranslator implements Execute{
                     System.out.println("empty");
                 }else{
                     Stack backwards = robot.functions.get(key);
-                
+                    Stack reusedStack = new Stack();
                     
                     while(!backwards.isEmpty()){
+                        reusedStack.push(backwards.peek());
                         forthCommands.push(backwards.pop());
                         System.out.println(forthCommands.peek());
                     }
@@ -568,6 +595,11 @@ public class WordTranslator implements Execute{
                             robot.variableStack.push(forthCommands.pop());
                             System.out.println(robot.variableStack.peek());
                             
+                        }else if(forthCommands.peek().toString().compareTo(".\"")==0){
+                            System.out.println("there is a string");
+                            forthCommands.pop();
+                            this.getHashMap().get("string").execute();
+                        
                         }else if((!forthCommands.isEmpty()&&this.getHashMap().containsKey((String)forthCommands.peek()))){
                             {
                                 this.getHashMap().get((String)forthCommands.pop()).execute();
@@ -586,7 +618,10 @@ public class WordTranslator implements Execute{
                     
                     
             }forthCommands.pop(); // pops the ; off the end of the function
-                
+            while(!reusedStack.isEmpty()){
+                backwards.push(reusedStack.pop());
+            }    
+            robot.functions.put(key, backwards);
                 }});
             
            
@@ -647,17 +682,17 @@ public class WordTranslator implements Execute{
         
         
         
-        ht.put(".", (Execute)  () -> {
+        ht.put("string", (Execute)  () -> {
+            System.out.println("inside the string function");
             String s = new String();
-            if(forthCommands.peek().toString().compareTo("\"")!=0){
-                System.out.println("There is no string");
-            }else{
-                forthCommands.pop();
             while(forthCommands.peek().toString().compareTo("\"")!=0){
             s = s.concat((String)forthCommands.pop());
+            s = s.concat(" ");
             }
+            forthCommands.pop();
             System.out.println(s);
-            }
+            robot.forthValues.push(s);
+            
         });
         
         //Generates a random number between 0 and the given integer
@@ -713,6 +748,7 @@ public class WordTranslator implements Execute{
         });
         
         ht.put("movesLeft", (Execute) () -> {
+            System.out.println("the movement left is " + robot.getMovementLeft());
             robot.forthValues.push(robot.getMovementLeft());
         });
         
@@ -746,6 +782,7 @@ public class WordTranslator implements Execute{
                 TankAI temp = (TankAI) robot;
                 temp.turn((int)robot.forthValues.pop());
             }
+              System.out.println("the curent direction is" + robot.getRelativeDirection());
             
         });
         
@@ -811,6 +848,7 @@ public class WordTranslator implements Execute{
         
         
         ht.put("check!", new Execute(){public void execute(){
+            System.out.println("inside the check function");
             ScoutAI temp = (ScoutAI) robot;
             Exception x = null;
             try{
