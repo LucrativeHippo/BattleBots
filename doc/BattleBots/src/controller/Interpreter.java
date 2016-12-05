@@ -200,9 +200,14 @@ public class Interpreter {
                initialfourthWords.add(commandArray[j]);
            }
         }
+        Stack tempStack = new Stack();
         Stack medium = new Stack();
         while(!initialfourthWords.empty()){
+            tempStack.push(initialfourthWords.peek());
             medium.push(initialfourthWords.pop());
+        }
+        while(!tempStack.isEmpty()){
+            initialfourthWords.push(tempStack.pop());
         }
         Stack forthWords = new Stack();
         while(!medium.empty()){
@@ -216,8 +221,12 @@ public class Interpreter {
                 robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
             }else if(this.isBoolean((String)forthWords.peek())){
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
+            }else if(forthWords.peek().toString().compareTo(".\"")==0){
+                    System.out.println("there is a string");
+                    forthWords.pop();
+                    translate.getHashMap().get("string").execute();
+                    
             }else if(robot.variables.containsKey((String)forthWords.peek())){
-                System.out.println("hi76876");
                     robot.variableStack.push(forthWords.pop());
                     }else
             {
@@ -241,7 +250,16 @@ public class Interpreter {
     
     //Here we will test the functions associated with the Interpreter
     public static void main(String [] args) throws NoSuchMethodException {
-       
+        String temp1 = ".\"h";
+        if(temp1.compareTo(".\"") ==0){
+           System.out.println("fgdddddddddddddddd");
+       }
+        String temp2 = "i";
+        if(temp2.compareTo("i+") ==0){
+           System.out.println("fgdddddddftuitfiyutfififiddd");
+       }
+        
+        
         /*
         JSONObject testRobot = new JSONObject();
         testRobot.put("team", "A5");
@@ -385,7 +403,7 @@ public class Interpreter {
         test1.add(": hi 1 1 + 23 67 * ;");
         test1.add(": hello 1 1 - 78 8 * ;");
         test1.add(": hi2 1 1 * ;");
-        test1.add(": play ( --- ) hi hello hi2");
+        test1.add(": play ( --- ) .\" OUT OF BOUNDS  \"");
         
         //test1.add("variable moved ; ( have i moved? )");
         //test1.add(": moved? moved ? ; ");
