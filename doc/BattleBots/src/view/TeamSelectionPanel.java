@@ -711,9 +711,10 @@ public class TeamSelectionPanel extends JPanel {
             if (inRobot.equals("")) {
               tn1.setText("Enter Robot Name");
             }
-
+              Interpreter interpret = new Interpreter();
+              String name = interpret.getRobotName(updateRobot);
             if (!inTeam.equals("") && !inRobot.equals("") && anyCheckBoxes) {
-          JSONObject updateRobot = new JSONObject();
+
           updateRobot.put("team", inTeam);
           updateRobot.put("class", inClass);
           updateRobot.put("name", inRobot);
@@ -734,8 +735,20 @@ public class TeamSelectionPanel extends JPanel {
 
           @Override
           public void run() {
+              Component[] c = checkBoxPanel.getComponents();
+              for(int i = 0; i < c.length; i++){
+                if(c[i] instanceof JRadioButton){
+                  if(((JRadioButton)c[i]).getText().compareTo(name) == 0){
+                    ((JRadioButton)c[i]).setText(inRobot);
+                  }
+                }
+              }
+              checkBoxPanel.revalidate();
+              checkBoxPanel.repaint();
+              //teamStats.remove();
               teamStats.revalidate();
               teamStats.repaint();
+
           }
         });
       }
