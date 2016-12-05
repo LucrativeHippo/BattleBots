@@ -141,11 +141,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     list.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
     list.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
     list.add(": play ( -- ) firstMove shot false ! ( prepare to shoot ) begin edgeMove shootEveryone noMovesLeft? until ; ");
-    //list.add("");
-    //list.add("");
-    //list.add("");
-    //list.add("");
-    //list.add("");
 
     testRobot1.put("code", list1);
     JSONObject testScript1 = new JSONObject();
@@ -198,11 +193,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     list.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
     list.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
     list.add(": play ( -- ) firstMove shot false ! ( prepare to shoot ) begin edgeMove shootEveryone noMovesLeft? until ; ");
-    //list.add("");
-    //list.add("");
-    //list.add("");
-    //list.add("");
-    //list.add("");
 
     testRobot2.put("code", list2);
     JSONObject testScript2 = new JSONObject();
@@ -221,7 +211,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
-//
+//    
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
@@ -314,7 +304,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
             ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
             try {
               interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
-              System.out.println("hihihihihihihihi");
               System.out.println(interpret.getRobotClass(temp.getCode()));
             } catch (NoSuchMethodException ex) {
               Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);

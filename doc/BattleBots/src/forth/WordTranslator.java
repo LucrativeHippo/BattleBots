@@ -582,7 +582,7 @@ public class WordTranslator implements Execute{
                  
                 while(forthCommands.peek().toString().compareTo(";")!=0){
                     
-                        
+                        System.out.println("hi");
                         
                         if(interpreter.isInteger((String)forthCommands.peek())){
                             System.out.println("integer added to robotvalue stack is " + forthCommands.peek());
@@ -618,40 +618,44 @@ public class WordTranslator implements Execute{
                     
                     
             }forthCommands.pop(); // pops the ; off the end of the function
-            while(!reusedStack.isEmpty()){
+            
+            //refills the backwards stack so it can be reused if the variable is called again
+            while(!reusedStack.isEmpty()){ 
                 backwards.push(reusedStack.pop());
             }    
             robot.functions.put(key, backwards);
                 }});
-            
-           
-           
-            }
-        
-        
-        });
+            }});
         
         
         
+        
+        
+        //Creates a new variable
         ht.put("variable", (Execute)  () -> {
+            //key is the name of the variable and its "key" for its hashtable
             String key = (String)forthCommands.peek();
             System.out.println("creating new variable " + key);
+            //Checks the hashtable see if the variable already exists
             if(!robot.variables.containsKey(key)){
-                System.out.println("hi");
+                //puts the new variable into the hashtable, does not currently have a value
                 robot.variables.put(key, new Object());
+                //pops the varaible name onto the variableStack, which is checked when looking for the last used variable
                 robot.variableStack.push(forthCommands.pop());
             
             }else{
+                //if variable already exists discards the current variable
                 forthCommands.pop();
             }
-            System.out.println("hi3");
         });
         
-        //Does nothing as the value is already pushed to the top of the stack
+        //Accesses the previous variable and returns its value onto the robot forth values stack
         ht.put("?", (Execute)  () -> {
             System.out.println("executing the ? dictionary");
             if(!robot.variableStack.isEmpty()){
                System.out.println("accessed variable"); 
+               //accesses the last variable in a hashtable and pushes its value onto the robot values stack
+               //robot.variableStack.pop is the last seen variable and the key for the hashtable
             robot.forthValues.push(robot.variables.get((String)robot.variableStack.pop()));
             System.out.println(robot.forthValues.peek()); 
             
@@ -664,11 +668,13 @@ public class WordTranslator implements Execute{
 
 
 
-        //
+        //Accesses the previous variable an inserts a new value 
         ht.put("!", (Execute)  () -> {
             System.out.println("executing the ! dictionary");
             if(!robot.variableStack.isEmpty()){
                 System.out.println("accessed variable");
+                //puts the new value into the hashtable containing all the variables
+                //robot.variableStack.peek is the last seen variable and the key for the hashtable
                 robot.variables.put((String)robot.variableStack.peek(), robot.forthValues.pop());
             
             }else{
@@ -681,7 +687,7 @@ public class WordTranslator implements Execute{
         
         
         
-        
+        //Pushes a string of words onto the robot values stack
         ht.put("string", (Execute)  () -> {
             System.out.println("inside the string function");
             String s = new String();
@@ -695,7 +701,7 @@ public class WordTranslator implements Execute{
             
         });
         
-        //Generates a random number between 0 and the given integer
+        //Generates a random number between 0 and the given integer on the robot values stack
         ht.put("random", (Execute)  () -> {
             int temp1 = (int)robot.forthValues.pop();
             Random randomNum = new Random();
@@ -703,20 +709,20 @@ public class WordTranslator implements Execute{
             robot.forthValues.push(temp2);
         });
         
-        //This will just delete the element at the top of the stack
+        //This will just delete the element at the top of the robotvalues stack
         ht.put("drop", (Execute) () -> {
             System.out.println("DROP");
             robot.forthValues.pop();
         });
         
-        //This will duplicate the value at the top of the stack.
+        //This will duplicate the value at the top of the robotvalues stack.
         ht.put("dup", (Execute) () -> {
             Stack temp = new Stack();
             temp.push(robot.forthValues.peek());
             robot.forthValues.push(temp.pop());
         });
         
-        //This will swap the top two values on the stack
+        //This will swap the top two values on the robotvalues stack
         ht.put("swap", (Execute) () -> {
             Object temp1 = robot.forthValues.pop();
             Object temp2 = robot.forthValues.pop();
@@ -725,7 +731,7 @@ public class WordTranslator implements Execute{
         });
         
         
-        //Rotates the top 3 values of the stack
+        //Rotates the top 3 values of the robotvalues stack
         ht.put("rot", (Execute) () -> {
             Object temp1 = robot.forthValues.pop();
             Object temp2 = robot.forthValues.pop();
@@ -739,46 +745,60 @@ public class WordTranslator implements Execute{
         
         
         //Status keys
+        
+        //pushes the current robots health to the top of the forthvalues stack
         ht.put("health", (Execute) () -> {
             robot.forthValues.push(robot.getHealth());
         });
         
+        //pushes the current robots healthleft to the top of the forthvalues stack
         ht.put("healthLeft", (Execute) () -> {
             robot.forthValues.push(robot.getHealthLeft());
         });
         
+        //pushes the current robots movesleft to the top of the forthvalues stack
         ht.put("movesLeft", (Execute) () -> {
             System.out.println("the movement left is " + robot.getMovementLeft());
             robot.forthValues.push(robot.getMovementLeft());
         });
         
+        //pushes the current robots attack to the top of the forthvalues stack
         ht.put("attack", (Execute) () -> {
             robot.forthValues.push(robot.getDamage());
         });
         
+        //pushes the current robots range to the top of the forthvalues stack
         ht.put("range", (Execute) () -> {
             robot.forthValues.push(robot.getRange());
         });
         
+        //pushes the current robots team to the top of the forthvalues stack
         ht.put("team", (Execute) () -> {
             robot.forthValues.push(robot.getGang());
         });
         
+        //pushes the current robots type to the top of the forthvalues stack
         ht.put("type", (Execute) () -> {
             robot.forthValues.push(robot.getType());
         });
         
         //Action Keys
         ht.put("turn!", (Execute) () -> {
+            //Checks if the robot is a sniper
             if(robot.getType().compareTo("SNIPER")==0){
                 SniperAI temp = (SniperAI) robot;
+                //Turns the integer amount on top of the robot value stack
                 temp.turn((int)robot.forthValues.pop());
             }
-             if(robot.getType().compareTo("SCOUT")==0){
+            //Checks if the robot is a scout 
+            if(robot.getType().compareTo("SCOUT")==0){
+                //Turns the integer amount on top of the robot value stack
                 ScoutAI temp = (ScoutAI) robot;
                 temp.turn((int)robot.forthValues.pop());
             }
-              if(robot.getType().compareTo("TANK")==0){
+            //Checks if the robot is a tank  
+            if(robot.getType().compareTo("TANK")==0){
+                //Turns the integer amount on top of the robot value stack
                 TankAI temp = (TankAI) robot;
                 temp.turn((int)robot.forthValues.pop());
             }
@@ -786,21 +806,26 @@ public class WordTranslator implements Execute{
             
         });
         
+        //moves the current robot in the correct direction
         ht.put("move", (Execute) () -> {
             System.out.println(robot.getHorizontalLocation());
             System.out.println(robot.getVerticalLocation());
             System.out.println(robot.getRelativeDirection());
+            //Checks if the robot is a sniper
             if(robot.getType().compareTo("SNIPER")==0){
-                SniperAI temp = (SniperAI) robot;
+                SniperAI temp = (SniperAI) robot; 
                 try {
+                    // creates a temporary robot with the corresponding types move value
                     temp.move();
                 } catch (Exception ex) {
                     Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            //Checks if the robot is a scout
              if(robot.getType().compareTo("SCOUT")==0){
                 ScoutAI temp = (ScoutAI) robot;
                 try {
+                    // creates a temporary robot with the corresponding types move value
                     temp.move();
                 } catch (Exception ex) {
                     Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
@@ -810,10 +835,11 @@ public class WordTranslator implements Execute{
                 System.out.println(temp.getRelativeDirection());
             
              }
-                
+              //Checks if the robot is a tank
               if(robot.getType().compareTo("TANK")==0){
                 TankAI temp = (TankAI) robot;
                 try {
+                    // creates a temporary robot with the corresponding types move value
                     temp.move();
                 } catch (Exception ex) {
                     Logger.getLogger(WordTranslator.class.getName()).log(Level.SEVERE, null, ex);
@@ -823,20 +849,20 @@ public class WordTranslator implements Execute{
         });
         
         ht.put("shoot!", (Execute)  () -> {
-            System.out.println("SKJJJJBLAAAAAVH;SIAVSFA;LKJSAJKLVSABVKSAFBVSHKDA");
             int range = (int)robot.forthValues.pop();
             int direction = (int)robot.forthValues.pop();
             
+            //Checks if the robot is a sniper and uses a snipers range and damage on a hex
             if(robot.getType().compareTo("SNIPER")==0){
                 SniperAI temp = (SniperAI) robot;
                 temp.robotShooting(direction, range);
             }
+            //Checks if the robot is a scout and uses a scouts range and damage on a hex
              if(robot.getType().compareTo("SCOUT")==0){
-                System.out.println("SKJJJJBLAAAAAVH;SIAVSFA;LKJSAJKLVSABVKSAFBVSHKDA");
                 ScoutAI temp = (ScoutAI) robot;
                 temp.robotShooting(direction, range);
              }
-                
+             //Checks if the robot is a tank and uses a tanks range and damage on a hex
               if(robot.getType().compareTo("TANK")==0){
                 TankAI temp = (TankAI) robot;
                 temp.robotShooting(direction, range);
@@ -849,6 +875,7 @@ public class WordTranslator implements Execute{
         
         ht.put("check!", new Execute(){public void execute(){
             System.out.println("inside the check function");
+            if(robot.getType().compareTo("SCOUT")==0){
             ScoutAI temp = (ScoutAI) robot;
             Exception x = null;
             try{
@@ -868,6 +895,51 @@ public class WordTranslator implements Execute{
                 robot.forthValues.pop();
                 robot.forthValues.push("OUT OF BOUNDS");
             }
+            }
+            
+            if(robot.getType().compareTo("SNIPER")==0){
+            SniperAI temp = (SniperAI) robot;
+            Exception x = null;
+            try{
+                if(temp.check((int)robot.forthValues.peek())){
+                    robot.forthValues.pop();
+                    robot.forthValues.push("EMPTY");
+                }
+                else{
+                    robot.forthValues.pop();
+                    robot.forthValues.push("OCCUPIED");
+                }
+            }
+            catch(Exception e){
+                x = e;
+            }
+            
+            if( x != null){
+                robot.forthValues.pop();
+                robot.forthValues.push("OUT OF BOUNDS");
+            }
+            }
+            if(robot.getType().compareTo("TANK")==0){
+            TankAI temp = (TankAI) robot;
+            Exception x = null;
+            try{
+                if(temp.check((int)robot.forthValues.peek())){
+                    robot.forthValues.pop();
+                    robot.forthValues.push("EMPTY");
+                }
+                else{
+                    robot.forthValues.pop();
+                    robot.forthValues.push("OCCUPIED");
+                }
+            }
+            catch(Exception e){
+                x = e;
+            }
+            if( x != null){
+                robot.forthValues.pop();
+                robot.forthValues.push("OUT OF BOUNDS");
+            }
+            }
         }});
         
         
@@ -875,13 +947,24 @@ public class WordTranslator implements Execute{
         
         ht.put("scan!", (Execute) () -> {
             System.out.println("SCANNING");
+            if(robot.getType().compareTo("SCOUT")==0){
             ScoutAI temp = (ScoutAI) robot;
             robot.forthValues.push(temp.scan());
+            }
+            if(robot.getType().compareTo("SNIPER")==0){
+            SniperAI temp = (SniperAI) robot;
+            robot.forthValues.push(temp.scan());
+            }
+            if(robot.getType().compareTo("TANK")==0){
+            TankAI temp = (TankAI) robot;
+            robot.forthValues.push(temp.scan());
+            }
         });
         
         
         ht.put("identify!", (Execute) () -> {
             int index = this.loopCount;
+            if(robot.getType().compareTo("SCOUT")==0){
             ScoutAI scanned = (ScoutAI)robot;
             System.out.println(index);
             
@@ -896,6 +979,39 @@ public class WordTranslator implements Execute{
             
             robot.forthValues.push(scanned.scannedRobotsList.get(index).getGang());
             System.out.println("the gang is " + robot.forthValues.peek());
+            }
+            if(robot.getType().compareTo("SNIPER")==0){
+            SniperAI scanned = (SniperAI)robot;
+            System.out.println(index);
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getHealthLeft());
+            System.out.println("health left is " + robot.forthValues.peek());
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRelativeDirection());
+            System.out.println("the relative direction is " + robot.forthValues.peek());
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRange());
+            System.out.println("the range is " + robot.forthValues.peek());
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getGang());
+            System.out.println("the gang is " + robot.forthValues.peek());
+            }
+            if(robot.getType().compareTo("TANK")==0){
+            TankAI scanned = (TankAI)robot;
+            System.out.println(index);
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getHealthLeft());
+            System.out.println("health left is " + robot.forthValues.peek());
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRelativeDirection());
+            System.out.println("the relative direction is " + robot.forthValues.peek());
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRange());
+            System.out.println("the range is " + robot.forthValues.peek());
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(index).getGang());
+            System.out.println("the gang is " + robot.forthValues.peek());
+            }
         });
         
         //Sends a message to a specified ally

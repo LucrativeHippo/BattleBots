@@ -17,6 +17,7 @@ public class ScoutAI extends Scout {
   private int damageDealt;
   private int damageTaken;
   public LinkedList<Robot> scannedRobotsList;
+  
         
 	
 	public ScoutAI(String name, JSONObject code) {
@@ -38,6 +39,7 @@ public class ScoutAI extends Scout {
     this.setHealthLeft(1);
             
     scannedRobotsList = new LinkedList();
+  
             
     //this.totalMoves = 
             
