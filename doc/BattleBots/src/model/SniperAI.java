@@ -13,7 +13,7 @@ public class SniperAI extends Sniper{
   private int robotsKilled;
   private int damageDealt;
   private int damageTaken;
-  public LinkedList<Robot> scannedRobotsList;
+ 
 
         
 	
@@ -292,246 +292,271 @@ public class SniperAI extends Sniper{
    * @param space Hex space to be shot at
    */
   public void robotShooting(int direction, int range){
-    if(range > this.getRange()){
-                
+    if(range > this.getRange()){      
     } else{
       if(this.getVerticalLocation()%2 == 0){
         if(range == 1){
+            direction = (direction + this.getRelativeDirection())%6;
           if(direction == 0){
-            this.shoot(this.board.spaces
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()]);
-          } else if(direction == 1){
-            this.shoot(this.board.spaces
+          }else if(direction == 1){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()+1]);
-          } else if(direction == 2){
-            this.shoot(this.board.spaces
+          }else if(direction == 2){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()+1]);
-          } else if(direction == 3){
-            this.shoot(this.board.spaces
+          }else if(direction == 3){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()]);
-          } else if(direction == 4){
-            this.shoot(this.board.spaces
+          }else if(direction == 4){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()-1]);
-          } else{
-            this.shoot(this.board.spaces
+          }else{
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()-1]);
           }
         }
         if(range == 2){
+            direction = (direction + (this.getRelativeDirection()*2))%12;
           if(direction == 0){
-            this.shoot(this.board.spaces
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+0]);
-          } else if(direction == 1){
-            this.shoot(this.board.spaces
+          }else if(direction == 1){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()+1]);
-          } else if(direction == 2){
-            this.shoot(this.board.spaces
+          }else if(direction == 2){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()+2]);
-          } else if(direction == 3){
-            this.shoot(this.board.spaces
+          }else if(direction == 3){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()+2]);
-          } else if(direction == 4){
-            this.shoot(this.board.spaces
+          }else if(direction == 4){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()+2]);
-          } else if(direction == 5){
-            this.shoot(this.board.spaces
+          }else if(direction == 5){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()+1]);
-          } else if(direction == 6){
-            this.shoot(this.board.spaces
+          }else if(direction == 6){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()]);
-          } else if(direction == 7){
-            this.shoot(this.board.spaces
+          }else if(direction == 7){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()-1]);
-          } else if(direction == 8){
-            this.shoot(this.board.spaces
+          }else if(direction == 8){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()-2]);
-          } else if(direction == 9){
-            this.shoot(this.board.spaces
+          }else if(direction == 9){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()-2]);
-          } else if(direction == 10){
-            this.shoot(this.board.spaces
+          }else if(direction == 10){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()-2]);
-          } else if(direction == 11){
-            this.shoot(this.board.spaces
+          }else if(direction == 11){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()-1]);
           }
         } else{
+            direction = (direction + this.getRelativeDirection()*3)%18;
           if(direction == 0){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()+3][this.getVerticalLocation()]);
-          } else if(direction == 1){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()+2][this.getVerticalLocation()+1]);
-          } else if(direction == 2){
-            this.shoot(this.board.spaces
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()+3][this.getVerticalLocation()]);
+          }else if(direction == 1){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()+2][this.getVerticalLocation()+1]);
+          }else if(direction == 2){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+2]);
-          } else if(direction == 3){
-            this.shoot(this.board.spaces
+          }else if(direction == 3){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()+3]);
-          } else if(direction == 4){
-            this.shoot(this.board.spaces
+          }else if(direction == 4){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()+3]);
-          } else if(direction == 5){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-1][this.getVerticalLocation()+3]);
-          } else if(direction == 6){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-2][this.getVerticalLocation()+3]);
-          } else if(direction == 7){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-2][this.getVerticalLocation()+2]);
-          } else if(direction == 8){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-3][this.getVerticalLocation()+1]);
-          } else if(direction == 9){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-3][this.getVerticalLocation()]);
-          } else if(direction == 10){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-3][this.getVerticalLocation()-1]);
-          } else if(direction == 11){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-2][this.getVerticalLocation()-2]);
-          } else if(direction == 12){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-2][this.getVerticalLocation()-3]);
-          } else if(direction == 13){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()-1][this.getVerticalLocation()-3]);
-          } else if(direction == 14){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()][this.getVerticalLocation()-3]);
-          } else if(direction == 15){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()+1][this.getVerticalLocation()-3]);
-          } else if(direction == 16){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()+2][this.getVerticalLocation()-2]);
-          } else{
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()+2][this.getVerticalLocation()-1]);
+          }else if(direction == 5){
+             this.shoots(this.board.spaces
+             [this.getHorizontalLocation()-1][this.getVerticalLocation()+3]);
+          }else if(direction == 6){
+             this.shoots(this.board.spaces
+             [this.getHorizontalLocation()-2][this.getVerticalLocation()+3]);
+          }else if(direction == 7){
+             this.shoots(this.board.spaces
+             [this.getHorizontalLocation()-2][this.getVerticalLocation()+2]);
+          }else if(direction == 8){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()-3][this.getVerticalLocation()+1]);
+          }else if(direction == 9){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()-3][this.getVerticalLocation()]);
+          }else if(direction == 10){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()-3][this.getVerticalLocation()-1]);
+          }else if(direction == 11){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()-2][this.getVerticalLocation()-2]);
+          }else if(direction == 12){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()-2][this.getVerticalLocation()-3]);
+          }else if(direction == 13){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()-1][this.getVerticalLocation()-3]);
+          }else if(direction == 14){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()][this.getVerticalLocation()-3]);
+          }else if(direction == 15){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()+1][this.getVerticalLocation()-3]);
+          }else if(direction == 16){
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()+2][this.getVerticalLocation()-2]);
+          }else{
+              this.shoots(this.board.spaces
+              [this.getHorizontalLocation()+2][this.getVerticalLocation()-1]);
           }
         }
       } else{//We are on an odd vertical row, so we must compensate
         if(range == 1){
+            direction = (direction + this.getRelativeDirection())%6;
           if(direction == 0){
-            this.shoot(this.board.spaces
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()]);
-          } else if(direction == 1){
-            this.shoot(this.board.spaces
+          }else if(direction == 1){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()+1]);
-          } else if(direction == 2){
-            this.shoot(this.board.spaces
+          }else if(direction == 2){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()+1]);
-          } else if(direction == 3){
-            this.shoot(this.board.spaces
+          }else if(direction == 3){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()]);
-          } else if(direction == 4){
-            this.shoot(this.board.spaces
+          }else if(direction == 4){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()-1]);
-          } else{
-            this.shoot(this.board.spaces
+          }else{
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()-1]);
           }
         }
         if(range == 2){
+            direction = (direction + this.getRelativeDirection()*2)%12;
           if(direction == 0){
-            this.shoot(this.board.spaces
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+0]);
-          } else if(direction == 1){
-            this.shoot(this.board.spaces
+          }else if(direction == 1){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+1]);
-          } else if(direction == 2){
-            this.shoot(this.board.spaces
+          }else if(direction == 2){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()+2]);
-          } else if(direction == 3){
-            this.shoot(this.board.spaces
+          }else if(direction == 3){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()+2]);
-          } else if(direction == 4){
-            this.shoot(this.board.spaces
+          }else if(direction == 4){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()+2]);
-          } else if(direction == 5){
-            this.shoot(this.board.spaces
+          }else if(direction == 5){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()+1]);
-          } else if(direction == 6){
-            this.shoot(this.board.spaces
+          }else if(direction == 6){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()]);
-          } else if(direction == 7){
-            this.shoot(this.board.spaces
+          }else if(direction == 7){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()-1]);
-          } else if(direction == 8){
-            this.shoot(this.board.spaces
+          }else if(direction == 8){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()-2]);
-          } else if(direction == 9){
-            this.shoot(this.board.spaces
+          }else if(direction == 9){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()-2]);
-          } else if(direction == 10){
-            this.shoot(this.board.spaces
-            [this.getHorizontalLocation()+1][this.getVerticalLocation()-2]);///////check above
-          } else if(direction == 11){
-            this.shoot(this.board.spaces
+          }else if(direction == 10){
+            this.shoots(this.board.spaces
+            [this.getHorizontalLocation()+1][this.getVerticalLocation()-2]);
+          }else if(direction == 11){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()-1]);
           }
         } else{
+            direction = (direction + this.getRelativeDirection()*3)%18;
           if(direction == 0){
-            this.shoot(this.board.spaces
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+3][this.getVerticalLocation()]);
-          } else if(direction == 1){
-            this.shoot(this.board.spaces
+          }else if(direction == 1){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+3][this.getVerticalLocation()+1]);
-          } else if(direction == 2){
-            this.shoot(this.board.spaces
+          }else if(direction == 2){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+2]);
-          } else if(direction == 3){
-            this.shoot(this.board.spaces
+          }else if(direction == 3){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+3]);
-          } else if(direction == 4){
-            this.shoot(this.board.spaces
+          }else if(direction == 4){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()+3]);
-          } else if(direction == 5){
-            this.shoot(this.board.spaces
+          }else if(direction == 5){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()+3]);
-          } else if(direction == 6){
-            this.shoot(this.board.spaces
+          }else if(direction == 6){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()+3]);
-          } else if(direction == 7){
-            this.shoot(this.board.spaces
+          }else if(direction == 7){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()+2]);
-          } else if(direction == 8){
-            this.shoot(this.board.spaces
+          }else if(direction == 8){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()+1]);
-          } else if(direction == 9){
-            this.shoot(this.board.spaces
+          }else if(direction == 9){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-3][this.getVerticalLocation()]);
-          } else if(direction == 10){
-            this.shoot(this.board.spaces
+          }else if(direction == 10){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()-1]);
-          } else if(direction == 11){
-            this.shoot(this.board.spaces
+          }else if(direction == 11){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-2][this.getVerticalLocation()-2]);
-          } else if(direction == 12){
-            this.shoot(this.board.spaces
+          }else if(direction == 12){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()-1][this.getVerticalLocation()-3]);
-          } else if(direction == 13){
-            this.shoot(this.board.spaces
+          }else if(direction == 13){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()][this.getVerticalLocation()-3]);
-          } else if(direction == 14){
-            this.shoot(this.board.spaces
+          }else if(direction == 14){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()-3]);
-          } else if(direction == 15){
-            this.shoot(this.board.spaces
+          }else if(direction == 15){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()-3]);
-          } else if(direction == 16){
-            this.shoot(this.board.spaces
+          }else if(direction == 16){
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()-2]);
-          } else{
-            this.shoot(this.board.spaces
+          }else{
+            this.shoots(this.board.spaces
             [this.getHorizontalLocation()+3][this.getVerticalLocation()-1]);
           }
         }
       }
     }
   }
+  
+  public void shoots(Hex space){
+		if(space == null){
+      System.out.println("The space is out of range");
+        return;
+    } else if(space.isEmpty() == true){
+      return;
+    } else{
+      Iterator<Robot> robotIterator = space.robotList.iterator();
+      while(robotIterator.hasNext()){
+        Robot temp = robotIterator.next();
+       temp.recieveDamage(this.getDamage());
+        this.damageDealt = this.damageDealt + this.getDamage();
+        if(this.getDamage() >= temp.getHealthLeft()){
+          this.robotsKilled = this.robotsKilled+1;
+        }
+      }
+    }
+	}
+        
         
   /**
    * This function will check to see the condition of a given space in the

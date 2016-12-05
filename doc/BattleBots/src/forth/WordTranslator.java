@@ -582,7 +582,7 @@ public class WordTranslator implements Execute{
                  
                 while(forthCommands.peek().toString().compareTo(";")!=0){
                     
-                        System.out.println("hi");
+                        
                         
                         if(interpreter.isInteger((String)forthCommands.peek())){
                             System.out.println("integer added to robotvalue stack is " + forthCommands.peek());

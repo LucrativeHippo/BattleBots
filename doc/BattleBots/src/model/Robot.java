@@ -3,6 +3,7 @@ package model;
 import static java.lang.Math.abs;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Stack;
 import org.json.simple.JSONObject;
 
@@ -44,6 +45,7 @@ public class Robot {
         public Stack variableStack = new Stack();
         public Hashtable<String, Stack> functions = new Hashtable();
         public Stack initialfourthWords = new Stack();
+        public LinkedList<Robot> scannedRobotsList;
 	
 
   /**

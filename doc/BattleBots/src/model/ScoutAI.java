@@ -16,7 +16,7 @@ public class ScoutAI extends Scout {
   private int robotsKilled;
   private int damageDealt;
   private int damageTaken;
-  public LinkedList<Robot> scannedRobotsList;
+  
   
         
 	

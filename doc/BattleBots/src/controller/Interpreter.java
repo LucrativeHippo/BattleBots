@@ -9,6 +9,7 @@ package controller;
 import forth.WordTranslator;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -241,6 +242,10 @@ public class Interpreter {
                 System.out.println("The top of the stack is " + robot.forthValues.peek());
                
             }
+           
+            while(robot.scannedRobotsList.size()!=0){
+                robot.scannedRobotsList.remove();
+            }
         }
     }
     
@@ -393,10 +398,10 @@ public class Interpreter {
         //test1.add("variable a ; ");
         //test1.add("19 12 * a ! ");
         //test1.add("a ? ");
-        test1.add(": hi 1 1 + 23 67 * ;");
-        test1.add(": hello 1 1 - 78 8 * ;");
-        test1.add(": hi2 1 1 * ;");
-        test1.add(": play ( --- ) .\" OUT OF BOUNDS  \"");
+//        test1.add(": hi 1 1 + 23 67 * ;");
+//        test1.add(": hello 1 1 - 78 8 * ;");
+//        test1.add(": hi2 1 1 * ;");
+        test1.add(": play ( --- ) 5 0 do 1 1 + 5 5 * loop ; ");
         
         //test1.add("variable moved ; ( have i moved? )");
         //test1.add(": moved? moved ? ; ");

@@ -85,7 +85,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     list.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
     list.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
     list.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
-    list.add(": play ( -- ) firstMove shot false ! ( prepare to shoot ) doNotShoot ;");
     list.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
     //list.add("moved? ;");
 
