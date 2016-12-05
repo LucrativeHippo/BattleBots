@@ -47,7 +47,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
   private RobotController gameControl;
 
   private int boardSize = 7;
-  private int numPlayers = 6;
+  public static int numPlayers = 6;
   private int numHumans = 0;
 
   public static Stack<JSONObject> chosenRobotCodes;

@@ -225,7 +225,7 @@ public class GamePanel extends JPanel implements GameObserver{
       			if(gameBoard.spaces[i][j].robotList.isEmpty()){
               gameBoard.spaces[i][j].drawHex(g2, Color.WHITE);
             } else{
-              int offset = 0;         // offset drawing of robot if there are more than one on a hex
+              int offset = 0;// offset drawing of robot if there are more than one on a hex
               Iterator<Robot> robots = gameBoard.spaces[i][j].robotList.iterator();
               while(robots.hasNext()){
                 Robot temp = robots.next();

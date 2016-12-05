@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import static controller.GameController.numPlayers;
 import static controller.GameController.chosenRobotCodes;
 import controller.Interpreter;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class TeamSelectionPanel extends JPanel {
@@ -860,9 +862,34 @@ public class TeamSelectionPanel extends JPanel {
     add(lowerRow);
     add(Box.createVerticalGlue());
 
-    Iterator<JSONObject> iterate1 = robotCodes.iterator();
-    while (iterate1.hasNext()) {
-      chosenRobotCodes.push(iterate1.next());
+   //Iterator<JSONObject> iterate1 = robotCodes.iterator();
+    //while (iterate1.hasNext()) {
+    //  chosenRobotCodes.push(iterate1.next());
+    //}
+    
+    //If not enought teams have been selected, then we must add some default teams
+    //To fill in for the robots.
+    while((numPlayers*3) > selectedRobots.size()){
+    JSONObject defaultRobot = new JSONObject();
+    defaultRobot.put("team", "Default");
+    defaultRobot.put("class", "JackOfClasses");
+    defaultRobot.put("name", "Drone");
+    defaultRobot.put("matches", 0);
+    defaultRobot.put("wins", 0);
+    defaultRobot.put("losses", 0);
+    defaultRobot.put("executions", 0);
+    defaultRobot.put("lived", 0);
+    defaultRobot.put("died", 0);
+    defaultRobot.put("absorbed", 0);
+    defaultRobot.put("killed", 0);
+    defaultRobot.put("moved", 0);
+    JSONArray defaultList = new JSONArray();
+    defaultList.add(": play ( -- ) move scan shoot! ;");
+    defaultRobot.put("code", defaultList);
+    JSONObject testScript = new JSONObject();
+    testScript.put("script", defaultRobot);
+    selectedRobots.add(testScript);
+    
     }
 
   }
