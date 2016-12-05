@@ -187,7 +187,7 @@ public class Interpreter {
      */
     public void executeCode(JSONObject instructionCode, Robot robot) throws NoSuchMethodException{
         System.out.println("The interpreter is starting");
-        Stack initialfourthWords = new Stack();
+        if(robot.initialfourthWords.isEmpty()){
         JSONObject temp = (JSONObject)instructionCode.get("script");
         List commands = (List)temp.get("code");
         int lines = commands.size();
@@ -197,17 +197,18 @@ public class Interpreter {
            String[] commandArray = line.split("\\s+");
            int x = commandArray.length;
            for(int j = 0; j < x; j++){
-               initialfourthWords.add(commandArray[j]);
+               robot.initialfourthWords.add(commandArray[j]);
            }
+        }
         }
         Stack tempStack = new Stack();
         Stack medium = new Stack();
-        while(!initialfourthWords.empty()){
-            tempStack.push(initialfourthWords.peek());
-            medium.push(initialfourthWords.pop());
+        while(!robot.initialfourthWords.empty()){
+            tempStack.push(robot.initialfourthWords.peek());
+            medium.push(robot.initialfourthWords.pop());
         }
         while(!tempStack.isEmpty()){
-            initialfourthWords.push(tempStack.pop());
+            robot.initialfourthWords.push(tempStack.pop());
         }
         Stack forthWords = new Stack();
         while(!medium.empty()){
@@ -250,14 +251,6 @@ public class Interpreter {
     
     //Here we will test the functions associated with the Interpreter
     public static void main(String [] args) throws NoSuchMethodException {
-        String temp1 = ".\"h";
-        if(temp1.compareTo(".\"") ==0){
-           System.out.println("fgdddddddddddddddd");
-       }
-        String temp2 = "i";
-        if(temp2.compareTo("i+") ==0){
-           System.out.println("fgdddddddftuitfiyutfififiddd");
-       }
         
         
         /*

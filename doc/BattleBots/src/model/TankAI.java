@@ -14,6 +14,7 @@ public class TankAI extends Tank{
   private int damageDealt;
   private int damageTaken;
   public LinkedList<Robot> scannedRobotsList;
+  
         
 	
 	public TankAI(String name, JSONObject code) {
@@ -33,6 +34,7 @@ public class TankAI extends Tank{
     this.setMovementLeft(1);
     this.setHealthLeft(3);
     scannedRobotsList = new LinkedList();
+    
             
 	}
         

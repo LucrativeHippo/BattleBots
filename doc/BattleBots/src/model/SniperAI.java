@@ -14,6 +14,7 @@ public class SniperAI extends Sniper{
   private int damageDealt;
   private int damageTaken;
   public LinkedList<Robot> scannedRobotsList;
+
         
 	
 	public SniperAI(String name, JSONObject code) {
@@ -32,7 +33,8 @@ public class SniperAI extends Sniper{
     this.setShotsLeft(1);
     this.setMovementLeft(2);
     this.setHealthLeft(2);
-    scannedRobotsList = new LinkedList();         
+    scannedRobotsList = new LinkedList(); 
+   
 	}
 	
   /**

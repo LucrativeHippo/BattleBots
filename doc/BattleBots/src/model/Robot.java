@@ -43,6 +43,7 @@ public class Robot {
         public Hashtable<String, Object> variables = new Hashtable();
         public Stack variableStack = new Stack();
         public Hashtable<String, Stack> functions = new Hashtable();
+        public Stack initialfourthWords = new Stack();
 	
 
   /**
