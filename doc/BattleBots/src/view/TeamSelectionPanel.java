@@ -215,7 +215,7 @@ public class TeamSelectionPanel extends JPanel {
     ButtonGroup group = new ButtonGroup();
     LinkedList<String> teamNames = new LinkedList();
 
-    JRadioButton newChec = new JRadioButton(" New Robot");
+    JRadioButton newChec = new JRadioButton("New Robot");
     newChec.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
     newChec.setForeground(Color.BLACK);
     newChec.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -376,7 +376,7 @@ public class TeamSelectionPanel extends JPanel {
         teams.add(sample);
       }
 
-      JRadioButton newCheck = new JRadioButton(" " + interpret.getRobotName(robot));
+      JRadioButton newCheck = new JRadioButton(interpret.getRobotName(robot));
       newCheck.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
       newCheck.setForeground(Color.BLACK);
       newCheck.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -388,12 +388,15 @@ public class TeamSelectionPanel extends JPanel {
           if (ie.getStateChange() == ItemEvent.SELECTED) {
             
             updateRobot = new JSONObject();
-            Iterator iterate = robotCodes.iterator();
+            Iterator<JSONObject> iterate = robotCodes.iterator();
             Interpreter interpret = new Interpreter();
+            JSONObject storage = new JSONObject();
             while(iterate.hasNext()){
-            //  if(interpret.getRobotName(updateRobot)iterate.next())
+              storage = iterate.next();
+              if(interpret.getRobotName(storage).compareTo(newCheck.getText()) == 0){
+              updateRobot = storage;
             }
-           // updateRobot = robot;
+            }
             anyCheckBoxes = true;
           } else {
             anyCheckBoxes = false;
@@ -502,7 +505,7 @@ public class TeamSelectionPanel extends JPanel {
           //Create some Forth Code
           robotCodes.add(newRobot2);
 
-          JRadioButton newCheck1 = new JRadioButton(" " + inRobot);
+          JRadioButton newCheck1 = new JRadioButton(inRobot);
           newCheck1.setFont(new Font("Rockwell", Font.PLAIN, CHECK_SIZE / 2));
           newCheck1.setForeground(Color.BLACK);
           newCheck1.setAlignmentX(Component.CENTER_ALIGNMENT);
