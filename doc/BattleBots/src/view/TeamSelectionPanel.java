@@ -875,7 +875,7 @@ public class TeamSelectionPanel extends JPanel {
     defaultRobot.put("class", "JackOfClasses");
     defaultRobot.put("name", "Drone");
     defaultRobot.put("matches", 0);
-    defaultRobot.put("wins", 0);
+    defaultRobot.put("wins", 2);
     defaultRobot.put("losses", 0);
     defaultRobot.put("executions", 0);
     defaultRobot.put("lived", 0);
