@@ -135,7 +135,7 @@ public class StatsPanel extends JPanel {
     teamStats.setBackground(Color.GRAY);
     teamStats.setLayout(new BoxLayout(teamStats, BoxLayout.PAGE_AXIS));
     teamStats.setBorder(BorderFactory.createLineBorder(Color.black));
-    //teamStats.setPreferredSize(new Dimension(800, 600));
+    teamStats.setPreferredSize(new Dimension(800, 600));
     //teamStats.setMinimumSize(new Dimension(800, 600));
     //teamStats.setMaximumSize(new Dimension(800, 600));
 
@@ -143,82 +143,82 @@ public class StatsPanel extends JPanel {
     headers.setBackground(Color.GRAY);
     headers.setLayout(new GridLayout(1, 12));
     headers.setBorder(BorderFactory.createLineBorder(Color.black));
-    headers.setPreferredSize(new Dimension(1000, 20));
-    headers.setMinimumSize(new Dimension(1000, 20));
-    headers.setMaximumSize(new Dimension(1000, 20));
+    headers.setPreferredSize(new Dimension(1500, 40));
+    headers.setMinimumSize(new Dimension(1500, 40));
+    headers.setMaximumSize(new Dimension(1500, 40));
 
     JLabel team = new JLabel("   Team");
     team.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     team.setForeground(Color.BLACK);
     team.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(team);
+    headers.add(team);
 
     JLabel classLabel = new JLabel("   Class");
     classLabel.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     classLabel.setForeground(Color.BLACK);
     classLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(classLabel);
+    headers.add(classLabel);
 
     JLabel name = new JLabel("   Name");
     name.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     name.setForeground(Color.BLACK);
     name.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(name);
+    headers.add(name);
 
     JLabel matches = new JLabel("   Matches");
     matches.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     matches.setForeground(Color.BLACK);
     matches.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(matches);
+    headers.add(matches);
 
     JLabel wins = new JLabel("   Wins");
     wins.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     wins.setForeground(Color.BLACK);
     wins.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(wins);
+    headers.add(wins);
 
     JLabel losses = new JLabel("   Losses");
     losses.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     losses.setForeground(Color.BLACK);
     losses.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(losses);
+    headers.add(losses);
 
     JLabel executions = new JLabel("   Executions");
     executions.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     executions.setForeground(Color.BLACK);
     executions.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(executions);
+    headers.add(executions);
 
     JLabel lived = new JLabel("   Lived");
     lived.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     lived.setForeground(Color.BLACK);
     lived.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(lived);
+    headers.add(lived);
 
     JLabel died = new JLabel("   Died");
     died.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     died.setForeground(Color.BLACK);
     died.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(died);
+    headers.add(died);
 
     JLabel absorbed = new JLabel("   Absorbed");
     absorbed.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     absorbed.setForeground(Color.BLACK);
     absorbed.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(absorbed);
+    headers.add(absorbed);
 
     JLabel killed = new JLabel("   Killed");
     killed.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     killed.setForeground(Color.BLACK);
     killed.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(killed);
+    headers.add(killed);
 
     JLabel moved = new JLabel("   Moved");
     moved.setFont(new Font("Rockwell", Font.BOLD, FONT_SIZE / 6));
     moved.setForeground(Color.BLACK);
     moved.setBorder(BorderFactory.createLineBorder(Color.black));
-    centerPanel.add(moved);
-   // teamStats.add(headers);
+    headers.add(moved);
+    teamStats.add(headers);
     
    // centerPanel.add(headers);
     
@@ -239,70 +239,80 @@ public class StatsPanel extends JPanel {
           }
         }
         
+        JPanel rows = new JPanel();
+      rows.setBackground(Color.GRAY);
+      rows.setLayout(new GridLayout(1, 12));
+      rows.setBorder(BorderFactory.createLineBorder(Color.black));
+      rows.setPreferredSize(new Dimension(1500, 40));
+      rows.setMinimumSize(new Dimension(1500, 40));
+      rows.setMaximumSize(new Dimension(1500, 40));
+        
       JLabel team1 = new JLabel(interpret.getRobotName(Jtemp));
-      team1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      team1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       team1.setForeground(Color.BLACK);
+      rows.add(team1);
       
       JLabel classes = new JLabel((interpret.getRobotClass(Jtemp)));
-      classes.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      classes.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       classes.setForeground(Color.BLACK);
+      rows.add(classes);
       
       JLabel teams = new JLabel(interpret.getRobotTeam(Jtemp));
-      teams.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      teams.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teams.setForeground(Color.BLACK);
+      rows.add(teams);
       
       JLabel matches1 = new JLabel(Integer.toString(interpret.getRobotMatches(Jtemp)));
-      matches1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      matches1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       matches1.setForeground(Color.BLACK);
+      rows.add(matches1);
 
       JLabel teamWins = new JLabel(Integer.toString(interpret.getRobotWins(Jtemp)));
-      teamWins.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      teamWins.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teamWins.setForeground(Color.BLACK);
+      rows.add(teamWins);
 
       JLabel teamLosses = new JLabel(Integer.toString(interpret.getRobotLosses(Jtemp)));
-      teamLosses.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      teamLosses.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teamLosses.setForeground(Color.BLACK);
+      rows.add(teamLosses);
 
       JLabel exec = new JLabel(Integer.toString(interpret.getRobotExecutions(Jtemp)));
-      exec.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      exec.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       exec.setForeground(Color.BLACK);
+      rows.add(exec);
 
       JLabel livednum = new JLabel(Integer.toString(interpret.getRobotLived(Jtemp)));
-      livednum.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      livednum.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       livednum.setForeground(Color.BLACK);
+      rows.add(livednum);
 
       JLabel dies = new JLabel(Integer.toString(interpret.getRobotDied(Jtemp)));
-      dies.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      dies.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       dies.setForeground(Color.BLACK);
+      rows.add(dies);
       
       JLabel abs = new JLabel(Integer.toString(interpret.getRobotAbsorbed(Jtemp)));
-      abs.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      abs.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       abs.setForeground(Color.BLACK);
+      rows.add(abs);
       
       JLabel kills = new JLabel(Integer.toString(interpret.getRobotKilled(Jtemp)));
-      kills.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      kills.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       kills.setForeground(Color.BLACK);
+      rows.add(kills);
       
       JLabel moves = new JLabel(Integer.toString(interpret.getRobotMoved(Jtemp)));
-      moves.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE));
+      moves.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       moves.setForeground(Color.BLACK);
+      rows.add(moves);
       
-      centerPanel.add(team1);
-      centerPanel.add(classes);
-      centerPanel.add(teams);
-      centerPanel.add(matches1);
-      centerPanel.add(teamWins);
-      centerPanel.add(teamLosses);
-      centerPanel.add(exec);
-      centerPanel.add(livednum);
-      centerPanel.add(dies);
-      centerPanel.add(abs);
-      centerPanel.add(kills);
-      centerPanel.add(moves);
+      teamStats.add(rows);
       
-      add(centerPanel);
+      //add(centerPanel);
       }
     }
+    add(teamStats);
     }
 
     
