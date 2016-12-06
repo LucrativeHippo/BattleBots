@@ -43,6 +43,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
   public View view;
 
   private GameInfo gameInfo;
+  
+  public static boolean firstPlay = true;
 
   private RobotController gameControl;
 
@@ -59,6 +61,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
   public void start() {
     chosenRobotCodes = new Stack();
     view = new View(WIDTH, HEIGHT);
+    if(firstPlay == true){
     JSONObject testRobot = new JSONObject();
     testRobot.put("team", "A5");
     testRobot.put("class", "Scout");
@@ -197,7 +200,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     JSONObject testScript2 = new JSONObject();
     testScript2.put("script", testRobot2);
     chosenRobotCodes.push(testScript2);
-    
+    }
+    firstPlay = false;
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
@@ -300,10 +304,24 @@ public class GameController implements ActionListener, KeyListener, GameObserver
           //If the robot is not a human, it should execute code instead
           if (!gameInfo.getCurrentRobot().isHuman()) {
             Interpreter interpret = new Interpreter();
-            ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
+            
             try {
+              if(gameInfo.getCurrentRobot().getType().compareTo("SCOUT") == 0){
+              ScoutAI temp = (ScoutAI) gameInfo.getCurrentRobot();
               interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
               System.out.println(interpret.getRobotClass(temp.getCode()));
+            }
+            else if(gameInfo.getCurrentRobot().getType().compareTo("SNIPER") == 0){
+              SniperAI temp = (SniperAI) gameInfo.getCurrentRobot();
+              interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
+              System.out.println(interpret.getRobotClass(temp.getCode()));
+            }
+            else{
+              TankAI temp = (TankAI) gameInfo.getCurrentRobot();
+              interpret.executeCode(temp.getCode(), gameInfo.getCurrentRobot());
+              System.out.println(interpret.getRobotClass(temp.getCode()));
+            }
+              
             } catch (NoSuchMethodException ex) {
               Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
               System.out.println("Error, code not executed");
@@ -326,8 +344,15 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         }
         
         // check for dead robots and remove them from the board
-        for(int i = 0; i < gameInfo.getBoardSize(); i++){
-      	for(int j = 0; j < gameInfo.getBoardSize(); j++){
+        int size = 0;
+        if(gameInfo.getBoardSize() == 5){
+          size = 9;
+        }
+        else{
+          size = 13;
+        }
+        for(int i = 0; i < size; i++){
+      	for(int j = 0; j < size; j++){
       		if(gameBoard.spaces[i][j] != null && gameBoard.spaces[i][j].hexExists == true){
                         Iterator<Robot> robots2 = gameBoard.spaces[i][j].robotList.iterator();
                         while(robots2.hasNext()){
@@ -335,8 +360,9 @@ public class GameController implements ActionListener, KeyListener, GameObserver
                             Iterator<Robot> robots = gameBoard.spaces[i][j].robotList.iterator();
                             while (robots.hasNext()){
                             gameBoard.spaces[i][j].robotList.remove(robots.next());
+                            //view.repaint();//Added
                             }
-                            
+                            //view.repaint();//Added
                         }
                         }
                 }
