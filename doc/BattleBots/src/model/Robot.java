@@ -403,6 +403,391 @@ public class Robot {
   public void setType(String type) {
     this.type = type;
   }
+  
+  public int getDirectionOfEnemy(int index){
+    Robot tmp = this.scannedRobotsList.get(index);
+    if(tmp != null){
+      if((this.getHorizontalLocation() == this.scannedRobotsList.get(index).getHorizontalLocation())
+          &&(this.getVerticalLocation()-3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((12 + this.getRelativeDirection()*3)%18);
+      } else if((this.getHorizontalLocation()+1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((13 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()+2 ==
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((14 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()+3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((15 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((11 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation() == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((8 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((9 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((10 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((16 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((10 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((7 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation() == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((4 + this.getRelativeDirection())%6);
+      }else if((this.getHorizontalLocation()+1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((5 + this.getRelativeDirection())%6);
+      } else if((this.getHorizontalLocation()+2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((11 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((17 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((9 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((6 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()-1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((3 + this.getRelativeDirection())%6);
+      }else if((this.getHorizontalLocation() == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return 0;
+      }else if((this.getHorizontalLocation()+1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((0 + this.getRelativeDirection())%6);
+      }else if((this.getHorizontalLocation()+2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((0 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation() ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((0 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((8 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-2 ==
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((5 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()-1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((2 + this.getRelativeDirection())%6);
+      }else if((this.getHorizontalLocation() == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((1 + this.getRelativeDirection())%6);
+      }else if((this.getHorizontalLocation()+1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((1 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+1 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((1 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((7 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((4 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()-1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((3 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation() == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((2 + this.getRelativeDirection()*2)%12);
+      }else if((this.getHorizontalLocation()+1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+2 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((2 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-3 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((6 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-2 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((5 + this.getRelativeDirection()*3)%18);
+      }else if((this.getHorizontalLocation()-1 == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()+3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+        return ((4 + this.getRelativeDirection()*3)%18);
+      }else{
+        return ((3 + this.getRelativeDirection()*3)%18);
+      }
+    }else{
+      System.out.println("there are no robots within your range.");
+      return -1;
+    }
+  }
+  
+  public int getRangeOfEnemy(int index){
+      Robot tmp = this.scannedRobotsList.get(index);
+      int distance = 0;
+      if(tmp != null){
+        if((this.getHorizontalLocation() == 
+          this.scannedRobotsList.get(index).getHorizontalLocation())&&
+          (this.getVerticalLocation()-3 ==
+          this.scannedRobotsList.get(index).getVerticalLocation())){
+            distance = 3;
+        } else if((this.getHorizontalLocation()+1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())
+            &&(this.getVerticalLocation()-3 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()+2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-3 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()+3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-3 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation() == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()+1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()+2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()+3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation() == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 1;
+        } else if((this.getHorizontalLocation()+1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+            distance = 1;
+        } else if((this.getHorizontalLocation()+2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+            distance = 2;
+        } else if((this.getHorizontalLocation()+3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()-1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()-1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 1;
+        }else if((this.getHorizontalLocation() == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 0;
+        } else if((this.getHorizontalLocation()+1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 1;
+        } else if((this.getHorizontalLocation()+2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()+3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation() ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        }else if((this.getHorizontalLocation()-2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;                
+        } else if((this.getHorizontalLocation()-1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 1;
+        } else if((this.getHorizontalLocation() == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 1;
+        } else if((this.getHorizontalLocation()+1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()+2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+1 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()-1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation() == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 2;
+        } else if((this.getHorizontalLocation()+1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+2 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-3 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+3 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-2 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+3 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else if((this.getHorizontalLocation()-1 == 
+            this.scannedRobotsList.get(index).getHorizontalLocation())&&
+            (this.getVerticalLocation()+3 ==
+            this.scannedRobotsList.get(index).getVerticalLocation())){
+              distance = 3;
+        } else{
+          distance = 3;
+        }
+      } else{
+        System.out.println("there are no robots within your range.");
+      }
+      return distance;
+    }
+  
         
   /**
    * This function will take in a Hex space and deal damage to any robots

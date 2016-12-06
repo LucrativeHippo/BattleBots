@@ -216,6 +216,7 @@ public class Interpreter {
             forthWords.add(medium.remove(0));
         }
         System.out.println("Words interpreted from JSON");
+        System.out.println("------------------------STARTING A NEW TURN------------------------------");
         WordTranslator translate = new WordTranslator(robot, forthWords);
         while(!forthWords.empty()){ 
             System.out.println(forthWords.peek());
@@ -241,10 +242,6 @@ public class Interpreter {
                 
                 System.out.println("The top of the stack is " + robot.forthValues.peek());
                
-            }
-           
-            while(robot.scannedRobotsList.size()!=0){
-                robot.scannedRobotsList.remove();
             }
         }
     }

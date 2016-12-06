@@ -656,8 +656,8 @@ public class WordTranslator implements Execute{
                System.out.println("accessed variable"); 
                //accesses the last variable in a hashtable and pushes its value onto the robot values stack
                //robot.variableStack.pop is the last seen variable and the key for the hashtable
-            robot.forthValues.push(robot.variables.get((String)robot.variableStack.pop()));
-            System.out.println(robot.forthValues.peek()); 
+            robot.forthValues.push(robot.variables.get((String)robot.variableStack.peek()));
+            System.out.println("the value accessed is " + robot.forthValues.peek() + "from the variable " + robot.variableStack.peek()); 
             
             }else{
                 System.out.println("There are no variable to be accessed");
@@ -675,6 +675,7 @@ public class WordTranslator implements Execute{
                 System.out.println("accessed variable");
                 //puts the new value into the hashtable containing all the variables
                 //robot.variableStack.peek is the last seen variable and the key for the hashtable
+                System.out.println("The value being put into the variable is " + robot.forthValues.peek() + "the variable is " + robot.variableStack.peek());
                 robot.variables.put((String)robot.variableStack.peek(), robot.forthValues.pop());
             
             }else{
@@ -850,8 +851,9 @@ public class WordTranslator implements Execute{
         
         ht.put("shoot!", (Execute)  () -> {
             int range = (int)robot.forthValues.pop();
+            System.out.println("                range ........" + range);
             int direction = (int)robot.forthValues.pop();
-            
+            System.out.println("                direction ........" + direction);
             //Checks if the robot is a sniper and uses a snipers range and damage on a hex
             if(robot.getType().compareTo("SNIPER")==0){
                 SniperAI temp = (SniperAI) robot;
@@ -963,55 +965,23 @@ public class WordTranslator implements Execute{
         
         
         ht.put("identify!", (Execute) () -> {
-            int index = this.loopCount;
-            if(robot.getType().compareTo("SCOUT")==0){
-            ScoutAI scanned = (ScoutAI)robot;
-            System.out.println(index);
             
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getHealthLeft());
+            Robot scanned = robot;
+            
+            robot.forthValues.push(scanned.scannedRobotsList.get(0).getHealthLeft());
             System.out.println("health left is " + robot.forthValues.peek());
             
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRelativeDirection());
+            robot.forthValues.push(scanned.getDirectionOfEnemy(0));
             System.out.println("the relative direction is " + robot.forthValues.peek());
             
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRange());
+            robot.forthValues.push(scanned.getRangeOfEnemy(0));
             System.out.println("the range is " + robot.forthValues.peek());
             
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getGang());
+            robot.forthValues.push(scanned.scannedRobotsList.get(0).getGang());
             System.out.println("the gang is " + robot.forthValues.peek());
-            }
-            if(robot.getType().compareTo("SNIPER")==0){
-            SniperAI scanned = (SniperAI)robot;
-            System.out.println(index);
             
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getHealthLeft());
-            System.out.println("health left is " + robot.forthValues.peek());
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRelativeDirection());
-            System.out.println("the relative direction is " + robot.forthValues.peek());
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRange());
-            System.out.println("the range is " + robot.forthValues.peek());
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getGang());
-            System.out.println("the gang is " + robot.forthValues.peek());
-            }
-            if(robot.getType().compareTo("TANK")==0){
-            TankAI scanned = (TankAI)robot;
-            System.out.println(index);
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getHealthLeft());
-            System.out.println("health left is " + robot.forthValues.peek());
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRelativeDirection());
-            System.out.println("the relative direction is " + robot.forthValues.peek());
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getRange());
-            System.out.println("the range is " + robot.forthValues.peek());
-            
-            robot.forthValues.push(scanned.scannedRobotsList.get(index).getGang());
-            System.out.println("the gang is " + robot.forthValues.peek());
-            }
+            scanned.scannedRobotsList.remove();
+          
         });
         
         //Sends a message to a specified ally
