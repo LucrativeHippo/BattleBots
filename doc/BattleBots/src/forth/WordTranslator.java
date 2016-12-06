@@ -163,13 +163,17 @@ public class WordTranslator implements Execute{
         //This will deal with "=", pushing a boolean on the stack
         ht.put("=", (Execute) () -> {
             Object var1 = robot.forthValues.pop();
+            System.out.println("the first value to be equalled " + (String)var1);
             Object var2 = robot.forthValues.pop();
+            System.out.println("the second value to be equaled " + (String)var2);
             Boolean var3;
-            if(var1==var2){
+            
+            if(var1.toString().compareTo((String)var2)==0){
                 var3 = true;
             }else{
                 var3 = false;
             }
+            System.out.println(var3);
             robot.forthValues.push(var3);
         });
         
@@ -322,7 +326,7 @@ public class WordTranslator implements Execute{
                         if(!forthCommands.empty()){
                             //
                             //Testing
-                            System.out.println("top of temp stack" + robot.forthValues.peek());
+                            //System.out.println("top of temp stack" + robot.forthValues.peek());
                             //
                             //
                         }}
@@ -895,7 +899,8 @@ public class WordTranslator implements Execute{
             }
             if( x != null){
                 robot.forthValues.pop();
-                robot.forthValues.push("OUT OF BOUNDS");
+                robot.forthValues.push("OUT OF BOUNDS ");
+                System.out.println("The ROBOT IS ---------------- " + robot.forthValues.peek());
             }
             }
             
@@ -918,7 +923,7 @@ public class WordTranslator implements Execute{
             
             if( x != null){
                 robot.forthValues.pop();
-                robot.forthValues.push("OUT OF BOUNDS");
+                robot.forthValues.push("OUT OF BOUNDS ");
             }
             }
             if(robot.getType().compareTo("TANK")==0){
@@ -939,7 +944,7 @@ public class WordTranslator implements Execute{
             }
             if( x != null){
                 robot.forthValues.pop();
-                robot.forthValues.push("OUT OF BOUNDS");
+                robot.forthValues.push("OUT OF BOUNDS ");
             }
             }
         }});
