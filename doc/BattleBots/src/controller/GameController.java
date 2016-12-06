@@ -200,7 +200,111 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     JSONObject testScript2 = new JSONObject();
     testScript2.put("script", testRobot2);
     chosenRobotCodes.push(testScript2);
+    
+    JSONObject centralizer1 = new JSONObject();
+    centralizer1.put("team", "A7");
+    centralizer1.put("class", "Scout");
+    centralizer1.put("name", "centralizersscout");
+    centralizer1.put("matches", 5);
+    centralizer1.put("wins", 2);
+    centralizer1.put("losses", 3);
+    centralizer1.put("executions", 5);
+    centralizer1.put("lived", 1);
+    centralizer1.put("died", 4);
+    centralizer1.put("absorbed", 4);
+    centralizer1.put("killed", 0);
+    centralizer1.put("moved", 17);
+    JSONArray listc = new JSONArray();
+    listc.add("variable moved ; ( have i moved? )");
+    listc.add(": moved? moved ? ; ");
+    listc.add("moved false ! ; ");
+    listc.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
+    listc.add("variable shot ;  ( have I shot this play? )");
+    listc.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
+    listc.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if drop drop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
+    listc.add(": doNotShoot ( id ir -- ) ( pretend shoot ) drop drop ; ");
+    listc.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
+    listc.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
+    listc.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
+    listc.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
+    listc.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
+    
+    centralizer1.put("code", listc);
+    JSONObject testScriptc = new JSONObject();
+    testScriptc.put("script", centralizer1);
+    chosenRobotCodes.push(testScriptc);
+    
+     JSONObject centralizer2 = new JSONObject();
+    centralizer2.put("team", "A7");
+    centralizer2.put("class", "Sniper");
+    centralizer2.put("name", "centralizerssniper");
+    centralizer2.put("matches", 5);
+    centralizer2.put("wins", 2);
+    centralizer2.put("losses", 3);
+    centralizer2.put("executions", 5);
+    centralizer2.put("lived", 1);
+    centralizer2.put("died", 4);
+    centralizer2.put("absorbed", 4);
+    centralizer2.put("killed", 0);
+    centralizer2.put("moved", 17);
+    JSONArray listc2 = new JSONArray();
+    listc2.add("variable moved ; ( have i moved? )");
+    listc2.add(": moved? moved ? ; ");
+    listc2.add("moved false ! ; ");
+    listc2.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
+    listc2.add("variable shot ;  ( have I shot this play? )");
+    listc2.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
+    listc2.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if drop drop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
+    listc2.add(": doNotShoot ( id ir -- ) ( pretend shoot ) drop drop ; ");
+    listc2.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
+    listc2.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
+    listc2.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
+    listc2.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
+    listc2.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
+    
+    centralizer2.put("code", listc2);
+    JSONObject testScriptc2 = new JSONObject();
+    testScriptc2.put("script", centralizer2);
+    chosenRobotCodes.push(testScriptc2);
+    
+     JSONObject centralizer3 = new JSONObject();
+    centralizer3.put("team", "A7");
+    centralizer3.put("class", "Tank");
+    centralizer3.put("name", "centralizerstank");
+    centralizer3.put("matches", 5);
+    centralizer3.put("wins", 2);
+    centralizer3.put("losses", 3);
+    centralizer3.put("executions", 5);
+    centralizer3.put("lived", 1);
+    centralizer3.put("died", 4);
+    centralizer3.put("absorbed", 4);
+    centralizer3.put("killed", 0);
+    centralizer3.put("moved", 17);
+    JSONArray listc3 = new JSONArray();
+    listc3.add("variable moved ; ( have i moved? )");
+    listc3.add(": moved? moved ? ; ");
+    listc3.add("moved false ! ; ");
+    listc3.add(": firstMove ( move to center first ) moved ? if ( already moved ) else move move move true moved ! then ;");
+    listc3.add("variable shot ;  ( have I shot this play? )");
+    listc3.add(": canShoot? ( --b ) ( shot available? ) shot ? ; ");
+    listc3.add(": shoot!! ( id ir -- ) ( shoot if allowed ) canShoot? if drop drop ( remove ir id ) else shoot! ( really shoot ) shot true ! ( remember it ) then then ; ");
+    listc3.add(": doNotShoot ( id ir -- ) ( pretend shoot ) drop drop ; ");
+    listc3.add(": enemy? ( s--b ) ( decide if enemy ) team <> ;");
+    listc3.add(": nonZeroRange? ( i --bi ) dup 0 <> ; ");
+    listc3.add(": tryShooting! ( ih id ir st -- ) enemy? swap nonZeroRange? rot and if shoot!! else doNotShoot then drop ( remove ih ) ;");
+    listc3.add(": shootEveryone ( try shot at all targets ) scan! 1 - dup 0 < if ( no one to shoot at ) else 0 do identify! tryShooting! loop then ;");
+    listc3.add(": play ( -- ) false moved ! firstMove shot false ! ( prepare to shoot ) shootEveryone ; ");
+    
+    centralizer3.put("code", listc3);
+    JSONObject testScriptc3 = new JSONObject();
+    testScriptc3.put("script", centralizer3);
+    chosenRobotCodes.push(testScriptc3);
+    
+    
+    
     }
+    
+    
     firstPlay = false;
 //    chosenRobotCodes.push(testScript);
 //    chosenRobotCodes.push(testScript);
