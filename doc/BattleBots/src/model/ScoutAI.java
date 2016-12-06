@@ -586,8 +586,8 @@ public class ScoutAI extends Scout {
    */
    public boolean check(int direction) throws Exception{
     int current = this.getRelativeDirection();
-    int actual = current + direction;
-    actual = actual%6;
+    int actual = current;
+    if(this.getVerticalLocation()%2 == 0){
     if(actual == 0){
        return this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].hexExists;
     }
@@ -606,9 +606,34 @@ public class ScoutAI extends Scout {
     if(actual == 5){
       return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].hexExists;
     } else{
+    
       throw new Exception("A robot AI is checking for a directional value not between 0 and 5");
     }
   }
+    else{
+        if(actual == 0){
+       return this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()].hexExists;
+    }
+    if(actual == 1){
+      return this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()+1].hexExists;
+    }
+    if(actual == 2){
+      return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()+1].hexExists;
+    }
+    if(actual == 3){
+      return this.board.spaces[this.getHorizontalLocation()-1][this.getVerticalLocation()].hexExists;
+    }
+    if(actual == 4){
+      return this.board.spaces[this.getHorizontalLocation()][this.getVerticalLocation()-1].hexExists;
+    }
+    if(actual == 5){
+      return this.board.spaces[this.getHorizontalLocation()+1][this.getVerticalLocation()-1].hexExists;
+    } else{
+    
+      throw new Exception("A robot AI is checking for a directional value not between 0 and 5");
+    }
+    }
+   }
 
 }        
            

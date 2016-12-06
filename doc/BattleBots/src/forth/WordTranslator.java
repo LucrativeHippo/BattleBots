@@ -891,7 +891,7 @@ public class WordTranslator implements Execute{
                 }
                 else{
                     robot.forthValues.pop();
-                    robot.forthValues.push("OCCUPIED");
+                    robot.forthValues.push("OUT OF BOUNDS ");
                 }
             }
             catch(Exception e){
@@ -914,7 +914,7 @@ public class WordTranslator implements Execute{
                 }
                 else{
                     robot.forthValues.pop();
-                    robot.forthValues.push("OCCUPIED");
+                    robot.forthValues.push("OUT OF BOUNDS ");
                 }
             }
             catch(Exception e){
@@ -936,7 +936,7 @@ public class WordTranslator implements Execute{
                 }
                 else{
                     robot.forthValues.pop();
-                    robot.forthValues.push("OCCUPIED");
+                    robot.forthValues.push("OUT OF BOUNDS ");
                 }
             }
             catch(Exception e){
