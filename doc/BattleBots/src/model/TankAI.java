@@ -289,11 +289,12 @@ public class TankAI extends Tank{
 	public void recieveDamage(int damage){
 		if(this.getHealthLeft() <= damage){
       this.setHealthLeft(0);
-      this.damageTaken = this.damageTaken + damage;
+      this.setDied(this.getDied() + 1);
+      this.setAbsorbed(this.getAbsorbed() + damage);
       this.board.aliveList.remove(this);
     } else{
       this.setHealthLeft(this.getHealthLeft() - damage);
-      this.damageTaken = this.damageTaken + damage;
+      this.setAbsorbed(this.getAbsorbed() + damage);
     }
 	}
         
