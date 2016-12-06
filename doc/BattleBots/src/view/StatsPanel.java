@@ -222,6 +222,7 @@ public class StatsPanel extends JPanel {
     
    // centerPanel.add(headers);
     
+    //For each AI robot we must show it's stats
     Interpreter interpret = new Interpreter();
     //boolean statsComplete = false;
     LinkedList<Robot> list = gameBoard.robotList;
@@ -246,7 +247,8 @@ public class StatsPanel extends JPanel {
       rows.setPreferredSize(new Dimension(1500, 40));
       rows.setMinimumSize(new Dimension(1500, 40));
       rows.setMaximumSize(new Dimension(1500, 40));
-        
+      
+      
       JLabel team1 = new JLabel(interpret.getRobotName(Jtemp));
       team1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       team1.setForeground(Color.BLACK);
@@ -262,46 +264,55 @@ public class StatsPanel extends JPanel {
       teams.setForeground(Color.BLACK);
       rows.add(teams);
       
+      //Jtemp.replace("matches", temp.)
       JLabel matches1 = new JLabel(Integer.toString(interpret.getRobotMatches(Jtemp)));
       matches1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       matches1.setForeground(Color.BLACK);
       rows.add(matches1);
 
+      //Jtemp.replace("wins", temp.)
       JLabel teamWins = new JLabel(Integer.toString(interpret.getRobotWins(Jtemp)));
       teamWins.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teamWins.setForeground(Color.BLACK);
       rows.add(teamWins);
 
+      //Jtemp.replace("losses", temp.)
       JLabel teamLosses = new JLabel(Integer.toString(interpret.getRobotLosses(Jtemp)));
       teamLosses.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teamLosses.setForeground(Color.BLACK);
       rows.add(teamLosses);
 
+      //Jtemp.replace("executions", temp.)
       JLabel exec = new JLabel(Integer.toString(interpret.getRobotExecutions(Jtemp)));
       exec.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       exec.setForeground(Color.BLACK);
       rows.add(exec);
 
+      //Jtemp.replace("lived", temp.)
       JLabel livednum = new JLabel(Integer.toString(interpret.getRobotLived(Jtemp)));
       livednum.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       livednum.setForeground(Color.BLACK);
       rows.add(livednum);
 
+      //Jtemp.replace("died", temp.)
       JLabel dies = new JLabel(Integer.toString(interpret.getRobotDied(Jtemp)));
       dies.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       dies.setForeground(Color.BLACK);
       rows.add(dies);
       
+      //Jtemp.replace("absorbed", temp.)
       JLabel abs = new JLabel(Integer.toString(interpret.getRobotAbsorbed(Jtemp)));
       abs.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       abs.setForeground(Color.BLACK);
       rows.add(abs);
       
+      //Jtemp.replace("killed", temp.)
       JLabel kills = new JLabel(Integer.toString(interpret.getRobotKilled(Jtemp)));
       kills.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       kills.setForeground(Color.BLACK);
       rows.add(kills);
       
+      //Jtemp.replace("moved", temp.)
       JLabel moves = new JLabel(Integer.toString(interpret.getRobotMoved(Jtemp)));
       moves.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       moves.setForeground(Color.BLACK);
