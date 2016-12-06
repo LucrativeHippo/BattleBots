@@ -264,55 +264,55 @@ public class StatsPanel extends JPanel {
       teams.setForeground(Color.BLACK);
       rows.add(teams);
       
-      //Jtemp.replace("matches", temp.)
+      Jtemp.replace("matches", Integer.toString(temp.getMatches()));
       JLabel matches1 = new JLabel(Integer.toString(interpret.getRobotMatches(Jtemp)));
       matches1.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       matches1.setForeground(Color.BLACK);
       rows.add(matches1);
 
-      //Jtemp.replace("wins", temp.)
+      Jtemp.replace("wins", Integer.toString(temp.getWins()));
       JLabel teamWins = new JLabel(Integer.toString(interpret.getRobotWins(Jtemp)));
       teamWins.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teamWins.setForeground(Color.BLACK);
       rows.add(teamWins);
 
-      //Jtemp.replace("losses", temp.)
+      Jtemp.replace("losses", Integer.toString(temp.getLosses()));
       JLabel teamLosses = new JLabel(Integer.toString(interpret.getRobotLosses(Jtemp)));
       teamLosses.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       teamLosses.setForeground(Color.BLACK);
       rows.add(teamLosses);
 
-      //Jtemp.replace("executions", temp.)
+      Jtemp.replace("executions", Integer.toString(temp.getExecutions()));
       JLabel exec = new JLabel(Integer.toString(interpret.getRobotExecutions(Jtemp)));
       exec.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       exec.setForeground(Color.BLACK);
       rows.add(exec);
 
-      //Jtemp.replace("lived", temp.)
+      Jtemp.replace("lived", Integer.toString(temp.getLived()));
       JLabel livednum = new JLabel(Integer.toString(interpret.getRobotLived(Jtemp)));
       livednum.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       livednum.setForeground(Color.BLACK);
       rows.add(livednum);
 
-      //Jtemp.replace("died", temp.)
+      Jtemp.replace("died", Integer.toString(temp.getDied()));
       JLabel dies = new JLabel(Integer.toString(interpret.getRobotDied(Jtemp)));
       dies.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       dies.setForeground(Color.BLACK);
       rows.add(dies);
       
-      //Jtemp.replace("absorbed", temp.)
+      Jtemp.replace("absorbed", Integer.toString(temp.getAbsorbed()));
       JLabel abs = new JLabel(Integer.toString(interpret.getRobotAbsorbed(Jtemp)));
       abs.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       abs.setForeground(Color.BLACK);
       rows.add(abs);
       
-      //Jtemp.replace("killed", temp.)
+      Jtemp.replace("killed", Integer.toString(temp.getKilled()));
       JLabel kills = new JLabel(Integer.toString(interpret.getRobotKilled(Jtemp)));
       kills.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       kills.setForeground(Color.BLACK);
       rows.add(kills);
       
-      //Jtemp.replace("moved", temp.)
+      Jtemp.replace("moved", Integer.toString(temp.getMoves()));
       JLabel moves = new JLabel(Integer.toString(interpret.getRobotMoved(Jtemp)));
       moves.setFont(new Font("Rockwell", Font.PLAIN, LABEL_FONT_SIZE/3));
       moves.setForeground(Color.BLACK);

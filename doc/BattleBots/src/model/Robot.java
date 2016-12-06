@@ -40,6 +40,163 @@ public class Robot {
         public boolean isHuman;
 	
 	public GameBoard board;
+  
+  
+  //These will be the attribues involved in the stats at the end of the game
+  //for all players controlled by robots
+  private int moves;
+  private int killed;
+  private int absorbed;
+  private int wins;
+  private int losses;
+  private int matches;
+
+  /**
+   * Return the number of moves a robot has made
+   * @return 
+   */
+  public int getMoves() {
+    return moves;
+  }
+
+  /**
+   * Set the number of moves a robot has made
+   * @param moves 
+   */
+  public void setMoves(int moves) {
+    this.moves = moves;
+  }
+
+  /**
+   * Get the number of kills a robot has
+   * @return 
+   */
+  public int getKilled() {
+    return killed;
+  }
+
+  /**
+   * Set the number of kills a robot has made
+   * @param killed 
+   */
+  public void setKilled(int killed) {
+    this.killed = killed;
+  }
+
+  /**
+   * Get the amount of damage absorbed
+   * @return 
+   */
+  public int getAbsorbed() {
+    return absorbed;
+  }
+
+  /**
+   * Set the amount of damage absorbed
+   * @param absorbed 
+   */
+  public void setAbsorbed(int absorbed) {
+    this.absorbed = absorbed;
+  }
+
+  /**
+   * Get the number of wins
+   * @return 
+   */
+  public int getWins() {
+    return wins;
+  }
+
+  /**
+   * Set the number of wins
+   * @param wins 
+   */
+  public void setWins(int wins) {
+    this.wins = wins;
+  }
+
+  /**
+   * Get the number of losses
+   * @return 
+   */
+  public int getLosses() {
+    return losses;
+  }
+
+  /**
+   * set the number of losses
+   * @param losses 
+   */
+  public void setLosses(int losses) {
+    this.losses = losses;
+  }
+
+  /**
+   * get the number of matches
+   * @return 
+   */
+  public int getMatches() {
+    return matches;
+  }
+
+  /**
+   * set the number of matches
+   * @param matches 
+   */
+  public void setMatches(int matches) {
+    this.matches = matches;
+  }
+
+  /**
+   * get the number of executions
+   * @return 
+   */
+  public int getExecutions() {
+    return executions;
+  }
+
+  /**
+   * set the number of executions
+   * @param executions 
+   */
+  public void setExecutions(int executions) {
+    this.executions = executions;
+  }
+
+  /**
+   * get the number of times lived
+   * @return 
+   */
+  public int getLived() {
+    return lived;
+  }
+
+  /**
+   * set the number of times lived
+   * @param lived 
+   */
+  public void setLived(int lived) {
+    this.lived = lived;
+  }
+
+  /**
+   * get the number of times died
+   * @return 
+   */
+  public int getDied() {
+    return died;
+  }
+
+  /**
+   * set the number of times died
+   * @param died 
+   */
+  public void setDied(int died) {
+    this.died = died;
+  }
+  private int executions;
+  private int lived;
+  private int died;
         
         public Hashtable<String, Object> variables = new Hashtable();
         public Stack variableStack = new Stack();

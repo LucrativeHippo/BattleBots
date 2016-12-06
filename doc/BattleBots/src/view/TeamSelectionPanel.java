@@ -50,7 +50,9 @@ public class TeamSelectionPanel extends JPanel {
   public TeamSelectionPanel(int width, int height, ActionListener listener) {
 
     selectedRobots = new LinkedList<>();
-    robotCodes = new LinkedList<>();
+    if(robotCodes == null){
+      robotCodes = new LinkedList<>();
+    }
     while (!chosenRobotCodes.isEmpty()) {
       robotCodes.add(chosenRobotCodes.pop());
     }
