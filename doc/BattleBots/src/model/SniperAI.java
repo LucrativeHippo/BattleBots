@@ -230,7 +230,7 @@ public class SniperAI extends Sniper{
             beginning = this.getRange()-2;
         }
         if(abs(i)<=this.getRange()-1){
-            end = this.getRange;
+            end = this.getRange();
         }
       for(int k=beginning; k <= end; k++){
         x=null;
