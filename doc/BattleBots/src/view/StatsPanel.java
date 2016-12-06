@@ -33,6 +33,15 @@ public class StatsPanel extends JPanel {
   static final int VERTICAL_SPACER = 50;
 
   public StatsPanel(int width, int height, ActionListener listener) {
+    
+    //We must increase the number of wins and lived stats for robots in the alive
+    //list
+    Iterator<Robot> iterateAlive = gameBoard.aliveList.iterator();
+    while(iterateAlive.hasNext()){
+      Robot temp = iterateAlive.next();
+      temp.setLived(temp.getLived() + 1);
+      temp.setWins(temp.getWins() + 1);
+    }
 
     setSize(width, height);
     setBackground(Color.WHITE);
