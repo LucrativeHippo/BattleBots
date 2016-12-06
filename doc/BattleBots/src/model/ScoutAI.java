@@ -283,9 +283,12 @@ public class ScoutAI extends Scout {
    * This function inflicts damage to the robot by the given amount
    * @param damage Integer of damage inflicted
    */
+  @Override
     public void recieveDamage(int damage){
 		if(this.getHealthLeft() <= damage){
       this.setHealthLeft(0);
+      this.damageTaken = this.damageTaken + damage;
+      this.board.aliveList.remove(this);
     } else{
       this.setHealthLeft(this.getHealthLeft() - damage);
       this.damageTaken = this.damageTaken + damage;
