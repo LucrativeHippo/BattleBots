@@ -232,13 +232,16 @@ public class SniperAI extends Sniper{
     int hexModifier = 0;
     int scanRange = this.getRange();
     for(int i=minRange; i <= this.getRange(); i++){
-        int beginning = this.getRange()-1+this.getVerticalLocation();
-        int end = this.getRange()+1;
-        if(abs(i)<=this.getRange()-2){
-            beginning = this.getRange()-2;
+        int beginning = -2;
+        int end = +1;
+        if(abs(i)<= 1){
+            beginning = -3;
         }
-        if(abs(i)<=this.getRange()-1){
-            end = this.getRange();
+        if(abs(i)<= 2){
+            end = 2;
+            if(abs(i)== 0){
+                end = 3;
+            }
         }
       for(int k=beginning; k <= end; k++){
         x=null;
@@ -268,11 +271,6 @@ public class SniperAI extends Sniper{
           }          
         }          
       }
-      if(hexModifier == minRange){
-        scanRange--;
-      } else{
-        hexModifier=hexModifier-1;
-      } 
     }
     return numRobots;
   }

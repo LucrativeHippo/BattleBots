@@ -2,6 +2,7 @@ package model;
 
 
 import java.io.IOException;
+import static java.lang.Math.abs;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -223,29 +224,36 @@ public class ScoutAI extends Scout {
         
         
 	public int scan(){
-    System.out.println("SCANNING");
     Exception x= null;
     int numRobots = 0;
     int minRange = this.getRange()*-1;
     int hexModifier = 0;
     int scanRange = this.getRange();
     for(int i=minRange; i <= this.getRange(); i++){
-      for(int k=hexModifier; k <= scanRange; k++){
+        int beginning = -1;
+        int end = 1;
+        if(abs(i)<= 1){
+            beginning = -2;
+        }
+            if(abs(i)== 0){
+                end = 2;
+            }
+      for(int k=beginning; k <= end; k++){
         x=null;
         try {
           Hex temp = this.board.spaces[this.getHorizontalLocation()+k]
               [this.getVerticalLocation()+i];
         } catch (ArrayIndexOutOfBoundsException e) {
           System.out.println(e + " caught due to scanning out of bounds.");
-          x=e;
+          x=e;                   
         }
         if(x==null){
           System.out.println(this.getHorizontalLocation()+k);
           System.out.println(this.getVerticalLocation()+i);
           if(this.board.spaces[this.getHorizontalLocation()+k]
-              [this.getVerticalLocation()+i].hexExists==true&&this.board.spaces
-              [this.getHorizontalLocation()+k][this.getVerticalLocation()+i].isEmpty()
-              ==false){
+              [this.getVerticalLocation()+i].hexExists==
+              true&&this.board.spaces[this.getHorizontalLocation()+k]
+              [this.getVerticalLocation()+i].isEmpty()==false){
             System.out.println("hex check successful");
             Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k]
                 [this.getVerticalLocation()+i].robotList.iterator();
@@ -254,15 +262,10 @@ public class ScoutAI extends Scout {
               Robot temp = robotIterator.next();
               System.out.println(temp.getName());
               this.scannedRobotsList.add(temp);
-              }
-            }   
-          }    
-        }
-      if(hexModifier == minRange){
-        scanRange--;
-      } else{
-        hexModifier=hexModifier-1;
-      } 
+            }
+          }          
+        }          
+      }
     }
     return numRobots;
   }

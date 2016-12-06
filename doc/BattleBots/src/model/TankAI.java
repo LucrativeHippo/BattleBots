@@ -225,15 +225,19 @@ public class TankAI extends Tank{
     int hexModifier = 0;
     int scanRange = this.getRange();
     for(int i=minRange; i <= this.getRange(); i++){
-      for(int k=hexModifier; k <= scanRange; k++){
+        int beginning = -1;
+        int end = 0;
+            if(abs(i)== 0){
+                end = 1;
+            }
+      for(int k=beginning; k <= end; k++){
         x=null;
         try {
           Hex temp = this.board.spaces[this.getHorizontalLocation()+k]
               [this.getVerticalLocation()+i];
-        } 
-        catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
           System.out.println(e + " caught due to scanning out of bounds.");
-          x=e;                
+          x=e;                   
         }
         if(x==null){
           System.out.println(this.getHorizontalLocation()+k);
@@ -243,8 +247,7 @@ public class TankAI extends Tank{
               true&&this.board.spaces[this.getHorizontalLocation()+k]
               [this.getVerticalLocation()+i].isEmpty()==false){
             System.out.println("hex check successful");
-            Iterator<Robot> robotIterator = 
-                this.board.spaces[this.getHorizontalLocation()+k]
+            Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k]
                 [this.getVerticalLocation()+i].robotList.iterator();
             while(robotIterator.hasNext()){
               numRobots = numRobots + 1;
@@ -255,15 +258,11 @@ public class TankAI extends Tank{
           }          
         }          
       }
-      if(hexModifier == minRange){
-        scanRange--;
-      } else{
-        hexModifier=hexModifier-1;
-      } 
     }
     return numRobots;
   }
-	
+        
+        
 	public void turn(int desiredDirection){
 		if((desiredDirection<=5)&&(desiredDirection>=0)){
       this.setRelativeDirection((this.getRelativeDirection()+desiredDirection)%6);
