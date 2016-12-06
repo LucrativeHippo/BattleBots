@@ -64,7 +64,7 @@ public class SniperAI extends Sniper{
             this.setHorizontalLocation(this.getHorizontalLocation()+1);
             this.setVerticalLocation(this.getVerticalLocation());
             this.setMovementLeft(this.getMovementLeft()-1);
-            totalMoves = totalMoves +1;
+            this.setMoves(this.getMoves() + 1);
           }
         }
         catch(Exception e){
@@ -83,6 +83,7 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation());
               this.setVerticalLocation(this.getVerticalLocation()+1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
             }
           } else{
             if(this.board.spaces[this.getHorizontalLocation()+1]
@@ -94,6 +95,7 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation()+1);
               this.setVerticalLocation(this.getVerticalLocation()+1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
             }
           }
           totalMoves = totalMoves +1;
@@ -114,6 +116,7 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation()-1);
               this.setVerticalLocation(this.getVerticalLocation()+1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
               System.out.println("We were on an even horizontal position, now we have moved");
             }
           } else{//different for odd rows
@@ -125,6 +128,7 @@ public class SniperAI extends Sniper{
                   [this.getVerticalLocation()].robotList.remove(this);
               this.setVerticalLocation(this.getVerticalLocation()+1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
               System.out.println("We were on an odd horizontal position, now we have moved");
             }
           }
@@ -145,7 +149,7 @@ public class SniperAI extends Sniper{
             this.setHorizontalLocation(this.getHorizontalLocation()-1);
             this.setVerticalLocation(this.getVerticalLocation());
             this.setMovementLeft(this.getMovementLeft()-1);
-            totalMoves = totalMoves +1;
+            this.setMoves(this.getMoves() + 1);
           }
         }
         catch(Exception e){
@@ -164,6 +168,7 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation());
               this.setVerticalLocation(this.getVerticalLocation()-1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
             }
           } else{
             if (this.board.spaces[this.getHorizontalLocation()-1]
@@ -175,9 +180,10 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation()-1);
               this.setVerticalLocation(this.getVerticalLocation()-1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
             }
           }
-          totalMoves = totalMoves +1;
+          //totalMoves = totalMoves +1;
         }
         catch(Exception e){
                         
@@ -195,6 +201,7 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation()+1);
               this.setVerticalLocation(this.getVerticalLocation()-1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
             }
           } else{
             if(this.board.spaces[this.getHorizontalLocation()]
@@ -206,9 +213,10 @@ public class SniperAI extends Sniper{
               this.setHorizontalLocation(this.getHorizontalLocation());
               this.setVerticalLocation(this.getVerticalLocation()-1);
               this.setMovementLeft(this.getMovementLeft()-1);
+              this.setMoves(this.getMoves() + 1);
             }
           }
-          totalMoves = totalMoves +1;
+          //totalMoves = totalMoves +1;
           }
           catch(Exception e){
                         

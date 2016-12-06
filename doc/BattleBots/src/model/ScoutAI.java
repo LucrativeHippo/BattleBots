@@ -72,7 +72,7 @@ public class ScoutAI extends Scout {
             this.setHorizontalLocation(this.getHorizontalLocation()+1);
             this.setVerticalLocation(this.getVerticalLocation());
             this.setMovementLeft(this.getMovementLeft()-1);
-            totalMoves = totalMoves +1;
+            this.setMoves(this.getMoves() + 1);
           }
         }
         catch(Exception e){
@@ -104,7 +104,7 @@ public class ScoutAI extends Scout {
               this.setMovementLeft(this.getMovementLeft()-1);
             }
           }
-          totalMoves = totalMoves +1;
+          this.setMoves(this.getMoves() + 1);
         }
         catch(Exception e){                
         }
@@ -135,7 +135,7 @@ public class ScoutAI extends Scout {
               System.out.println("We were on an odd horizontal position, now we have moved");
             }
           }
-          totalMoves = totalMoves +1;
+          this.setMoves(this.getMoves() + 1);
         }
         catch(Exception e){                   
         }
@@ -151,7 +151,7 @@ public class ScoutAI extends Scout {
             this.setHorizontalLocation(this.getHorizontalLocation()-1);
             this.setVerticalLocation(this.getVerticalLocation());
             this.setMovementLeft(this.getMovementLeft()-1);
-            totalMoves = totalMoves +1; 
+           this.setMoves(this.getMoves() + 1);
           }
           System.out.println("hi3");
         }
@@ -183,7 +183,7 @@ public class ScoutAI extends Scout {
               this.setMovementLeft(this.getMovementLeft()-1);
             }
           }
-          totalMoves = totalMoves +1;
+          this.setMoves(this.getMoves() + 1);
         }
         catch(Exception e){
         }
@@ -213,7 +213,7 @@ public class ScoutAI extends Scout {
               this.setMovementLeft(this.getMovementLeft()-1);
             }
           }
-          totalMoves = totalMoves +1;
+          this.setMoves(this.getMoves() + 1);
         }
         catch(Exception e){
         }
