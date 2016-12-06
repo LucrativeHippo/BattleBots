@@ -224,7 +224,15 @@ public class SniperAI extends Sniper{
     int hexModifier = 0;
     int scanRange = this.getRange();
     for(int i=minRange; i <= this.getRange(); i++){
-      for(int k=hexModifier; k <= scanRange; k++){
+        int beginning = this.getRange()-1+this.getVerticalLocation();
+        int end = this.getRange()+1;
+        if(abs(i)<=this.getRange()-2){
+            beginning = this.getRange()-2;
+        }
+        if(abs(i)<=this.getRange()-1){
+            end = this.getRange;
+        }
+      for(int k=beginning; k <= end; k++){
         x=null;
         try {
           Hex temp = this.board.spaces[this.getHorizontalLocation()+k]
@@ -260,6 +268,24 @@ public class SniperAI extends Sniper{
     }
     return numRobots;
   }
+        
+        /*
+        
+        if(this.board.spaces[this.getHorizontalLocation()+k]
+              [this.getVerticalLocation()+i].hexExists==
+              true&&this.board.spaces[this.getHorizontalLocation()+k]
+              [this.getVerticalLocation()+i].isEmpty()==false){
+            System.out.println("hex check successful");
+            Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k]
+                [this.getVerticalLocation()+i].robotList.iterator();
+            while(robotIterator.hasNext()){
+              numRobots = numRobots + 1;
+              Robot temp = robotIterator.next();
+              System.out.println(temp.getName());
+              this.scannedRobotsList.add(temp);
+            }
+          }  
+        */
 	
 	public void turn(int desiredDirection){
 		if((desiredDirection<=5)&&(desiredDirection>=0)){
