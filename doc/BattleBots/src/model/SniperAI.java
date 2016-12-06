@@ -299,7 +299,7 @@ public class SniperAI extends Sniper{
     } else{
       if(this.getVerticalLocation()%2 == 0){
         if(range == 1){
-            direction = (direction + this.getRelativeDirection())%6;
+            
           if(direction == 0){
             this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()]);
@@ -321,7 +321,7 @@ public class SniperAI extends Sniper{
           }
         }
         if(range == 2){
-            direction = (direction + (this.getRelativeDirection()*2))%12;
+            
           if(direction == 0){
             this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+0]);
@@ -360,7 +360,7 @@ public class SniperAI extends Sniper{
             [this.getHorizontalLocation()+1][this.getVerticalLocation()-1]);
           }
         } else{
-            direction = (direction + this.getRelativeDirection()*3)%18;
+            
           if(direction == 0){
               this.shoots(this.board.spaces
               [this.getHorizontalLocation()+3][this.getVerticalLocation()]);
@@ -419,7 +419,7 @@ public class SniperAI extends Sniper{
         }
       } else{//We are on an odd vertical row, so we must compensate
         if(range == 1){
-            direction = (direction + this.getRelativeDirection())%6;
+           
           if(direction == 0){
             this.shoots(this.board.spaces
             [this.getHorizontalLocation()+1][this.getVerticalLocation()]);
@@ -441,7 +441,7 @@ public class SniperAI extends Sniper{
           }
         }
         if(range == 2){
-            direction = (direction + this.getRelativeDirection()*2)%12;
+           
           if(direction == 0){
             this.shoots(this.board.spaces
             [this.getHorizontalLocation()+2][this.getVerticalLocation()+0]);
@@ -480,7 +480,7 @@ public class SniperAI extends Sniper{
             [this.getHorizontalLocation()+2][this.getVerticalLocation()-1]);
           }
         } else{
-            direction = (direction + this.getRelativeDirection()*3)%18;
+            
           if(direction == 0){
             this.shoots(this.board.spaces
             [this.getHorizontalLocation()+3][this.getVerticalLocation()]);
