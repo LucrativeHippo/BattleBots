@@ -29,8 +29,8 @@ public final class OverallGamePanel extends JPanel {
     private static final long serialVersionUID = 1L;
     static final int FONT_SIZE = 72;
     static final int BUTTON_SPACER_SIZE = 300;
-    static Iterator<Robot> turn;
-    static Iterator<Robot> turn2;
+    static Iterator<Robot> turn;    // used for displaying which robots turn it is
+    static Iterator<Robot> turn2;   // used for displaying which robots turn it is
 
     public OverallGamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo) throws NoSuchMethodException {
         GamePanel gamepanel = new GamePanel(height, height, alistener, klistener, gameinfo);
@@ -46,19 +46,11 @@ public final class OverallGamePanel extends JPanel {
         southButtons.add(Box.createVerticalGlue());
         southButtons.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-//        Iterator<Robot> iterate = gameController.gameBoard.aliveList.iterator();
-//        Robot temp = iterate.next();
-//        Iterator<Robot> iterate2 = gameController.gameBoard.aliveList.iterator();
-//        Robot temp2 = iterate2.next();
         
           turn = gameBoard.aliveList.iterator();
           turn.next();
           turn2 = gameBoard.aliveList.iterator();
           turn2.next();
-          //Robot temp = turn.next();
-          
-          //Robot temp2 = turn.next();
-          
 
         
         JLabel currentTurn = new JLabel("Current Turn: " + gameBoard.aliveList.getFirst().getGang() + " " + gameBoard.aliveList.getFirst().getType());
@@ -86,11 +78,11 @@ public final class OverallGamePanel extends JPanel {
 
         southButtons.add(endTurnButton);
 
-        JButton quitButton = new JButton(" Quit ");
+        JButton quitButton = new JButton("End Game");
         quitButton.setFont(new Font("Rockwell", Font.PLAIN, FONT_SIZE));
         quitButton.setBackground(Color.BLACK);
         quitButton.setForeground(Color.WHITE);
-        quitButton.setActionCommand("quit");
+        quitButton.setActionCommand("stats");
         quitButton.addActionListener(alistener);
         quitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         quitButton.setFocusPainted(false);

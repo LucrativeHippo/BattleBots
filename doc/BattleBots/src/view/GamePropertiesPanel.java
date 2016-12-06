@@ -69,12 +69,12 @@ public class GamePropertiesPanel extends JPanel{
     threeTeamsButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     threeTeamsButton.setActionCommand("threeTeams");
     threeTeamsButton.addActionListener(actionListener);
+    threeTeamsButton.setSelected(true);
     	    
     JRadioButton sixTeamsButton = new JRadioButton("6");
     sixTeamsButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     sixTeamsButton.setActionCommand("sixTeams");
     sixTeamsButton.addActionListener(actionListener);
-    sixTeamsButton.setSelected(true);
     		
     ButtonGroup group = new ButtonGroup();
     group.add(twoTeamsButton);
@@ -195,14 +195,14 @@ public class GamePropertiesPanel extends JPanel{
     fiveButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     fiveButton.setActionCommand("five");
     fiveButton.addActionListener(actionListener);
-    fiveButton.setEnabled(false);
+    fiveButton.setEnabled(true);
+    fiveButton.setSelected(true);
     		
     		
     JRadioButton sevenButton = new JRadioButton("7");
     sevenButton.setFont(new Font("Rockwell",Font.PLAIN, LABEL_FONT_SIZE));
     sevenButton.setActionCommand("seven");
     sevenButton.addActionListener(actionListener);   
-    sevenButton.setSelected(true);
     	    
     ButtonGroup group2 = new ButtonGroup();
     group2.add(fiveButton);
@@ -230,7 +230,8 @@ public class GamePropertiesPanel extends JPanel{
       }
     });
 
-    // when user selects three players, when user selects three players,  
+    // when user selects three players, it reveals the option of boardsize 5 and 7
+    // hides options of more than 3 humans
     threeTeamsButton.addActionListener(new ActionListener() {
       @Override
     	public void actionPerformed(ActionEvent ae) {
@@ -246,6 +247,7 @@ public class GamePropertiesPanel extends JPanel{
     });
 
     // when user selects six players, the board size is automatically set to seven 
+    // reveals options of up to 6 humans
     sixTeamsButton.addActionListener(new ActionListener() {
     	@Override
     	public void actionPerformed(ActionEvent ae) {

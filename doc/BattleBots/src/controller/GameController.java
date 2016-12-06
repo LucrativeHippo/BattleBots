@@ -46,8 +46,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
   private RobotController gameControl;
 
-  private int boardSize = 7;
-  public static int numPlayers = 6;
+  private int boardSize = 5;
+  public static int numPlayers = 3;
   private int numHumans = 0;
 
   public static Stack<JSONObject> chosenRobotCodes;
@@ -324,7 +324,8 @@ public class GameController implements ActionListener, KeyListener, GameObserver
           }
 
         }
-                
+        
+        // check for dead robots and remove them from the board
         for(int i = 0; i < gameInfo.getBoardSize(); i++){
       	for(int j = 0; j < gameInfo.getBoardSize(); j++){
       		if(gameBoard.spaces[i][j] != null && gameBoard.spaces[i][j].hexExists == true){
