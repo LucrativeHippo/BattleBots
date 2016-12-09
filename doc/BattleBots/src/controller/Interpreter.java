@@ -159,7 +159,12 @@ public class Interpreter {
     
     
     
-    //Checks if a string is an integer
+    
+    /**
+     * This function is responsible checking whether or not a string is an
+     * integer
+     * @param s a string taken in from the command stack
+     */
     public boolean isInteger(String s){
         int size = s.length();
 
@@ -173,7 +178,12 @@ public class Interpreter {
     
     }
     
-    //Checks if a string is a boolean
+    
+    /**
+     * This function is responsible checking whether or not a string is a
+     * boolean
+     * @param s a string taken in from the command stack
+     */
     public boolean isBoolean(String s){
         return "true".equals(s)||"false".equals(s);
     }
@@ -187,7 +197,6 @@ public class Interpreter {
      * @param robot Robot associated with the code
      */
     public void executeCode(JSONObject instructionCode, Robot robot) throws NoSuchMethodException{
-        System.out.println("The interpreter is starting");
         if(robot.initialfourthWords.isEmpty()){
         JSONObject temp = (JSONObject)instructionCode.get("script");
         List commands = (List)temp.get("code");
@@ -211,38 +220,39 @@ public class Interpreter {
         while(!tempStack.isEmpty()){
             robot.initialfourthWords.push(tempStack.pop());
         }
-        Stack forthWords = new Stack();
+        Stack forthWords = new Stack(); //creates a new stack
         while(!medium.empty()){
-            forthWords.add(medium.remove(0));
+            forthWords.add(medium.remove(0)); //reverses the order of the stack
         }
-        System.out.println("Words interpreted from JSON");
-        System.out.println("------------------------STARTING A NEW TURN------------------------------");
         WordTranslator translate = new WordTranslator(robot, forthWords);
         while(!forthWords.empty()){ 
             System.out.println(forthWords.peek());
             if(this.isInteger((String)forthWords.peek())){
+                //check if the string is an integer and pops it onto the robot 
+                //stack
                 robot.forthValues.push(Integer.parseInt((String)forthWords.pop()));
             }else if(this.isBoolean((String)forthWords.peek())){
+                //check if the string is a boolean and pops it onto the robot 
+                //stack
                 robot.forthValues.push(Boolean.parseBoolean((String)forthWords.pop()));
             }else if(forthWords.peek().toString().compareTo(".\"")==0){
-                    System.out.println("there is a string");
+                //check if the string is the beginning of a comment and executes 
+                //the comment dictionary function
                     forthWords.pop();
                     translate.getHashMap().get("string").execute();
                     
             }else if(robot.variables.containsKey((String)forthWords.peek())){
+                //checks if the string is an already created variable in the 
+                //variable dictionary then pushes it onto the variable stack
                     robot.variableStack.push(forthWords.pop());
-                    }else
+                    }else if(translate.getHashMap().containsKey(forthWords.peek()))
             {
-                System.out.println(forthWords.peek());
+                //checks the translator hashmap for the string and executes it.
                 translate.getHashMap().get(forthWords.pop()).execute();
                
-            }
-            
-            if(!robot.forthValues.empty()){
-                
-                System.out.println("The top of the stack is " + robot.forthValues.peek());
-               
-            }
+            }else{
+                        System.out.println("This string is not executable");
+                    }
         }
     }
     
@@ -254,7 +264,7 @@ public class Interpreter {
     //Here we will test the functions associated with the Interpreter
     public static void main(String [] args) throws NoSuchMethodException {
         
-        
+        //Testing for interpreter and Word Translator
         /*
         JSONObject testRobot = new JSONObject();
         testRobot.put("team", "A5");
@@ -395,9 +405,9 @@ public class Interpreter {
         //test1.add("variable a ; ");
         //test1.add("19 12 * a ! ");
         //test1.add("a ? ");
-//        test1.add(": hi 1 1 + 23 67 * ;");
-//        test1.add(": hello 1 1 - 78 8 * ;");
-//        test1.add(": hi2 1 1 * ;");
+        //test1.add(": hi 1 1 + 23 67 * ;");
+        //test1.add(": hello 1 1 - 78 8 * ;");
+        //test1.add(": hi2 1 1 * ;");
         test1.add(": play ( --- ) 5 0 do 1 1 + 5 5 * loop ; ");
         
         //test1.add("variable moved ; ( have i moved? )");
