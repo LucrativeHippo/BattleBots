@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.GameBoard;
 import model.GameInfo;
-import model.GameObserver;
 import model.Hex;
 import model.Robot;
 import model.Scout;
@@ -37,13 +36,13 @@ import javax.swing.KeyStroke;
 import model.ScoutAI;
 
 
-public class GamePanel extends JPanel implements GameObserver{
+public class GamePanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
 	public GameBoard gameBoard;
 	
-	int size;
+	int size;   // varible to store the size of the 2D array of hexes
 	
 	public GamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo) throws NoSuchMethodException {
 		if(gameinfo.getBoardSize() == 5){
@@ -179,10 +178,11 @@ public class GamePanel extends JPanel implements GameObserver{
         @Override
         public void mouseClicked(MouseEvent e) {
           repaint();
+          // get position on screen where mouse is clicked
           Point p = new Point( Hex.PointAtHex(e.getX(),e.getY()) );
           
           if (p.x < 0 || p.y < 0 || p.x >= size || p.y >= size) return;
-          //shoot instead of getting rid of space
+          // try to shoot space
           if (!gameBoard.spaces[p.x][p.y].robotList.isEmpty()){
             gameinfo.getCurrentRobot().shoot(gameBoard.spaces[p.x][p.y]);
             Iterator<Robot> robots = gameBoard.spaces[p.x][p.y].robotList.iterator();
@@ -190,6 +190,7 @@ public class GamePanel extends JPanel implements GameObserver{
               if (!robots.hasNext()){
                 break;
               }
+              // check if shot killed any robots
               Robot temp = robots.next();
               if (temp.getHealthLeft()<= 0){
                 gameBoard.spaces[p.x][p.y].robotList.remove(temp);
@@ -211,10 +212,6 @@ public class GamePanel extends JPanel implements GameObserver{
     }
         
 	
-    @Override
-    public void gameChanged() {
-      // TODO Auto-generated method stub
-    }
     @Override
     public void paintComponent(Graphics g){
       Graphics2D g2 = (Graphics2D)g; 

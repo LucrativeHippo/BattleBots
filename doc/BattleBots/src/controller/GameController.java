@@ -16,7 +16,6 @@ import javax.swing.SwingUtilities;
 import model.Game;
 import model.GameBoard;
 import model.GameInfo;
-import model.GameObserver;
 import model.Gang;
 import model.GangAI;
 import model.Robot;
@@ -32,7 +31,7 @@ import org.json.simple.JSONObject;
 import view.View;
 import static view.TeamSelectionPanel.selectedRobots;
 
-public class GameController implements ActionListener, KeyListener, GameObserver {
+public class GameController implements ActionListener, KeyListener {
 
   public static final int WIDTH = 800;  // width of the View JFrame 
   public static final int HEIGHT = 600; // height of the View JFrame
@@ -513,7 +512,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         Game game = new Game(WIDTH, HEIGHT);
         gameControl = game;
         gameInfo = game;
-        gameInfo.addObserver(this);
         gameInfo.setNumPlayers(numPlayers);
         gameInfo.setNumHumans(numHumans);
         gameInfo.setBoardSize(boardSize);
@@ -595,11 +593,6 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
   }
 
-  @Override
-  public void gameChanged() {
-		// TODO Auto-generated method stub
-
-  }
 
   /**
    * This function will generate all of the robots and their gangs with the
