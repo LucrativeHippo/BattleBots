@@ -34,9 +34,9 @@ import static view.TeamSelectionPanel.selectedRobots;
 
 public class GameController implements ActionListener, KeyListener, GameObserver {
 
-  public static final int WIDTH = 800;
-  public static final int HEIGHT = 600;
-  public Robot currentRobot;
+  public static final int WIDTH = 800;  // width of the View JFrame 
+  public static final int HEIGHT = 600; // height of the View JFrame
+  public Robot currentRobot; // during game play this will be set to proper robot
 
   public static GameController gameController;
 
@@ -44,18 +44,30 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
   private GameInfo gameInfo;
   
+  // boolean to determine whether default robots need to be initialized
+  // into the TeamSelectionPanel
   public static boolean firstPlay = true;
 
-  private RobotController gameControl;
-
-  private int boardSize = 5;
+  private RobotController gameControl;  //not really used
+  
+  
+  // stores the board size, initialized to the default radio button setting
+  private int boardSize = 5;    
+  
+  // stores the number of Players in the game, initialized to default 
+  //radio button setting
   public static int numPlayers = 3;
+  
+  // stores the number of human players in the game, initialized to default 
+  // radio button setting
   private int numHumans = 0;
 
+  // AI codes avaliable to play game
   public static Stack<JSONObject> chosenRobotCodes;
 
-  private List<Robot> robotTurnOrder;
+  private List<Robot> robotTurnOrder;   // not used
 
+  // reference to the gameboard 
   static public GameBoard gameBoard; ////Need to set this
 
   public void start() {
@@ -332,8 +344,7 @@ public class GameController implements ActionListener, KeyListener, GameObserver
 
   @Override
   public void keyPressed(KeyEvent arg0) {
-    // TODO Auto-generated method stub
-    if (arg0.getKeyChar() == 'd') {
+     if (arg0.getKeyChar() == 'd') {
       try {
         currentRobot.move('d');
       } catch (Exception ex) {
@@ -377,7 +388,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
     }
 
   }
-
+/**
+ * this function takes actions sent from view to 
+ * and performs the proper task
+ * @param arg0 
+ */
   @Override
   public void actionPerformed(ActionEvent arg0) {
 
@@ -450,9 +465,11 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         // check for dead robots and remove them from the board
         int size = 0;
         if(gameInfo.getBoardSize() == 5){
-          size = 9;
+           // if 5 spaces on each size 2d array of hexes is 9 by 9
+          size = 9;     
         }
         else{
+           // if 5 spaces on each size 2d array of hexes is 13 by 13
           size = 13;
         }
         for(int i = 0; i < size; i++){
@@ -516,22 +533,16 @@ public class GameController implements ActionListener, KeyListener, GameObserver
         gameControl.start();
         break;
       }
-      
-      case "update":{
-        
-      }
       case "backTS": {
         view.showGameProperties(this);
         break;
       }
       case "five": {
         boardSize = 5;
-        //numPlayers = 2;
         break;
       }
       case "seven": {
         boardSize = 7;
-        //numPlayers = 6;
         break;
       }
       case "zeroHumans": {
