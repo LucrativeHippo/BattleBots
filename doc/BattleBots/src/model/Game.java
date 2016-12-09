@@ -12,11 +12,6 @@ public class Game implements RobotController, GameInfo {
 		
 	}
 	
-	@Override
-	public void addObserver(GameObserver observer) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<Robot> getRobots() {
@@ -105,4 +100,5 @@ public class Game implements RobotController, GameInfo {
   public void setCurrentRobot(Robot currentRobot) {
     this.currentRobot = currentRobot;
   }
+
 }
