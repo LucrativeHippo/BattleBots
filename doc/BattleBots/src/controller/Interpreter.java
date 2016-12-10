@@ -252,6 +252,7 @@ public class Interpreter {
                
             }else{
                         System.out.println("This string is not executable");
+                        forthWords.pop(); // pops the incorrect string
                     }
         }
     }
