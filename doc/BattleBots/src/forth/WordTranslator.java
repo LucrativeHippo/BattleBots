@@ -291,10 +291,8 @@ public class WordTranslator implements Execute{
         //is associated with the else statement.  It will do the opposite if
         //the top of the stack is false
         ht.put("if", (Execute) () -> {
-            System.out.println("in the if");
             Boolean var1 = (boolean)robot.forthValues.pop();
             Stack ifCommands = new Stack();
-            System.out.println("begin if");
             if(var1 == true ){
                
                     
@@ -377,7 +375,6 @@ public class WordTranslator implements Execute{
                             ifCommands.push(forthCommands.pop());
                             //pops the if string onto the stack
                         }
-                    System.out.println(forthCommands.peek());
                     while(!ifCommands.empty()){
                         forthCommands.push(ifCommands.pop());
                         //makes the stack into the correct order
@@ -429,7 +426,6 @@ public class WordTranslator implements Execute{
             this.loopCount = temp1;
              
             Stack backwardsForth = new Stack();
-            System.out.println(forthCommands.peek());
             while(forthCommands.peek().toString().compareTo("loop")!=0){
                 backwardsForth.push(forthCommands.pop());
                 //pops the loop off the stack and onto a new stack
@@ -631,7 +627,6 @@ public class WordTranslator implements Execute{
         ht.put("variable", (Execute)  () -> {
             //key is the name of the variable and its "key" for its hashtable
             String key = (String)forthCommands.peek();
-            System.out.println("creating new variable " + key);
             //Checks the hashtable see if the variable already exists
             if(!robot.variables.containsKey(key)){
                 //puts the new variable into the hashtable, does not currently have a value
@@ -647,13 +642,10 @@ public class WordTranslator implements Execute{
         
         //Accesses the previous variable and returns its value onto the robot forth values stack
         ht.put("?", (Execute)  () -> {
-            System.out.println("executing the ? dictionary");
-            if(!robot.variableStack.isEmpty()){
-               System.out.println("accessed variable"); 
+            if(!robot.variableStack.isEmpty()){ 
                //accesses the last variable in a hashtable and pushes its value onto the robot values stack
                //robot.variableStack.pop is the last seen variable and the key for the hashtable
             robot.forthValues.push(robot.variables.get((String)robot.variableStack.peek()));
-            System.out.println("the value accessed is " + robot.forthValues.peek() + "from the variable " + robot.variableStack.peek()); 
             
             }else{
                 System.out.println("There are no variable to be accessed");
@@ -666,12 +658,9 @@ public class WordTranslator implements Execute{
 
         //Accesses the previous variable an inserts a new value 
         ht.put("!", (Execute)  () -> {
-            System.out.println("executing the ! dictionary");
             if(!robot.variableStack.isEmpty()){
-                System.out.println("accessed variable");
                 //puts the new value into the hashtable containing all the variables
                 //robot.variableStack.peek is the last seen variable and the key for the hashtable
-                System.out.println("The value being put into the variable is " + robot.forthValues.peek() + "the variable is " + robot.variableStack.peek());
                 robot.variables.put((String)robot.variableStack.peek(), robot.forthValues.pop());
             
             }else{
@@ -686,7 +675,6 @@ public class WordTranslator implements Execute{
         
         //Pushes a string of words onto the robot values stack
         ht.put("string", (Execute)  () -> {
-            System.out.println("inside the string function");
             String s = new String();
             while(forthCommands.peek().toString().compareTo("\"")!=0){
             s = s.concat((String)forthCommands.pop());
@@ -755,7 +743,6 @@ public class WordTranslator implements Execute{
         
         //pushes the current robots movesleft to the top of the forthvalues stack
         ht.put("movesLeft", (Execute) () -> {
-            System.out.println("the movement left is " + robot.getMovementLeft());
             robot.forthValues.push(robot.getMovementLeft());
         });
         
@@ -947,7 +934,6 @@ public class WordTranslator implements Execute{
         
         //scans the area around the current robot
         ht.put("scan!", (Execute) () -> {
-            System.out.println("SCANNING");
             //checks if the robot is a scout
             if(robot.getType().compareTo("SCOUT")==0){
             ScoutAI temp = (ScoutAI) robot;
