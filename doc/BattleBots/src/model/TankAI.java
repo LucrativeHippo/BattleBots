@@ -115,7 +115,6 @@ public class TankAI extends Tank{
               this.setHorizontalLocation(this.getHorizontalLocation()-1);
               this.setVerticalLocation(this.getVerticalLocation()+1);
               this.setMovementLeft(this.getMovementLeft()-1);
-              System.out.println("We were on an even horizontal position, now we have moved");
             }
           } else{//different for odd rows
             if(this.board.spaces[this.getHorizontalLocation()]
@@ -126,7 +125,6 @@ public class TankAI extends Tank{
                   [this.getVerticalLocation()].robotList.remove(this);
               this.setVerticalLocation(this.getVerticalLocation()+1);
               this.setMovementLeft(this.getMovementLeft()-1);
-              System.out.println("We were on an odd horizontal position, now we have moved");
             }
           }
           this.setMoves(this.getMoves() + 1);
@@ -236,23 +234,18 @@ public class TankAI extends Tank{
           Hex temp = this.board.spaces[this.getHorizontalLocation()+k]
               [this.getVerticalLocation()+i];
         } catch (ArrayIndexOutOfBoundsException e) {
-          System.out.println(e + " caught due to scanning out of bounds.");
           x=e;                   
         }
         if(x==null){
-          System.out.println(this.getHorizontalLocation()+k);
-          System.out.println(this.getVerticalLocation()+i);
           if(this.board.spaces[this.getHorizontalLocation()+k]
               [this.getVerticalLocation()+i].hexExists==
               true&&this.board.spaces[this.getHorizontalLocation()+k]
               [this.getVerticalLocation()+i].isEmpty()==false){
-            System.out.println("hex check successful");
             Iterator<Robot> robotIterator = this.board.spaces[this.getHorizontalLocation()+k]
                 [this.getVerticalLocation()+i].robotList.iterator();
             while(robotIterator.hasNext()){
               numRobots = numRobots + 1;
               Robot temp = robotIterator.next();
-              System.out.println(temp.getName());
               this.scannedRobotsList.add(temp);
             }
           }          

@@ -561,6 +561,11 @@ public class Robot {
     this.type = type;
   }
   
+  /**
+   * this function finds the direction of an enemy given a hex location
+   * @param index the position of the robot on the scanned robot list
+   * @return an integer corresponding to the robots direction
+   */
   public int getDirectionOfEnemy(int index){
     Robot tmp = this.scannedRobotsList.get(index);
     if(tmp != null){
@@ -936,6 +941,12 @@ public class Robot {
     }
   }
   
+  
+  /**
+   * this function finds the range of an enemy given a hex location
+   * @param index the position of the robot on the scanned robot list
+   * @return an integer corresponding to the robots distance
+   */
   public int getRangeOfEnemy(int index){
       Robot tmp = this.scannedRobotsList.get(index);
       int distance = 0;
