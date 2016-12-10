@@ -254,7 +254,7 @@ public class StatsPanel extends JPanel {
       rows.setLayout(new GridLayout(1, 12));
       rows.setBorder(BorderFactory.createLineBorder(Color.black));
       rows.setPreferredSize(new Dimension(1500, 40));
-      rows.setMinimumSize(new Dimension(1500, 40));
+      rows.setMinimumSize(new Dimension(1500, 25));
       rows.setMaximumSize(new Dimension(1500, 40));
       
       
