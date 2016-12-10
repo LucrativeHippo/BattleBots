@@ -29,8 +29,11 @@ public final class OverallGamePanel extends JPanel {
     private static final long serialVersionUID = 1L;
     static final int FONT_SIZE = 72;
     static final int BUTTON_SPACER_SIZE = 300;
-    static Iterator<Robot> turn;    // used for displaying which robots turn it is
-    static Iterator<Robot> turn2;   // used for displaying which robots turn it is
+    
+    // used for displaying which robots turn it is
+    // references to the aliveList of robots
+    static Iterator<Robot> turn;    
+    static Iterator<Robot> turn2;  
 
     public OverallGamePanel(int width, int height, ActionListener alistener, KeyListener klistener, GameInfo gameinfo) throws NoSuchMethodException {
         GamePanel gamepanel = new GamePanel(height, height, alistener, klistener, gameinfo);
@@ -46,7 +49,7 @@ public final class OverallGamePanel extends JPanel {
         southButtons.add(Box.createVerticalGlue());
         southButtons.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        
+        // initialize turn variables
           turn = gameBoard.aliveList.iterator();
           turn.next();
           turn2 = gameBoard.aliveList.iterator();
@@ -171,6 +174,7 @@ public final class OverallGamePanel extends JPanel {
 
                 @Override
                 public void actionPerformed(ActionEvent ae) {
+                    //update turn
                     try{
                     if(turn.hasNext()){
                         currentTurn.setText("Current Turn: " + turn.next().getGang() + " " + turn2.next().getType());
@@ -180,6 +184,7 @@ public final class OverallGamePanel extends JPanel {
                         currentTurn.setText("Current Turn: " + turn.next().getGang() + " " + turn2.next().getType());
                     }
                     }
+                    // if aliveList has been altered reset iterater and go to proper position in iterater
                     catch (ConcurrentModificationException c){
                         restartIterate();
                         while (turn.next() != gameinfo.getCurrentRobot()){
@@ -541,6 +546,7 @@ public final class OverallGamePanel extends JPanel {
                         currentTurn.setText("Current Turn: " + turn.next().getGang() + " " + turn2.next().getType());
                     }
                     }
+                    // if aliveList has been altered reset iterater and go to proper position in iterater
                     catch (ConcurrentModificationException c){
                         restartIterate();
                         while (turn.next() != gameinfo.getCurrentRobot()){
@@ -583,11 +589,24 @@ public final class OverallGamePanel extends JPanel {
         }
 
     }
-  
+  /**
+   * resets turn and turn2 iteraters 
+   */
     private void restartIterate(){
         turn = gameBoard.aliveList.iterator();
         turn2 = gameBoard.aliveList.iterator();
     }
+    
+    /**
+     * used to create the JLabels for the statistics
+     * of the game 
+     * 
+     * @param team  the gang name
+     * @param alignment determines placement on screen, left or right
+     * @param index 1 for scout, 1 for sniper, 2 for tank
+     * @param numPlayers the number of players in the game
+     * @return 
+     */
     private JPanel createTeamLabels(String team, float alignment, int index, int numPlayers) {
         JPanel panel = new JPanel();
         panel.setBackground(Color.WHITE);
