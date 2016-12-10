@@ -763,16 +763,16 @@ public class TeamSelectionPanel extends JPanel {
     lbButtons.add(updateButton);
     //lbButtons.add(Box.createHorizontalGlue());
 
-    JButton retireButton = new JButton("Retire");
-    retireButton.setFont(new Font("Rockwell", Font.PLAIN, FONT_SIZE / 6));
-    retireButton.setBackground(Color.BLACK);
-    retireButton.setForeground(Color.WHITE);
-    retireButton.setActionCommand("retire");
-    retireButton.addActionListener(listener);
-    retireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    retireButton.setFocusPainted(false);
-
-    lbButtons.add(retireButton);
+//    JButton retireButton = new JButton("Retire");
+//    retireButton.setFont(new Font("Rockwell", Font.PLAIN, FONT_SIZE / 6));
+//    retireButton.setBackground(Color.BLACK);
+//    retireButton.setForeground(Color.WHITE);
+//    retireButton.setActionCommand("retire");
+//    retireButton.addActionListener(listener);
+//    retireButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+//    retireButton.setFocusPainted(false);
+//
+//    lbButtons.add(retireButton);
     //lbButtons.add(Box.createHorizontalGlue());
 
     lb.add(one);
