@@ -10,8 +10,7 @@ package forth;
  * @author wjr992
  */
 public interface Execute {
-    void execute();
-        
+    void execute();   
     
 }
 
