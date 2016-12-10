@@ -15,7 +15,14 @@ changes in architecture
   Added an OverallGamePanel to put the gamePanel and other things together and nicely formatted, and we also used the gamePanel class as a secondary controller class to more directly and efficiently access and alter the state of the game. We decided that this was the right way to do it, even though it violated our architecture, because it is not as efficient as interacting through the controller. The controller does not need to know about this interaction.
 Controller During the design process we did not yet fully understand the forth language and how it works because none of us have ever used it before. Because of this we did not realize what was needed for this, and we had to add the Interpretor, and wordTranslator classes to our architecture.
   
-
+External Libraries
+The only external Library used in this program is the JSON.Simple library found online
+at https://www.mkyong.com/java/json-simple-example-read-and-write-json/.  This library 
+imports the ability to store JSON files as objects and actually create JSON objects and 
+code.  It comes with functions that allow for accessing, removing, manipulating, and adding 
+to various JSON code and obtaining values stored in keys.  JSONArrays and JSONObjects were the
+only two utilities utilized from the library.  For a detailed comprehensive list of all functions
+and utilities included in the library that was not used in this program, please see the link above.
   
   
   
