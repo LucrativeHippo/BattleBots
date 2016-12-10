@@ -38,7 +38,11 @@ public class Hex {
         hexagon = new Polygon(xpoints, ypoints, 6);
 
     }
-
+    /**
+     * draws a hexagon on the screen
+     * @param graphics
+     * @param color colour of the hex
+     */
     public void drawHex(Graphics2D graphics, Color color) {
         graphics.setColor(Color.GREEN);
         graphics.fillPolygon(hexagon);
@@ -71,6 +75,7 @@ public class Hex {
 
     /**
      * draws a circle shape on a hex space on the Game Board
+     * this is to represent a scout
      *
      * @param graphics
      * @param color the colour of the robot
@@ -97,6 +102,7 @@ public class Hex {
 
     /**
      * draws a rounded rectangle shape on a hex space on the Game Board
+     * this is to represent a sniper
      *
      * @param graphics
      * @param color the colour of the robot
@@ -124,6 +130,7 @@ public class Hex {
 
     /**
      * draws a rectangle shape on a hex space on the Game Board
+     * this is to represent a tank
      *
      * @param graphics
      * @param color the colour of the robot
