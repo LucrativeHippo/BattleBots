@@ -226,7 +226,6 @@ public class Interpreter {
         }
         WordTranslator translate = new WordTranslator(robot, forthWords);
         while(!forthWords.empty()){ 
-            System.out.println(forthWords.peek());
             if(this.isInteger((String)forthWords.peek())){
                 //check if the string is an integer and pops it onto the robot 
                 //stack

@@ -546,7 +546,6 @@ public class WordTranslator implements Execute{
         ht.put(":", (Execute) () -> {
             String key = (String)forthCommands.pop();
             if(key.compareTo("play")==0){
-                 System.out.println("beginning play");
             }else{
             Stack backwardsForth = new Stack();
             while(forthCommands.peek().toString().compareTo(";")!=0){
